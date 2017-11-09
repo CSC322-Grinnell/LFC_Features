@@ -1,0 +1,36 @@
+#map {
+    border-radius: .1cm;
+    height: 70vh;
+    width: 100%;
+}
+
+.jumbotron {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;    
+}
+.search {
+    margin: 0cm 0cm .25cm 0cm;
+    width: 100%;
+}
+
+.list-group-item {
+    width: 90%;
+    margin: 5% 5% 5% 5% !important;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+    -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+}
+
+.list-group {
+    height: 75vh;
+    overflow: hidden;
+    overflow-y: scroll !important;
+}
+.col-md-4 {
+    padding: 0% 5% 5% 5%;
+}
+
+.col-md-8 {
+    padding: 0% 5% 5% 5%;
+}
