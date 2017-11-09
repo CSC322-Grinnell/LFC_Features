@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(version: 20171109153632) do
     t.string   "facebook"
     t.string   "instagram"
     t.string   "twitter"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "valid",       default: false
+    t.boolean  "original_id"
   end
 
   create_table "users", force: :cascade do |t|
