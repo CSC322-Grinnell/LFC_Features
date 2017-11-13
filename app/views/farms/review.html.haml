@@ -1,0 +1,16 @@
+-# This file is app/views/farms/review.html.haml
+%h1 Review for Approval
+
+- if @no_invalid_farms
+  %p="There are no farms pending approval"
+
+%table#movies
+%thead
+%tr
+  %th{:class => @title_header}= link_to 'Farm Name', farms_path(:sort => 'name'), :id => 'title_header'
+%tbody
+- @invalid_farms.each do |farm|
+  %tr
+    %td= farm.name
+    -# comment
+:q

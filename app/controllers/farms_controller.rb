@@ -1,9 +1,9 @@
 class FarmsController < ApplicationController
-  
+
   before_action :authenticate
 
   def index
-    @farms = Farm.all
+    @show_farms = Farm.where(approved: true)
     @farms_json = buildJson
     puts @farms_json
   end
@@ -11,8 +11,13 @@ class FarmsController < ApplicationController
   def buildJson
     render :json => Farm.all
   end
-  
-  
+
+  def review
+    @invalid_farms = nil
+    @invalid_farms = Farm.where(approved: false)
+    render :json => @invalid_farms
+  end
+
   protected
   def authenticate
     puts "haha"
@@ -20,5 +25,4 @@ class FarmsController < ApplicationController
       return @token = token
     end
   end
-
 end
