@@ -3,9 +3,11 @@ class FarmsController < ApplicationController
   before_action :authenticate
 
   def index
-    @show_farms = Farm.where(approved: true)
-    @farms_json = buildJson
-    puts @farms_json
+    #@show_farms = Farm.where(approved: true)
+    #@farms_json = buildJson
+    #puts @farms_json
+
+    review
   end
 
   def buildJson
