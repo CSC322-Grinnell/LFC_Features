@@ -13,6 +13,6 @@ farm_list = [
     ["Aunt Maria's Farm", "1641 Park St.", "auntmaria.com", "5150009999", "Aunt Maria's Farm", "auntmaria_farm", "auntmaria_farm", false]
 ]
 
-farm_list.each do |name, address, url, phone, facebook, instagram, twitter|
-  Farm.create( name: name, address: address, url: url, phone: phone, facebook: facebook, instagram: instagram, twitter: twitter)
+farm_list.each do |name, address, url, phone, facebook, instagram, twitter, approved|
+  Farm.create( name: name, address: address, url: url, phone: phone, facebook: facebook, instagram: instagram, twitter: twitter, approved: approved)
 end
