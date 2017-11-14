@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :farms
-
   root :to => redirect('/farms')
 
   # define api get for json data
