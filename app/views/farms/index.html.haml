@@ -1,3 +1,13 @@
 -#  This file is app/views/farms/index.html.haml
 %h1 All Farms
 
+%table#show_farms
+  %thead
+    %tr
+      %th Farm Name
+  %tbody
+    - @show_farms.each do |farm|
+      %tr
+        %td= farm.name
+
+= link_to 'Approval List', farms_review_path

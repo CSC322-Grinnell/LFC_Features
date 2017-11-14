@@ -1,0 +1,16 @@
+-# in app/views/movies/show.html.haml
+%h2 Review for Approval
+
+- if @no_invalid_farms
+  %p="There are no farms pending approval"
+
+%table#invalid_farms
+  %thead
+    %tr
+      %th Farm Name
+  %tbody
+    - @invalid_farms.each do |farm|
+      %tr
+        %td= farm.name
+
+= link_to 'Back to index', farms_path
