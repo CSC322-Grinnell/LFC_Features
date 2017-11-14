@@ -8,9 +8,21 @@
   %thead
     %tr
       %th Farm Name
+      %th Address
+      %th URL
+      %th Phone
+      %th Facebook
+      %th Instagram
+      %th Twitter
   %tbody
     - @invalid_farms.each do |farm|
       %tr
         %td= farm.name
+        %td= farm.address
+        %td= farm.url
+        %td= farm.phone
+        %td= farm.facebook
+        %td= farm.instagram
+        %td= farm.twitter
 
 = link_to 'Back to index', farms_path
