@@ -4,12 +4,13 @@
 - if @no_invalid_farms
   %p="There are no farms pending approval"
 
-%table#movies
-%thead
-%tr
-  %th{:class => @title_header}= link_to 'Farm Name', farms_path(:sort => 'name'), :id => 'title_header'
-%tbody
-- @invalid_farms.each do |farm|
-  %tr
-    %td= farm.name
-    -# comment
+%table#invalid_farms
+  %thead
+    %tr
+      %th Farm Name
+  %tbody
+    - @invalid_farms.each do |farm|
+      %tr
+        %td= farm.name
+
+= link_to 'Back to index', index_path
