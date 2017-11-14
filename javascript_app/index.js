@@ -9,7 +9,7 @@ function init() {
 
 function initMap() {
     var grinnell = {
-        lat: 41.7434, 
+        lat: 41.7434,
         lng: -92.7232 };
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -26,10 +26,10 @@ function initMap() {
 }
 
 function callApi() {
-    
+
     document.getElementById("farmList").innerHTML = "";
-   
-    var call_url = "https://lfc-features-tranminh.c9users.io/farms";
+
+    var call_url = "http://localhost:3000/farms"
 	$.ajax({
     	type: "GET",
         url: call_url,
@@ -48,9 +48,9 @@ function callApi() {
                 alert("Your search query returned no results . . . ")
             }
 		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
@@ -73,6 +73,6 @@ function handleIndexCall(result) {
             position: {lat: 41.7434 + i*2, lng: -92.7232 + i*2 },
             title: result[i].name,
             map: map
-        }); 
+        });
     }
 }

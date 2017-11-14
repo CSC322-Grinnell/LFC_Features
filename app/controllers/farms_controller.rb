@@ -2,25 +2,23 @@ class FarmsController < ApplicationController
 
   before_action :authenticate
 
-  def farm_params
-    params.require(:farm)
-        .permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter)
-  end
-
   def show
-    id = params[:id]
-    @farm = Farm.find(id)
+    @show_farms = Farm.where(approved: true)
+    @invalid_farms = Farm.where(approved: false)
+
+    #id = params[:id]
+    #@farm = Farm.find(id)
   end
 
   def index
     @show_farms = Farm.where(approved: true)
-    @farms_json = buildJson @show_farms
+    # @farms_json = buildJson @show_farms
     # puts @farms_json
   end
 
   def review
     @invalid_farms = Farm.where(approved: false)
-    @review_json = buildJson @invalid_farms
+    # @review_json = buildJson @invalid_farms
     # puts @review_json
   end
 
