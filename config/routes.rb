@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :farms
-
   root :to => redirect('/farms')
   get 'farms/jsonData'
   get 'farms/show'
