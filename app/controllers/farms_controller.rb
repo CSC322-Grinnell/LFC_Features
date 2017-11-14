@@ -44,6 +44,14 @@ class FarmsController < ApplicationController
     render :json => farms
   end
 
+  def approve
+
+  end
+
+  def reject
+
+  end
+
   protected
   def authenticate
     authenticate_with_http_token do |token, options|
