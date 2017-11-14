@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
+ <!DOCTYPE html>
+ <html>
     <head>
+        <meta charset="UTF-8">
         <!-- CSS -->
         <link rel=StyleSheet href="index.css" TYPE="text/css"><!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        
+        <!-- SCRIPTS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -17,16 +21,33 @@
         </div>
 
         <div class="col-md-8"> 
+
+            <!-- search bar -->
             <div class="input-group search">
                 <input type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
                     <button id="searchButton" class="btn btn-default" type="button">Search</button>
                 </span>
             </div>
+
+            <!-- dropdown menu for categories -->
+            <div class="dropdown">
+                <button type="button" class="btn btn-default dropdown-toggle category-button" data-toggle="dropdown">
+                    Dropdown button <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Link 1</a>
+                    <a class="dropdown-item" href="#">Link 2</a>
+                    <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+            </div> 
+
+            <!-- map -->
             <div id="map"></div>
         </div>
         
         <div class="col-md-4"> 
+            <h3 class="section-title">Farms</h3>
             <ul id="farmList" class="list-group">    
 
                 <!--
@@ -42,9 +63,23 @@
             </ul>       
         </div>
 
+        <!-- horizontal scrolling menu for recipes -->
+        <div class="col-sm-12">
+            <h3 class="section-title">Recipes</h3>
+            <div id="recipe_list" class="scrollmenu">
+                <div class="scrollmenu-item">
+                    <h4 class="card-title">Some Recipe</h4>
+                </div>
+                <div class="scrollmenu-item">
+                    <h4 class="card-title">Some Recipe</h4>
+                </div>
+                <div class="scrollmenu-item">
+                    <h4 class="card-title">Some Recipe</h4>
+                </div>                                    
+            </div>
+        </div>
         <!-- Scripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="index.js"></script>   
+        <script src="index.js"></script> 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQYIkOGccg155GIESrxDpYvL1GgnK1qwQ&callback=initMap"></script>
     </body>
 </html>
