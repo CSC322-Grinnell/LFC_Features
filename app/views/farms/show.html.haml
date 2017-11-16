@@ -7,6 +7,7 @@
 %table#invalid_farms
   %thead
     %tr
+      %th ID
       %th Farm Name
       %th Address
       %th URL
@@ -17,6 +18,7 @@
   %tbody
     - @invalid_farms.each do |farm|
       %tr
+        %td= farm.id
         %td= farm.name
         %td= farm.address
         %td= farm.url
@@ -24,7 +26,7 @@
         %td= farm.facebook
         %td= farm.instagram
         %td= farm.twitter
-        %td= button_to 'Approve', approve_path
-        %td= button_to 'Reject', reject_path
+        %td= button_to 'Approve', approve_path(:item_id => farm.id)
+        %td= button_to 'Reject', reject_path(:item_id => farm.id)
 
 = link_to 'Back to index', farms_path
