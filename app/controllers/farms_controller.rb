@@ -45,11 +45,15 @@ class FarmsController < ApplicationController
   end
 
   def approve
-
+    id = params[:item_id]
+    f = Farm.find(id)
+    f.approved = true
+    f.save
   end
 
   def reject
-
+    id = params[:item_id]
+    Farm.destroy(id)
   end
 
   protected
