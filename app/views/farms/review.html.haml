@@ -1,5 +1,5 @@
--# This file is app/views/farms/review.html.haml
-%h1 Review for Approval
+-# in app/views/movies/show.html.haml
+%h2 Review for Approval
 
 - if @no_invalid_farms
   %p="There are no farms pending approval"
@@ -7,10 +7,26 @@
 %table#invalid_farms
   %thead
     %tr
+      %th ID
       %th Farm Name
+      %th Address
+      %th URL
+      %th Phone
+      %th Facebook
+      %th Instagram
+      %th Twitter
   %tbody
     - @invalid_farms.each do |farm|
       %tr
+        %td= farm.id
         %td= farm.name
+        %td= farm.address
+        %td= farm.url
+        %td= farm.phone
+        %td= farm.facebook
+        %td= farm.instagram
+        %td= farm.twitter
+        %td= button_to 'Approve', approve_path(:item_id => farm.id)
+        %td= button_to 'Reject', reject_path(:item_id => farm.id)
 
-= link_to 'Back to index', index_path
+= link_to 'Back to index', farms_path

@@ -5,9 +5,11 @@ class FarmsController < ApplicationController
   def show
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
-
-    #id = params[:id]
-    #@farm = Farm.find(id)
+    if params[:farm_json]
+        farm_json
+    elsif params[:review]
+        review
+    end
   end
 
   def index
@@ -22,7 +24,7 @@ class FarmsController < ApplicationController
     # puts @review_json
   end
 
-  def apiJson
+  def farm_json
     @show_farms = Farm.where(approved: true)
     @farms_json = buildJson @show_farms
   end
