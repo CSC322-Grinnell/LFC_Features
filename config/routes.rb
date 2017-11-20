@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'farms/farm_json', to: 'farms#farm_json', as: :farm_json
+  resources :farms
+  root :to => redirect('/farms')
+  get 'farms/review'
+  post 'approve/(:item_id)', to: 'farms#approve', as: :approve
+  post 'reject/(:item_id)', to: "farms#reject", as: :reject
 
   # define api get for json data
   scope '/api' do
@@ -11,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :farms
-  
+
   get 'farms/review'
   post 'approve/(:item_id)', to: 'farms#approve', as: :approve
   post 'reject/(:item_id)', to: "farms#reject", as: :reject
