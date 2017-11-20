@@ -28,9 +28,8 @@ function initMap() {
 function callApi() {
 
     document.getElementById("farmList").innerHTML = "";
-
-    var call_url = "http://localhost:3000/farms"
-	$.ajax({
+    var call_url = "https://localhost:3000/farms"
+	  $.ajax({
     	type: "GET",
         url: call_url,
         headers: {
