@@ -63,10 +63,9 @@
 .scrollmenu-item {
     display: inline-block;
     margin: 10px !important;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
     border-radius: 15px;
     width: 27vw;
-    height: 300px;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 }

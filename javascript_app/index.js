@@ -180,7 +180,7 @@ function handleRecipeAPICall(recipes) {
         var id = "recipe_" + (i + 1);
 
         $('#recipe_grid').append('<div id="' + id + '" class="card scrollmenu-item"> ' +
-            '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="150" width="150"></img>' + 
+            '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' + 
             '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
             '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
