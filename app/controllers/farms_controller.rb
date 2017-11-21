@@ -5,9 +5,9 @@ class FarmsController < ApplicationController
   def show
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
-    if params[:farm_json]
+    if params[:id] == "farm_json"
         farm_json
-    elsif params[:review]
+    elsif params[:id] == "review"
         review
     end
   end

@@ -29,7 +29,7 @@ function callApi() {
 
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "http://localhost:3000/farms"
+    var call_url = "http://localhost:3000/farms/farm_json"
 	$.ajax({
     	type: "GET",
         url: call_url,
