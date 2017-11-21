@@ -7,14 +7,21 @@ function init() {
     // set up on click
     document.getElementById("searchButton").onclick = callApi;
 
-    callFood2Fork(["peas","carrots"]);
+    document.getElementById("search_recipes").onclick = function() {
+        var text = $('#recipe_search_text').val();
+        text = text.split(' ').join('%20')
+        if (text != "") {
+            callFood2Fork(text);
+        }
+    }
 
+    callFood2Fork(["peas","carrots"]);
 }
 
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
-        lat: 41.7434,
+        lat: 41.7434, 
         lng: -92.7232 };
 
     // init map 
@@ -35,11 +42,12 @@ function initMap() {
 }
 
 function callApi() {
-
+    
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "http://localhost:3000/farms/farm_json"
-	  $.ajax({
+   
+    var call_url = "http://localhost:3000/farms/farm_json";
+	$.ajax({
     	type: "GET",
         url: call_url,
         headers: {
@@ -55,10 +63,10 @@ function callApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		    },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+		},
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown);
+            console.log("Error: " + errorThrown); 
         }
     });
 }
@@ -131,17 +139,15 @@ function addMarker(farm, results) {
     //});
 }
 
-function callFood2Fork(foods) {
-    var call_url = "https://api.edamam.com/search?q=brussel%20sprouts%20peanut&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+function callFood2Fork(food_string) {
 
-    //for (var i = 0; i < foods.length; i++) {
-    //    call_url += foods[i];
-    //    if(i != foods.length - 1) {
-    //        call_url += "%20";
-    //  }
-    //}
+    // clear the html to get rid of old recipes 
+    $("#recipe_grid").html("");
 
-    console.log(call_url)
+    // set new url to access
+    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+
+    // make call
 	$.ajax({
     	type: "GET",
         url: call_url,
@@ -180,11 +186,5 @@ function handleRecipeAPICall(recipes) {
             '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
             '</li>'
         );
-      
-        //new google.maps.Marker({
-        //    position: {lat: 41.7434 + i*2, lng: -92.7232 + i*2 },
-        //    title: result[i].name,
-        //    map: map
-        //});
     }
 }

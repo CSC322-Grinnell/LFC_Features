@@ -17,6 +17,10 @@
     width: 100%;
 }
 
+.search-recipes {
+    margin: .25cm 1cm .25cm 0cm;
+    width: 70%;
+}
 .category-button {
     margin: 0cm 0cm .25cm 0cm !important;
 }
