@@ -6,12 +6,14 @@ init();
 function init() {
     // set up on click
     document.getElementById("searchButton").onclick = callApi;
+
+    callFood2Fork(["peas","carrots"]);
 }
 
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
-        lat: 41.7434,
+        lat: 41.7434, 
         lng: -92.7232 };
 
     // init map 
@@ -32,11 +34,11 @@ function initMap() {
 }
 
 function callApi() {
-
+    
     document.getElementById("farmList").innerHTML = "";
-
-    var call_url = "http://localhost:3000/farms/farm_json"
-	  $.ajax({
+   
+    var call_url = "http://localhost:3000/farms/farm_json";
+	$.ajax({
     	type: "GET",
         url: call_url,
         headers: {
@@ -52,10 +54,10 @@ function callApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		    },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+		},
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown);
+            console.log("Error: " + errorThrown); 
         }
     });
 }
@@ -126,4 +128,56 @@ function addMarker(farm, results) {
         //    marker.setAnimation(google.maps.Animation.BOUNCE);
         //    console.log("Jumping!");
     //});
+}
+
+function callFood2Fork(foods) {
+    var call_url = "https://api.edamam.com/search?q=brussel%20sprouts%20peanut&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+
+    //for (var i = 0; i < foods.length; i++) {
+    //    call_url += foods[i];
+    //    if(i != foods.length - 1) {
+    //        call_url += "%20";
+    //  }
+    //}
+
+    console.log(call_url)
+	$.ajax({
+    	type: "GET",
+        url: call_url,
+        //headers: {
+        //   "Access-Control-Allow-Origin":"*"
+        //},
+        dataType: 'json',
+        //contentType: 'text/plain;charset=UTF-8',
+        crossDomain: true,
+        //async: false,
+        success: function(result) {
+            if (result != null && result.hits.length > 0) {
+                console.log(result);
+                handleRecipeAPICall(result.hits);
+            } else {
+                alert("Your search query returned no results . . . ")
+            }
+		},
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            console.log("Status: " + textStatus);
+            console.log("Error: " + errorThrown); 
+        }
+    });
+}
+
+function handleRecipeAPICall(recipes) {
+    console.log(recipes);
+    for (var i = 0; i < recipes.length; i++) {
+
+        var id = "recipe_" + (i + 1);
+
+        $('#recipe_grid').append('<div id="' + id + '" class="card scrollmenu-item"> ' +
+            '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="150" width="150"></img>' + 
+            '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
+            '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
+            '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
+            '</li>'
+        );
+    }
 }
