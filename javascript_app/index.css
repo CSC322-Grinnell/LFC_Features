@@ -17,6 +17,10 @@
     width: 100%;
 }
 
+.search-recipes {
+    margin: .25cm 1cm .25cm 0cm;
+    width: 70%;
+}
 .category-button {
     margin: 0cm 0cm .25cm 0cm !important;
 }
@@ -27,6 +31,9 @@
     border-radius: 10px;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+}
+.list-group-item:hover {
+    background-color: #eeeeee;
 }
 
 .list-group {
@@ -56,11 +63,17 @@
 .scrollmenu-item {
     display: inline-block;
     margin: 10px !important;
-    padding: 10px 15px 10px 15px;
-    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 15px;
+    width: 27vw;
+    height: 300px;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 }
 .scrollmenu-item:hover {
-    background-color: #777;
+    background-color: #eeeeee;
+}
+
+.recipe_image {
+    border-radius: 15px;
 }
