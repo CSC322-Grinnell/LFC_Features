@@ -14,7 +14,7 @@ function init() {
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
-        lat: 41.7434, 
+        lat: 41.7434,
         lng: -92.7232 };
 
     // init map 
@@ -35,11 +35,11 @@ function initMap() {
 }
 
 function callApi() {
-    
+
     document.getElementById("farmList").innerHTML = "";
-   
-    var call_url = "https://lfc-features-.c9users.io/farms";
-	$.ajax({
+
+    var call_url = "http://localhost:3000/farms/farm_json"
+	  $.ajax({
     	type: "GET",
         url: call_url,
         headers: {
@@ -55,10 +55,10 @@ function callApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+		    },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
@@ -180,5 +180,11 @@ function handleRecipeAPICall(recipes) {
             '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
             '</li>'
         );
+      
+        //new google.maps.Marker({
+        //    position: {lat: 41.7434 + i*2, lng: -92.7232 + i*2 },
+        //    title: result[i].name,
+        //    map: map
+        //});
     }
 }
