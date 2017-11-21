@@ -6,10 +6,11 @@ class FarmsController < ApplicationController
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
     if params[:id] == "farm_json"
-        farm_json
+      farm_json
     elsif params[:id] == "review"
-        return review
-    elsif params[:id] == "submission"
+      return review
+    elsif params[:id] == "approved"
+      return approved
     end
   end
 
@@ -37,6 +38,10 @@ class FarmsController < ApplicationController
     render :review
     # @review_json = buildJson @invalid_farms
     # puts @review_json
+  end
+
+  def approved
+    render :approved
   end
 
   def farm_json

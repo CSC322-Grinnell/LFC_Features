@@ -29,4 +29,5 @@
         %td= button_to 'Approve', approve_path(:item_id => farm.id)
         %td= button_to 'Reject', reject_path(:item_id => farm.id)
 
-= link_to 'Back to index', farms_path
+%p= link_to 'Approved farms', farms_approved_path
+%p= link_to 'Back to submissions form', farms_path
