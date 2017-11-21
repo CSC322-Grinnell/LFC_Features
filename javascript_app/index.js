@@ -46,7 +46,7 @@ function callApi() {
     document.getElementById("farmList").innerHTML = "";
 
    
-    var call_url = "http://localhost:3000/farms/farm_json";
+    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
 	$.ajax({
     	type: "GET",
         url: call_url,
@@ -78,13 +78,36 @@ function handleIndexCall(result) {
 
         var id = "farm_" + result[i].id;
         // append card 
-        $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
-            '<h4 class="card-title">' + result[i].name + '</h4>' +
-            '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
-            '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href="#" class="card-link">' + result[i].url + '</a> | ' +
-            '<a href="#" class="card-link">' + result[i].phone + '</a>' +
-            '</li>'
+        $('#farmList').append('' + 
+            '<div id="' + id + '" class="card justify-content-between"> ' +
+                '<div class="card-body">' +
+                    '<h4 class="card-title">' + result[i].name + '</h4>' +
+                    '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
+                    '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
+                    '<a href="#" class="card-link">' + result[i].url + '</a>' +
+                    '<a href="#" class="card-link">' + result[i].phone + '</a>' + 
+                '</div>' + 
+
+                '<button id="button' + i + '" type="button" class="btn btn-primary" data-toggle="modal" data-target="#farmModal' + i + '"> More Information </button>' +
+                '<div class="modal fade" id="#farmModal' + i + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+                  '<div class="modal-dialog" role="document">' +
+                    '<div class="modal-content">' +
+                      '<div class="modal-header">' +
+                        '<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>' +
+                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                          '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                      '</div>' +
+                      '<div class="modal-body"> ... </div>' +
+                      '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+                        '<button type="button" class="btn btn-primary">Save changes</button>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+            '</div>' + 
+            '</br>'
         );
 
         // add marker at proper placec 
