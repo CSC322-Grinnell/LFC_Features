@@ -29,7 +29,7 @@ function callApi() {
     
     document.getElementById("farmList").innerHTML = "";
    
-    var call_url = "https://lfc-features-tranminh.c9users.io/farms";
+    var call_url = "https://lfc-features-tranminh.c9users.io/farms/apiJson";
 	$.ajax({
     	type: "GET",
         url: call_url,

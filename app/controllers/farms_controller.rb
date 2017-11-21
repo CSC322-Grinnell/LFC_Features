@@ -1,8 +1,29 @@
 class FarmsController < ApplicationController
   
-  before_action :authenticate
+  #before_action :authenticate
+  def show
+    
+  end
 
+  
   def index
+    @farms = Farm.all
+  end
+  
+  def new
+    @farm = Farm.new
+  end
+  
+  def create
+    @farm = Farm.new(farm_params)
+    if @farm.save
+      redirect_to @farm
+    else
+      render :new
+    end 
+  end
+  
+  def apiJson
     @farms = Farm.all
     @farms_json = buildJson
     puts @farms_json
@@ -10,6 +31,10 @@ class FarmsController < ApplicationController
 
   def buildJson
     render :json => Farm.all
+  end
+  
+  def jsonData
+    apiJson
   end
   
   
@@ -20,5 +45,13 @@ class FarmsController < ApplicationController
       return @token = token
     end
   end
+  
+  #private
+  def farm_params
+    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter)
+  end
+  
+  
+
 
 end
