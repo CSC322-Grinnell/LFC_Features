@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   end
 
   root :to => redirect('/farms')
+
   get 'farms/review'
+  get 'farms/submission'
+
   post 'approve/(:item_id)', to: 'farms#approve', as: :approve
   post 'reject/(:item_id)', to: "farms#reject", as: :reject
 
