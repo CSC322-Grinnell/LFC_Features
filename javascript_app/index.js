@@ -131,7 +131,7 @@ function addMarker(farm, results) {
 }
 
 function callFood2Fork(foods) {
-    var call_url = "https://api.edamam.com/search?q=brussel%20sprouts%20peanut&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+    var call_url = "https://api.edamam.com/search?q=peas%20carrots%20steak&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
 
     //for (var i = 0; i < foods.length; i++) {
     //    call_url += foods[i];
