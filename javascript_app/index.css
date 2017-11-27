@@ -18,8 +18,8 @@
 }
 
 .search-recipes {
-    margin: .25cm 1cm .25cm 0cm;
-    width: 70%;
+    margin: 0px !important;
+    width: 100%;
 }
 .category-button {
     margin: 0cm 0cm .25cm 0cm !important;
@@ -41,7 +41,7 @@
     overflow: hidden;
     overflow-y: scroll !important;
 }
-.col-md-4 {
+/*.col-md-4 {
     padding: 0% 5% 0% 5%;
 }
 
@@ -52,7 +52,7 @@
 .col-sm-12 {
     padding: 10px 5% 0% 5%;
 
-}
+}*/
 
 .scrollmenu {
     background-color: #ffffff;
@@ -62,17 +62,50 @@
 
 .scrollmenu-item {
     display: inline-block;
-    margin: 10px !important;
-    padding: 10px;
-    border-radius: 15px;
-    width: 27vw;
+    margin: 10px;
+    border-radius: 10px;
+    width: 20vw;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
 }
+.scrollmenu-item-section {
+    padding: 10px;
+}
+
 .scrollmenu-item:hover {
     background-color: #eeeeee;
 }
 
 .recipe_image {
-    border-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;    
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

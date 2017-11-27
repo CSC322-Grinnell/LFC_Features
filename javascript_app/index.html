@@ -2,17 +2,19 @@
  <html>
     <head>
         <meta charset="UTF-8">
-        <!-- CSS -->
+
+        <!--css -->
         <link rel=StyleSheet href="index.css" TYPE="text/css"><!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        
-        <!-- SCRIPTS -->
+        
+        <!-- scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     </head>
 
     <body>
-        <!-- HTML Elements  --> 
-        
+
+        <!-- jumbotron -->        
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-3">Local Foods Connection</h1>
@@ -20,52 +22,50 @@
             </div>
         </div>
 
+        <!-- farm area -->
         <div class="col-md-8"> 
+            <h1>Explore Local Farms</h1>
 
             <!-- search bar -->
             <div class="input-group search">
+
+                <!-- categories -->
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories 
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </div>
+
+                <!-- text area -->
                 <input type="text" class="form-control" placeholder="Search for...">
+
+                <!-- search button -->
                 <span class="input-group-btn">
                     <button id="searchButton" class="btn btn-default" type="button">Search</button>
                 </span>
             </div>
 
-            <!-- dropdown menu for categories -->
-            <div class="dropdown">
-                <button type="button" class="btn btn-default dropdown-toggle category-button" data-toggle="dropdown">
-                    Dropdown button <span class="caret"></span>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Link 1</a>
-                    <a class="dropdown-item" href="#">Link 2</a>
-                    <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-            </div> 
-
             <!-- map -->
             <div id="map"></div>
         </div>
-        
+            
+        <!-- list of farms -->
         <div class="col-md-4"> 
-            <h3 class="section-title">Farms</h3>
             <ul id="farmList" class="list-group">    
-
-                <!--
-                <li class="list-group-item justify-content-between">
-                    <h4 class="card-title">Grinnell Heritage Farms</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">1933 Penrose St, Grinnell, IA 50112</h6>
-                    <p class="card-text">CSA, Wholesale, and Farmer's Market</p>
-                    <a href="#" class="card-link">Phone</a> | 
-                    <a href="#" class="card-link">Email</a>
-                </li>
-                -->
-                
             </ul>       
         </div>
 
-        <!-- horizontal scrolling menu for recipes -->
-        <div class="col-sm-12">
-            <h3 class="section-title">Recipes</h3>
+        <!-- grid for recipes -->
+        <div class="col-sm-8">
+            <div id="recipe_header">
+                <h1>Search Recipes</h1>
+            </div>
+
             <!-- search bar -->
             <div class="input-group search-recipes">
                 <input id="recipe_search_text" type="text" class="form-control" placeholder="Peas, Carrots, Steak . . . ">
@@ -73,13 +73,14 @@
                     <button id="search_recipes" class="btn btn-default" type="button">Search</button>
                 </span>
             </div>
-            <div class="container">
-                <div id="recipe_grid" class="row">
-                
-                </div>                                    
-            </div>
         </div>
-        <!-- Scripts -->
+            
+        <!-- results grid -->
+        <div class="col-md-12">
+            <div id="recipe_grid" class="row"></div>                                    
+        </div>
+
+        <!-- scripts -->
         <script src="index.js"></script> 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQYIkOGccg155GIESrxDpYvL1GgnK1qwQ&callback=initMap"></script>
     </body>
