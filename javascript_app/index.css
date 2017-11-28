@@ -47,12 +47,15 @@
 
 .col-md-8 {
     padding: 0% 5% 0% 5%;
+}*/
+
+.search-container {
+    padding: 2%;
 }
 
-.col-sm-12 {
-    padding: 10px 5% 0% 5%;
-
-}*/
+.content-container {
+    padding: 2% !important;
+}
 
 .scrollmenu {
     background-color: #ffffff;
@@ -64,7 +67,7 @@
     display: inline-block;
     margin: 10px;
     border-radius: 10px;
-    width: 20vw;
+    width: 22vw;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 

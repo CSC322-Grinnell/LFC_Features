@@ -46,7 +46,7 @@ function callApi() {
     document.getElementById("farmList").innerHTML = "";
 
    
-    var call_url = "http://localhost:3000/farms/farm_json";
+    var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
 	$.ajax({
     	type: "GET",
         url: call_url,
