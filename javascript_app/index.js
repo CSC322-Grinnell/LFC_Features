@@ -1,17 +1,25 @@
 var map;
 var geocoder;
+var farms = {};
 
 init();
 
 function init() {
-    // set up on click
-    document.getElementById("searchButton").onclick = callApi;
 
+    // set up recipe search 
     document.getElementById("search_recipes").onclick = function() {
         var text = $('#recipe_search_text').val();
         text = text.split(' ').join('%20')
         if (text != "") {
             callFood2Fork(text);
+        }
+    }
+
+    // set up farm search
+    document.getElementById("search_farm").onclick = function() {
+        var text = $('#search_farm_text').val();
+        if (text != "") {
+            // call search api here
         }
     }
 
@@ -33,22 +41,16 @@ function initMap() {
     // init geocoder
     geocoder = new google.maps.Geocoder();
 
-    //var marker = new google.maps.Marker({
-    //    position: grinnell,
-    //    map: map
-    //});
-
-    callApi();
+    // call index function for API to load all farms
+    callIndexApi();
 }
 
-function callApi() {
-    
+function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
-
    
-    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
-	$.ajax({
-    	type: "GET",
+    var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
+    $.ajax({
+        type: "GET",
         url: call_url,
         headers: {
             'X-Auth-Token' : 'YAS0sY2rbi'
@@ -63,7 +65,7 @@ function callApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		},
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown); 
@@ -72,43 +74,33 @@ function callApi() {
 }
 
 function handleIndexCall(result) {
-    console.log(result);
+
+    // set to new map 
+    farms = {};
 
     for (var i = 0; i < result.length; i++) {
-
+        // create id 
         var id = "farm_" + result[i].id;
+        // add to map 
+        farms[id] = result[i];
         // append card 
-        $('#farmList').append('' + 
-            '<div id="' + id + '" class="card justify-content-between"> ' +
-                '<div class="card-body">' +
-                    '<h4 class="card-title">' + result[i].name + '</h4>' +
-                    '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
-                    '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-                    '<a href="#" class="card-link">' + result[i].url + '</a>' +
-                    '<a href="#" class="card-link">' + result[i].phone + '</a>' + 
-                '</div>' + 
-
-                '<button id="button' + i + '" type="button" class="btn btn-primary" data-toggle="modal" data-target="#farmModal' + i + '"> More Information </button>' +
-                '<div class="modal fade" id="#farmModal' + i + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
-                  '<div class="modal-dialog" role="document">' +
-                    '<div class="modal-content">' +
-                      '<div class="modal-header">' +
-                        '<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>' +
-                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-                          '<span aria-hidden="true">&times;</span>' +
-                        '</button>' +
-                      '</div>' +
-                      '<div class="modal-body"> ... </div>' +
-                      '<div class="modal-footer">' +
-                        '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-                        '<button type="button" class="btn btn-primary">Save changes</button>' +
-                      '</div>' +
-                    '</div>' +
-                  '</div>' +
-                '</div>' +
-            '</div>' + 
-            '</br>'
+        $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
+            '<h4 class="card-title">' + result[i].name + '</h4>' +
+            '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
+            '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
+            '<a href="#" class="card-link">' + result[i].url + '</a> | ' +
+            '<a href="#" class="card-link">' + result[i].phone + '</a>' +
+            '</li>'
         );
+        // on click to show modal
+        $('#' + id).on('click', function() {
+            var new_id = this.getAttribute('id');
+            // alter html in modal      
+            $('#modal_header').html("<h1>" + farms[new_id].name + "</h1>");
+            $('#modal_body').html("<h4>" + farms[new_id].address + "</h4>");
+            // show modal
+            $("#generic_modal").modal()
+        });
 
         // add marker at proper placec 
         geocodeAddressAndAddMarker(result[i]);
@@ -171,12 +163,13 @@ function callFood2Fork(food_string) {
     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
 
     // make call
-	$.ajax({
-    	type: "GET",
+    $.ajax({
+        type: "GET",
         url: call_url,
-        //headers: {
+        headers: {
         //   "Access-Control-Allow-Origin":"*"
-        //},
+            "more" : true,
+        },
         dataType: 'json',
         //contentType: 'text/plain;charset=UTF-8',
         crossDomain: true,
@@ -188,7 +181,7 @@ function callFood2Fork(food_string) {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		},
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown); 
@@ -197,17 +190,22 @@ function callFood2Fork(food_string) {
 }
 
 function handleRecipeAPICall(recipes) {
-    console.log(recipes);
+    //console.log(recipes);
+    //$("#recipe_header").html("<h1>Recipes</h1>" + recipes.length + " + results");
     for (var i = 0; i < recipes.length; i++) {
-
-        var id = "recipe_" + (i + 1);
-
-        $('#recipe_grid').append('<div id="' + id + '" class="card scrollmenu-item"> ' +
-            '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' + 
-            '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
-            '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
-            '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
-            '</li>'
-        );
+         //setTimeout(function(){ 
+            var id = "recipe_" + (i + 1);
+            $('#recipe_grid').append(
+                '<div id="' + id + '" class="card scrollmenu-item"> ' +
+                    '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' + 
+                    '<div class="scrollmenu-item-section">' + 
+                        '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
+                        '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
+                        '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
+                    '</div' +
+                '</li>'
+            );
+         //}, 2000);
     }
 }
+
