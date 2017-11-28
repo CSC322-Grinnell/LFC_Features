@@ -1,0 +1,13 @@
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/json-1.8.6/ext/json
+/usr/local/var/rbenv/versions/2.4.2/bin/ruby -r ./siteconf20171113-35065-1wamw75.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/json-1.8.6/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/json-1.8.6/ext/json
+make "DESTDIR=" install

@@ -32,6 +32,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Haml as the templating library
 gem 'haml'
 
+# Use ActiveAdmin for user entries
+gem 'activeadmin'
+
+# Plus integrations with:
+gem 'devise'
+gem 'cancan' # or cancancan
+gem 'draper'
+gem 'pundit'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :farms, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :farms
 
   # define api get for json data

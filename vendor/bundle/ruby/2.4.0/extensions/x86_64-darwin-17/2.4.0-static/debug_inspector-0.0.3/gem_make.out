@@ -1,0 +1,15 @@
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+/usr/local/var/rbenv/versions/2.4.2/bin/ruby -r ./siteconf20171113-35065-1444ngq.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.3/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20171113-35065-1kk0udg

@@ -1,0 +1,15 @@
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/usr/local/var/rbenv/versions/2.4.2/bin/ruby -r ./siteconf20171113-35065-io2kix.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/mattmurphy/Documents/grinnell/csc321/LFC_Features/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20171113-35065-z2dr8s
