@@ -1,6 +1,7 @@
 var map;
 var geocoder;
 var farms = {};
+var recipes = {};
 
 init();
 
@@ -145,6 +146,7 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
+            console.log(new_id);
             // alter html in modal      
             setAndShowFarmModal(farms[new_id]);
         });
@@ -194,18 +196,38 @@ function callFood2Fork(food_string) {
 }
 
 function handleRecipeAPICall(recipes) {
+
+    // reset recipe list 
+    recipes = {};
+
+    // iterate through
     for (var i = 0; i < recipes.length; i++) {
+        
+        // get current recipe and id 
+        var current_recipe = recipes[i].recipe;
         var id = "recipe_" + (i + 1);
+
+        // put in recipe list 
+        recipes[id] = current_recipe;
+
+        // add html 
         $('#recipe_grid').append(
             '<div id="' + id + '" class="card scrollmenu-item"> ' +
-                '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' + 
+                '<img class="recipe_image" src="' + current_recipe.image + '" height="" width="100%"></img>' + 
                 '<div class="scrollmenu-item-section">' + 
-                    '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
-                    '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
-                    '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
+                    '<h4 class="card-title">' + current_recipe.label + '</h4>' +
+                    '<h6 class="card-subtitle mb-2 text-muted">' + current_recipe.source + '</h6>' +
+                    '<a href="' + current_recipe.url + '" class="card-link">Go to recipe</a>' +
                 '</div' +
             '</li>'
         );
+
+        // on click to show modal
+        $('#' + id).on('click', function() {
+            var new_id = this.getAttribute('id');
+            // alter html in modal      
+            setAndShowRecipeModal(recipes[new_id]);
+        });
     }
 }
 
@@ -216,8 +238,24 @@ function handleRecipeAPICall(recipes) {
 function setAndShowFarmModal(farm) {
     
     // set modal html
-    $('#modal_header').html("<h1>" + farms[new_id].name + "</h1>");
-    $('#modal_body').html("<h4>" + farms[new_id].address + "</h4>");
+    $('#modal_header').html("<h1>" + farm.name + "</h1>");
+    $('#modal_body').html("<h4>" + farm.address + "</h4>");
+
+    // show modal
+    $("#generic_modal").modal()
+}
+
+function setAndShowRecipeModal(recipe) {
+
+    // set modal html
+    $('#modal_header').html("<h3>" + recipe.label + "</h3>" + recipe.source);
+    var html_body = "<ul>";
+    for(var i = 0; i < recipe.ingredients.length; i++) {
+        html_body += "<li>" + recipe.ingredients[i] + "</li>";
+    }
+    html_body += "</ul>"
+    $('#modal_body').html("<h4>" + recipe.ingredients + "</h4>");
+    $('#modal_footer').html("<h4>" + recipe.url + "</h4>");
 
     // show modal
     $("#generic_modal").modal()
