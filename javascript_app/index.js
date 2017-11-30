@@ -239,7 +239,23 @@ function setAndShowFarmModal(farm) {
 
     // set modal html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
-    $('#modal_body').html(
+    // $('#modal_body').html(
+
+    //   '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
+    //   '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
+    //   '<div style="text-align: center">' +
+    //   '<a href="' + farm.url + '"> Visit our webpage | </a>' +
+    //   '<a href="' + farm.facebook + '">Facebook | </a>' +
+    //   '<a href="' + farm.twitter + '">Twitter</a>' +
+    //   '</div>');
+
+
+    $('#home_tab').html(
+        '<h3>HOME</h3>' +
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+        );
+
+    $('#contacts_tab').html(
 
       '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
       '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
@@ -249,21 +265,21 @@ function setAndShowFarmModal(farm) {
       '<a href="' + farm.twitter + '">Twitter</a>' +
       '</div>');
 
-
-    $('#home_tab').html(
-        '<h3>HOME</h3>' +
-        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+    $('#menu2_tab').html(
+        '<h3>  MENU2</h3>' +
+        '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+       
         );
 
-    $('#menu1_tab').html(
-        '<h3>HOME</h3>' +
+    $('#menu3_tab').html(
+        '<h3>MENU3</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
        
         );
 
 
 
-=
+
     // $('#contact_btn').html(
     //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
     // );
