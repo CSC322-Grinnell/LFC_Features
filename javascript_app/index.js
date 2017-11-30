@@ -7,11 +7,11 @@ init();
 
 /********
  * INIT *
- ********/ 
+ ********/
 
 function init() {
 
-    // set up recipe search 
+    // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
         var text = $('#recipe_search_text').val();
         text = text.split(' ').join('%20')
@@ -33,15 +33,15 @@ function init() {
 
 /*************
  *  INIT MAP *
- * ***********/ 
+ * ***********/
 
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
-        lat: 41.7434, 
+        lat: 41.7434,
         lng: -92.7232 };
 
-    // init map 
+    // init map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: grinnell
@@ -71,14 +71,14 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 function addMarker(farm, results) {
-// create marker object 
+// create marker object
     var marker = new google.maps.Marker({
         map: map,
         animation: google.maps.Animation.DROP,
         position: results[0].geometry.location,
         title: farm.name
     });
-                
+
     // data string for display tooltip
     var data = farm.name;
     // info window for tooltip, contains data
@@ -87,18 +87,18 @@ function addMarker(farm, results) {
     });
     // add listener to map for marker to display info window
     google.maps.event.addListener(marker, 'click', function() {
-        // open info window 
+        // open info window
         infowindow.open(map,marker);
     });
 }
 
 /***********************
  *  FARM API FUNCTIONS *
- * *********************/ 
+ * *********************/
 
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
-   
+
     var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
 	$.ajax({
     	type: "GET",
@@ -117,24 +117,24 @@ function callIndexApi() {
                 alert("Your search query returned no results . . . ")
             }
 		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
 
 function handleIndexCall(result) {
 
-    // set to new map 
+    // set to new map
     farms = {};
 
     for (var i = 0; i < result.length; i++) {
-        // create id 
+        // create id
         var id = "farm_" + result[i].id;
-        // add to map 
+        // add to map
         farms[id] = result[i];
-        // append card 
+        // append card
         $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
             '<h4 class="card-title">' + result[i].name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
@@ -147,22 +147,22 @@ function handleIndexCall(result) {
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
             console.log(new_id);
-            // alter html in modal      
+            // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
 
-        // add marker at proper placec 
+        // add marker at proper placec
         geocodeAddressAndAddMarker(result[i]);
     }
 }
 
 /*************************
  *  RECIPE API FUNCTIONS *
- * ***********************/ 
+ * ***********************/
 
 function callFood2Fork(food_string) {
 
-    // clear the html to get rid of old recipes 
+    // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
 
     // set new url to access
@@ -188,33 +188,33 @@ function callFood2Fork(food_string) {
                 alert("Your search query returned no results . . . ")
             }
 		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
 
 function handleRecipeAPICall(recipes) {
 
-    // reset recipe list 
+    // reset recipe list
     recipes = {};
 
     // iterate through
     for (var i = 0; i < recipes.length; i++) {
-        
-        // get current recipe and id 
+
+        // get current recipe and id
         var current_recipe = recipes[i].recipe;
         var id = "recipe_" + (i + 1);
 
-        // put in recipe list 
+        // put in recipe list
         recipes[id] = current_recipe;
 
-        // add html 
+        // add html
         $('#recipe_grid').append(
             '<div id="' + id + '" class="card scrollmenu-item"> ' +
-                '<img class="recipe_image" src="' + current_recipe.image + '" height="" width="100%"></img>' + 
-                '<div class="scrollmenu-item-section">' + 
+                '<img class="recipe_image" src="' + current_recipe.image + '" height="" width="100%"></img>' +
+                '<div class="scrollmenu-item-section">' +
                     '<h4 class="card-title">' + current_recipe.label + '</h4>' +
                     '<h6 class="card-subtitle mb-2 text-muted">' + current_recipe.source + '</h6>' +
                     '<a href="' + current_recipe.url + '" class="card-link">Go to recipe</a>' +
@@ -225,7 +225,7 @@ function handleRecipeAPICall(recipes) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-            // alter html in modal      
+            // alter html in modal
             setAndShowRecipeModal(recipes[new_id]);
         });
     }
@@ -233,13 +233,22 @@ function handleRecipeAPICall(recipes) {
 
 /********************
  *  MODAL FUNCTIONS *
- * ******************/ 
+ * ******************/
 
 function setAndShowFarmModal(farm) {
-    
+
     // set modal html
-    $('#modal_header').html("<h1>" + farm.name + "</h1>");
-    $('#modal_body').html("<h4>" + farm.address + "</h4>");
+    $('#modal_header').html('<h1 align="center"'> + farm.name + '</h1>');
+    $('#modal_body').html(
+      '<h4 align="center"> Our address: ' + farm.address + '</h4>' +
+      '<h4 align="center"> Our phone number: ' + farm.phone + '</h4>' +
+      '<a href="' + farm.url + '"> Visit our webpage</a>' +
+      '<a href="' + farm.facebook + '"><i class="fa fa-facebook"></i></a>' +
+      '<a href="' + farm.twitter + '"><i class="fa fa-twitter"></i></a>');
+
+    // $('#contact_btn').html(
+    //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
+    // );
 
     // show modal
     $("#generic_modal").modal()
