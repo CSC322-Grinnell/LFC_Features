@@ -173,7 +173,7 @@ function callFood2Fork(food_string) {
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=ca2b5546d3ab2e47924ae1356297bbc7";
+    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
 
     // make call
 	$.ajax({
@@ -266,7 +266,7 @@ function setAndShowFarmModal(farm) {
     // );
 
     // show modal
-    $("#generic_modal").modal()
+    $("#generic_modal").modal();
 }
 
 function setAndShowRecipeModal(recipe) {
@@ -286,5 +286,5 @@ function setAndShowRecipeModal(recipe) {
     $('#modal_footer').html("<h4>" + recipe.url + "</h4>");
 
     // show modal
-    $("#generic_modal").modal()
+    $("#generic_modal").modal();
 }
