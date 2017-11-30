@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root :to => redirect('/farms')
+  root :to => redirect('/admin')
 
   get 'farms/review'
   get 'farms/submission'
