@@ -100,8 +100,8 @@ function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
     var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
-	$.ajax({
-    	type: "GET",
+    $.ajax({
+        type: "GET",
         url: call_url,
         headers: {
             'X-Auth-Token' : 'YAS0sY2rbi'
@@ -116,7 +116,7 @@ function callIndexApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		},
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);
@@ -169,8 +169,8 @@ function callFood2Fork(food_string) {
     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
 
     // make call
-	$.ajax({
-    	type: "GET",
+    $.ajax({
+        type: "GET",
         url: call_url,
         headers: {
         //   "Access-Control-Allow-Origin":"*"
@@ -187,7 +187,7 @@ function callFood2Fork(food_string) {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-		},
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);
@@ -240,19 +240,30 @@ function setAndShowFarmModal(farm) {
     // set modal html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
     $('#modal_body').html(
-      '<h4 align="center"> Our address: ' + farm.address + '</h4>' +
-      '<h4 align="center"> Our phone number: ' + farm.phone + '</h4>' +
-      '<h4 align="center">' +
-        '<a href="' + farm.url + '"> Visit our webpage </a>' + '</h4>' +
-      '<div id="wrap">' +
-        '<div class="div-center" style="float:left">' +
-      '<a href="' + farm.facebook + '"> Follow us on Facebook</a>' +
-        '</div>' +
-        '<div class="div-right" style="float:right">' +
-      '<a href="' + farm.twitter + '"> Follow us on Twitter </a>' +
-        '</div>' +
-      '</div>'
-    );
+
+      '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
+      '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
+      '<div style="text-align: center">' +
+      '<a href="' + farm.url + '"> Visit our webpage | </a>' +
+      '<a href="' + farm.facebook + '">Facebook | </a>' +
+      '<a href="' + farm.twitter + '">Twitter</a>' +
+      '</div>');
+
+
+    $('#home_tab').html(
+        '<h3>HOME</h3>' +
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+        );
+
+    $('#menu1_tab').html(
+        '<h3>HOME</h3>' +
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+       
+        );
+
+
+
+=
     // $('#contact_btn').html(
     //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
     // );
