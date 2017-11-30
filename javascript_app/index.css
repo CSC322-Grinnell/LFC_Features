@@ -112,3 +112,8 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+.modal-image {
+    width: 40vw;
+    padding: 15px;
+}
