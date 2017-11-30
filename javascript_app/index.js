@@ -238,14 +238,21 @@ function handleRecipeAPICall(recipes) {
 function setAndShowFarmModal(farm) {
 
     // set modal html
-    $('#modal_header').html('<h1 align="center"'> + farm.name + '</h1>');
+    $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
     $('#modal_body').html(
       '<h4 align="center"> Our address: ' + farm.address + '</h4>' +
       '<h4 align="center"> Our phone number: ' + farm.phone + '</h4>' +
-      '<a href="' + farm.url + '"> Visit our webpage</a>' +
-      '<a href="' + farm.facebook + '"><i class="fa fa-facebook"></i></a>' +
-      '<a href="' + farm.twitter + '"><i class="fa fa-twitter"></i></a>');
-
+      '<h4 align="center">' +
+        '<a href="' + farm.url + '"> Visit our webpage </a>' + '</h4>' +
+      '<div id="wrap">' +
+        '<div class="div-center" style="float:left">' +
+      '<a href="' + farm.facebook + '"> Follow us on Facebook</a>' +
+        '</div>' +
+        '<div class="div-right" style="float:right">' +
+      '<a href="' + farm.twitter + '"> Follow us on Twitter </a>' +
+        '</div>' +
+      '</div>'
+    );
     // $('#contact_btn').html(
     //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
     // );
