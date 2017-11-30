@@ -240,6 +240,7 @@ function setAndShowFarmModal(farm) {
     // set modal html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
     $('#modal_body').html(
+
       '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
       '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
       '<div style="text-align: center">' +
@@ -262,6 +263,7 @@ function setAndShowFarmModal(farm) {
 
 
 
+=
     // $('#contact_btn').html(
     //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
     // );
