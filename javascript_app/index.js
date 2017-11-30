@@ -1,5 +1,11 @@
+/*************
+ * VARIABLES *
+ *************/
+
+// objects for the map and geocoder objects 
 var map;
 var geocoder;
+// objects to hold currently displayed farms and recipes
 var farms = {};
 var recipes = {};
 
@@ -28,7 +34,8 @@ function init() {
         }
     }
 
-    callFood2Fork(["peas","carrots"]);
+    // initially populate the recipes with basic search results 
+    // callFood2Fork(["peas","carrots"]);
 }
 
 /*************
@@ -166,7 +173,7 @@ function callFood2Fork(food_string) {
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=ca2b5546d3ab2e47924ae1356297bbc7";
 
     // make call
 	$.ajax({
@@ -199,14 +206,15 @@ function handleRecipeAPICall(recipes) {
 
     // reset recipe list 
     recipes = {};
-
+    console.log(recipes.length);
     // iterate through
     for (var i = 0; i < recipes.length; i++) {
-        
+            console.log("ASDF");
+
         // get current recipe and id 
         var current_recipe = recipes[i].recipe;
         var id = "recipe_" + (i + 1);
-
+        console.log(current_recipe);
         // put in recipe list 
         recipes[id] = current_recipe;
 
@@ -247,14 +255,18 @@ function setAndShowFarmModal(farm) {
 
 function setAndShowRecipeModal(recipe) {
 
-    // set modal html
+    // set modal header html
     $('#modal_header').html("<h3>" + recipe.label + "</h3>" + recipe.source);
+        
+    // set modal body html
     var html_body = "<ul>";
     for(var i = 0; i < recipe.ingredients.length; i++) {
         html_body += "<li>" + recipe.ingredients[i] + "</li>";
     }
-    html_body += "</ul>"
+    html_body += "</ul>";
     $('#modal_body').html("<h4>" + recipe.ingredients + "</h4>");
+    
+    // set modal footer html
     $('#modal_footer').html("<h4>" + recipe.url + "</h4>");
 
     // show modal

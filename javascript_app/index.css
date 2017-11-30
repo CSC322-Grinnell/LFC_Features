@@ -28,7 +28,7 @@
     width: 90%;
     margin: 5% 5% 5% 5% !important;
     padding: 10px 15px 10px 15px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 }
