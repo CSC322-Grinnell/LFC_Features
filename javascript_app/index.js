@@ -248,6 +248,20 @@ function setAndShowFarmModal(farm) {
       '<a href="' + farm.twitter + '">Twitter</a>' +
       '</div>');
 
+
+    $('#home_tab').html(
+        '<h3>HOME</h3>' +
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+        );
+
+    $('#menu1_tab').html(
+        '<h3>HOME</h3>' +
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+       
+        );
+
+
+
     // $('#contact_btn').html(
     //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
     // );
