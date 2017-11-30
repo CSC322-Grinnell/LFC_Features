@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128031549) do
+ActiveRecord::Schema.define(version: 20171128164855) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -48,6 +48,54 @@ ActiveRecord::Schema.define(version: 20171128031549) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.index ["email"], name: "index_farms_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true
+  end
+
+  create_table "farms_growing_methods", id: false, force: :cascade do |t|
+    t.integer "farm_id",           null: false
+    t.integer "growing_method_id", null: false
+    t.index ["farm_id", "growing_method_id"], name: "index_farms_growing_methods_on_farm_id_and_growing_method_id"
+    t.index ["growing_method_id", "farm_id"], name: "index_farms_growing_methods_on_growing_method_id_and_farm_id"
+  end
+
+  create_table "farms_markets", id: false, force: :cascade do |t|
+    t.integer "farm_id",   null: false
+    t.integer "market_id", null: false
+  end
+
+  create_table "farms_operations", id: false, force: :cascade do |t|
+    t.integer "farm_id",      null: false
+    t.integer "operation_id", null: false
+  end
+
+  create_table "farms_selling_methods", id: false, force: :cascade do |t|
+    t.integer "farm_id",           null: false
+    t.integer "selling_method_id", null: false
+  end
+
+  create_table "growing_methods", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "grow_method"
+  end
+
+  create_table "markets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "location"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "food"
+  end
+
+  create_table "selling_methods", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "sell_method"
   end
 
   create_table "users", force: :cascade do |t|

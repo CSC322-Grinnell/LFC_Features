@@ -1,3 +1,3 @@
 class SellingMethod < ApplicationRecord
-    belongs_to :farm, :class_name => "Farm"
+    has_and_belongs_to_many :farms
 end
