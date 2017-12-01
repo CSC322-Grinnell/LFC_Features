@@ -23,3 +23,4 @@ farm_list.each do |name, address, url, phone, facebook, instagram, twitter, appr
                 approved: approved, email: email, password: password,
                 password_confirmation: password_confirmation)
 end
+
