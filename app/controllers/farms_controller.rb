@@ -77,7 +77,7 @@ class FarmsController < ApplicationController
     params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter)
   end
 
-
-
-
+  def current_ability
+    @current_ability ||= Ability.new(@farm)
+  end
 end
