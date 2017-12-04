@@ -1,5 +1,9 @@
 ActiveAdmin.register_page "Dashboard" do
 
+  def index
+    authorize :dashboards, :index?
+  end
+
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do

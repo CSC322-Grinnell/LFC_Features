@@ -1,8 +1,14 @@
 class FarmsController < ApplicationController
 
+  before_filter :skip_authorization
   before_action :authenticate
+  before_action :authenticate_farm!
 
   def show
+    @farm = Farm.find(params[:id])
+    authorize @farm
+
+
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
     if params[:id] == "farm_json"
@@ -15,6 +21,10 @@ class FarmsController < ApplicationController
   end
 
   def index
+    @farm = Farm.all
+    authorize @farm
+
+
     @show_farms = Farm.where(approved: true)
     # @farms_json = buildJson @show_farms
     # puts @farms_json
@@ -60,6 +70,23 @@ class FarmsController < ApplicationController
     f.save
   end
 
+  def update
+    @farm = Farm.find(params[:id])
+    authorize @farm
+    if @farm.update_attributes(secure_params)
+      redirect_to farms_path, :notice => "Farm updated"
+    else
+      redirect_to farms_path, :alert => "Unable to update farm."
+    end
+  end
+
+  def destroy
+    farm = Farm.find(params[:id])
+    authorize farm
+    farm.destroy
+    redirect_to users_path, :notice => "Farm deleted."
+  end
+
   def reject
     id = params[:item_id]
     Farm.destroy(id)
@@ -75,6 +102,11 @@ class FarmsController < ApplicationController
   #private
   def farm_params
     params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter)
+  end
+
+  private
+  def secure_params
+    params.require(:farm).permit(:role)
   end
 
   def current_ability
