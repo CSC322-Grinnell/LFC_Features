@@ -78,12 +78,21 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 function addMarker(farm, results) {
+
+    var iconCow = '../app/assets/images/cow.png'
+    //var iconCow = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+
+
+
+
+
 // create marker object
     var marker = new google.maps.Marker({
         map: map,
-        animation: google.maps.Animation.DROP,
+        animation: google.maps.Animation.BOUNCE,
         position: results[0].geometry.location,
-        title: farm.name
+        title: farm.name,
+        icon: iconCow
     });
 
     // data string for display tooltip
@@ -106,7 +115,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
+    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
     $.ajax({
         type: "GET",
         url: call_url,
