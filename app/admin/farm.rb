@@ -11,6 +11,17 @@ ActiveAdmin.register Farm do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  controller do
+    before_filter :authorize_index, only: :index
+    def authorize_index
+      policy_scope(Farm)
+    end
+
+    before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
+    def authorize_show_edit_destroy
+      authorize resource
+    end
+  end
 
   controller do
     before_filter :authorize_index, only: :index

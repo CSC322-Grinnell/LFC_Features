@@ -129,6 +129,11 @@ class FarmsController < ApplicationController
     params.require(:farm).permit(:role)
   end
 
+  private
+  def secure_params
+    params.require(:farm).permit(:role)
+  end
+
   def current_ability
     @current_ability ||= Ability.new(@farm)
   end
