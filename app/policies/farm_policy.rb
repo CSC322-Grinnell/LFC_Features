@@ -7,19 +7,23 @@ class FarmPolicy
     end
 
     def index?
-        @current_farm.admin?
+      @current_farm.admin?
+    end
+
+    def edit?
+      @current_farm.admin? or @current_farm == Farm.find(params[:id])
     end
 
     def show?
-        @current_farm.admin? or @current_farm == @farm
+      @current_farm.admin?
     end
 
     def update?
-        @current_farm.admin?
+      @current_farm.admin?
     end
 
     def destroy?
-        return false if @current_farm == @farm
-        @current_farm.admin?
+      return false if @current_farm == @farm
+      @current_farm.admin?
     end
 end
