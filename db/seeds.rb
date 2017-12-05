@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Farm.create!(email: 'admin@example.com', password: 'password',
-             password_confirmation: 'password', role: 0) \
+             password_confirmation: 'password', role: 1) \
             if Rails.env.development?
 
 farm_list = [
