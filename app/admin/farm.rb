@@ -64,10 +64,10 @@ ActiveAdmin.register Farm do
       f.input :instagram
       f.input :twitter
 
-      unless current_farm.admin?
-        f.input :password
-        f.input :password_confirmation
-      end
+      #unless current_farm.admin?
+      f.input :password
+      f.input :password_confirmation
+      #end
 
       if current_farm.admin?
         f.input :approved

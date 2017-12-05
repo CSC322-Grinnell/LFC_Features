@@ -1,9 +1,13 @@
 class FarmPolicy
     attr_reader :current_farm, :model
 
+    def create?
+      @current_farm.admin?
+    end
+
     def initialize(current_farm, model)
-        @current_farm = current_farm
-        @farm = model
+      @current_farm = current_farm
+      @farm = model
     end
 
     def index?
