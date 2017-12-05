@@ -25,11 +25,31 @@ class FarmsController < ApplicationController
   end
 
   def create
-    @farm = Farm.new(farm_params)
+    @farm = Farm.create!(farm_params)
     if @farm.save
       redirect_to @farm
     else
       render :new
+    end
+    
+    params[:market].each do |m|
+      @market = Market.find_by location: m
+      @farm.market << @market                                                                                                                        
+    end
+    
+    params[:growing_methods].each do |g|
+      @gmethod = GrowingMethod.find_by grow_method: g
+      @farm.grow_method << @gmethod
+    end
+    
+    params[:selling_methods].each do |s|
+      @smethod = SellingMethod.find_by sell_method: s
+      @farm.sell_method << @smethod
+    end
+    
+    params[:operations].each do |o|
+      @operation = Operation.find_by food: o
+      @farm.operation << @operation
     end
   end
 
@@ -74,7 +94,7 @@ class FarmsController < ApplicationController
 
   #private
   def farm_params
-    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter)
+    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter, :email, :contact_name, :year, :statement, :other_media, :link_to_cert, :growth_promoter, :antibiotic, :fav_activity, :why_farm)
   end
 
 
