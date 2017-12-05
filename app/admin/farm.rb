@@ -14,12 +14,12 @@ ActiveAdmin.register Farm do
 
   permit_params do
     permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram, :twitter, :password, :password_confirmation]
-    if params[:action] == 'edit'
-      puts "params[:action] == edit"
-    end
-    if current_user.admin?
-      puts "current_user.admin?"
-    end
+    #if params[:action] == 'edit'
+      #puts "params[:action] == edit"
+    #end
+    #if current_user.admin?
+      #puts "current_user.admin?"
+    #end
     permitted << :approved if params[:action] == 'edit' && current_user.admin?
     permitted
   end
