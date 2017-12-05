@@ -15,7 +15,7 @@ class FarmPolicy
     end
 
     def show?
-      true
+      @current_farm.admin? or @current_farm == @farm
       # @current_farm.admin?
     end
 
