@@ -17,10 +17,10 @@ ActiveAdmin.register Farm do
       policy_scope(Farm)
     end
 
-    before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
-    def authorize_show_edit_destroy
-      authorize resource
-    end
+    # before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
+    # def authorize_show_edit_destroy
+    #   authorize resource
+    # end
   end
 
   # scope_to :current_farm, unless: proc{ :current_farm }
@@ -37,6 +37,7 @@ ActiveAdmin.register Farm do
     id_column
     column :name
     column :email
+    column :role
     column :created_at
 
     if current_farm.admin?
@@ -90,7 +91,7 @@ ActiveAdmin.register Farm do
         f.input :approved
       end
 
-    end
+    end  
     f.actions
   end
 end
