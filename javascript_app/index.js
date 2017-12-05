@@ -1,5 +1,11 @@
+/*************
+ * VARIABLES *
+ *************/
+
+// objects for the map and geocoder objects 
 var map;
 var geocoder;
+// objects to hold currently displayed farms and recipes
 var farms = {};
 var recipes = {};
 
@@ -28,7 +34,8 @@ function init() {
         }
     }
 
-    callFood2Fork(["peas","carrots"]);
+    // initially populate the recipes with basic search results 
+    // callFood2Fork(["peas","carrots"]);
 }
 
 /*************
@@ -82,7 +89,7 @@ function addMarker(farm, results) {
 // create marker object
     var marker = new google.maps.Marker({
         map: map,
-        animation: google.maps.Animation.BOUNCE,
+        animation: google.maps.Animation.DROP,
         position: results[0].geometry.location,
         title: farm.name,
         icon: iconCow
@@ -208,15 +215,15 @@ function handleRecipeAPICall(recipes) {
 
     // reset recipe list
     recipes = {};
-
+    console.log(recipes.length);
     // iterate through
     for (var i = 0; i < recipes.length; i++) {
 
-        // get current recipe and id
+        // get current recipe and id 
         var current_recipe = recipes[i].recipe;
         var id = "recipe_" + (i + 1);
 
-        // put in recipe list
+        // put in recipe list 
         recipes[id] = current_recipe;
 
         // add html
@@ -246,6 +253,7 @@ function handleRecipeAPICall(recipes) {
 
 function setAndShowFarmModal(farm) {
 
+    console.log(farm);
     // set modal html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
     // $('#modal_body').html(
@@ -294,21 +302,25 @@ function setAndShowFarmModal(farm) {
     // );
 
     // show modal
-    $("#generic_modal").modal()
+    $("#generic_modal").modal();
 }
 
 function setAndShowRecipeModal(recipe) {
 
-    // set modal html
+    // set modal header html
     $('#modal_header').html("<h3>" + recipe.label + "</h3>" + recipe.source);
+        
+    // set modal body html
     var html_body = "<ul>";
     for(var i = 0; i < recipe.ingredients.length; i++) {
         html_body += "<li>" + recipe.ingredients[i] + "</li>";
     }
-    html_body += "</ul>"
+    html_body += "</ul>";
     $('#modal_body').html("<h4>" + recipe.ingredients + "</h4>");
+    
+    // set modal footer html
     $('#modal_footer').html("<h4>" + recipe.url + "</h4>");
 
     // show modal
-    $("#generic_modal").modal()
+    $("#generic_modal").modal();
 }
