@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130035931) do
+ActiveRecord::Schema.define(version: 20171205061024) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20171130035931) do
     t.boolean  "antibiotic"
     t.text     "fav_activity"
     t.text     "why_farm"
+    t.integer  "role"
     t.index ["email"], name: "index_farms_on_email", unique: true
     t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true
   end
@@ -71,16 +72,22 @@ ActiveRecord::Schema.define(version: 20171130035931) do
   create_table "farms_markets", id: false, force: :cascade do |t|
     t.integer "farm_id",   null: false
     t.integer "market_id", null: false
+    t.index ["farm_id", "market_id"], name: "index_farms_markets_on_farm_id_and_market_id"
+    t.index ["market_id", "farm_id"], name: "index_farms_markets_on_market_id_and_farm_id"
   end
 
   create_table "farms_operations", id: false, force: :cascade do |t|
     t.integer "farm_id",      null: false
     t.integer "operation_id", null: false
+    t.index ["farm_id", "operation_id"], name: "index_farms_operations_on_farm_id_and_operation_id"
+    t.index ["operation_id", "farm_id"], name: "index_farms_operations_on_operation_id_and_farm_id"
   end
 
   create_table "farms_selling_methods", id: false, force: :cascade do |t|
     t.integer "farm_id",           null: false
     t.integer "selling_method_id", null: false
+    t.index ["farm_id", "selling_method_id"], name: "index_farms_selling_methods_on_farm_id_and_selling_method_id"
+    t.index ["selling_method_id", "farm_id"], name: "index_farms_selling_methods_on_selling_method_id_and_farm_id"
   end
 
   create_table "growing_methods", force: :cascade do |t|
