@@ -2,7 +2,7 @@ var map;
 var geocoder;
 var farms = {};
 var recipes = {};
-// api keys 
+// api keys
 var edemam_app_id = "c1a85afb";
 var edemam_app_key = "0bf8d80e45004f66c8d4a9e6a523f14f";
 var lfc_key = "YAS0sY2rbi";
@@ -108,7 +108,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
+    var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
     $.ajax({
         type: "GET",
         url: call_url,
@@ -175,8 +175,8 @@ function callFood2Fork(food_string) {
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=" + food_string 
-                    + "&app_id=" + edemam_app_id 
+    var call_url = "https://api.edamam.com/search?q=" + food_string
+                    + "&app_id=" + edemam_app_id
                     + "&app_key=" + edemam_app_key;
 
     // make call
@@ -214,7 +214,7 @@ function handleRecipeAPICall(recipe_list) {
     // iterate through
     for (var i = 0; i < recipe_list.length; i++) {
 
-        // get current recipe and id 
+        // get current recipe and id
         var current_recipe = recipe_list[i].recipe;
         var id = "recipe_" + (i + 1);
 
@@ -251,14 +251,14 @@ function setAndShowFarmModal(farm) {
     // set modal header html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
 
-    // set modal tab 1 html 
+    // set modal tab 1 html
     $('#tab_1_title').html('Home');
     $('#tab_1').html(
         '<h3>HOME</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
     );
 
-    // set modal tab 2 html 
+    // set modal tab 2 html
     $('#tab_2_title').html('Contact');
     $('#tab_2').html(
       '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
@@ -270,14 +270,14 @@ function setAndShowFarmModal(farm) {
       '</div>'
     );
 
-    // set modal tab 3 html 
+    // set modal tab 3 html
     $('#tab_3_title').html('Menu 3');
     $('#tab_3').html(
         '<h3>  MENU2</h3>' +
-        '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>' 
+        '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
     );
 
-    // set modal tab 4 html 
+    // set modal tab 4 html
     $('#tab_4_title').html('Menu 4');
     $('#tab_4').html(
         '<h3>MENU3</h3>' +
@@ -296,22 +296,22 @@ function setAndShowRecipeModal(recipe) {
 
     // set modal header html
     $('#modal_header').html(
-        '<h1 align="center">' + recipe.label + '</h1>' + 
+        '<h1 align="center">' + recipe.label + '</h1>' +
         '<p align="center">' + recipe.source + '</p>'
     );
-        
-    // compile tab 1 data 
+
+    // compile tab 1 data
     var ingredient_list = '<ul style="padding:15px;">';
     for(var i = 0; i < recipe.ingredients.length; i++) {
         ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
     }
     ingredient_list += "</ul>";
-    
+
     // compile tab 2 data
     var health_list = '<ul style="padding:15px;">';
     for(var i = 0; i < recipe.digest.length; i++) {
-        health_list += "<li>" 
-            + recipe.digest[i].label 
+        health_list += "<li>"
+            + recipe.digest[i].label
             + '<span class="pull-right">'
             + Math.round(recipe.digest[i].total * 10) / 10
             + recipe.digest[i].unit
@@ -319,24 +319,24 @@ function setAndShowRecipeModal(recipe) {
     }
     health_list += "</ul>";
 
-    // compile tab 3 data 
+    // compile tab 3 data
     var nutrient_list = '<ul style="padding:15px;">';
     for(var key in recipe.totalDaily) {
-        //if (!recipe.totalDaily.hasOwnProperty(key)) continue;        
-        
-        nutrient_list += '<li>' 
-            + recipe.totalDaily[key].label 
+        //if (!recipe.totalDaily.hasOwnProperty(key)) continue;
+
+        nutrient_list += '<li>'
+            + recipe.totalDaily[key].label
             + '<span class="pull-right">'
             + Math.round(recipe.totalNutrients[key].quantity * 10) / 10
-            + recipe.totalNutrients[key].unit + ' (' 
+            + recipe.totalNutrients[key].unit + ' ('
             + Math.round(recipe.totalDaily[key].quantity * 10) / 10
             + recipe.totalDaily[key].unit
             + ")</span></li>";
     }
     nutrient_list += "</ul>";
-    // compile tab 4 data 
+    // compile tab 4 data
 
-    // set all modal tabs html content 
+    // set all modal tabs html content
     $('#tab_1_title').html('Ingredients');
     $('#tab_1').html(ingredient_list);
     $('#tab_2_title').html('Health Information');
