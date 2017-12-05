@@ -286,6 +286,7 @@ function setAndShowFarmModal(farm) {
 
     // show button
     $('#contact_button').show();
+    $('#recipe_link_button').hide();
 
     // show modal
     $("#generic_modal").modal()
@@ -345,6 +346,9 @@ function setAndShowRecipeModal(recipe) {
 
     // hide button
     $('#contact_button').hide();
+    $('#recipe_link_button').show();
+    $('#recipe_link_tag').attr("href", recipe.url);
+
 
     // show modal
     $("#generic_modal").modal();
