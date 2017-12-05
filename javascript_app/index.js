@@ -9,10 +9,6 @@ var lfc_key = "YAS0sY2rbi";
 
 init();
 
-/********
- * INIT *
- ********/
-
 function init() {
 
     // set up recipe search
@@ -32,12 +28,8 @@ function init() {
         }
     }
 
- //   callFood2Fork(["peas","carrots"]);
+    callFood2Fork(["peas","carrots"]);
 }
-
-/*************
- *  INIT MAP *
- * ***********/
 
 function initMap() {
     // set location set to grinnell as center of map
@@ -58,53 +50,6 @@ function initMap() {
     callIndexApi();
 }
 
-/****************************************
- * GEOCODING AND ADDING MARKERS FUNCTIONS
- * **************************************/
-
-function geocodeAddressAndAddMarker(farm) {
-    var address = farm.address + ", Iowa, 50112"
-    geocoder.geocode({'address': address}, function(results, status) {
-        // if OK/200 status, add marker to map, else throw alert.
-        if (status === 'OK') {
-            addMarker(farm, results);
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}
-
-function addMarker(farm, results) {
-
-    var iconCow = '../app/assets/images/64cow.png'
-
-
-// create marker object
-    var marker = new google.maps.Marker({
-        map: map,
-        animation: google.maps.Animation.BOUNCE,
-        position: results[0].geometry.location,
-        title: farm.name,
-        icon: iconCow
-    });
-
-    // data string for display tooltip
-    var data = farm.name;
-    // info window for tooltip, contains data
-    var infowindow = new google.maps.InfoWindow({
-        content: data
-    });
-    // add listener to map for marker to display info window
-    google.maps.event.addListener(marker, 'click', function() {
-        // open info window
-        infowindow.open(map,marker);
-    });
-}
-
-/***********************
- *  FARM API FUNCTIONS *
- * *********************/
-
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
@@ -113,7 +58,7 @@ function callIndexApi() {
         type: "GET",
         url: call_url,
         headers: {
-            'X-Auth-Token' : lfc_key
+            'X-Auth-Token' : 'YAS0sY2rbi'
         },
         dataType: 'json',
         contentType: 'application/json',
@@ -125,7 +70,7 @@ function callIndexApi() {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-        },
+		},
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);
@@ -155,9 +100,11 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-            console.log(new_id);
             // alter html in modal
-            setAndShowFarmModal(farms[new_id]);
+            $('#modal_header').html("<h1>" + farms[new_id].name + "</h1>");
+            $('#modal_body').html("<h4>" + farms[new_id].address + "</h4>");
+            // show modal
+            $("#generic_modal").modal()
         });
 
         // add marker at proper placec
@@ -165,9 +112,52 @@ function handleIndexCall(result) {
     }
 }
 
-/*************************
- *  RECIPE API FUNCTIONS *
- * ***********************/
+function geocodeAddressAndAddMarker(farm) {
+    var address = farm.address + ", Iowa, 50112"
+    geocoder.geocode({'address': address}, function(results, status) {
+        // if OK/200 status, add marker to map, else throw alert.
+        if (status === 'OK') {
+            addMarker(farm, results);
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+
+function addMarker(farm, results) {
+// create marker object
+    var marker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.DROP,
+        position: results[0].geometry.location,
+        title: farm.name
+    });
+
+    // data string for display tooltip
+    var data = farm.name;
+    // info window for tooltip, contains data
+    var infowindow = new google.maps.InfoWindow({
+        content: data
+    });
+    // add listener to map for marker to display info window
+    google.maps.event.addListener(marker, 'click', function() {
+        // open info window
+        infowindow.open(map,marker);
+        // begin animation
+        //marker.setAnimation(google.maps.Animation.BOUNCE);
+        // end animation after 1000 milliseconds
+        //setTimeout(function(){
+        //    marker.setAnimation(null);
+        //}, 1000);
+    });
+
+    // when we mouseover the card we want to emphasize the marker it is linked to
+    //console.log('#farms_' + farm.id);
+        //$('#farms_' + farm.id).click(function() {
+        //    marker.setAnimation(google.maps.Animation.BOUNCE);
+        //    console.log("Jumping!");
+    //});
+}
 
 function callFood2Fork(food_string) {
 
@@ -180,8 +170,8 @@ function callFood2Fork(food_string) {
                     + "&app_key=" + edemam_app_key;
 
     // make call
-    $.ajax({
-        type: "GET",
+	$.ajax({
+    	type: "GET",
         url: call_url,
         headers: {
         //   "Access-Control-Allow-Origin":"*"
@@ -198,7 +188,7 @@ function callFood2Fork(food_string) {
             } else {
                 alert("Your search query returned no results . . . ")
             }
-        },
+		},
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);

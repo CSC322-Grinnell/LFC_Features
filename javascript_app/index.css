@@ -28,7 +28,7 @@
     width: 90%;
     margin: 5% 5% 5% 5% !important;
     padding: 10px 15px 10px 15px;
-    border-radius: 10px !important;
+    border-radius: 10px;
     -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
     -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 }
@@ -39,7 +39,6 @@
 .list-group {
     height: 70vh;
     overflow: hidden;
-    -webkit-animation: autoScrolling 5s linear infinite;
     overflow-y: scroll !important;
 }
 /*.col-md-4 {
@@ -112,18 +111,4 @@
 @-ms-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-}
-
-.modal-image {
-    width: 40vw;
-    padding: 15px;
-}
-
-.modal-style {
-    margin: 15px !important;
-}
-
-.tab-pane {
-    height: 35vh !important;
-    overflow-y: scroll !important;
 }
