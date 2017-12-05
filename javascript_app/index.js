@@ -108,7 +108,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
+    var call_url = "http://localhost:3000/farms/farm_json";
     $.ajax({
         type: "GET",
         url: call_url,
@@ -277,13 +277,13 @@ function setAndShowFarmModal(farm) {
     $('#menu2_tab').html(
         '<h3>  MENU2</h3>' +
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-       
+
         );
 
     $('#menu3_tab').html(
         '<h3>MENU3</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-       
+
         );
 
 
