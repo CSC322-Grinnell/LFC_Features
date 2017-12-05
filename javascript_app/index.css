@@ -10,7 +10,7 @@
 
 .jumbotron {
     padding-top: 5px !important;
-    padding-bottom: 5px !important;    
+    padding-bottom: 5px !important;
 }
 .search {
     margin: 0cm 0cm .25cm 0cm;
@@ -36,12 +36,12 @@
     background-color: #eeeeee;
 }
 
-.list-group {
+/*.list-group {
     height: 70vh;
     overflow: hidden;
     -webkit-animation: autoScrolling 5s linear infinite;
     overflow-y: scroll !important;
-}
+}*/
 /*.col-md-4 {
     padding: 0% 5% 0% 5%;
 }
@@ -88,7 +88,7 @@
 
 .recipe_image {
     border-top-left-radius: 15px;
-    border-top-right-radius: 15px;    
+    border-top-right-radius: 15px;
 }
 
 @keyframes fadein {
@@ -123,7 +123,48 @@
     margin: 15px !important;
 }
 
-.tab-pane {
-    height: 35vh !important;
-    overflow-y: scroll !important;
+
+/*Automated scrolling of farm list*/
+.farms-container
+{
+    width: 500px;
+    height: 70vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+@keyframes slide {
+  0% {
+    margin-top: 0px;
+  }
+  25% {
+    margin-top: -100px;
+  }
+  50% {
+    margin-top: -200px;
+  }
+  75% {
+    margin-top: -300px;
+  }
+  100% {
+    margin-top: -800px;
+  }
+}
+/*@keyframes slide {
+  from {top: 0;}
+  to   {top: -800px;}
+}*/
+
+.wrap
+{
+    display: inline-block
+    width: 500px;
+    height: 100px;
+    white-space: nowrap;
+    animation: slide 10s infinite alternate;
+}
+
+.farms-container:hover > div
+{
+    animation-play-state: paused;
 }
