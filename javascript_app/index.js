@@ -2,6 +2,10 @@ var map;
 var geocoder;
 var farms = {};
 var recipes = {};
+// api keys
+var edemam_app_id = "c1a85afb";
+var edemam_app_key = "0bf8d80e45004f66c8d4a9e6a523f14f";
+var lfc_key = "YAS0sY2rbi";
 
 init();
 
@@ -28,7 +32,7 @@ function init() {
         }
     }
 
-    callFood2Fork(["peas","carrots"]);
+ //   callFood2Fork(["peas","carrots"]);
 }
 
 /*************
@@ -72,11 +76,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '../app/assets/images/cow.png'
-    //var iconCow = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-
-
-
+    var iconCow = '../icons/64cow.png'
 
 
 // create marker object
@@ -113,7 +113,7 @@ function callIndexApi() {
         type: "GET",
         url: call_url,
         headers: {
-            'X-Auth-Token' : 'YAS0sY2rbi'
+            'X-Auth-Token' : lfc_key
         },
         dataType: 'json',
         contentType: 'application/json',
@@ -175,7 +175,9 @@ function callFood2Fork(food_string) {
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=c1a85afb&app_key=0bf8d80e45004f66c8d4a9e6a523f14f";
+    var call_url = "https://api.edamam.com/search?q=" + food_string
+                    + "&app_id=" + edemam_app_id
+                    + "&app_key=" + edemam_app_key;
 
     // make call
     $.ajax({
@@ -204,16 +206,16 @@ function callFood2Fork(food_string) {
     });
 }
 
-function handleRecipeAPICall(recipes) {
+function handleRecipeAPICall(recipe_list) {
 
     // reset recipe list
     recipes = {};
 
     // iterate through
-    for (var i = 0; i < recipes.length; i++) {
+    for (var i = 0; i < recipe_list.length; i++) {
 
         // get current recipe and id
-        var current_recipe = recipes[i].recipe;
+        var current_recipe = recipe_list[i].recipe;
         var id = "recipe_" + (i + 1);
 
         // put in recipe list
@@ -246,52 +248,57 @@ function handleRecipeAPICall(recipes) {
 
 function setAndShowFarmModal(farm) {
 
-    // set modal html
+    // set modal header html
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
-    // $('#modal_body').html(
 
-    //   '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
-    //   '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
-    //   '<div style="text-align: center">' +
-    //   '<a href="' + farm.url + '"> Visit our webpage | </a>' +
-    //   '<a href="' + farm.facebook + '">Facebook | </a>' +
-    //   '<a href="' + farm.twitter + '">Twitter</a>' +
-    //   '</div>');
-
-
-    $('#home_tab').html(
+    // set modal tab 1 html
+    $('#tab_1_title').html('Home');
+    $('#tab_1').html(
         '<h3>HOME</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-        );
+    );
 
-    $('#contacts_tab').html(
-
+    // set modal tab 2 html
+    $('#tab_2_title').html('Contact');
+    $('#tab_2').html(
       '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
       '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
       '<div style="text-align: center">' +
       '<a href="' + farm.url + '"> Visit our webpage | </a>' +
       '<a href="' + farm.facebook + '">Facebook | </a>' +
       '<a href="' + farm.twitter + '">Twitter</a>' +
-      '</div>');
+      '</div>'
+    );
 
-    $('#menu2_tab').html(
+    // set modal tab 3 html
+    $('#tab_3_title').html('Menu 3');
+    $('#tab_3').html(
         '<h3>  MENU2</h3>' +
+<<<<<<< HEAD
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
 
         );
+=======
+        '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+    );
+>>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 
-    $('#menu3_tab').html(
+    // set modal tab 4 html
+    $('#tab_4_title').html('Menu 4');
+    $('#tab_4').html(
         '<h3>MENU3</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+<<<<<<< HEAD
 
         );
 
+=======
+    );
+>>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 
-
-
-    // $('#contact_btn').html(
-    //   '<a href="mailto:' + farm.email + '"> Contact Us</a>'
-    // );
+    // show button
+    $('#contact_button').show();
+    $('#recipe_link_button').hide();
 
     // show modal
     $("#generic_modal").modal()
@@ -299,16 +306,66 @@ function setAndShowFarmModal(farm) {
 
 function setAndShowRecipeModal(recipe) {
 
-    // set modal html
-    $('#modal_header').html("<h3>" + recipe.label + "</h3>" + recipe.source);
-    var html_body = "<ul>";
+    // set modal header html
+    $('#modal_header').html(
+        '<h1 align="center">' + recipe.label + '</h1>' +
+        '<p align="center">' + recipe.source + '</p>'
+    );
+
+    // compile tab 1 data
+    var ingredient_list = '<ul style="padding:15px;">';
     for(var i = 0; i < recipe.ingredients.length; i++) {
-        html_body += "<li>" + recipe.ingredients[i] + "</li>";
+        ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
     }
-    html_body += "</ul>"
-    $('#modal_body').html("<h4>" + recipe.ingredients + "</h4>");
-    $('#modal_footer').html("<h4>" + recipe.url + "</h4>");
+    ingredient_list += "</ul>";
+
+    // compile tab 2 data
+    var health_list = '<ul style="padding:15px;">';
+    for(var i = 0; i < recipe.digest.length; i++) {
+        health_list += "<li>"
+            + recipe.digest[i].label
+            + '<span class="pull-right">'
+            + Math.round(recipe.digest[i].total * 10) / 10
+            + recipe.digest[i].unit
+            + "</span></li>";
+    }
+    health_list += "</ul>";
+
+    // compile tab 3 data
+    var nutrient_list = '<ul style="padding:15px;">';
+    for(var key in recipe.totalDaily) {
+        //if (!recipe.totalDaily.hasOwnProperty(key)) continue;
+
+        nutrient_list += '<li>'
+            + recipe.totalDaily[key].label
+            + '<span class="pull-right">'
+            + Math.round(recipe.totalNutrients[key].quantity * 10) / 10
+            + recipe.totalNutrients[key].unit + ' ('
+            + Math.round(recipe.totalDaily[key].quantity * 10) / 10
+            + recipe.totalDaily[key].unit
+            + ")</span></li>";
+    }
+    nutrient_list += "</ul>";
+    // compile tab 4 data
+
+    // set all modal tabs html content
+    $('#tab_1_title').html('Ingredients');
+    $('#tab_1').html(ingredient_list);
+    $('#tab_2_title').html('Health Information');
+    $('#tab_2').html(health_list);
+    $('#tab_3_title').html("Nutrients");
+    $('#tab_3').html(nutrient_list);
+
+    // hide button
+    $('#contact_button').hide();
+    $('#recipe_link_button').show();
+    $('#recipe_link_tag').attr("href", recipe.url);
+
 
     // show modal
+<<<<<<< HEAD
     $("#generic_modal").modal()
+=======
+    $("#generic_modal").modal();
+>>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 }
