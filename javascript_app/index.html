@@ -1,18 +1,18 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
  <html>
     <head>
         <meta charset="UTF-8">
         <!--css -->
         <link rel="stylesheet" href="index.css" TYPE="text/css"><!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
 
     <body>
 
-        <!-- jumbotron -->        
+        <!-- jumbotron -->
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-3">Local Foods Connection</h1>
@@ -21,7 +21,7 @@
         </div>
 
         <!-- farm area -->
-        <div class="col-sm-12 search-container"> 
+        <div class="col-sm-12 search-container">
             <h1>Explore Local Farms</h1>
 
             <!-- search bar -->
@@ -29,7 +29,7 @@
 
                 <!-- categories -->
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories 
+                    <button id="category_button" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -48,18 +48,28 @@
                 </span>
             </div>
 
+            <div class="checkbox" id="checkboxes" align="left">
+                <label class="checkbox-inline"><input type="checkbox" value="" id="VegetableBox"> Vegetable <img src="../icons/24broccoli.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Fruits <img src="../icons/24apple.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Lamb <img src="../icons/24sheep.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Chicken <img src="../icons/24chicken.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Pork <img src="../icons/24pig.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Beef <img src="../icons/24cow.png"/></label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Dairy <img src="../icons/24dairy.png"/></label>
+            </div>
+
             <!-- search farm container -->
             <div class="content-container">
 
                 <!-- map -->
-                <div class="col-md-8"> 
+                <div class="col-md-8">
                     <div id="map"></div>
                 </div>
-                    
+
                 <!-- list of farms -->
-                <div class="col-md-4"> 
-                    <ul id="farmList" class="list-group">    
-                    </ul>       
+                <div class="col-md-4">
+                    <ul id="farmList" class="list-group">
+                    </ul>
                 </div>
             </div>
         </div>
@@ -80,28 +90,49 @@
 
             <div class="content-container">
                 <!-- results grid -->
-                <div id="recipe_grid" class="row"></div>                                    
+                <div id="recipe_grid" class="row"></div>
             </div>
         </div>
 
         <!-- generic modal -->
         <div id="generic_modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg" style="width: 55vw !important">
                 <!-- modal content-->
                 <div class="modal-content">
 
                     <!-- modal header -->
                     <div id="modal_header" class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title"></h4>
                     </div>
                     
-                    <!-- modal body -->
-                    <div id="modal_body" class="modal-body">
+                    <!-- modal tabs -->
+                    <ul class="nav nav-tabs modal-style">
+                        <li class="active"><a id="tab_1_title" data-toggle="tab" href="#tab_1">Home</a></li>
+                        <li><a id="tab_2_title" data-toggle="tab" href="#tab_2">Contacts</a></li>
+                        <li><a id="tab_3_title" data-toggle="tab" href="#tab_3">Menu 2</a></li>
+                        <li><a id="tab_4_title"data-toggle="tab" href="#tab_4">Menu 3</a></li>
+                    </ul>
+                    <!-- modal tab content -->
+                    <div class="tab-content modal-style">
+                        <div id="tab_1" class="tab-pane fade in active">
+                        </div>
+                        <div id="tab_2" class="tab-pane fade">
+                        </div>
+                        <div id="tab_3" class="tab-pane fade">
+                        </div>
+                        <div id="tab_4" class="tab-pane fade">
+                        </div>
                     </div>
 
                     <!-- modal footer -->
                     <div id="modal_footer" class="modal-footer">
+                        <button id="recipe_link_button" type="button" class="btn btn-default" data-dismiss="modal">
+                            <a id="recipe_link_tag" href="">Go To Recipe</a>
+                        </button>
+                        <button id="contact_button" type="button" class="btn btn-default">
+                          <a><span class="glyphicon glyphicon-envelope"></span> Email us </a>
+                        </button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -109,7 +140,7 @@
         </div>
 
         <!-- scripts -->
-        <script src="index.js"></script> 
+        <script src="index.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQYIkOGccg155GIESrxDpYvL1GgnK1qwQ&callback=initMap"></script>
     </body>
 </html>
