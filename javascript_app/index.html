@@ -48,20 +48,15 @@
                 </span>
             </div>
 
-
-
-
-
-
-            <div class="checkbox" id="checkboxes">
+            <div class="checkbox" id="checkboxes" align="left">
+                <label class="checkbox-inline"><input type="checkbox" value="" id="VegetableBox"> Vegetable <img src="../app/assets/images/24broccoli.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Fruits <img src="../app/assets/images/24apple.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Lamb <img src="../app/assets/images/24sheep.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Chicken <img src="../app/assets/images/24chicken.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Pork <img src="../app/assets/images/24pig.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Beef <img src="../app/assets/images/24cow.png"/></label>
+                <label class="checkbox-inline"><input type="checkbox" value=""> Dairy <img src="../app/assets/images/24dairy.png"/></label>
             </div>
-
-
-
-
-
-
-
 
             <!-- search farm container -->
             <div class="content-container">
@@ -101,7 +96,7 @@
 
         <!-- generic modal -->
         <div id="generic_modal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg" style="width: 55vw !important">
                 <!-- modal content-->
                 <div class="modal-content">
 
@@ -110,34 +105,33 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-                    <!-- <img src="farm.jpg" class="image-responsive center-block"> -->
                     
                     <!-- modal tabs -->
                     <ul class="nav nav-tabs modal-style">
-                        <li class="active"><a data-toggle="tab" href="#home_tab">Home</a></li>
-                        <li><a data-toggle="tab" href="#contacts_tab">Contacts</a></li>
-                        <li><a data-toggle="tab" href="#menu2_tab">Menu 2</a></li>
-                        <li><a data-toggle="tab" href="#menu3_tab">Menu 3</a></li>
+                        <li class="active"><a id="tab_1_title" data-toggle="tab" href="#tab_1">Home</a></li>
+                        <li><a id="tab_2_title" data-toggle="tab" href="#tab_2">Contacts</a></li>
+                        <li><a id="tab_3_title" data-toggle="tab" href="#tab_3">Menu 2</a></li>
+                        <li><a id="tab_4_title"data-toggle="tab" href="#tab_4">Menu 3</a></li>
                     </ul>
                     <!-- modal tab content -->
                     <div class="tab-content modal-style">
-                        <div id="home_tab" class="tab-pane fade in active">
+                        <div id="tab_1" class="tab-pane fade in active">
                         </div>
-                        <div id="contacts_tab" class="tab-pane fade">
+                        <div id="tab_2" class="tab-pane fade">
                         </div>
-                        <div id="menu2_tab" class="tab-pane fade">
+                        <div id="tab_3" class="tab-pane fade">
                         </div>
-                        <div id="menu3_tab" class="tab-pane fade">
+                        <div id="tab_4" class="tab-pane fade">
                         </div>
                     </div>
 
-                    <!-- modal body -->
-                    <div id="modal_body" class="modal-body"></div>
-
                     <!-- modal footer -->
                     <div id="modal_footer" class="modal-footer">
-                        <button id="contact_btn" type="button" class="btn btn-default">
-                          <span class="glyphicon glyphicon-envelope"></span> Email us </a>
+                        <button id="recipe_link_button" type="button" class="btn btn-default" data-dismiss="modal">
+                            <a id="recipe_link_tag" href="">Go To Recipe</a>
+                        </button>
+                        <button id="contact_button" type="button" class="btn btn-default">
+                          <a><span class="glyphicon glyphicon-envelope"></span> Email us </a>
                         </button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>

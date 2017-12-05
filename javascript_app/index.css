@@ -122,3 +122,8 @@
 .modal-style {
     margin: 15px !important;
 }
+
+.tab-pane {
+    height: 35vh !important;
+    overflow-y: scroll !important;
+}
