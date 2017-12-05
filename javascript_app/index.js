@@ -6,7 +6,7 @@ init();
 
 function init() {
 
-    // set up recipe search 
+    // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
         var text = $('#recipe_search_text').val();
         text = text.split(' ').join('%20')
@@ -29,10 +29,10 @@ function init() {
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
-        lat: 41.7434, 
+        lat: 41.7434,
         lng: -92.7232 };
 
-    // init map 
+    // init map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: grinnell
@@ -47,9 +47,9 @@ function initMap() {
 
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
-   
+
     var call_url = "http://localhost:3000/farms/farm_json";
-	$.ajax({
+	  $.ajax({
     	type: "GET",
         url: call_url,
         headers: {
@@ -66,24 +66,24 @@ function callIndexApi() {
                 alert("Your search query returned no results . . . ")
             }
 		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
 
 function handleIndexCall(result) {
 
-    // set to new map 
+    // set to new map
     farms = {};
 
     for (var i = 0; i < result.length; i++) {
-        // create id 
+        // create id
         var id = "farm_" + result[i].id;
-        // add to map 
+        // add to map
         farms[id] = result[i];
-        // append card 
+        // append card
         $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
             '<h4 class="card-title">' + result[i].name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
@@ -95,14 +95,14 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-            // alter html in modal      
+            // alter html in modal
             $('#modal_header').html("<h1>" + farms[new_id].name + "</h1>");
             $('#modal_body').html("<h4>" + farms[new_id].address + "</h4>");
             // show modal
             $("#generic_modal").modal()
         });
 
-        // add marker at proper placec 
+        // add marker at proper placec
         geocodeAddressAndAddMarker(result[i]);
     }
 }
@@ -120,14 +120,14 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 function addMarker(farm, results) {
-// create marker object 
+// create marker object
     var marker = new google.maps.Marker({
         map: map,
         animation: google.maps.Animation.DROP,
         position: results[0].geometry.location,
         title: farm.name
     });
-                
+
     // data string for display tooltip
     var data = farm.name;
     // info window for tooltip, contains data
@@ -136,12 +136,12 @@ function addMarker(farm, results) {
     });
     // add listener to map for marker to display info window
     google.maps.event.addListener(marker, 'click', function() {
-        // open info window 
+        // open info window
         infowindow.open(map,marker);
         // begin animation
         //marker.setAnimation(google.maps.Animation.BOUNCE);
         // end animation after 1000 milliseconds
-        //setTimeout(function(){ 
+        //setTimeout(function(){
         //    marker.setAnimation(null);
         //}, 1000);
     });
@@ -156,7 +156,7 @@ function addMarker(farm, results) {
 
 function callFood2Fork(food_string) {
 
-    // clear the html to get rid of old recipes 
+    // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
 
     // set new url to access
@@ -182,9 +182,9 @@ function callFood2Fork(food_string) {
                 alert("Your search query returned no results . . . ")
             }
 		},
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown); 
+            console.log("Error: " + errorThrown);
         }
     });
 }
@@ -193,12 +193,12 @@ function handleRecipeAPICall(recipes) {
     //console.log(recipes);
     //$("#recipe_header").html("<h1>Recipes</h1>" + recipes.length + " + results");
     for (var i = 0; i < recipes.length; i++) {
-         //setTimeout(function(){ 
+         //setTimeout(function(){
             var id = "recipe_" + (i + 1);
             $('#recipe_grid').append(
                 '<div id="' + id + '" class="card scrollmenu-item"> ' +
-                    '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' + 
-                    '<div class="scrollmenu-item-section">' + 
+                    '<img class="recipe_image" src="' + recipes[i].recipe.image + '" height="" width="100%"></img>' +
+                    '<div class="scrollmenu-item-section">' +
                         '<h4 class="card-title">' + recipes[i].recipe.label + '</h4>' +
                         '<h6 class="card-subtitle mb-2 text-muted">' + recipes[i].recipe.source + '</h6>' +
                         '<a href="' + recipes[i].recipe.url + '" class="card-link">Go to recipe</a>' +
@@ -208,5 +208,3 @@ function handleRecipeAPICall(recipes) {
          //}, 2000);
     }
 }
-
-
