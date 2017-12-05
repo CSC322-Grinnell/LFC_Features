@@ -117,3 +117,7 @@
     width: 40vw;
     padding: 15px;
 }
+
+.modal-style {
+    margin: 15px !important;
+}

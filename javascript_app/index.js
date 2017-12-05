@@ -89,7 +89,7 @@ function addMarker(farm, results) {
 // create marker object
     var marker = new google.maps.Marker({
         map: map,
-        animation: google.maps.Animation.BOUNCE,
+        animation: google.maps.Animation.DROP,
         position: results[0].geometry.location,
         title: farm.name,
         icon: iconCow
