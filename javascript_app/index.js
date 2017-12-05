@@ -72,11 +72,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '../app/assets/images/cow.png'
-    //var iconCow = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-
-
-
+    var iconCow = '../app/assets/images/64cow.png'
 
 
 // create marker object
@@ -282,9 +278,17 @@ function setAndShowFarmModal(farm) {
 
     $('#menu3_tab').html(
         '<h3>MENU3</h3>' +
-        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-       
+        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'    
         );
+
+
+    $('#checkboxes').html(
+        '<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>' +
+        '<label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>' +
+        '<label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>'
+        );
+
+
 
 
 
