@@ -11,6 +11,7 @@ ActiveAdmin.register Farm do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
   controller do
     before_filter :authorize_index, only: :index
     def authorize_index
@@ -28,7 +29,7 @@ ActiveAdmin.register Farm do
   permit_params do
     permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,\
                  :twitter, :password, :password_confirmation]
-    permitted << :approved if params[:action] == 'edit' && :current_farm.admin?
+    permitted << :approved if current_farm.admin?
     permitted
   end
 
@@ -69,7 +70,7 @@ ActiveAdmin.register Farm do
         f.input :approved
       end
 
-    end  
+    end
     f.actions
   end
 end

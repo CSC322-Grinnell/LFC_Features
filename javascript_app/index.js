@@ -23,7 +23,7 @@ function init() {
         }
     }
 
-    callFood2Fork(["peas","carrots"]);
+    // callFood2Fork(["peas","carrots"]);
 }
 
 function initMap() {
