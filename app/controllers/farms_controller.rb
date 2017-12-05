@@ -21,8 +21,8 @@ class FarmsController < ApplicationController
   end
 
   def index
-    @farm = Farm.all
-    authorize @farm
+    #@farm = Farm.all
+    # authorize @farm
 
 
     @show_farms = Farm.where(approved: true)

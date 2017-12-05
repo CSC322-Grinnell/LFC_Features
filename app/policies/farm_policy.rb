@@ -11,15 +11,16 @@ class FarmPolicy
     end
 
     def edit?
-      @current_farm.admin? or @current_farm == Farm.find(params[:id])
+      @current_farm.admin? or @current_farm == @farm
     end
 
     def show?
-      @current_farm.admin?
+      true
+      # @current_farm.admin?
     end
 
     def update?
-      @current_farm.admin?
+      @current_farm.admin? or @current_farm == @farm
     end
 
     def destroy?
