@@ -25,19 +25,6 @@ ActiveAdmin.register Farm do
     # end
   end
 
-  controller do
-    before_filter :authorize_index, only: :index
-    def authorize_index
-      # FarmPolicy::Scope.new(current_farm, Farm).resolve
-      Farm
-    end
-
-    # before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
-    # def authorize_show_edit_destroy
-    #   authorize resource
-    # end
-  end
-
   # scope_to :current_farm, unless: proc{ :current_farm }
 
   permit_params do
