@@ -76,7 +76,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '../app/assets/images/64cow.png'
+    var iconCow = '../icons/64cow.png'
 
 
 // create marker object
@@ -108,7 +108,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "https://lfcmap-nguyenth1.c9users.io/farms";
+    var call_url = "https://lfc-aleksandarhr.c9users.io/farms";
     $.ajax({
         type: "GET",
         url: call_url,
