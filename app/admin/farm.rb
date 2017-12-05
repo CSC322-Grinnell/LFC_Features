@@ -15,7 +15,8 @@ ActiveAdmin.register Farm do
   controller do
     before_filter :authorize_index, only: :index
     def authorize_index
-      policy_scope(Farm)
+      # FarmPolicy::Scope.new(current_farm, Farm).resolve
+      Farm
     end
 
     # before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
@@ -27,8 +28,8 @@ ActiveAdmin.register Farm do
   # scope_to :current_farm, unless: proc{ :current_farm }
 
   permit_params do
-    permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,\
-                 :twitter, :password, :password_confirmation]
+    permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,
+      :password, :password_confirmation, :twitter]
     permitted << :approved if current_farm.admin?
     permitted
   end
@@ -85,8 +86,10 @@ ActiveAdmin.register Farm do
       f.input :why_farm
 
 
-      f.input :password
-      f.input :password_confirmation
+      unless current_farm.admin?
+        f.input :password
+        f.input :password_confirmation
+      end
 
       if current_farm.admin?
         f.input :approved
