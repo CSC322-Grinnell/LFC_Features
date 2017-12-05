@@ -274,27 +274,15 @@ function setAndShowFarmModal(farm) {
     $('#tab_3_title').html('Menu 3');
     $('#tab_3').html(
         '<h3>  MENU2</h3>' +
-<<<<<<< HEAD
-        '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-
-        );
-=======
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
     );
->>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 
     // set modal tab 4 html
     $('#tab_4_title').html('Menu 4');
     $('#tab_4').html(
         '<h3>MENU3</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-<<<<<<< HEAD
-
-        );
-
-=======
     );
->>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 
     // show button
     $('#contact_button').show();
@@ -363,9 +351,5 @@ function setAndShowRecipeModal(recipe) {
 
 
     // show modal
-<<<<<<< HEAD
     $("#generic_modal").modal()
-=======
-    $("#generic_modal").modal();
->>>>>>> 8d821533f6036c1ccabacf906420f10ecd34ce51
 }
