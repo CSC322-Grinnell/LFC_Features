@@ -39,6 +39,7 @@
 .list-group {
     height: 70vh;
     overflow: hidden;
+    -webkit-animation: autoScrolling 5s linear infinite;
     overflow-y: scroll !important;
 }
 /*.col-md-4 {

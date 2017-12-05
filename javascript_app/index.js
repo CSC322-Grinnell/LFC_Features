@@ -1,11 +1,5 @@
-/*************
- * VARIABLES *
- *************/
-
-// objects for the map and geocoder objects 
 var map;
 var geocoder;
-// objects to hold currently displayed farms and recipes
 var farms = {};
 var recipes = {};
 // api keys 
@@ -38,8 +32,7 @@ function init() {
         }
     }
 
-    // initially populate the recipes with basic search results 
-    // callFood2Fork(["peas","carrots"]);
+ //   callFood2Fork(["peas","carrots"]);
 }
 
 /*************
@@ -83,17 +76,13 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '../app/assets/images/cow.png'
-    //var iconCow = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-
-
-
+    var iconCow = '../app/assets/images/64cow.png'
 
 
 // create marker object
     var marker = new google.maps.Marker({
         map: map,
-        animation: google.maps.Animation.DROP,
+        animation: google.maps.Animation.BOUNCE,
         position: results[0].geometry.location,
         title: farm.name,
         icon: iconCow
@@ -229,7 +218,7 @@ function handleRecipeAPICall(recipe_list) {
         var current_recipe = recipe_list[i].recipe;
         var id = "recipe_" + (i + 1);
 
-        // put in recipe list 
+        // put in recipe list
         recipes[id] = current_recipe;
 
         // add html
@@ -299,7 +288,7 @@ function setAndShowFarmModal(farm) {
     $('#contact_button').show();
 
     // show modal
-    $("#generic_modal").modal();
+    $("#generic_modal").modal()
 }
 
 function setAndShowRecipeModal(recipe) {
