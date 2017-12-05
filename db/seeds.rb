@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Farm.create!(name: "admin", address: "1", url: "example.com", phone: "111", 
-             facebook: "a", instagram: "a", twitter: "a", approved: false, 
-             email: 'admin@example.com', password: 'password', 
+Farm.create!(name: "admin", address: "1", url: "example.com", phone: "111",
+             facebook: "a", instagram: "a", twitter: "a", approved: false,
+             email: 'admin@example.com', password: 'password',
              password_confirmation: 'password') if Rails.env.development?
 
 farm_list = [
@@ -24,4 +24,3 @@ farm_list.each do |name, address, url, phone, facebook, instagram, twitter, appr
                 approved: approved, email: email, password: password,
                 password_confirmation: password_confirmation)
 end
-
