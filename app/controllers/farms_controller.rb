@@ -2,11 +2,11 @@ class FarmsController < ApplicationController
 
   before_filter :skip_authorization
   before_action :authenticate
-  before_action :authenticate_farm!
+  # before_action :authenticate_farm!
 
   def show
-    @farm = Farm.find(params[:id])
-    authorize @farm
+    # @farm = Farm.find(parmas[:id])
+    # authorize @farm
 
 
     @show_farms = Farm.where(approved: true)
