@@ -19,7 +19,11 @@ farm_list = [
      "ujpassword", 0],
     ["Aunt Maria's Farm", "1641 Park St.", "auntmaria.com", "5150009999", \
      "Aunt Maria's Farm", "auntmaria_farm", "auntmaria_farm", false, \
-     "auntmaria@example.com", "awpassword", "awpassword", 0]
+     "auntmaria@example.com", "awpassword", "awpassword", 0],
+     ["Aunt Maria's Farm", "1641 Park St.", "auntmaria.com", "5150009999", \
+     "Aunt Maria's Farm", "auntmaria_farm", "auntmaria_farm", true, \
+     "auntmaria1@example.com", "awpassword", "awpassword", 0]
+
 ]
 
 farm_list.each do |name, address, url, phone, facebook, instagram, twitter, approved, email, password, password_confirmation|

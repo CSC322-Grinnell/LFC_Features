@@ -7,8 +7,6 @@ class FarmsController < ApplicationController
   def show
     # @farm = Farm.find(parmas[:id])
     # authorize @farm
-
-
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
     if params[:id] == "farm_json"
@@ -26,6 +24,7 @@ class FarmsController < ApplicationController
 
 
     @show_farms = Farm.where(approved: true)
+    # @operation_farms = Farm.where(operation: beef)
     # @farms_json = buildJson @show_farms
     # puts @farms_json
   end
@@ -75,9 +74,16 @@ class FarmsController < ApplicationController
   end
 
   def farm_json
-    @show_farms = Farm.where(approved: true)
+    @show_farms = Farm.where(approved: true).includes(:operations)
     @farms_json = buildJson @show_farms
   end
+
+  # def farms_by_operation
+  #   @operation = Operation.find_by(food: ).farms
+  #   @farms_json = buildJson @operation
+  # end
+
+
 
   def buildJson farms
     render :json => farms

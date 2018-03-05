@@ -1,12 +1,7 @@
 source 'https://rubygems.org'
 
-group :production do
-  gem "pg"
-end
+gem "sqlite3"
 
-group :development, :test do
-  gem "sqlite3"
-end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
@@ -46,8 +41,6 @@ gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
-gem 'pg'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

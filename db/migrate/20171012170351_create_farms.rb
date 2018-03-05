@@ -8,7 +8,7 @@ class CreateFarms < ActiveRecord::Migration
       t.string :facebook
       t.string :instagram
       t.string :twitter
-
+      t.string :type_of_farm
       t.timestamps null: false
     end
   end

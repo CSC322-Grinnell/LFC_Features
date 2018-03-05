@@ -28,7 +28,19 @@ function init() {
     document.getElementById("search_farm").onclick = function() {
         var text = $('#search_farm_text').val();
         if (text != "") {
-            // call search api here
+             geocoder.geocode( { 'address': text}, function(results, status) {
+                if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(17);
+                    map.panTo(curmarker.position);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
         }
     }
 
@@ -76,7 +88,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '../icons/64cow.png'
+    var iconCow = '/home/phamlinh/Documents/Grinnell/LFC_Features/javascript_app/icons/64cow.png'
 
 
 // create marker object
@@ -133,11 +145,39 @@ function callIndexApi() {
     });
 }
 
-function handleIndexCall(result) {
 
+// function callIndexApi() {
+//     document.getElementById("farmList").innerHTML = "";
+
+//     var call_url = "http://localhost:3000/farms/farm_by_operation";
+//     $.ajax({
+//         type: "GET",
+//         url: call_url,
+//         headers: {
+//             'X-Auth-Token' : lfc_key
+//         },
+//         dataType: 'json',
+//         contentType: 'application/json',
+//         crossDomain: true,
+//         async: false,
+//         success: function(result) {
+//             if (result != null || result.length > 0) {
+//                 handleIndexCall(result);
+//             } else {
+//                 alert("Your search query returned no results . . . ")
+//             }
+//         },
+//         error: function(XMLHttpRequest, textStatus, errorThrown) {
+//             console.log("Status: " + textStatus);
+//             console.log("Error: " + errorThrown);
+//         }
+//     });
+// }
+
+function handleIndexCall(result) { 
     // set to new map
+    console.log(result);
     farms = {};
-
     for (var i = 0; i < result.length; i++) {
         // create id
         var id = "farm_" + result[i].id;
@@ -155,7 +195,6 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-            console.log(new_id);
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
