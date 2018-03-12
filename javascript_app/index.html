@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html>
+<html>
     <head>
         <meta charset="UTF-8">
         <!--css -->
@@ -9,9 +9,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
-
     <body>
-
         <!-- jumbotron -->
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -19,35 +17,29 @@
                 <p class="lead">Explore farms in the Poweshiek County area!</p>
             </div>
         </div>
-
         <!-- farm area -->
         <div class="col-sm-12 search-container">
             <h1>Explore Local Farms</h1>
-
             <!-- search bar -->
             <div class="input-group search">
-
                 <!-- categories -->
                 <div class="input-group-btn">
                     <button id="category_button" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories
-                        <span class="caret"></span>
+                    <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li selected = "selected"><a href="#">Address</a></li>
+                        <li><a href="#">Address</a></li>
                         <li><a href="#">Farm's Name</a></li>
                         <li><a href="#">Something else here</a></li>
                     </ul>
                 </div>
-
                 <!-- text area -->
                 <input id="search_farm_text" type="text" class="form-control" placeholder="Search for...">
-
                 <!-- search button -->
                 <span class="input-group-btn">
                     <button id="search_farm" class="btn btn-default" type="button">Search</button>
                 </span>
             </div>
-
             <div class="checkbox" id="checkboxes" align="left">
                 <label class="checkbox-inline"><input type="checkbox" value="" id="VegetableBox"> Vegetable <img src="/home/phamlinh/Documents/Grinnell/LFC_Features//javascript_app/icons/24broccoli.png"/> </label>
                 <label class="checkbox-inline"><input type="checkbox" value=""> Fruits <img src="/home/phamlinh/Documents/Grinnell/LFC_Features/javascript_app/icons/24apple.png"/> </label>
@@ -57,15 +49,12 @@
                 <label class="checkbox-inline"><input type="checkbox" value=""> Beef <img src="/home/phamlinh/Documents/Grinnell/LFC_Features/javascript_app/icons/24cow.png"/></label>
                 <label class="checkbox-inline"><input type="checkbox" value=""> Dairy <img src="/home/phamlinh/Documents/Grinnell/LFC_Features/javascript_app/icons/24dairy.png"/></label>
             </div>
-
             <!-- search farm container -->
             <div class="content-container">
-
                 <!-- map -->
                 <div class="col-md-8">
                     <div id="map"></div>
                 </div>
-
                 <!-- list of farms -->
                 <div class="col-md-4">
                     <ul id="farmList" class="list-group">
@@ -73,13 +62,11 @@
                 </div>
             </div>
         </div>
-
         <!-- grid for recipes -->
         <div class="col-sm-12 search-container">
             <div id="recipe_header">
                 <h1>Search Recipes</h1>
             </div>
-
             <!-- search bar -->
             <div class="input-group search-recipes">
                 <input id="recipe_search_text" type="text" class="form-control" placeholder="Peas, Carrots, Steak . . . ">
@@ -87,19 +74,16 @@
                     <button id="search_recipes" class="btn btn-default" type="button">Search</button>
                 </span>
             </div>
-
             <div class="content-container">
                 <!-- results grid -->
                 <div id="recipe_grid" class="row"></div>
             </div>
         </div>
-
         <!-- generic modal -->
         <div id="generic_modal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg" style="width: 55vw !important">
                 <!-- modal content-->
                 <div class="modal-content">
-
                     <!-- modal header -->
                     <div id="modal_header" class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -124,21 +108,19 @@
                         <div id="tab_4" class="tab-pane fade">
                         </div>
                     </div>
-
                     <!-- modal footer -->
                     <div id="modal_footer" class="modal-footer">
                         <button id="recipe_link_button" type="button" class="btn btn-default" data-dismiss="modal">
-                            <a id="recipe_link_tag" href="">Go To Recipe</a>
+                        <a id="recipe_link_tag" href="">Go To Recipe</a>
                         </button>
                         <button id="contact_button" type="button" class="btn btn-default">
-                          <a><span class="glyphicon glyphicon-envelope"></span> Email us </a>
+                        <a><span class="glyphicon glyphicon-envelope"></span> Email us </a>
                         </button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- scripts -->
         <script src="index.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQYIkOGccg155GIESrxDpYvL1GgnK1qwQ&callback=initMap"></script>
