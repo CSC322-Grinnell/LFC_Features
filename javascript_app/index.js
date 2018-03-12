@@ -83,7 +83,7 @@ function init() {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(17);
-                        //map.panTo(curmarker.position);
+                        //map.panTo(curmarker.position); ?? 
                         var marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location
@@ -139,7 +139,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 function addMarker(farm, results) {
 
-    var iconCow = '/home/phamlinh/Documents/Grinnell/LFC_Features/javascript_app/icons/64cow.png'
+    var iconCow = '../javascript_app/icons/64cow.png'
 
 
     // create marker object
@@ -234,6 +234,9 @@ function handleAddressCall(result, addressSearch) {
     for (var i = 0; i < result.length; i++) {
         // create id
         var name = result[i].name;
+        var id = "farm_" + result[i].id;
+        // add to map
+        farms[id] = result[i];
         console.log("name is " + name);
         if (addressSearch == name) {
             console.log("name is " + name);
