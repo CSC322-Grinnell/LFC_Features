@@ -24,9 +24,35 @@ function init() {
         }
     }
 
+
     // set up farm search
     document.getElementById("search_farm").onclick = function() {
-        var text = $('#search_farm_text').val();
+         var text = $('#search_farm_text').val();
+    //     var call_url = "http://localhost:3000/farms/farm_json";
+    //     $.ajax({
+    //     type: "GET",
+    //     url: call_url,
+    //     headers: {
+    //         'X-Auth-Token' : lfc_key
+    //     },
+    //     dataType: 'json',
+    //     contentType: 'application/json',
+    //     crossDomain: true,
+    //     async: false,
+    //     success: function(result) {
+    //         if (result != null || result.length > 0) {
+    //             text = handleAddressCall(result, text);
+    //             console.log("Text" + text);
+    //         } else {
+    //             alert("Your search query returned no results . . . ")
+    //         }
+    //     },
+    //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+    //         console.log("Status: " + textStatus);
+    //         console.log("Error: " + errorThrown);
+    //     }
+    // });
+       
         if (text != "") {
              geocoder.geocode( { 'address': text}, function(results, status) {
                 if (status == 'OK') {
@@ -143,36 +169,9 @@ function callIndexApi() {
             console.log("Error: " + errorThrown);
         }
     });
+
 }
 
-
-// function callIndexApi() {
-//     document.getElementById("farmList").innerHTML = "";
-
-//     var call_url = "http://localhost:3000/farms/farm_by_operation";
-//     $.ajax({
-//         type: "GET",
-//         url: call_url,
-//         headers: {
-//             'X-Auth-Token' : lfc_key
-//         },
-//         dataType: 'json',
-//         contentType: 'application/json',
-//         crossDomain: true,
-//         async: false,
-//         success: function(result) {
-//             if (result != null || result.length > 0) {
-//                 handleIndexCall(result);
-//             } else {
-//                 alert("Your search query returned no results . . . ")
-//             }
-//         },
-//         error: function(XMLHttpRequest, textStatus, errorThrown) {
-//             console.log("Status: " + textStatus);
-//             console.log("Error: " + errorThrown);
-//         }
-//     });
-// }
 
 function handleIndexCall(result) { 
     // set to new map
@@ -195,12 +194,26 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
+            //  console.log(new_id);
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
 
         // add marker at proper placec
         geocodeAddressAndAddMarker(result[i]);
+    }
+}
+
+function handleAddressCall(result, addressSearch) {
+    farms = {};
+    for (var i = 0; i < result.length; i++) {
+        // create id
+        var name = result[i].name;
+        console.log("name is " + name);
+        if (addressSearch == name) {
+            console.log("name is " + name);
+            return result[i].address;
+        }
     }
 }
 

@@ -27,12 +27,15 @@ ActiveAdmin.register Farm do
 
   # scope_to :current_farm, unless: proc{ :current_farm }
 
-  permit_params do
-    permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,
-      :password, :password_confirmation, :twitter]
-    permitted << :approved if current_farm.admin?
-    permitted
-  end
+  # permit_params do
+  #   permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,
+  #     :password, :password_confirmation, :twitter, {operations: []}]
+  #   permitted << :approved if current_farm.admin?
+  #   permitted
+  # end
+
+  permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, :password_confirmation, :growth_promoter, :antibiotic, :why_farm, :fav_activity, :twitter, :approved, 
+  operation_ids: [], selling_method_ids: [], growing_method_ids: [], market_ids: []
 
   index do
     selectable_column
@@ -69,15 +72,12 @@ ActiveAdmin.register Farm do
       f.input :twitter
       f.input :other_media
 
-      @ops = ['Fruit', 'Vegetables', 'Dairy', 'Pork', 'Chicken', 'Turkey', 'Lamb', 'Duck', 'Agitourism', 'Hay', 'Row Crop']
-      @grow = ['Certified Natural Grown', 'USDA Certified Organic', '100% Grass Fed', 'Grass Finished', 'Non-GMO', 'Regenerative Organic Certified', 'Integrated Pest Management', 'Pasture Raised', 'Corn Fed', 'Conventional']
-      @sell = ['CSA', 'Farmers Market', 'Wholesale', 'Grocery Stores', 'Grinnell Area Local Food Source', 'On-Farm', 'Iowa Food Coop', 'Institutions', 'Restaurants']
-      @market = ['Grinnell-Thursday', 'Grinnell-Saturday', "Des Moines Downtown-Saturday", "Cedar Rapids Downtown-Select Saturdays", "Iowa City-Saturday", "Tama-Toledo", "Brooklyn"]
-      f.input :operations, as: :check_boxes, collection: @ops
-      f.input :growing_methods, as: :check_boxes, collection: @grow
+
+      f.input :operations, as: :check_boxes, collection: Operation.all
+      f.input :growing_methods, as: :check_boxes, collection: GrowingMethod.all
       f.input :link_to_cert
-      f.input :selling_methods, as: :check_boxes, collection: @sell
-      f.input :markets, as: :check_boxes, collection: @market
+      f.input :selling_methods, as: :check_boxes, collection: SellingMethod.all
+      f.input :markets, as: :check_boxes, collection: Market.all
 
       f.input :growth_promoter, as: :boolean, checked_value: true, unchecked_value: false
       f.input :antibiotic, as: :boolean, checked_value: true, unchecked_value: false
