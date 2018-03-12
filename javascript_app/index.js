@@ -297,6 +297,54 @@ function handleRecipeAPICall(recipe_list) {
 /********************
  *  MODAL FUNCTIONS *
  * ******************/
+function capitalize_words(str){
+ return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
+function getOperation(farm) {
+    var result = "";
+    for (var i = 0; i < farm.operations.length; i++) {
+        result += capitalize_words(farm.operations[i].food);
+        if (i != farm.operations.length - 1) {
+            result += ', ';
+        }
+    }
+
+    if (result == "") {
+        return "N/A"
+    }
+    return result;
+}
+
+function getGrowingMethod(farm) {
+    var result = "";
+    console.log(farm.growing_methods.length);
+    for (var i = 0; i < farm.growing_methods.length; i++) {
+         result += capitalize_words(farm.growing_methods[i].grow_method);
+        if (i != farm.growing_methods.length - 1) {
+            result += ', ';
+        }
+    }
+    if (result == "") {
+        return "N/A"
+    }
+    return result
+}
+
+function getSellingMethod(farm) {
+    var result = "";
+    for (var i = 0; i < farm.selling_methods.length; i++ ) {
+        result += capitalize_words(farm.selling_methods[i].sell_method);
+        if (i != farm.selling_methods.length - 1) {
+            result += ', ';
+        }
+    }
+
+    if (result == "") {
+        return "N/A"
+    }
+    return result;
+}
 
 function setAndShowFarmModal(farm) {
 
@@ -306,8 +354,10 @@ function setAndShowFarmModal(farm) {
     // set modal tab 1 html
     $('#tab_1_title').html('Home');
     $('#tab_1').html(
-        '<h3>HOME</h3>' +
-        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+        '<h3>Basic Information:' +'</h3>' +
+        '<h4>Growing Method: '+ getGrowingMethod(farm) + '</h4>' +
+        '<h4>Operation: ' + getOperation(farm) + '</h4>' + 
+        '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>'
     );
 
     // set modal tab 2 html

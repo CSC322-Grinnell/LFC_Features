@@ -74,8 +74,8 @@ class FarmsController < ApplicationController
   end
 
   def farm_json
-    show_farms = Farm.where(approved: true).includes(:operations)
-    render json: show_farms.as_json(include: :operations)
+    show_farms = Farm.where(approved: true).includes([:operations, :growing_methods, :selling_methods])
+    render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
   end
 
   # def farms_by_operation

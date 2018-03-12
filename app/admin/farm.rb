@@ -1,17 +1,4 @@
 ActiveAdmin.register Farm do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-
   controller do
     before_filter :authorize_index, only: :index
     def authorize_index
@@ -26,14 +13,7 @@ ActiveAdmin.register Farm do
   end
 
   # scope_to :current_farm, unless: proc{ :current_farm }
-
-  # permit_params do
-  #   permitted = [:name, :address, :phone, :email, :url, :facebook, :instagram,
-  #     :password, :password_confirmation, :twitter, {operations: []}]
-  #   permitted << :approved if current_farm.admin?
-  #   permitted
-  # end
-
+  ## Add strong parameters for admin to be able to edit these fields
   permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, :password_confirmation, :growth_promoter, :antibiotic, :why_farm, :fav_activity, :twitter, :approved, 
   operation_ids: [], selling_method_ids: [], growing_method_ids: [], market_ids: []
 
