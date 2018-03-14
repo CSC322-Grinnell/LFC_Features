@@ -83,7 +83,7 @@ function init() {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(17);
-                        //map.panTo(curmarker.position); ?? 
+                        //map.panTo(curmarker.position); ??
                         var marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location
@@ -140,6 +140,7 @@ function geocodeAddressAndAddMarker(farm) {
 function addMarker(farm, results) {
 
     var iconCow = '../javascript_app/icons/64cow.png'
+    var iconPig = '../javascript_app/icons/24pig.png'
 
 
     // create marker object
@@ -149,6 +150,14 @@ function addMarker(farm, results) {
         position: results[0].geometry.location,
         title: farm.name,
         icon: iconCow
+    });
+
+    var marker = new google.maps.Marker({
+        map: map,
+        animation: google.maps.Animation.BOUNCE,
+        position: results[0].geometry.location,
+        title: farm.name,
+        icon: iconPig
     });
 
     // data string for display tooltip
