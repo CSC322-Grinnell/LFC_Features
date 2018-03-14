@@ -8,6 +8,8 @@
         <!-- scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- adding a carrot as the tab icon -->
+        <link rel="icon" href="../javascript_app/carrot.png" type="image/png" />
     </head>
     <body>
         <!-- jumbotron -->
@@ -15,6 +17,11 @@
             <div class="container">
                 <h1 class="display-3">Local Foods Connection</h1>
                 <p class="lead">Explore farms in the Poweshiek County area!</p>
+                <!-- Adding Logo -->
+                <div id="locator">
+                <img src="../javascript_app/logo.png" alt="Local Foods Connection"
+                width="200" height="100">
+              </div>
             </div>
         </div>
         <!-- farm area -->
@@ -41,7 +48,7 @@
                 </span>
             </div>
             <div class="checkbox" id="checkboxes" align="left">
-                <label class="checkbox-inline"><input type="checkbox" value="" id="VegetableBox"> Vegetable <img src="/home/phamlinh/Documents/Grinnell/LFC_Features//javascript_app/icons/24broccoli.png"/> </label>
+                <label class="checkbox-inline"><input type="checkbox" value="" id="VegetableBox"> Vegetable <img src="../javascript_app/icons/24broccoli.png"/> </label>
                 <label class="checkbox-inline"><input type="checkbox" value=""> Fruits <img src="../javascript_app/icons/24apple.png"/> </label>
                 <label class="checkbox-inline"><input type="checkbox" value=""> Lamb <img src="../javascript_app/icons/24sheep.png"/> </label>
                 <label class="checkbox-inline"><input type="checkbox" value=""> Chicken <img src="../javascript_app/icons/24chicken.png"/> </label>
@@ -89,7 +96,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-                    
+
                     <!-- modal tabs -->
                     <ul class="nav nav-tabs modal-style">
                         <li class="active"><a id="tab_1_title" data-toggle="tab" href="#tab_1">Home</a></li>
