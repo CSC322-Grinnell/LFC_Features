@@ -19,6 +19,7 @@ $(document).ready(function() {
     });
 });
 
+
 function init() {
 
     // set up recipe search
@@ -34,7 +35,7 @@ function init() {
     document.getElementById("search_farm").onclick = function() {
         var text = $('#search_farm_text').val();
         var search_by = $('#category_button').text();
-
+        console.log(search_by);
         // Search by Address
         if (search_by == "Address") {
             if (text != "") {
@@ -93,6 +94,9 @@ function init() {
                     }
                 });
             }
+        } else{
+            console.log("HERE");
+            document.getElementById("search_farm_text").text = "You must enter a username";
         }
     }
 }
@@ -119,6 +123,7 @@ function initMap() {
 
     // call index function for API to load all farms
     callIndexApi();
+    callIndexApi2();
 }
 
 /****************************************
@@ -377,6 +382,7 @@ function getSellingMethod(farm) {
 function setAndShowFarmModal(farm) {
 
     // set modal header html
+    console.log(farm);
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
 
     // set modal tab 1 html
@@ -482,4 +488,36 @@ function setAndShowRecipeModal(recipe) {
 
     // show modal
     $("#generic_modal").modal()
+}
+
+function callIndexApi2() {
+    document.getElementById("farmList").innerHTML = "";
+
+    var call_url = "http://localhost:3000/farms/farm_by_operation";
+    $.ajax({
+        type: "GET",
+        url: call_url,
+        headers: {
+            'X-Auth-Token': lfc_key
+        },
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        async: false,
+        success: function(result) {
+            if (result != null || result.length > 0) {
+                console.log(result);
+                // handleIndexCall(result);
+            } else {
+                alert("Your search query returned no results . . . ")
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("Status: " + textStatus);
+            console.log("Error: " + errorThrown);
+
+            
+        }
+    });
+
 }
