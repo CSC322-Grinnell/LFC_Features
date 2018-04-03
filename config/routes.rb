@@ -9,17 +9,19 @@ Rails.application.routes.draw do
     scope '/v1' do
       scope '/farms' do
         post '/' => 'farms#farm_json'
+        
       end
     end
   end
 
-  # scope '/api' do
-  #   scope '/v1' do
-  #     scope '/farms' do
-  #       post '/' => 'farms#farms_by_operation'
-  #     end
-  #   end
-  # end
+  scope '/api' do
+  scope '/v1' do
+      scope '/farms' do
+        post '/' => 'farms#farm_by_operation'
+      end
+    end
+  end
+
 
   root :to => redirect('/admin')
 
