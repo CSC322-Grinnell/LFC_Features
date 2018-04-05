@@ -493,10 +493,11 @@ function setAndShowRecipeModal(recipe) {
 function callIndexApi2() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "http://localhost:3000/farms/farm_by_operation";
+    var call_url = "http://localhost:3000/api/v1/farms/farm_by_operation";
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: call_url,
+        data: JSON.stringify({"farms": {"operations": "lamb"}}),
         headers: {
             'X-Auth-Token': lfc_key
         },

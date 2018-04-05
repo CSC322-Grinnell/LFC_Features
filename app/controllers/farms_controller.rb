@@ -2,6 +2,7 @@ class FarmsController < ApplicationController
 
   before_filter :skip_authorization
   before_action :authenticate
+  skip_before_action :verify_authenticity_token #disable security check?
   # before_action :authenticate_farm!
 
   def show
@@ -15,8 +16,8 @@ class FarmsController < ApplicationController
       return review
     elsif params[:id] == "approved"
       return approved
-    elsif params[:id] == "farm_by_operation"
-      farm_by_operation
+    # elsif params[:id] == "farm_by_operation"
+    #   farm_by_operation("lamb")
     end
   end
 
@@ -80,14 +81,16 @@ class FarmsController < ApplicationController
     render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
   end
 
-  def farm_by_operation 
-    # Operation.where(food : op)
-  show_farms = []
-  Operation.all.each do |o|
-      show_farm = o.farms
-      show_farms.push(show_farm)
-   end
-   render json: show_farms
+  def farm_by_operation
+   # raise params[:farms].inspect
+    show_farms = []
+    Operation.all.each do |o|
+      if o.food.eql? params[:farms][:operations]
+        show_farm = o.farms 
+        show_farms.push(show_farm)
+      end
+    end
+    render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
   end
   
 
@@ -133,7 +136,7 @@ class FarmsController < ApplicationController
 
   #private
   def farm_params
-    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter, :email, :contact_name, :year, :statement, :other_media, :link_to_cert, :growth_promoter, :antibiotic, :fav_activity, :why_farm)
+    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter, :email, :contact_name, :year, :statement, :other_media, :link_to_cert, :growth_promoter, :antibiotic, :fav_activity, :why_farm, :operations)
   end
 
   private

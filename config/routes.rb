@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   scope '/api' do
   scope '/v1' do
       scope '/farms' do
-        post '/' => 'farms#farm_by_operation'
+        post '/farm_by_operation' => 'farms#farm_by_operation'
       end
     end
   end
