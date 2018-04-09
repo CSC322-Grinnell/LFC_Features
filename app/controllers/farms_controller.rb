@@ -16,8 +16,6 @@ class FarmsController < ApplicationController
       return review
     elsif params[:id] == "approved"
       return approved
-    # elsif params[:id] == "farm_by_operation"
-    #   farm_by_operation("lamb")
     end
   end
 
@@ -82,12 +80,13 @@ class FarmsController < ApplicationController
   end
 
   def farm_by_operation
-   # raise params[:farms].inspect
     show_farms = []
     Operation.all.each do |o|
-      if o.food.eql? params[:farms][:operations]
+      if params[:farms][:operations].include? o.food 
         show_farm = o.farms 
-        show_farms.push(show_farm)
+        if (!show_farms.include? show_farm)
+          show_farms.push(show_farm)
+        end
       end
     end
     render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
