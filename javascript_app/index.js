@@ -29,13 +29,19 @@ function init() {
         if (text != "") {
             callFood2Fork(text);
         }
-    }
+    };
 
-    // set up farm search
+// set up farm search
     document.getElementById("search_farm").onclick = function() {
+        var checkValues = [];
+        $('input[name=checkboxList]:checked').each(function() {
+            console.log($(this).val());
+            checkValues.push($(this).val());
+        });
+        callIndexApi2(checkValues);
+
         var text = $('#search_farm_text').val();
         var search_by = $('#category_button').text();
-        console.log(search_by);
         // Search by Address
         if (search_by == "Address") {
             if (text != "") {
@@ -95,7 +101,6 @@ function init() {
                 });
             }
         } else{
-            console.log("HERE");
             document.getElementById("search_farm_text").text = "You must enter a username";
         }
     }
@@ -123,7 +128,6 @@ function initMap() {
 
     // call index function for API to load all farms
     callIndexApi();
-    callIndexApi2();
 }
 
 /****************************************
@@ -214,11 +218,11 @@ function callIndexApi() {
 
 function handleIndexCall(result) {
     // set to new map
-    console.log(result);
     farms = {};
     for (var i = 0; i < result.length; i++) {
         // create id
         var id = "farm_" + result[i].id;
+
         // add to map
         farms[id] = result[i];
         // append card
@@ -345,6 +349,9 @@ function capitalize_words(str) {
 
 function getOperation(farm) {
     var result = "";
+    if (!farm.operations) {
+        farm = farm[0];
+    }
     for (var i = 0; i < farm.operations.length; i++) {
         result += capitalize_words(farm.operations[i].food);
         if (i != farm.operations.length - 1) {
@@ -360,7 +367,9 @@ function getOperation(farm) {
 
 function getGrowingMethod(farm) {
     var result = "";
-    console.log(farm.growing_methods.length);
+    if (!farm.growing_methods) {
+        farm = farm[0];
+    }
     for (var i = 0; i < farm.growing_methods.length; i++) {
         result += capitalize_words(farm.growing_methods[i].grow_method);
         if (i != farm.growing_methods.length - 1) {
@@ -375,6 +384,9 @@ function getGrowingMethod(farm) {
 
 function getSellingMethod(farm) {
     var result = "";
+     if (!farm.selling_methods) {
+        farm = farm[0];
+    }
     for (var i = 0; i < farm.selling_methods.length; i++) {
         result += capitalize_words(farm.selling_methods[i].sell_method);
         if (i != farm.selling_methods.length - 1) {
@@ -438,74 +450,66 @@ function setAndShowFarmModal(farm) {
 }
 
 function setAndShowRecipeModal(recipe) {
-
-    // set modal header html
-    $('#modal_header').html(
-        '<h1 align="center">' + recipe.label + '</h1>' +
-        '<p align="center">' + recipe.source + '</p>'
-    );
-
-    // compile tab 1 data
-    var ingredient_list = '<ul style="padding:15px;">';
+// set modal header html
+$('#modal_header').html(
+'<h1 align="center">' + recipe.label + '</h1>' +
+'<p align="center">' + recipe.source + '</p>'
+);
+// compile tab 1 data
+var ingredient_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.ingredients.length; i++) {
-        ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
+    ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
     }
-    ingredient_list += "</ul>";
-
-    // compile tab 2 data
-    var health_list = '<ul style="padding:15px;">';
+ingredient_list += "</ul>";
+// compile tab 2 data
+var health_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.digest.length; i++) {
-        health_list += "<li>" +
-            recipe.digest[i].label +
-            '<span class="pull-right">' +
+    health_list += "<li>" +
+        recipe.digest[i].label +
+        '<span class="pull-right">' +
             Math.round(recipe.digest[i].total * 10) / 10 +
             recipe.digest[i].unit +
-            "</span></li>";
-    }
+        "</span></li>";
+        }
     health_list += "</ul>";
-
     // compile tab 3 data
     var nutrient_list = '<ul style="padding:15px;">';
-    for (var key in recipe.totalDaily) {
+        for (var key in recipe.totalDaily) {
         //if (!recipe.totalDaily.hasOwnProperty(key)) continue;
-
         nutrient_list += '<li>' +
             recipe.totalDaily[key].label +
             '<span class="pull-right">' +
-            Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
-            recipe.totalNutrients[key].unit + ' (' +
-            Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
-            recipe.totalDaily[key].unit +
+                Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
+                recipe.totalNutrients[key].unit + ' (' +
+                Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
+                recipe.totalDaily[key].unit +
             ")</span></li>";
-    }
-    nutrient_list += "</ul>";
-    // compile tab 4 data
+            }
+        nutrient_list += "</ul>";
+        // compile tab 4 data
+        // set all modal tabs html content
+        $('#tab_1_title').html('Ingredients');
+        $('#tab_1').html(ingredient_list);
+        $('#tab_2_title').html('Health Information');
+        $('#tab_2').html(health_list);
+        $('#tab_3_title').html("Nutrients");
+        $('#tab_3').html(nutrient_list);
+        // hide button
+        $('#contact_button').hide();
+        $('#recipe_link_button').show();
+        $('#recipe_link_tag').attr("href", recipe.url);
+        // show modal
+        $("#generic_modal").modal()
+        }
 
-    // set all modal tabs html content
-    $('#tab_1_title').html('Ingredients');
-    $('#tab_1').html(ingredient_list);
-    $('#tab_2_title').html('Health Information');
-    $('#tab_2').html(health_list);
-    $('#tab_3_title').html("Nutrients");
-    $('#tab_3').html(nutrient_list);
-
-    // hide button
-    $('#contact_button').hide();
-    $('#recipe_link_button').show();
-    $('#recipe_link_tag').attr("href", recipe.url);
-
-
-    // show modal
-    $("#generic_modal").modal()
-}
-
-function callIndexApi2() {
+function callIndexApi2(operations) {
     document.getElementById("farmList").innerHTML = "";
-
-    var call_url = "http://localhost:3000/farms/farm_by_operation";
+    // var test = ["lamb", "duck"];
+    var call_url = "http://localhost:3000/api/v1/farms/farm_by_operation";
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: call_url,
+        data: JSON.stringify({"farms": {"operations": operations}}),
         headers: {
             'X-Auth-Token': lfc_key
         },
@@ -515,8 +519,8 @@ function callIndexApi2() {
         async: false,
         success: function(result) {
             if (result != null || result.length > 0) {
-                console.log(result);
-                // handleIndexCall(result);
+                console.log("LENGTH" + result.length);
+                handleIndexCall2(result);
             } else {
                 alert("Your search query returned no results . . . ")
             }
@@ -530,4 +534,41 @@ function callIndexApi2() {
     });
 
 }
+
+function handleIndexCall2(result) {
+    // set to new map
+    farms = {};
+    var farm;
+    for (var i = 0; i < result.length; i++) {
+        console.log(result[i]);
+        farm = result[i][0];
+        // create id
+        if (!farm) {
+            continue;
+        }
+        var id = "farm_" + farm.id;
+        console.log(farm.id);
+
+        // add to map
+        farms[id] = result[i];
+    //     // append card
+        $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
+            '<h4 class="card-title">' + farm.name + '</h4>' +
+            '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
+            '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
+            '<a href="#" class="card-link">' + farm.url + '</a> | ' +
+            '<a href="#" class="card-link">' + farm.phone + '</a>' +
+            '</li>'
+        );
+    //     // on click to show modal
+        $('#' + id).on('click', function() {
+            var new_id = this.getAttribute('id');
+            setAndShowFarmModal(farms[new_id]);
+        });
+
+    //     // add marker at proper placec
+        geocodeAddressAndAddMarker(farm);
+    }
+}
+
 
