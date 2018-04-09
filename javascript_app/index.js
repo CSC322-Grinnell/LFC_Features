@@ -509,7 +509,7 @@ function callIndexApi2(operations) {
     $.ajax({
         type: "POST",
         url: call_url,
-        data: JSON.stringify({"farms": {"operations": ["lamb", "duck"]}}),
+        data: JSON.stringify({"farms": {"operations": operations}}),
         headers: {
             'X-Auth-Token': lfc_key
         },
@@ -519,8 +519,7 @@ function callIndexApi2(operations) {
         async: false,
         success: function(result) {
             if (result != null || result.length > 0) {
-                console.log("AAA");
-                console.log(result);
+                console.log("LENGTH" + result.length);
                 handleIndexCall2(result);
             } else {
                 alert("Your search query returned no results . . . ")
@@ -541,15 +540,15 @@ function handleIndexCall2(result) {
     farms = {};
     var farm;
     for (var i = 0; i < result.length; i++) {
+        console.log(result[i]);
         farm = result[i][0];
         // create id
         if (!farm) {
-            break;
+            continue;
         }
         var id = "farm_" + farm.id;
         console.log(farm.id);
 
-      
         // add to map
         farms[id] = result[i];
     //     // append card
