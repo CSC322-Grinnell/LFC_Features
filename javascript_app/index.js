@@ -261,7 +261,7 @@ function handleAddressCall(result, addressSearch) {
         // add to map
         //farms[id] = result[i];
         console.log("name is " + name);
-        if (name.includes(addressSearch)) {
+        if ((name.toLowerCase()).includes(addressSearch.toLowerCase())) {
             console.log("name is " + name);
           //  return result[i].address;
            farms.push(result[i]);
