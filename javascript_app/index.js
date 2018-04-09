@@ -61,6 +61,8 @@ function init() {
             }
         // Search by Farm's Name
         } else if (search_by == "Farm's Name") {
+
+            var farms = [];
             var call_url = "http://localhost:3000/farms/farm_json";
             $.ajax({
                 type: "GET",
@@ -74,8 +76,9 @@ function init() {
                 async: false,
                 success: function(result) {
                     if (result != null || result.length > 0) {
-                        text = handleAddressCall(result, text);
-                        text += "Iowa, 50112"; // this is temporary
+                       farms  = handleAddressCall(result, text);
+                       handleIndexCall3(farms);
+                       // text += "Iowa, 50112"; // this is temporary
                     } else {
                         alert("Your search query returned no results . . . ")
                     }
@@ -248,19 +251,31 @@ function handleIndexCall(result) {
 }
 
 function handleAddressCall(result, addressSearch) {
-    farms = {};
+    farms = [];
+
+
     for (var i = 0; i < result.length; i++) {
         // create id
         var name = result[i].name;
         var id = "farm_" + result[i].id;
         // add to map
-        farms[id] = result[i];
+        //farms[id] = result[i];
         console.log("name is " + name);
-        if (addressSearch == name) {
+        if (name.includes(addressSearch)) {
             console.log("name is " + name);
-            return result[i].address;
+          //  return result[i].address;
+           farms.push(result[i]);
         }
+
+
     }
+    console.log("Address call to farms");
+    console.log(farms);
+
+
+    return farms;
+
+
 }
 
 /*************************
@@ -529,7 +544,7 @@ function callIndexApi2(operations) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);
 
-            
+
         }
     });
 
@@ -571,4 +586,41 @@ function handleIndexCall2(result) {
     }
 }
 
+
+function handleIndexCall3(result) {
+    // set to new map
+    farms = {};
+    var farm;
+    console.log("In IndexCall3");
+    for (var i = 0; i < result.length; i++) {
+        console.log(result[i]);
+        farm = result[i];
+        // create id
+        if (!farm) {
+            continue;
+        }
+        var id = "farm_" + farm.id;
+        console.log("ID" + farm.id);
+
+        // add to map
+        farms[id] = result[i];
+    //     // append card
+        $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
+            '<h4 class="card-title">' + farm.name + '</h4>' +
+            '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
+            '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
+            '<a href="#" class="card-link">' + farm.url + '</a> | ' +
+            '<a href="#" class="card-link">' + farm.phone + '</a>' +
+            '</li>'
+        );
+    //     // on click to show modal
+        $('#' + id).on('click', function() {
+            var new_id = this.getAttribute('id');
+            setAndShowFarmModal(farms[new_id]);
+        });
+
+    //     // add marker at proper placec
+        geocodeAddressAndAddMarker(farm);
+    }
+}
 
