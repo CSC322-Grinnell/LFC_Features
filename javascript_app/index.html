@@ -16,13 +16,13 @@
     <body>
         <!-- jumbotron -->
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
+            <div class=" col-md-6 container">
                 <h1 class="display-3" >
                 <font face="Verdana" color="green">
                 Local Foods Connection</h1>
                 <p class="lead" style="color:red;">Explore farms in the Poweshiek County area!</p>
                 <!-- Adding Logo -->
-                <div id="locator">
+                <div class = "col-md-6" id="locator">
                 <img src="../javascript_app/logo.png" alt="Local Foods Connection"
                 width="200" height="100">
               </div>
@@ -31,6 +31,7 @@
         <!-- farm area -->
         <div class="col-sm-12 search-container" style="color:green;">
             <h1>Explore Local Farms</h1>
+
             <!-- search bar -->
             <div class="input-group search">
                 <!-- categories -->
@@ -45,8 +46,7 @@
                     </ul>
                 </div>
                 <!-- text area -->
-                <input id="search_farm_text" type="text" class="form-control" placeholder="Search for..."> 
-
+                <input id="search_farm_text" type="text" class="form-control" placeholder="Search for...">
                 <!-- search button -->
                 <span class="input-group-btn">
                     <button id="search_farm" class="btn btn-default" type="button">Search</button>
@@ -101,7 +101,6 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-
                     <!-- modal tabs -->
                     <ul class="nav nav-tabs modal-style">
                         <li class="active"><a id="tab_1_title" data-toggle="tab" href="#tab_1">Home</a></li>
