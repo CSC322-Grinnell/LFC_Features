@@ -1,3 +1,8 @@
+* {
+ font-size: 100%;
+ font-family: Josefin-Sans;
+}
+
 #map {
     border-radius: .1cm;
     height: 70vh;

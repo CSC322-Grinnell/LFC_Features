@@ -33,6 +33,7 @@ function init() {
 
 // set up farm search
     document.getElementById("search_farm").onclick = function() {
+        DeleteMarkers();
         var checkValues = [];
         $('input[name=checkboxList]:checked').each(function() {
             console.log($(this).val());
@@ -149,6 +150,7 @@ function geocodeAddressAndAddMarker(farm) {
     });
 }
 
+var markers = []
 function addMarker(farm, results) {
 
     var iconCow = '../javascript_app/icons/64cow.png'
@@ -164,13 +166,13 @@ function addMarker(farm, results) {
         icon: iconCow
     });
 
-    var marker = new google.maps.Marker({
-        map: map,
-        animation: google.maps.Animation.BOUNCE,
-        position: results[0].geometry.location,
-        title: farm.name,
-        icon: iconPig
-    });
+    // var marker = new google.maps.Marker({
+    //     map: map,
+    //     animation: google.maps.Animation.BOUNCE,
+    //     position: results[0].geometry.location,
+    //     title: farm.name,
+    //     icon: iconPig
+    // });
 
     // data string for display tooltip
     var data = farm.name;
@@ -183,7 +185,16 @@ function addMarker(farm, results) {
         // open info window
         infowindow.open(map, marker);
     });
+    markers.push(marker);
 }
+
+    function DeleteMarkers() {
+        //Loop through all the markers and remove
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+    };
 
 /***********************
  *  FARM API FUNCTIONS *
