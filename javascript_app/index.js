@@ -122,7 +122,7 @@ function initMap() {
 
     // init map
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 13.7,
         center: grinnell
     });
 
