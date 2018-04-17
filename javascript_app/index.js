@@ -3,8 +3,8 @@ var geocoder;
 var farms = {};
 var recipes = {};
 // api keys
-var edemam_app_id = "c1a85afb";
-var edemam_app_key = "0bf8d80e45004f66c8d4a9e6a523f14f";
+var edemam_app_id = "0649d198";
+var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
 
 init();
@@ -26,7 +26,7 @@ function init() {
     document.getElementById("search_recipes").onclick = function() {
         var checkRecipeValues = [];
         $('input[name=recipeCheckboxList]:checked').each(function() {
-            console.log($(this).val());
+            console.log("HERE" + $(this).val());
             checkRecipeValues.push($(this).val());
         });
         var text = $('#recipe_search_text').val();
@@ -303,13 +303,19 @@ function callFood2Fork(food_string, checkRecipeValues) {
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=${food_string}&app_id=${edemam_app_id}&app_key=${edemam_app_key}"
+    // var call_url = "https://api.edamam.com/search?q=${food_string}&app_id=${edemam_app_id}&app_key=${edemam_app_key}"
+     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=" + edemam_app_id + "&app_key=" + edemam_app_key;
     var health_query = "";
+    console.log(checkRecipeValues);
     for (var i = 0; i < checkRecipeValues.length; i++) {
         console.log(checkRecipeValues[i]);
-        health_query += checkRecipeValues[i];
+        if (i != checkRecipeValues.length - 1) {
+        health_query += checkRecipeValues[i] + ',%20';
+        }
     }
-     call_url += health_query
+    if (checkRecipeValues.length > 0) {
+     call_url += "&healthLabels=" + health_query;
+    }
     // call_url += &ingr= [] once we make a max-ingredients button
     // call_url += &time= [] once we have a max-time option
     
