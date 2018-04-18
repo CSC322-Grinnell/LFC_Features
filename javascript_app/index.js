@@ -42,7 +42,13 @@ function init() {
         var checkValues = [];
         $('input[name=checkboxList]:checked').each(function() {
             console.log($(this).val());
-            checkValues.push($(this).val());
+            if ($(this).val() == "meat")
+            checkValues.push("lamb", "beef", "chicken", "pork");
+            else if ($(this).val() == "agritourism")
+                checkValues.push("agritourism", "hay", "row crop");
+            else
+                checkValues.push($(this).val());
+
         });
         callIndexApi2(checkValues);
 
@@ -298,7 +304,7 @@ function handleAddressCall(result, addressSearch) {
  *  RECIPE API FUNCTIONS *
  * ***********************/
 
-function callFood2Fork(food_string, checkRecipeValues) { 
+function callFood2Fork(food_string, checkRecipeValues) {
     // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
 
@@ -318,7 +324,7 @@ function callFood2Fork(food_string, checkRecipeValues) {
     }
     // call_url += &ingr= [] once we make a max-ingredients button
     // call_url += &time= [] once we have a max-time option
-    
+
     // make call
     $.ajax({
         type: "GET",
