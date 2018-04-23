@@ -214,7 +214,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "http://localhost:3000/farms/farm_json";
+    var call_url = " https://intense-fjord-35637.herokuapp.com/farms/farm_json";
     $.ajax({
         type: "GET",
         url: call_url,
