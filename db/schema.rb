@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180228195837) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +21,9 @@ ActiveRecord::Schema.define(version: 20180228195837) do
     t.integer  "author_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "farms", force: :cascade do |t|
@@ -63,36 +60,36 @@ ActiveRecord::Schema.define(version: 20180228195837) do
     t.text     "why_farm"
     t.integer  "role"
     t.string   "farm_type"
-    t.index ["email"], name: "index_farms_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_farms_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true
   end
 
   create_table "farms_growing_methods", id: false, force: :cascade do |t|
     t.integer "farm_id",           null: false
     t.integer "growing_method_id", null: false
-    t.index ["farm_id", "growing_method_id"], name: "index_farms_growing_methods_on_farm_id_and_growing_method_id", using: :btree
-    t.index ["growing_method_id", "farm_id"], name: "index_farms_growing_methods_on_growing_method_id_and_farm_id", using: :btree
+    t.index ["farm_id", "growing_method_id"], name: "index_farms_growing_methods_on_farm_id_and_growing_method_id"
+    t.index ["growing_method_id", "farm_id"], name: "index_farms_growing_methods_on_growing_method_id_and_farm_id"
   end
 
   create_table "farms_markets", id: false, force: :cascade do |t|
     t.integer "farm_id",   null: false
     t.integer "market_id", null: false
-    t.index ["farm_id", "market_id"], name: "index_farms_markets_on_farm_id_and_market_id", using: :btree
-    t.index ["market_id", "farm_id"], name: "index_farms_markets_on_market_id_and_farm_id", using: :btree
+    t.index ["farm_id", "market_id"], name: "index_farms_markets_on_farm_id_and_market_id"
+    t.index ["market_id", "farm_id"], name: "index_farms_markets_on_market_id_and_farm_id"
   end
 
   create_table "farms_operations", id: false, force: :cascade do |t|
     t.integer "farm_id",      null: false
     t.integer "operation_id", null: false
-    t.index ["farm_id", "operation_id"], name: "index_farms_operations_on_farm_id_and_operation_id", using: :btree
-    t.index ["operation_id", "farm_id"], name: "index_farms_operations_on_operation_id_and_farm_id", using: :btree
+    t.index ["farm_id", "operation_id"], name: "index_farms_operations_on_farm_id_and_operation_id"
+    t.index ["operation_id", "farm_id"], name: "index_farms_operations_on_operation_id_and_farm_id"
   end
 
   create_table "farms_selling_methods", id: false, force: :cascade do |t|
     t.integer "farm_id",           null: false
     t.integer "selling_method_id", null: false
-    t.index ["farm_id", "selling_method_id"], name: "index_farms_selling_methods_on_farm_id_and_selling_method_id", using: :btree
-    t.index ["selling_method_id", "farm_id"], name: "index_farms_selling_methods_on_selling_method_id_and_farm_id", using: :btree
+    t.index ["farm_id", "selling_method_id"], name: "index_farms_selling_methods_on_farm_id_and_selling_method_id"
+    t.index ["selling_method_id", "farm_id"], name: "index_farms_selling_methods_on_selling_method_id_and_farm_id"
   end
 
   create_table "growing_methods", force: :cascade do |t|
