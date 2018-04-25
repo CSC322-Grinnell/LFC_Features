@@ -3,8 +3,8 @@ var geocoder;
 var farms = {};
 var recipes = {};
 // api keys
-var edemam_app_id = "c1a85afb";
-var edemam_app_key = "0bf8d80e45004f66c8d4a9e6a523f14f";
+var edemam_app_id = "0649d198";
+var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
 
 init();
@@ -24,19 +24,31 @@ function init() {
 
     // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
+        var checkRecipeValues = [];
+        $('input[name=recipeCheckboxList]:checked').each(function() {
+            console.log("HERE" + $(this).val());
+            checkRecipeValues.push($(this).val());
+        });
         var text = $('#recipe_search_text').val();
         text = text.split(' ').join('%20')
         if (text != "") {
-            callFood2Fork(text);
+            callFood2Fork(text, checkRecipeValues);
         }
     };
 
-// set up farm search
+    // set up farm search
     document.getElementById("search_farm").onclick = function() {
+        DeleteMarkers();
         var checkValues = [];
         $('input[name=checkboxList]:checked').each(function() {
             console.log($(this).val());
-            checkValues.push($(this).val());
+            if ($(this).val() == "meat")
+                checkValues.push("lamb", "beef", "chicken", "pork");
+            else if ($(this).val() == "agritourism")
+                checkValues.push("agritourism", "hay", "row crop");
+            else
+                checkValues.push($(this).val());
+
         });
         callIndexApi2(checkValues);
 
@@ -45,7 +57,9 @@ function init() {
         // Search by Address
         if (search_by == "Address") {
             if (text != "") {
-                geocoder.geocode({ 'address': text }, function(results, status) {
+                geocoder.geocode({
+                    'address': text
+                }, function(results, status) {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(17);
@@ -59,7 +73,7 @@ function init() {
                     }
                 });
             }
-        // Search by Farm's Name
+            // Search by Farm's Name
         } else if (search_by == "Farm's Name") {
 
             var farms = [];
@@ -76,9 +90,9 @@ function init() {
                 async: false,
                 success: function(result) {
                     if (result != null || result.length > 0) {
-                       farms  = handleAddressCall(result, text);
-                       handleIndexCall3(farms);
-                       // text += "Iowa, 50112"; // this is temporary
+                        farms = handleAddressCall(result, text);
+                        handleIndexCall3(farms);
+                        // text += "Iowa, 50112"; // this is temporary
                     } else {
                         alert("Your search query returned no results . . . ")
                     }
@@ -89,7 +103,9 @@ function init() {
                 }
             });
             if (text != "") {
-                geocoder.geocode({ 'address': text }, function(results, status) {
+                geocoder.geocode({
+                    'address': text
+                }, function(results, status) {
                     if (status == 'OK') {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(17);
@@ -103,7 +119,7 @@ function init() {
                     }
                 });
             }
-        } else{
+        } else {
             document.getElementById("search_farm_text").text = "You must enter a username";
         }
     }
@@ -112,7 +128,6 @@ function init() {
 /*************
  *  INIT MAP *
  * ***********/
-
 function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
@@ -122,7 +137,7 @@ function initMap() {
 
     // init map
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 13.7,
         center: grinnell
     });
 
@@ -139,7 +154,9 @@ function initMap() {
 
 function geocodeAddressAndAddMarker(farm) {
     var address = farm.address + ", Iowa, 50112"
-    geocoder.geocode({ 'address': address }, function(results, status) {
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
         // if OK/200 status, add marker to map, else throw alert.
         if (status === 'OK') {
             addMarker(farm, results);
@@ -148,6 +165,8 @@ function geocodeAddressAndAddMarker(farm) {
         }
     });
 }
+
+var markers = []
 
 function addMarker(farm, results) {
 
@@ -164,13 +183,13 @@ function addMarker(farm, results) {
         icon: iconCow
     });
 
-    var marker = new google.maps.Marker({
-        map: map,
-        animation: google.maps.Animation.BOUNCE,
-        position: results[0].geometry.location,
-        title: farm.name,
-        icon: iconPig
-    });
+    // var marker = new google.maps.Marker({
+    //     map: map,
+    //     animation: google.maps.Animation.BOUNCE,
+    //     position: results[0].geometry.location,
+    //     title: farm.name,
+    //     icon: iconPig
+    // });
 
     // data string for display tooltip
     var data = farm.name;
@@ -183,7 +202,16 @@ function addMarker(farm, results) {
         // open info window
         infowindow.open(map, marker);
     });
+    markers.push(marker);
 }
+
+function DeleteMarkers() {
+    //Loop through all the markers and remove
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+};
 
 /***********************
  *  FARM API FUNCTIONS *
@@ -192,7 +220,7 @@ function addMarker(farm, results) {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "http://localhost:3000/farms/farm_json";
+    var call_url = "https://intense-fjord-35637.herokuapp.com/farms/farm_json";
     $.ajax({
         type: "GET",
         url: call_url,
@@ -263,8 +291,8 @@ function handleAddressCall(result, addressSearch) {
         console.log("name is " + name);
         if ((name.toLowerCase()).includes(addressSearch.toLowerCase())) {
             console.log("name is " + name);
-          //  return result[i].address;
-           farms.push(result[i]);
+            //  return result[i].address;
+            farms.push(result[i]);
         }
 
 
@@ -282,15 +310,26 @@ function handleAddressCall(result, addressSearch) {
  *  RECIPE API FUNCTIONS *
  * ***********************/
 
-function callFood2Fork(food_string) {
-
+function callFood2Fork(food_string, checkRecipeValues) {
     // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
 
     // set new url to access
-    var call_url = "https://api.edamam.com/search?q=" + food_string +
-        "&app_id=" + edemam_app_id +
-        "&app_key=" + edemam_app_key;
+    // var call_url = "https://api.edamam.com/search?q=${food_string}&app_id=${edemam_app_id}&app_key=${edemam_app_key}"
+    var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=" + edemam_app_id + "&app_key=" + edemam_app_key;
+    var health_query = "";
+    console.log(checkRecipeValues);
+    for (var i = 0; i < checkRecipeValues.length; i++) {
+        console.log(checkRecipeValues[i]);
+        if (i != checkRecipeValues.length - 1) {
+            health_query += checkRecipeValues[i] + ',%20';
+        }
+    }
+    if (checkRecipeValues.length > 0) {
+        call_url += "&healthLabels=" + health_query;
+    }
+    // call_url += &ingr= [] once we make a max-ingredients button
+    // call_url += &time= [] once we have a max-time option
 
     // make call
     $.ajax({
@@ -359,7 +398,9 @@ function handleRecipeAPICall(recipe_list) {
  *  MODAL FUNCTIONS *
  * ******************/
 function capitalize_words(str) {
-    return str.replace(/\w\S*/g, function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
 }
 
 function getOperation(farm) {
@@ -399,7 +440,7 @@ function getGrowingMethod(farm) {
 
 function getSellingMethod(farm) {
     var result = "";
-     if (!farm.selling_methods) {
+    if (!farm.selling_methods) {
         farm = farm[0];
     }
     for (var i = 0; i < farm.selling_methods.length; i++) {
@@ -465,66 +506,70 @@ function setAndShowFarmModal(farm) {
 }
 
 function setAndShowRecipeModal(recipe) {
-// set modal header html
-$('#modal_header').html(
-'<h1 align="center">' + recipe.label + '</h1>' +
-'<p align="center">' + recipe.source + '</p>'
-);
-// compile tab 1 data
-var ingredient_list = '<ul style="padding:15px;">';
+    // set modal header html
+    $('#modal_header').html(
+        '<h1 align="center">' + recipe.label + '</h1>' +
+        '<p align="center">' + recipe.source + '</p>'
+    );
+    // compile tab 1 data
+    var ingredient_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.ingredients.length; i++) {
-    ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
+        ingredient_list += "<li>" + recipe.ingredients[i].text + "</li>";
     }
-ingredient_list += "</ul>";
-// compile tab 2 data
-var health_list = '<ul style="padding:15px;">';
+    ingredient_list += "</ul>";
+    // compile tab 2 data
+    var health_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.digest.length; i++) {
-    health_list += "<li>" +
-        recipe.digest[i].label +
-        '<span class="pull-right">' +
+        health_list += "<li>" +
+            recipe.digest[i].label +
+            '<span class="pull-right">' +
             Math.round(recipe.digest[i].total * 10) / 10 +
             recipe.digest[i].unit +
-        "</span></li>";
-        }
+            "</span></li>";
+    }
     health_list += "</ul>";
     // compile tab 3 data
     var nutrient_list = '<ul style="padding:15px;">';
-        for (var key in recipe.totalDaily) {
+    for (var key in recipe.totalDaily) {
         //if (!recipe.totalDaily.hasOwnProperty(key)) continue;
         nutrient_list += '<li>' +
             recipe.totalDaily[key].label +
             '<span class="pull-right">' +
-                Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
-                recipe.totalNutrients[key].unit + ' (' +
-                Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
-                recipe.totalDaily[key].unit +
+            Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
+            recipe.totalNutrients[key].unit + ' (' +
+            Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
+            recipe.totalDaily[key].unit +
             ")</span></li>";
-            }
-        nutrient_list += "</ul>";
-        // compile tab 4 data
-        // set all modal tabs html content
-        $('#tab_1_title').html('Ingredients');
-        $('#tab_1').html(ingredient_list);
-        $('#tab_2_title').html('Health Information');
-        $('#tab_2').html(health_list);
-        $('#tab_3_title').html("Nutrients");
-        $('#tab_3').html(nutrient_list);
-        // hide button
-        $('#contact_button').hide();
-        $('#recipe_link_button').show();
-        $('#recipe_link_tag').attr("href", recipe.url);
-        // show modal
-        $("#generic_modal").modal()
-        }
+    }
+    nutrient_list += "</ul>";
+    // compile tab 4 data
+    // set all modal tabs html content
+    $('#tab_1_title').html('Ingredients');
+    $('#tab_1').html(ingredient_list);
+    $('#tab_2_title').html('Health Information');
+    $('#tab_2').html(health_list);
+    $('#tab_3_title').html("Nutrients");
+    $('#tab_3').html(nutrient_list);
+    // hide button
+    $('#contact_button').hide();
+    $('#recipe_link_button').show();
+    $('#recipe_link_tag').attr("href", recipe.url);
+    // show modal
+    $("#generic_modal").modal()
+}
 
 function callIndexApi2(operations) {
     document.getElementById("farmList").innerHTML = "";
     // var test = ["lamb", "duck"];
-    var call_url = "http://localhost:3000/api/v1/farms/farm_by_operation";
+    var call_url = "https://intense-fjord-35637.herokuapp.com/api/v1/farms/farm_by_operation";
     $.ajax({
         type: "POST",
         url: call_url,
-        data: JSON.stringify({"farms": {"operations": operations}}),
+        data: JSON.stringify({
+            "farms": {
+                "operations": operations
+            }
+        }),
         headers: {
             'X-Auth-Token': lfc_key
         },
@@ -566,7 +611,7 @@ function handleIndexCall2(result) {
 
         // add to map
         farms[id] = result[i];
-    //     // append card
+        //     // append card
         $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
             '<h4 class="card-title">' + farm.name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
@@ -575,13 +620,13 @@ function handleIndexCall2(result) {
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
         );
-    //     // on click to show modal
+        //     // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
 
-    //     // add marker at proper placec
+        //     // add marker at proper placec
         geocodeAddressAndAddMarker(farm);
     }
 }
@@ -604,7 +649,7 @@ function handleIndexCall3(result) {
 
         // add to map
         farms[id] = result[i];
-    //     // append card
+        //     // append card
         $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
             '<h4 class="card-title">' + farm.name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
@@ -613,14 +658,13 @@ function handleIndexCall3(result) {
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
         );
-    //     // on click to show modal
+        //     // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
 
-    //     // add marker at proper placec
+        //     // add marker at proper placec
         geocodeAddressAndAddMarker(farm);
     }
 }
-

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20180228195837) do
     t.string   "facebook"
     t.string   "instagram"
     t.string   "twitter"
+    t.string   "type_of_farm"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "approved",               default: false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180228195837) do
     t.text     "fav_activity"
     t.text     "why_farm"
     t.integer  "role"
+    t.string   "farm_type"
     t.index ["email"], name: "index_farms_on_email", unique: true
     t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true
   end

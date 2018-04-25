@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
 
+group :development, :test do
+   gem 'sqlite3'
+end
+group :production do
+   gem 'pg', '~> 0.18'
+end
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -16,8 +22,6 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #Add gem for building form
 gem 'simple_form'
-gem 'tzinfo-data'
-gem 'tzinfo'
 
 
 # Add gem for cors
@@ -43,22 +47,14 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 
-
 # Use ActiveModel has_secure_password
-#gem 'bcrypt', '~> 3.1.7'
-gem 'bcrypt', '3.1.11'
+# gem 'bcrypt', '~> 3.1.7'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-group :development, :test do
-  gem 'sqlite3'
-end
-group :production do
-  gem 'pg'
-end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
