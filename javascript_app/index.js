@@ -6,6 +6,7 @@ var recipes = {};
 var edemam_app_id = "0649d198";
 var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
+var base_url = "http://localhost:3000";
 
 init();
 
@@ -77,7 +78,7 @@ function init() {
         } else if (search_by == "Farm's Name") {
 
             var farms = [];
-            var call_url = "http://localhost:3000/farms/farm_json";
+            var call_url = base_url + "/farms/farm_json";
             $.ajax({
                 type: "GET",
                 url: call_url,
@@ -220,7 +221,7 @@ function DeleteMarkers() {
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
-    var call_url = "https://intense-fjord-35637.herokuapp.com/farms/farm_json";
+    var call_url = base_url + "/farms/farm_json";
     $.ajax({
         type: "GET",
         url: call_url,
@@ -561,7 +562,7 @@ function setAndShowRecipeModal(recipe) {
 function callIndexApi2(operations) {
     document.getElementById("farmList").innerHTML = "";
     // var test = ["lamb", "duck"];
-    var call_url = "https://intense-fjord-35637.herokuapp.com/api/v1/farms/farm_by_operation";
+    var call_url = base_url + "/api/v1/farms/farm_by_operation";
     $.ajax({
         type: "POST",
         url: call_url,
