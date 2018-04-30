@@ -169,8 +169,32 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 var markers = []
-
+// "fruit", "vegetables", "dairy", "pork", "chicken", "turkey", "lamb", "duck", "agritourism", "hay", "row crop", "food pantry"]
 function addMarker(farm, results) {
+    console.log("NAme " + farm.name);
+    console.log( "Length" + farm.operations.length);
+    var operation_icon;
+    if (farm.operations.length == 0) {
+        operation_icon = '../javascript_app/icons/64cow.png';
+    } else {
+        var primary_operation = farm.operations[0].food;
+        console.log(primary_operation.food);
+        if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
+            primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck") {
+            operation_icon = '../javascript_app/icons/steak-512.png';
+        } else if (primary_operation == "fruit") {
+            console.log("HERE");
+            operation_icon = '../javascript_app/icons/24apple.png';
+        } else if (primary_operation == "vegetables") {
+            operation_icon = '../javascript_app/icons/24broccoli.png';
+        } else if (primary_operation == "dairy") {
+            operation_icon = '../javascript_app/icons/24dairy.png';
+        } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
+            operation_icon = '../javascript_app/icons/agricultural.png';
+        } else if (primary_operation == "") {
+
+        }
+    }
 
     var iconCow = '../javascript_app/icons/64cow.png'
     var iconPig = '../javascript_app/icons/24pig.png'
@@ -182,7 +206,7 @@ function addMarker(farm, results) {
         animation: google.maps.Animation.BOUNCE,
         position: results[0].geometry.location,
         title: farm.name,
-        icon: iconCow
+        icon: operation_icon
     });
 
     // var marker = new google.maps.Marker({
