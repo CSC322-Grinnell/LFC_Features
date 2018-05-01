@@ -1,15 +1,259 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* {
+
+ font-family: proxima-nova;
+     font-family: proxima-nova;
+
+}
+
+
+.checkbox {
+    font-size: 16px;
+}
+
+.col-sm-12 search-container{
+    padding-top: 50px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+
+
+nav {
+    width: 100%;
+    height: 100px;
+    color: #eee;
+}
+
+#button_list ul {
+float: right;
+margin-right: 60px;
+}
+
+.logo{
+   float: left;
+   line-height: 100px;
+   padding-left: 20px;
+}
+
+#button_list ul li {
+list-style: none;
+display: inline-block;
+line-height: 100px;
+}
+
+#button_list ul li a {
+text-decoration: none;
+    font-family: proxima-nova;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    padding: 0 20px;
+    color:  black;
+}
+
+#button_list ul li a:hover {
+color: green;
+}
+
+
+
+.wrap {
+    width: 100%;
+}
+.image {
+   width: 100%;
+   background-image: url(/assets/farm2.jpg);
+    background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+   height: 435px;
+}
+.image:before{
+    content: '';
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    background: rgba(0.8,0,0,0);
+}
+
+.text {
+    position: relative;
+    top: 40%;
+    left: 30%;
+    right: 30%;
+    /* transform: translate(-50%, -50%); */
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+
+}
+
+
+#map {
+    border-radius: .1cm;
+    height: 70vh;
+    width: 100%;
+}
+
+
+
+#logoImage: {
+
+
+}
+
+
+
+#header {
+    padding: 0 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 1em;
+    background-color: #fff;
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+    position: relative;
+}
+
+
+.section-title {
+    margin: 0px !important;
+}
+
+.jumbotron {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.search {
+    margin: 0cm 0cm .25cm 0cm;
+    width: 100%;
+}
+
+.search-recipes {
+    margin: 0px !important;
+    width: 100%;
+}
+.category-button {
+    margin: 0cm 0cm .25cm 0cm !important;
+}
+.list-group-item {
+    width: 90%;
+    margin: 5% 5% 5% 5% !important;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px !important;
+    -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+    -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+}
+.list-group-item:hover {
+    background-color: #eeeeee;
+}
+
+.list-group {
+    height: 70vh;
+    overflow: hidden;
+    -webkit-animation: autoScrolling 5s linear infinite;
+    overflow-y: scroll !important;
+}
+/*.col-md-4 {
+    padding: 0% 5% 0% 5%;
+}
+
+.col-md-8 {
+    padding: 0% 5% 0% 5%;
+}*/
+
+.search-container {
+    padding: 2%;
+}
+
+.content-container {
+    padding: 2% !important;
+}
+
+.scrollmenu {
+    background-color: #ffffff;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.scrollmenu-item {
+    display: inline-block;
+    margin: 10px;
+    border-radius: 15px;
+    width: 22vw;
+    -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+    -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+.scrollmenu-item-section {
+    padding: 10px;
+}
+
+.scrollmenu-item:hover {
+    background-color: #eeeeee;
+}
+
+.recipe_image {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal-image {
+    width: 40vw;
+    padding: 15px;
+}
+
+.modal-style {
+    margin: 15px !important;
+}
+
+.tab-pane {
+    height: 35vh !important;
+    overflow-y: scroll !important;
+}
+
+
+
+/* Position of Logo */
+#locator { position: absolute; visibility: visible; right: 0px ; top: 20px; z-index: 200; }
