@@ -1,3 +1,5 @@
+//= require jquery
+
 var map;
 var geocoder;
 var farms = {};
@@ -8,7 +10,10 @@ var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
 var base_url = "http://localhost:3000";
 
-init();
+$(window).load(function() {
+    init();
+});
+
 
 /********
  * INIT *
@@ -79,7 +84,7 @@ function init() {
 
             var farms = [];
 
-            var call_url = base_url + "/farms/farm_json";
+            var call_url ="/farms/farm_json";
             $.ajax({
                 type: "GET",
                 url: call_url,
@@ -175,29 +180,29 @@ function addMarker(farm, results) {
     console.log( "Length" + farm.operations.length);
     var operation_icon;
     if (farm.operations.length == 0) {
-        operation_icon = '../javascript_app/icons/64cow.png';
+        operation_icon = '/assets/64cow.png';
     } else {
         var primary_operation = farm.operations[0].food;
         console.log(primary_operation.food);
         if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck") {
-            operation_icon = '../javascript_app/icons/steak-512.png';
+            operation_icon = '/assets/steak-512.png';
         } else if (primary_operation == "fruit") {
             console.log("HERE");
-            operation_icon = '../javascript_app/icons/24apple.png';
+            operation_icon = '/assets/24apple.png';
         } else if (primary_operation == "vegetables") {
-            operation_icon = '../javascript_app/icons/24broccoli.png';
+            operation_icon = '/assets/24broccoli.png';
         } else if (primary_operation == "dairy") {
-            operation_icon = '../javascript_app/icons/24dairy.png';
+            operation_icon = '/assets/24dairy.png';
         } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
-            operation_icon = '../javascript_app/icons/agricultural.png';
+            operation_icon = '/assets/agricultural.png';
         } else if (primary_operation == "") {
 
         }
     }
 
-    var iconCow = '../javascript_app/icons/64cow.png'
-    var iconPig = '../javascript_app/icons/24pig.png'
+    var iconCow = '/assets/64cow.png'
+    var iconPig = '/assets/24pig.png'
 
 
     // create marker object
@@ -247,7 +252,7 @@ function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
 
-    var call_url = base_url + "/farms/farm_json";
+    var call_url = "/farms/farm_json";
     $.ajax({
         type: "GET",
         url: call_url,
@@ -588,7 +593,7 @@ function setAndShowRecipeModal(recipe) {
 function callIndexApi2(operations) {
     document.getElementById("farmList").innerHTML = "";
     // var test = ["lamb", "duck"];
-    var call_url = base_url + "/api/v1/farms/farm_by_operation";
+    var call_url = "/api/v1/farms/farm_by_operation";
     $.ajax({
         type: "POST",
         url: call_url,

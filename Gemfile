@@ -6,7 +6,7 @@ end
 group :production do
    gem 'pg', '~> 0.18'
 end
-
+gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
