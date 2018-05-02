@@ -1,37 +1,28 @@
-
 // To enable jquery for rails
 //= require jquery
-
 var map;
 var geocoder;
 var farms = {};
 var recipes = {};
-
 /***********
  * API_KEYS *
  ***********/
 var edemam_app_id = "0649d198";
 var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
-
-
 $(document).ready(function() {
     $(".dropdown-menu li a").click(function() {
         $("#category_button").text($(this).text());
     });
 });
-
-
-
 /********
  * INIT *
  ********/
 $(window).load(function() {
     init();
 });
-
 /**
-    Set up on_click for search farm and search recipe
+Set up on_click for search farm and search recipe
 **/
 function init() {
     // set up recipe search
@@ -47,12 +38,10 @@ function init() {
             callFood2Fork(text, checkedDietaryOptionsList);
         }
     };
-
     // set up farm search
     document.getElementById("search_farm").onclick = function() {
         // Delete old markers on map
         DeleteMarkers();
-
         // Get checked values for operations
         var checkedOperations = [];
         $('input[name=checkboxList]:checked').each(function() {
@@ -62,16 +51,12 @@ function init() {
                 checkedOperations.push("agritourism", "hay", "row crop");
             else
                 checkedOperations.push($(this).val());
-
         });
-
         // Get farm by filtered operation
         callIndexApi2(checkedOperations);
-
         // Get searech option
         var text = $('#search_farm_text').val();
         var search_by = $('#category_button').text();
-
         // Search by Address
         if (search_by == "Address") {
             // Set up map positions
@@ -91,12 +76,12 @@ function init() {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 });
-        
+
             }
-        // Search by Farm's Name
+            // Search by Farm's Name
         } else if (search_by == "Farm's Name") {
             var farms = [];
-            var call_url ="/farms/farm_json";
+            var call_url = "/farms/farm_json";
             // Get all farms
             $.ajax({
                 type: "GET",
@@ -144,7 +129,6 @@ function init() {
         }
     }
 }
-
 /*************
  *  INIT MAP *
  * ***********/
@@ -154,20 +138,16 @@ function initMap() {
         lat: 41.7434,
         lng: -92.7232
     };
-
     // init map
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13.7,
         center: grinnell
     });
-
     // init geocoder
     geocoder = new google.maps.Geocoder();
-
     // call index function for API to load all farms
     callIndexApi();
 }
-
 /****************************************
  * GEOCODING AND ADDING MARKERS FUNCTIONS
  * **************************************/
@@ -184,7 +164,6 @@ function geocodeAddressAndAddMarker(farm) {
         }
     });
 }
-
 var markers = []
 
 function addMarker(farm, results) {
@@ -192,7 +171,7 @@ function addMarker(farm, results) {
         operation_icon = '/assets/64cow.png';
     } else {
         var primary_operation = farm.operations[0].food;
-        if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
+        if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" ||
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck") {
             operation_icon = '/assets/steak-512.png';
         } else if (primary_operation == "fruit") {
@@ -204,15 +183,10 @@ function addMarker(farm, results) {
             operation_icon = '/assets/24dairy.png';
         } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
             operation_icon = '/assets/agricultural.png';
-        } else if (primary_operation == "") {
-
-        }
+        } else if (primary_operation == "") {}
     }
-
     var iconCow = '/assets/64cow.png'
     var iconPig = '/assets/24pig.png'
-
-
     // create marker object
     var marker = new google.maps.Marker({
         map: map,
@@ -221,7 +195,6 @@ function addMarker(farm, results) {
         title: farm.name,
         icon: operation_icon
     });
-
     // data string for display tooltip
     var data = farm.name;
     // info window for tooltip, contains data
@@ -235,12 +208,9 @@ function addMarker(farm, results) {
     });
     markers.push(marker);
 }
-
-
 /***********************
  *  DELETE MARKERS ON MAP *
  * *********************/
-
 function DeleteMarkers() {
     //Loop through all the markers and remove
     for (var i = 0; i < markers.length; i++) {
@@ -248,14 +218,11 @@ function DeleteMarkers() {
     }
     markers = [];
 };
-
-
 /***********************
  *  FARM API FUNCTIONS *
  * *********************/
 function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
-
     var call_url = "/farms/farm_json";
     $.ajax({
         type: "GET",
@@ -279,9 +246,7 @@ function callIndexApi() {
             console.log("Error: " + errorThrown);
         }
     });
-
 }
-
 
 function handleIndexCall(result) {
     // set to new map
@@ -289,7 +254,6 @@ function handleIndexCall(result) {
     for (var i = 0; i < result.length; i++) {
         // create id
         var id = "farm_" + result[i].id;
-
         // add to map
         farms[id] = result[i];
         // append card
@@ -304,12 +268,10 @@ function handleIndexCall(result) {
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-
-             console.log("new id" + new_id);
+            console.log("new id" + new_id);
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
-
         // add marker at proper placec
         geocodeAddressAndAddMarker(result[i]);
     }
@@ -317,8 +279,6 @@ function handleIndexCall(result) {
 
 function handleAddressCall(result, addressSearch) {
     farms = [];
-
-
     for (var i = 0; i < result.length; i++) {
         // create id
         var name = result[i].name;
@@ -331,26 +291,17 @@ function handleAddressCall(result, addressSearch) {
             //  return result[i].address;
             farms.push(result[i]);
         }
-
-
     }
     console.log("Address call to farms");
     console.log(farms);
-
-
     return farms;
-
-
 }
-
 /*************************
  *  RECIPE API FUNCTIONS *
  * ***********************/
-
 function callFood2Fork(food_string, checkRecipeValues) {
     // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
-
     // set new url to access
     // var call_url = "https://api.edamam.com/search?q=${food_string}&app_id=${edemam_app_id}&app_key=${edemam_app_key}"
     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=" + edemam_app_id + "&app_key=" + edemam_app_key;
@@ -370,13 +321,10 @@ function callFood2Fork(food_string, checkRecipeValues) {
         type: "GET",
         url: call_url,
         headers: {
-            //   "Access-Control-Allow-Origin":"*"
             "more": true,
         },
         dataType: 'json',
-        //contentType: 'text/plain;charset=UTF-8',
         crossDomain: true,
-        //async: false,
         success: function(result) {
             if (result != null && result.hits.length > 0) {
                 console.log(result);
@@ -393,20 +341,15 @@ function callFood2Fork(food_string, checkRecipeValues) {
 }
 
 function handleRecipeAPICall(recipe_list) {
-
     // reset recipe list
     recipes = {};
-
     // iterate through
     for (var i = 0; i < recipe_list.length; i++) {
-
         // get current recipe and id
         var current_recipe = recipe_list[i].recipe;
         var id = "recipe_" + (i + 1);
-
         // put in recipe list
         recipes[id] = current_recipe;
-
         // add html
         $('#recipe_grid').append(
             '<div id="' + id + '" class="card scrollmenu-item"> ' +
@@ -418,7 +361,6 @@ function handleRecipeAPICall(recipe_list) {
             '</div' +
             '</li>'
         );
-
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
@@ -427,7 +369,6 @@ function handleRecipeAPICall(recipe_list) {
         });
     }
 }
-
 /********************
  *  MODAL FUNCTIONS *
  * ******************/
@@ -448,7 +389,6 @@ function getOperation(farm) {
             result += ', ';
         }
     }
-
     if (result == "") {
         return "N/A"
     }
@@ -483,7 +423,6 @@ function getSellingMethod(farm) {
             result += ', ';
         }
     }
-
     if (result == "") {
         return "N/A"
     }
@@ -491,14 +430,12 @@ function getSellingMethod(farm) {
 }
 
 function setAndShowFarmModal(farm) {
-
     // set modal header html
     if (!farm.name) {
         farm = farm[0];
     }
     console.log(farm);
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
-
     // set modal tab 1 html
     $('#tab_1_title').html('Home');
     $('#tab_1').html(
@@ -507,7 +444,6 @@ function setAndShowFarmModal(farm) {
         '<h4>Operation: ' + getOperation(farm) + '</h4>' +
         '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>'
     );
-
     // set modal tab 2 html
     $('#tab_2_title').html('Contact');
     $('#tab_2').html(
@@ -519,25 +455,21 @@ function setAndShowFarmModal(farm) {
         '<a href="' + farm.twitter + '">Twitter</a>' +
         '</div>'
     );
-
     // set modal tab 3 html
     $('#tab_3_title').html('Menu 1');
     $('#tab_3').html(
         '<h3>  MENU1</h3>' +
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
     );
-
     // set modal tab 4 html
     $('#tab_4_title').html('Menu 2');
     $('#tab_4').html(
         '<h3>MENU2</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
     );
-
     // show button
     $('#contact_button').show();
     $('#recipe_link_button').hide();
-
     // show modal
     $("#generic_modal").modal()
 }
@@ -624,11 +556,8 @@ function callIndexApi2(operations) {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             console.log("Status: " + textStatus);
             console.log("Error: " + errorThrown);
-
-
         }
     });
-
 }
 
 function handleIndexCall2(result) {
@@ -639,14 +568,13 @@ function handleIndexCall2(result) {
         console.log("In index call 2");
         console.log(result[i][0]);
         var farm = result[i][0];
-       
+
         // create id
         if (!farm) {
             continue;
         }
         var id = "farm_" + farm.id;
         console.log(farm.id);
-
         // add to map
         farms[id] = result[i];
         // append card
@@ -658,18 +586,16 @@ function handleIndexCall2(result) {
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
         );
-         // on click to show modal
+        // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
             console.log("HERE" + new_id);
             setAndShowFarmModal(farms[new_id]);
         });
-
-         // add marker at proper placec
+        // add marker at proper placec
         geocodeAddressAndAddMarker(farm);
     }
 }
-
 
 function handleIndexCall3(result) {
     // set to new map
@@ -677,18 +603,15 @@ function handleIndexCall3(result) {
     var farm;
     console.log("In IndexCall3");
     for (var i = 0; i < result.length; i++) {
-        console.log(result[i]);
         farm = result[i];
         // create id
         if (!farm) {
             continue;
         }
         var id = "farm_" + farm.id;
-        console.log("ID" + farm.id);
-
         // add to map
         farms[id] = result[i];
-        //     // append card
+        // append card
         $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
             '<h4 class="card-title">' + farm.name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
@@ -702,7 +625,6 @@ function handleIndexCall3(result) {
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
-
         //     // add marker at proper placec
         geocodeAddressAndAddMarker(farm);
     }
