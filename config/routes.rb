@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   get 'ui/home'
 
+  Rails.application.routes.draw do
+  root 'ui#home'
+  end
+
   devise_for :farms, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :farms

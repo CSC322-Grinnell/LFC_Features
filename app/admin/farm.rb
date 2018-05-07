@@ -14,8 +14,10 @@ ActiveAdmin.register Farm do
 
   # scope_to :current_farm, unless: proc{ :current_farm }
   ## Add strong parameters for admin to be able to edit these fields
-  permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, :password_confirmation, :primary_operation, :growth_promoter, :antibiotic, :why_farm, :fav_activity, :twitter, :approved, 
-  operation_ids: [], selling_method_ids: [], growing_method_ids: [], market_ids: []
+  permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, 
+  :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm, 
+  :fav_activity, :twitter, :approved, operation_ids: [], selling_method_ids: [], 
+  growing_method_ids: [], market_ids: []
 
   index do
     selectable_column
@@ -54,7 +56,7 @@ ActiveAdmin.register Farm do
 
 
       f.input :operations, as: :check_boxes, collection: Operation.all
-      f.input :primary_operation, as: :check_boxes, collection: PrimaryOperation.all
+      f.input :primary_operation_id, as: :select, collection: Operation.all
       f.input :growing_methods, as: :check_boxes, collection: GrowingMethod.all
       f.input :link_to_cert
       f.input :selling_methods, as: :check_boxes, collection: SellingMethod.all

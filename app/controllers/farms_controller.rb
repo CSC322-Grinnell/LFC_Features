@@ -135,7 +135,10 @@ class FarmsController < ApplicationController
 
   #private
   def farm_params
-    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, :instagram, :twitter, :email, :contact_name, :year, :statement, :other_media, :link_to_cert, :growth_promoter, :antibiotic, :fav_activity, :why_farm, :operations, :primary_operation)
+    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, 
+      :instagram, :twitter, :email, :contact_name, :year, :statement, 
+      :other_media, :link_to_cert, :growth_promoter, :antibiotic, 
+      :fav_activity, :why_farm, :operations, :primary_operation_id)
   end
 
   private
