@@ -67,7 +67,7 @@ color: green;
 }
 .image {
    width: 100%;
-   background-image: url(/assets/farm2.jpg);
+   background-image: image-url(/assets/farm2.jpg);
     background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
