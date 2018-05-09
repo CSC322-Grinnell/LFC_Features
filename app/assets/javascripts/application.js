@@ -10,12 +10,12 @@ var recipes = {};
 /***********
  * API_KEYS *
  ***********/
-var edemam_app_id = "0649d198";
-var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
-var lfc_key = "YAS0sY2rbi";
+ var edemam_app_id = "0649d198";
+ var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
+ var lfc_key = "YAS0sY2rbi";
 
 
-$(document).ready(function() {
+ $(document).ready(function() {
     $(".dropdown-menu li a").click(function() {
         $("#category_button").text($(this).text());
     });
@@ -26,14 +26,14 @@ $(document).ready(function() {
 /********
  * INIT *
  ********/
-$(window).load(function() {
+ $(window).load(function() {
     init();
 });
 
 /**
     Set up on_click for search farm and search recipe
-**/
-function init() {
+    **/
+    function init() {
     // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
         // Get checked values for dietary choises
@@ -91,12 +91,12 @@ function init() {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 });
-        
+
             }
         // Search by Farm's Name
-        } else if (search_by == "Farm's Name") {
-            var farms = [];
-            var call_url ="/farms/farm_json";
+    } else if (search_by == "Farm's Name") {
+        var farms = [];
+        var call_url ="/farms/farm_json";
             // Get all farms
             $.ajax({
                 type: "GET",
@@ -148,7 +148,7 @@ function init() {
 /*************
  *  INIT MAP *
  * ***********/
-function initMap() {
+ function initMap() {
     // set location set to grinnell as center of map
     var grinnell = {
         lat: 41.7434,
@@ -171,7 +171,7 @@ function initMap() {
 /****************************************
  * GEOCODING AND ADDING MARKERS FUNCTIONS
  * **************************************/
-function geocodeAddressAndAddMarker(farm) {
+ function geocodeAddressAndAddMarker(farm) {
     var address = farm.address + ", Iowa, 50112"
     geocoder.geocode({
         'address': address
@@ -188,32 +188,43 @@ function geocodeAddressAndAddMarker(farm) {
 var markers = []
 
 function addMarker(farm, results) {
+    var operation_icon;
     if (farm.operations.length == 0) {
-        operation_icon = '/assets/64cow.png';
+        var marker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.BOUNCE,
+            position: results[0].geometry.location,
+            title: farm.name,
+        });
+
     } else {
-        var primary_operation = farm.operations[0].food;
+        var primary_operation;
+        var farm_operations = farm.operations;
+        var primary_operation_id = farm.primary_operation_id;
+
+        for (var operation of farm_operations) {
+            if (operation.id == primary_operation_id) {
+                primary_operation = operation.food;
+            }
+        }
+        console.log("Get primary operation");
+        console.log(primary_operation);
         if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck") {
             operation_icon = '/assets/steak-512.png';
-        } else if (primary_operation == "fruit") {
-            console.log("HERE");
-            operation_icon = '/assets/24apple.png';
-        } else if (primary_operation == "vegetables") {
-            operation_icon = '/assets/24broccoli.png';
-        } else if (primary_operation == "dairy") {
-            operation_icon = '/assets/24dairy.png';
-        } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
-            operation_icon = '/assets/agricultural.png';
-        } else if (primary_operation == "") {
+    } else if (primary_operation == "fruit") {
+        console.log("HERE");
+        operation_icon = '/assets/24apple.png';
+    } else if (primary_operation == "vegetables") {
+        operation_icon = '/assets/24broccoli.png';
+    } else if (primary_operation == "dairy") {
+        operation_icon = '/assets/24dairy.png';
+    } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
+        operation_icon = '/assets/agricultural.png';
+    } else if (primary_operation == "") {
 
-        }
     }
 
-    var iconCow = '/assets/64cow.png'
-    var iconPig = '/assets/24pig.png'
-
-
-    // create marker object
     var marker = new google.maps.Marker({
         map: map,
         animation: google.maps.Animation.BOUNCE,
@@ -221,6 +232,11 @@ function addMarker(farm, results) {
         title: farm.name,
         icon: operation_icon
     });
+}
+
+var iconCow = '/assets/64cow.png'
+var iconPig = '/assets/24pig.png'
+
 
     // data string for display tooltip
     var data = farm.name;
@@ -241,7 +257,7 @@ function addMarker(farm, results) {
  *  DELETE MARKERS ON MAP *
  * *********************/
 
-function DeleteMarkers() {
+ function DeleteMarkers() {
     //Loop through all the markers and remove
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
@@ -253,7 +269,7 @@ function DeleteMarkers() {
 /***********************
  *  FARM API FUNCTIONS *
  * *********************/
-function callIndexApi() {
+ function callIndexApi() {
     document.getElementById("farmList").innerHTML = "";
 
     var call_url = "/farms/farm_json";
@@ -300,12 +316,11 @@ function handleIndexCall(result) {
             '<a href="#" class="card-link">' + result[i].url + '</a> | ' +
             '<a href="#" class="card-link">' + result[i].phone + '</a>' +
             '</li>'
-        );
+            );
         // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
 
-             console.log("new id" + new_id);
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
@@ -347,15 +362,11 @@ function handleAddressCall(result, addressSearch) {
  *  RECIPE API FUNCTIONS *
  * ***********************/
 
-function callFood2Fork(food_string, checkRecipeValues) {
+ function callFood2Fork(food_string, checkRecipeValues) {
     // clear the html to get rid of old recipes
     $("#recipe_grid").html("");
-
-    // set new url to access
-    // var call_url = "https://api.edamam.com/search?q=${food_string}&app_id=${edemam_app_id}&app_key=${edemam_app_key}"
     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=" + edemam_app_id + "&app_key=" + edemam_app_key;
     var health_query = "";
-    console.log(checkRecipeValues);
     for (var i = 0; i < checkRecipeValues.length; i++) {
         console.log(checkRecipeValues[i]);
         if (i != checkRecipeValues.length - 1) {
@@ -417,7 +428,7 @@ function handleRecipeAPICall(recipe_list) {
             '<a href="' + current_recipe.url + '" class="card-link">Go to recipe</a>' +
             '</div' +
             '</li>'
-        );
+            );
 
         // on click to show modal
         $('#' + id).on('click', function() {
@@ -431,7 +442,7 @@ function handleRecipeAPICall(recipe_list) {
 /********************
  *  MODAL FUNCTIONS *
  * ******************/
-function capitalize_words(str) {
+ function capitalize_words(str) {
     return str.replace(/\w\S*/g, function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
@@ -491,12 +502,23 @@ function getSellingMethod(farm) {
 }
 
 function setAndShowFarmModal(farm) {
-
+    console.log("Set and show farm modal");
+    var primary_operation;
+    var farm_operations = farm.operations;
+    var primary_operation_id = farm.primary_operation_id;
+    console.log(farm_operations);    
+    for (var operation of farm_operations) {
+        if (operation.id == primary_operation_id) {
+            primary_operation = operation.food;
+        }
+    }
     // set modal header html
     if (!farm.name) {
         farm = farm[0];
     }
     console.log(farm);
+
+
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
 
     // set modal tab 1 html
@@ -505,8 +527,9 @@ function setAndShowFarmModal(farm) {
         '<h3>Basic Information:' + '</h3>' +
         '<h4>Growing Method: ' + getGrowingMethod(farm) + '</h4>' +
         '<h4>Operation: ' + getOperation(farm) + '</h4>' +
-        '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>'
-    );
+        '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>' + 
+        '<h4>Primary Operation: ' + primary_operation + '</h4>'
+        );
 
     // set modal tab 2 html
     $('#tab_2_title').html('Contact');
@@ -518,21 +541,21 @@ function setAndShowFarmModal(farm) {
         '<a href="' + farm.facebook + '">Facebook | </a>' +
         '<a href="' + farm.twitter + '">Twitter</a>' +
         '</div>'
-    );
+        );
 
     // set modal tab 3 html
     $('#tab_3_title').html('Menu 1');
     $('#tab_3').html(
         '<h3>  MENU1</h3>' +
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-    );
+        );
 
     // set modal tab 4 html
     $('#tab_4_title').html('Menu 2');
     $('#tab_4').html(
         '<h3>MENU2</h3>' +
         '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-    );
+        );
 
     // show button
     $('#contact_button').show();
@@ -547,7 +570,7 @@ function setAndShowRecipeModal(recipe) {
     $('#modal_header').html(
         '<h1 align="center">' + recipe.label + '</h1>' +
         '<p align="center">' + recipe.source + '</p>'
-    );
+        );
     // compile tab 1 data
     var ingredient_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.ingredients.length; i++) {
@@ -558,11 +581,11 @@ function setAndShowRecipeModal(recipe) {
     var health_list = '<ul style="padding:15px;">';
     for (var i = 0; i < recipe.digest.length; i++) {
         health_list += "<li>" +
-            recipe.digest[i].label +
-            '<span class="pull-right">' +
-            Math.round(recipe.digest[i].total * 10) / 10 +
-            recipe.digest[i].unit +
-            "</span></li>";
+        recipe.digest[i].label +
+        '<span class="pull-right">' +
+        Math.round(recipe.digest[i].total * 10) / 10 +
+        recipe.digest[i].unit +
+        "</span></li>";
     }
     health_list += "</ul>";
     // compile tab 3 data
@@ -570,13 +593,13 @@ function setAndShowRecipeModal(recipe) {
     for (var key in recipe.totalDaily) {
         //if (!recipe.totalDaily.hasOwnProperty(key)) continue;
         nutrient_list += '<li>' +
-            recipe.totalDaily[key].label +
-            '<span class="pull-right">' +
-            Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
-            recipe.totalNutrients[key].unit + ' (' +
-            Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
-            recipe.totalDaily[key].unit +
-            ")</span></li>";
+        recipe.totalDaily[key].label +
+        '<span class="pull-right">' +
+        Math.round(recipe.totalNutrients[key].quantity * 10) / 10 +
+        recipe.totalNutrients[key].unit + ' (' +
+        Math.round(recipe.totalDaily[key].quantity * 10) / 10 +
+        recipe.totalDaily[key].unit +
+        ")</span></li>";
     }
     nutrient_list += "</ul>";
     // compile tab 4 data
@@ -631,6 +654,8 @@ function callIndexApi2(operations) {
 
 }
 
+
+
 function handleIndexCall2(result) {
     // set to new map
     farms = {};
@@ -639,7 +664,7 @@ function handleIndexCall2(result) {
         console.log("In index call 2");
         console.log(result[i][0]);
         var farm = result[i][0];
-       
+
         // create id
         if (!farm) {
             continue;
@@ -657,21 +682,21 @@ function handleIndexCall2(result) {
             '<a href="#" class="card-link">' + farm.url + '</a> | ' +
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
-        );
+            );
          // on click to show modal
-        $('#' + id).on('click', function() {
+         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
             console.log("HERE" + new_id);
             setAndShowFarmModal(farms[new_id]);
         });
 
          // add marker at proper placec
-        geocodeAddressAndAddMarker(farm);
-    }
-}
+         geocodeAddressAndAddMarker(farm);
+     }
+ }
 
 
-function handleIndexCall3(result) {
+ function handleIndexCall3(result) {
     // set to new map
     farms = {};
     var farm;
@@ -696,7 +721,7 @@ function handleIndexCall3(result) {
             '<a href="#" class="card-link">' + farm.url + '</a> | ' +
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
-        );
+            );
         //     // on click to show modal
         $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');

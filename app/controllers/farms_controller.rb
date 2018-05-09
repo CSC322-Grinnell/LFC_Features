@@ -93,10 +93,6 @@ class FarmsController < ApplicationController
   end
   
 
-  # def buildJson farms
-  #   render :json => farms
-  # end
-
   def approve
     id = params[:item_id]
     f = Farm.find(id)
