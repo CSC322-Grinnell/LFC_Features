@@ -18,7 +18,7 @@ ActiveAdmin.register Farm do
   :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm, 
   :fav_activity, :twitter, :approved, operation_ids: [], selling_method_ids: [], 
   growing_method_ids: [], market_ids: []
-
+###### AAAAAAAAAAAAAAAAAA
   index do
     selectable_column
     id_column
