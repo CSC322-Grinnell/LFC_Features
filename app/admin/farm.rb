@@ -15,7 +15,7 @@ ActiveAdmin.register Farm do
   # scope_to :current_farm, unless: proc{ :current_farm }
   ## Add strong parameters for admin to be able to edit these fields
   permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, 
-  :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm, 
+  :password_confirmation, :primary_operation, :growth_promoter, :antibiotic, :why_farm, 
   :fav_activity, :twitter, :approved, operation_ids: [], selling_method_ids: [], 
   growing_method_ids: [], market_ids: []
 
