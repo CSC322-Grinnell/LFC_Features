@@ -56,7 +56,7 @@ ActiveAdmin.register Farm do
 
 
       f.input :operations, as: :check_boxes, collection: Operation.all
-      f.input :primary_operation_id, as: :select, collection: Operation.all
+      f.input :primary_operation, as: :select, collection: Operation.all
       f.input :growing_methods, as: :check_boxes, collection: GrowingMethod.all
       f.input :link_to_cert
       f.input :selling_methods, as: :check_boxes, collection: SellingMethod.all
