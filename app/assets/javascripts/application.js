@@ -22,7 +22,6 @@ var recipes = {};
 });
 
 
-
 /********
  * INIT *
  ********/
@@ -34,6 +33,12 @@ var recipes = {};
     Set up on_click for search farm and search recipe
     **/
     function init() {
+
+        var checkboxesList = document.getElementsByName("checkboxList");
+
+for(var i = 0; i < checkboxesList.length; i++){
+    checkboxesList[i].checked = true;
+}
     // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
         // Get checked values for dietary choises
