@@ -36,9 +36,9 @@ var recipes = {};
 
         var checkboxesList = document.getElementsByName("checkboxList");
 
-for(var i = 0; i < checkboxesList.length; i++){
-    checkboxesList[i].checked = true;
-}
+        for(var i = 0; i < checkboxesList.length; i++){
+            checkboxesList[i].checked = true;
+        }
     // set up recipe search
     document.getElementById("search_recipes").onclick = function() {
         // Get checked values for dietary choises
@@ -111,7 +111,7 @@ for(var i = 0; i < checkboxesList.length; i++){
 
             }
         // Search by Farm's Name
-    } else if (search_by == "Farm's Name") {
+    } else if (search_by == "Farm's Name" && text != "") {
         var farms = [];
         var call_url ="/farms/farm_json";
             // Get all farms
@@ -152,7 +152,7 @@ for(var i = 0; i < checkboxesList.length; i++){
                             } else {
                                 for (var i = 0; i < farms.length; i++) {
                                     console.log(farms[i]);
-                                   
+
                                     for (farm of farms_operations) {
                                         if (farm.id == farms[i].id) {
                                             results.push(farms[i]);
@@ -247,18 +247,18 @@ function addMarker(farm, results) {
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck" ||
             primary_operation == "beef") {
             operation_icon = '/assets/64cow.png';
-        } else if (primary_operation == "fruit") {
-            console.log("HERE");
-            operation_icon = '/assets/24apple.png';
-        } else if (primary_operation == "vegetables") {
-            operation_icon = '/assets/24broccoli.png';
-        } else if (primary_operation == "dairy") {
-            operation_icon = '/assets/24dairy.png';
-        } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
-            operation_icon = '/assets/agricultural.png';
-        } else if (primary_operation == "egg") {
-            operation_icon = '/assets/egg.png';
-        }
+    } else if (primary_operation == "fruit") {
+        console.log("HERE");
+        operation_icon = '/assets/24apple.png';
+    } else if (primary_operation == "vegetables") {
+        operation_icon = '/assets/24broccoli.png';
+    } else if (primary_operation == "dairy") {
+        operation_icon = '/assets/24dairy.png';
+    } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
+        operation_icon = '/assets/agricultural.png';
+    } else if (primary_operation == "egg") {
+        operation_icon = '/assets/egg.png';
+    }
 
     var marker = new google.maps.Marker({
         map: map,
