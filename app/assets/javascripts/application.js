@@ -62,7 +62,7 @@ var recipes = {};
         var checkedOperations = [];
         $('input[name=checkboxList]:checked').each(function() {
             if ($(this).val() == "meat")
-                checkedOperations.push("lamb", "beef", "chicken", "pork");
+                checkedOperations.push("lamb", "beef", "chicken", "pork", "turkey");
             else if ($(this).val() == "agritourism")
                 checkedOperations.push("agritourism", "hay", "row crop");
             else
@@ -76,6 +76,7 @@ var recipes = {};
 
         console.log("Text is " + text + "and length" + text.length);
         console.log("Search is" + search_by);
+        console.log(checkedOperations); 
         // Get farm by filtered operation
         var farms_operations;
         farms_operations = callIndexApi2(checkedOperations);
@@ -676,6 +677,8 @@ function setAndShowRecipeModal(recipe) {
 
 function callIndexApi2(operations) {
     var return_value;
+    console.log("Printing operations");
+    console.log(operations);
     document.getElementById("farmList").innerHTML = "";
     var call_url = "/api/v1/farms/farm_by_operation";
     $.ajax({
