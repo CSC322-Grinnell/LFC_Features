@@ -583,18 +583,12 @@ function setAndShowFarmModal(farm) {
         );
 
     // set modal tab 3 html
-    $('#tab_3_title').html('Menu 1');
+    $('#tab_3_title').html('Media');
     $('#tab_3').html(
-        '<h3>  MENU1</h3>' +
+        '<h3>  Pictures/Video</h3>' +
         '<p>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
         );
 
-    // set modal tab 4 html
-    $('#tab_4_title').html('Menu 2');
-    $('#tab_4').html(
-        '<h3>MENU2</h3>' +
-        '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-        );
 
     // show button
     $('#contact_button').show();
