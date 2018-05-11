@@ -98,6 +98,7 @@ var recipes = {};
                             map: map,
                             position: results[0].geometry.location
                         });
+                        markers.push(marker);
                     } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
