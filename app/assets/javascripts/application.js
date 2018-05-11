@@ -555,6 +555,12 @@ function setAndShowFarmModal(farm) {
     if (!farm.name) {
         farm = farm[0];
     }
+
+    if (!primary_operation) {
+        primary_operation = "N/A";
+    } else {
+        primary_operation = capitalize_words(primary_operation);
+    }
     console.log(farm);
 
 
