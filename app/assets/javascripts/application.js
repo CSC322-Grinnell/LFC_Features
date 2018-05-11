@@ -53,6 +53,11 @@ var recipes = {};
         // Delete old markers on map
         DeleteMarkers();
 
+        var search_by = $('#category_button').text();
+        if (search_by == "Address") {
+            document.getElementById(".checkboxList").disabled = true;
+            $('.checkboxList').prop('disabled', true);
+        }
         // Get checked values for operations
         var checkedOperations = [];
         $('input[name=checkboxList]:checked').each(function() {
@@ -65,15 +70,27 @@ var recipes = {};
 
         });
 
-        // Get farm by filtered operation
-        callIndexApi2(checkedOperations);
-
         // Get searech option
         var text = $('#search_farm_text').val();
         var search_by = $('#category_button').text();
 
+        console.log("Text is " + text + "and length" + text.length);
+        console.log("Search is" + search_by);
+        // Get farm by filtered operation
+        var farms_operations;
+        farms_operations = callIndexApi2(checkedOperations);
+        console.log(farms_operations);
+        if (search_by != "Address" && text.length == 0) {
+            console.log("Get here to generate")
+            console.log(farms_operations);
+            handleIndexCall2(farms_operations);
+        }
+        
         // Search by Address
         if (search_by == "Address") {
+            // console.log("Here");
+             // document.getElementById("checkboxList").disabled = true;
+             $('.checkboxList').prop('disabled', true);
             // Set up map positions
             if (text != "") {
                 geocoder.geocode({
@@ -111,8 +128,41 @@ var recipes = {};
                 success: function(result) {
                     if (result != null || result.length > 0) {
                         farms = handleAddressCall(result, text);
-                        handleIndexCall3(farms);
-                        // text += "Iowa, 50112"; // this is temporary
+                        if (checkedOperations.length == 0) {
+                            console.log("here");
+                            handleIndexCall3(farms);
+                        } else {
+                            console.log("here???");
+                            console.log(farms_operations);
+
+                            console.log(farms);
+                            var results = [];
+                            if(!farms_operations[0].id) {
+                                farms_operations = farms_operations[0];
+                            }
+
+                            if (farms_operations.length > farms.length) {
+                                for (var i = 0; i < farms_operations.length; i++) {
+                                    for (farm of farms) { 
+                                        if (farm.id == farms_operations[i].id) {
+                                            results.push(farms_operations[i]);
+                                        }
+                                    }   
+                                }
+                            } else {
+                                for (var i = 0; i < farms.length; i++) {
+                                    console.log(farms[i]);
+                                   
+                                    for (farm of farms_operations) {
+                                        if (farm.id == farms[i].id) {
+                                            results.push(farms[i]);
+                                        }
+                                    }
+                                }
+                            }
+                            handleIndexCall3(results);
+                            
+                        }
                     } else {
                         alert("Your search query returned no results . . . ")
                     }
@@ -188,6 +238,7 @@ var recipes = {};
 var markers = []
 
 function addMarker(farm, results) {
+    console.log("In ADD MARKER");
     var operation_icon;
     if (farm.operations.length == 0) {
         var marker = new google.maps.Marker({
@@ -210,20 +261,21 @@ function addMarker(farm, results) {
         console.log("Get primary operation");
         console.log(primary_operation);
         if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
-            primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck") {
-            operation_icon = '/assets/steak-512.png';
-    } else if (primary_operation == "fruit") {
-        console.log("HERE");
-        operation_icon = '/assets/24apple.png';
-    } else if (primary_operation == "vegetables") {
-        operation_icon = '/assets/24broccoli.png';
-    } else if (primary_operation == "dairy") {
-        operation_icon = '/assets/24dairy.png';
-    } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
-        operation_icon = '/assets/agricultural.png';
-    } else if (primary_operation == "") {
-
-    }
+            primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck" ||
+            primary_operation == "beef") {
+            operation_icon = '/assets/64cow.png';
+        } else if (primary_operation == "fruit") {
+            console.log("HERE");
+            operation_icon = '/assets/24apple.png';
+        } else if (primary_operation == "vegetables") {
+            operation_icon = '/assets/24broccoli.png';
+        } else if (primary_operation == "dairy") {
+            operation_icon = '/assets/24dairy.png';
+        } else if (primary_operation == "agritourism" || primary_operation == "hay" || primary_operation == "row crop") {
+            operation_icon = '/assets/agricultural.png';
+        } else if (primary_operation == "egg") {
+            operation_icon = '/assets/egg.png';
+        }
 
     var marker = new google.maps.Marker({
         map: map,
@@ -503,6 +555,10 @@ function getSellingMethod(farm) {
 
 function setAndShowFarmModal(farm) {
     console.log("Set and show farm modal");
+    console.log(farm);
+    if (!farm.operations) {
+        farm = farm[0];
+    }
     var primary_operation;
     var farm_operations = farm.operations;
     var primary_operation_id = farm.primary_operation_id;
@@ -619,6 +675,7 @@ function setAndShowRecipeModal(recipe) {
 }
 
 function callIndexApi2(operations) {
+    var return_value;
     document.getElementById("farmList").innerHTML = "";
     var call_url = "/api/v1/farms/farm_by_operation";
     $.ajax({
@@ -639,7 +696,9 @@ function callIndexApi2(operations) {
         success: function(result) {
             if (result != null || result.length > 0) {
                 console.log("LENGTH" + result.length);
-                handleIndexCall2(result);
+                console.log(result);
+                return_value = result;
+                // handleIndexCall2(result);
             } else {
                 alert("Your search query returned no results . . . ")
             }
@@ -651,6 +710,7 @@ function callIndexApi2(operations) {
 
         }
     });
+    return return_value;
 
 }
 
