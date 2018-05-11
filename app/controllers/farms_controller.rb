@@ -84,8 +84,10 @@ class FarmsController < ApplicationController
     Operation.all.each do |o|
       if params[:farms][:operations].include? o.food 
         show_farm = o.farms 
-        if (!show_farms.include? show_farm)
-          show_farms.push(show_farm)
+        show_farm.each do |farm|
+          if (!show_farms.include? farm)
+            show_farms.push(farm)
+          end
         end
       end
     end

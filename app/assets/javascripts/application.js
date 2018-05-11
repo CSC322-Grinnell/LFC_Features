@@ -54,10 +54,6 @@ var recipes = {};
         DeleteMarkers();
 
         var search_by = $('#category_button').text();
-        if (search_by == "Address") {
-            document.getElementById(".checkboxList").disabled = true;
-            $('.checkboxList').prop('disabled', true);
-        }
         // Get checked values for operations
         var checkedOperations = [];
         $('input[name=checkboxList]:checked').each(function() {
@@ -89,9 +85,6 @@ var recipes = {};
         
         // Search by Address
         if (search_by == "Address") {
-            // console.log("Here");
-             // document.getElementById("checkboxList").disabled = true;
-             $('.checkboxList').prop('disabled', true);
             // Set up map positions
             if (text != "") {
                 geocoder.geocode({
@@ -173,26 +166,8 @@ var recipes = {};
                     console.log("Error: " + errorThrown);
                 }
             });
-            if (text != "") {
-                geocoder.geocode({
-                    'address': text
-                }, function(results, status) {
-                    if (status == 'OK') {
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(17);
-                        //map.panTo(curmarker.position); ??
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            }
-        } else {
-            document.getElementById("search_farm_text").text = "Please enter your query";
-        }
+
+        } 
     }
 }
 
@@ -223,7 +198,8 @@ var recipes = {};
  * GEOCODING AND ADDING MARKERS FUNCTIONS
  * **************************************/
  function geocodeAddressAndAddMarker(farm) {
-    var address = farm.address + ", Iowa, 50112"
+    var address = farm.address;
+    console.log("Address farm" + address);
     geocoder.geocode({
         'address': address
     }, function(results, status) {
@@ -725,8 +701,8 @@ function handleIndexCall2(result) {
     var farm;
     for (var i = 0; i < result.length; i++) {
         console.log("In index call 2");
-        console.log(result[i][0]);
-        var farm = result[i][0];
+        console.log(result[i]);
+        var farm = result[i];
 
         // create id
         if (!farm) {
