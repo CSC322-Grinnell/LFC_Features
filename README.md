@@ -60,6 +60,7 @@ To Sign In as a registered farm, you can find the credentials of the registered 
 
 
 ### Current state
+- The program can be run from Cloud 9 and deployable to Heroku
 - Given a list of farms and addresses, we can search for a farm by name or address and have it show up on the map
 - Each farm has a “primary operation” that determines which icon shows up on the map.
 - If you click on a combination of checkboxes for the farm search, you get a narrowed down set of farms that have at least one of the checked properties
