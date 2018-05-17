@@ -74,17 +74,10 @@ var recipes = {};
         // Get searech option
         var text = $('#search_farm_text').val();
         var search_by = $('#category_button').text();
-
-        console.log("Text is " + text + "and length" + text.length);
-        console.log("Search is" + search_by);
-        console.log(checkedOperations); 
         // Get farm by filtered operation
         var farms_operations;
         farms_operations = callIndexApi2(checkedOperations);
-        console.log(farms_operations);
         if (search_by != "Address" && text.length == 0) {
-            console.log("Get here to generate")
-            console.log(farms_operations);
             handleIndexCall2(farms_operations);
         }
         
@@ -129,13 +122,8 @@ var recipes = {};
                     if (result != null || result.length > 0) {
                         farms = handleAddressCall(result, text);
                         if (checkedOperations.length == 0) {
-                            console.log("here");
                             handleIndexCall3(farms);
                         } else {
-                            console.log("here???");
-                            console.log(farms_operations);
-
-                            console.log(farms);
                             var results = [];
                             if(!farms_operations[0].id) {
                                 farms_operations = farms_operations[0];
@@ -151,8 +139,6 @@ var recipes = {};
                                 }
                             } else {
                                 for (var i = 0; i < farms.length; i++) {
-                                    console.log(farms[i]);
-
                                     for (farm of farms_operations) {
                                         if (farm.id == farms[i].id) {
                                             results.push(farms[i]);
@@ -205,7 +191,6 @@ var recipes = {};
  * **************************************/
  function geocodeAddressAndAddMarker(farm) {
     var address = farm.address;
-    console.log("Address farm" + address);
     geocoder.geocode({
         'address': address
     }, function(results, status) {
@@ -221,7 +206,6 @@ var recipes = {};
 var markers = []
 
 function addMarker(farm, results) {
-    console.log("In ADD MARKER");
     var operation_icon;
     if (farm.operations.length == 0) {
         var marker = new google.maps.Marker({
@@ -241,14 +225,11 @@ function addMarker(farm, results) {
                 primary_operation = operation.food;
             }
         }
-        console.log("Get primary operation");
-        console.log(primary_operation);
         if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck" ||
             primary_operation == "beef") {
             operation_icon = '/assets/64cow.png';
     } else if (primary_operation == "fruit") {
-        console.log("HERE");
         operation_icon = '/assets/24apple.png';
     } else if (primary_operation == "vegetables") {
         operation_icon = '/assets/24broccoli.png';
@@ -374,19 +355,12 @@ function handleAddressCall(result, addressSearch) {
         var name = result[i].name;
         var id = "farm_" + result[i].id;
         // add to map
-        //farms[id] = result[i];
-        console.log("name is " + name);
         if ((name.toLowerCase()).includes(addressSearch.toLowerCase())) {
-            console.log("name is " + name);
-            //  return result[i].address;
             farms.push(result[i]);
         }
 
 
     }
-    console.log("Address call to farms");
-    console.log(farms);
-
 
     return farms;
 
@@ -403,7 +377,6 @@ function handleAddressCall(result, addressSearch) {
     var call_url = "https://api.edamam.com/search?q=" + food_string + "&app_id=" + edemam_app_id + "&app_key=" + edemam_app_key;
     var health_query = "";
     for (var i = 0; i < checkRecipeValues.length; i++) {
-        console.log(checkRecipeValues[i]);
         if (i != checkRecipeValues.length - 1) {
             health_query += checkRecipeValues[i] + ',%20';
         }
@@ -425,7 +398,6 @@ function handleAddressCall(result, addressSearch) {
         //async: false,
         success: function(result) {
             if (result != null && result.hits.length > 0) {
-                console.log(result);
                 handleRecipeAPICall(result.hits);
             } else {
                 alert("Your search query returned no results . . . ")
@@ -537,15 +509,12 @@ function getSellingMethod(farm) {
 }
 
 function setAndShowFarmModal(farm) {
-    console.log("Set and show farm modal");
-    console.log(farm);
     if (!farm.operations) {
         farm = farm[0];
     }
     var primary_operation;
     var farm_operations = farm.operations;
     var primary_operation_id = farm.primary_operation_id;
-    console.log(farm_operations);    
     for (var operation of farm_operations) {
         if (operation.id == primary_operation_id) {
             primary_operation = operation.food;
@@ -561,7 +530,6 @@ function setAndShowFarmModal(farm) {
     } else {
         primary_operation = capitalize_words(primary_operation);
     }
-    console.log(farm);
 
 
     $('#modal_header').html('<h1 align="center">' + farm.name + '</h1>');
@@ -659,8 +627,6 @@ function setAndShowRecipeModal(recipe) {
 
 function callIndexApi2(operations) {
     var return_value;
-    console.log("Printing operations");
-    console.log(operations);
     document.getElementById("farmList").innerHTML = "";
     var call_url = "/api/v1/farms/farm_by_operation";
     $.ajax({
@@ -680,8 +646,6 @@ function callIndexApi2(operations) {
         async: false,
         success: function(result) {
             if (result != null || result.length > 0) {
-                console.log("LENGTH" + result.length);
-                console.log(result);
                 return_value = result;
                 // handleIndexCall2(result);
             } else {
@@ -706,8 +670,6 @@ function handleIndexCall2(result) {
     farms = {};
     var farm;
     for (var i = 0; i < result.length; i++) {
-        console.log("In index call 2");
-        console.log(result[i]);
         var farm = result[i];
 
         // create id
@@ -715,8 +677,6 @@ function handleIndexCall2(result) {
             continue;
         }
         var id = "farm_" + farm.id;
-        console.log(farm.id);
-
         // add to map
         farms[id] = result[i];
         // append card
@@ -731,7 +691,6 @@ function handleIndexCall2(result) {
          // on click to show modal
          $('#' + id).on('click', function() {
             var new_id = this.getAttribute('id');
-            console.log("HERE" + new_id);
             setAndShowFarmModal(farms[new_id]);
         });
 
@@ -745,16 +704,13 @@ function handleIndexCall2(result) {
     // set to new map
     farms = {};
     var farm;
-    console.log("In IndexCall3");
     for (var i = 0; i < result.length; i++) {
-        console.log(result[i]);
         farm = result[i];
         // create id
         if (!farm) {
             continue;
         }
         var id = "farm_" + farm.id;
-        console.log("ID" + farm.id);
 
         // add to map
         farms[id] = result[i];
