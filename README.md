@@ -18,19 +18,14 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Hoang Cao]()
 - [Ryan Rosol]()
 
+
 ### Previous Builds
 
-- Matt Murphy
-- Thu Nguyen
-- Minh Tran
-- Alexandar Hrusanov
-- Nick Roberson
-- Sara Marku
-- Linh Pham
-- Pratik Karki
-- Elise Brod
-- James Msekela
-
+- [Linh Pham](https://github.com/linhpha)
+- [Pratik Karki](https://github.com/karkipra)
+- [Elise Brod](https://github.com/brodelis)
+- [James Msekela]()
+- [Sara Marku](https://github.com/saramarku)
 
 ### Project Structure
 
