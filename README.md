@@ -12,11 +12,11 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 
 ### Current Builds
 
-- [Sara Marku](https://github.com/saramarku)
-- [Linh Pham](https://github.com/linhpha)
-- [Pratik Karki](https://github.com/karkipra)
-- [Elise Brod](https://github.com/brodelis)
-- [James Msekela]()
+- [Joshua Cussen](https://github.com/nomadicTree)
+- [Siyu Zhang](https://github.com/zhangsiyu1103)
+- [Nolan Schoenle]()
+- [Hoang Cao]()
+- [Ryan Rosol]()
 
 ### Previous Builds
 
@@ -25,6 +25,11 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - Minh Tran
 - Alexandar Hrusanov
 - Nick Roberson
+- Sara Marku
+- Linh Pham
+- Pratik Karki
+- Elise Brod
+- James Msekela
 
 
 ### Project Structure
