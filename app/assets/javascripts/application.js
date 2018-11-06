@@ -329,16 +329,23 @@ function handleIndexCall(result) {
             '<h4 class="card-title">' + result[i].name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
             '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href="#" class="card-link">' + result[i].url + '</a> | ' +
+            '<a href=http://'+ result[i].url +' class="card-link">' + result[i].url + '</a> | ' +
             '<a href="#" class="card-link">' + result[i].phone + '</a>' +
             '</li>'
             );
         // on click to show modal
+        //var isignore = false;
+        
         $('#' + id).on('click', function() {
+            
             var new_id = this.getAttribute('id');
 
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
+        });
+        
+        $('.card-link').on('click', function(e) {
+            e.stopPropagation();
         });
 
         // add marker at proper placec
@@ -684,15 +691,23 @@ function handleIndexCall2(result) {
             '<h4 class="card-title">' + farm.name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
             '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href="#" class="card-link">' + farm.url + '</a> | ' +
+            '<a href=http://'+ farm.url +' class="card-link">' + farm.url + '</a> | ' +
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
             );
          // on click to show modal
-         $('#' + id).on('click', function() {
+
+        $('#' + id).on('click', function() {
+            
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
+        $('.card-link').on('click', function(e) {
+            e.stopPropagation();
+
+        });
+        
+
 
          // add marker at proper placec
          geocodeAddressAndAddMarker(farm);
@@ -719,15 +734,24 @@ function handleIndexCall2(result) {
             '<h4 class="card-title">' + farm.name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + farm.address + '</h6>' +
             '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href="#" class="card-link">' + farm.url + '</a> | ' +
+            '<a href=http://'+ farm.url +' class="card-link">' + farm.url + '</a> | ' +
             '<a href="#" class="card-link">' + farm.phone + '</a>' +
             '</li>'
             );
         //     // on click to show modal
+
+        
         $('#' + id).on('click', function() {
+            
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
+        
+        $('.card-link').on('click', function(e) {
+            e.stopPropagation();
+        });
+        
+
 
         //     // add marker at proper placec
         geocodeAddressAndAddMarker(farm);
