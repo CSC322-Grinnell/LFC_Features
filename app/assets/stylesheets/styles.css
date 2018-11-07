@@ -1,0 +1,7 @@
+.grid {
+    display: grid;
+}
+
+.nav_grid {
+    grid-template-columns: repeat(3, 1fr) ;
+}
