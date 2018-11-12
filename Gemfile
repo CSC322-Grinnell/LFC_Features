@@ -6,7 +6,7 @@ end
 group :production do
    gem 'pg', '~> 0.18'
 end
-gem 'jquery-rails'
+#gem 'jquery-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -47,6 +47,9 @@ gem 'devise'
 gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
+
+#Use RSpec-rails for testing
+gem 'rspec-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

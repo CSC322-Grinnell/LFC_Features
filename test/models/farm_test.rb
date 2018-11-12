@@ -1,4 +1,5 @@
-require 'test_helper'
+#require 'test_helper'
+require 'rspec/autorun'
 
 class FarmTest < ActiveSupport::TestCase
   # test "the truth" do
