@@ -48,7 +48,7 @@ header {
 }
 
 .nav-toggle:focus ~ .nav-toggle-label {
-    outline: 3px solid rgba(black, .75);
+    //outline: 3px solid rgba(black, .75);
 }
 
 .nav-toggle-label {
@@ -98,7 +98,7 @@ nav {
     transform-origin: top;
     transition: transform 400ms ease-in-out;
 
-     ul {
+    ul {
         margin: 0;
         padding: 0;
         list-style: none;
@@ -117,13 +117,13 @@ nav {
         text-transform: uppercase;
         opacity: 0;
         transition: opacity 150ms ease-in-out;
-        font-family: "proxima nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: Helvetica, Arial, sans-serif;
         font-weight: 600;
         font-style: normal;
         letter-spacing: 2px;
         line-height: 1em;
 
-        :hover {
+        &:hover {
             color: green;
         }
     }
