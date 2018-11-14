@@ -329,8 +329,8 @@ function handleIndexCall(result) {
             '<h4 class="card-title">' + result[i].name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
             '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href=http://'+ result[i].url +' class="card-link">' + result[i].url + '</a> | ' +
-            '<a href="#" class="card-link">' + result[i].phone + '</a>' +
+            '<a href=http://'+ result[i].url + ' class="card-link">' + result[i].url + '</a> | ' +
+            '<a href=tel:'+ result[i].phone + ' class="card-link">' + result[i].phone + '</a>' +
             '</li>'
             );
         // on click to show modal
