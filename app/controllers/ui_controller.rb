@@ -1,4 +1,4 @@
 class UiController < ApplicationController
-  def home
+  def view2
   end
 end

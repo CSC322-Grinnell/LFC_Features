@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Local Foods Connection</title>
-  <%= stylesheet_link_tag 'styles'%>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag asset_path('carrot.png'), :rel => 'icon', :type =>  'image/png' %>
+<html lang="en/us">
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag asset_path('carrot.png'), :rel => 'icon', :type =>  'image/png' %>
 </head>
 <body>
+  <div class="grid">
+    <%= render 'shared/header' %>
+    <%= render 'shared/hero' %>
 
-<%= yield %>
 
+  </div>
 </body>
 </html>
