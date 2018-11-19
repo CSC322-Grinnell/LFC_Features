@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe UiControllerController, type: :controller do
+#RSpec.describe UiControllerController, type: :controller do
 
-end
+#end
