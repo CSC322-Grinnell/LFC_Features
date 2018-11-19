@@ -6,10 +6,10 @@
     <input type="checkbox" id="nav-toggle" class="nav-toggle"/>
     <nav role="navigation">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Map</a></li>
-            <li><a href="#">Recipes</a></li>
-            <li><a href="#">Sign in</a></li>
+            <li><%= link_to "Home", '#' %></li>
+            <li><%= link_to "Map", '#' %></li>
+            <li><%= link_to "Recipes", '#' %></li>
+            <li><%= link_to "Sign in", '#' %></li>
         </ul>
 
     </nav>
@@ -18,4 +18,4 @@
     </label>
 </header>
 <!-- empty row to account for space taken by fixed position header -->
-<div class="empty-row"></div>
+<div class="empty-row" style="height: 80px"></div>
