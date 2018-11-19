@@ -19,7 +19,7 @@ class Farm < ActiveRecord::Base
   end
 
   def admin?
-    self.role == "admin"
+    self.role == :admin
   end
 
 end
