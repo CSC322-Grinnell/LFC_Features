@@ -1,6 +1,7 @@
 ActiveAdmin.register Farm do
   controller do
-    before_filter :authorize_index, only: :index
+   # before_filter :authorize_index, only: :index #Deprecated in Rails 5.1
+   before_action :authorize_index, only: :index #
     def authorize_index
       # FarmPolicy::Scope.new(current_farm, Farm).resolve
       Farm

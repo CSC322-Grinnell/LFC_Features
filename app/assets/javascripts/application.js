@@ -553,14 +553,28 @@ function setAndShowFarmModal(farm) {
 
     // set modal tab 2 html
     $('#tab_2_title').html('Contact');
+    var tab_2_html = '';
+    if(farm.address){
+        tab_2_html = tab_2_html + '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>';
+    }
+    if(farm.phone){
+        tab_2_html = tab_2_html + '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>';
+    }
+    tab_2_html = tab_2_html+'<div style="text-align: center">' ;
+    if(farm.url){
+        tab_2_html = tab_2_html + '<a href="http://' + farm.url + '"> Visit our webpage </a>';
+    }
+    if(farm.facebook){
+        tab_2_html = tab_2_html + '<a href="http://' + farm.facebook + '">| Facebook </a>';
+    }
+    if(farm.twitter){
+        tab_2_html = tab_2_html + '<a href="http://' + farm.twitter + '">| Twitter</a>';
+    }
+    tab_2_html += '</div>';
+    
+    
     $('#tab_2').html(
-        '<h4 align="center"><span class="glyphicon glyphicon-home"></span>  ' + farm.address + '</h4>' +
-        '<h4 align="center"><span class="glyphicon glyphicon-earphone"></span>  ' + farm.phone + '</h4>' +
-        '<div style="text-align: center">' +
-        '<a href="' + farm.url + '"> Visit our webpage | </a>' +
-        '<a href="' + farm.facebook + '">Facebook | </a>' +
-        '<a href="' + farm.twitter + '">Twitter</a>' +
-        '</div>'
+        tab_2_html
         );
 
     // set modal tab 3 html
