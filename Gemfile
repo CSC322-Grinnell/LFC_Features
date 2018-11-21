@@ -64,6 +64,8 @@ group :development, :test do
   gem 'byebug'
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
+    gem 'capybara'
+    
 end
 
 group :development do
