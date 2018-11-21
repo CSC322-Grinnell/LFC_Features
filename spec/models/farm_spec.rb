@@ -10,9 +10,9 @@ RSpec.describe Farm, type: :model do
     end
     
     it "should return true for admin" do
-        farm = Farm.new
-        farm.role = "admin"
-        expect(farm.admin?).to be true
+        f = Farm.new
+        f.role = :admin
+        expect(f.admin?).to be true
     end
   
     it "should set the default role" do
