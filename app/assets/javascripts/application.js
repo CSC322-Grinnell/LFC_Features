@@ -215,7 +215,7 @@ function addMarker(farm, results) {
             title: farm.name,
         });
 
-    } else {
+    } /* else {
         var primary_operation;
         var farm_operations = farm.operations;
         var primary_operation_id = farm.primary_operation_id;
@@ -243,7 +243,7 @@ function addMarker(farm, results) {
 
     var marker = new google.maps.Marker({
         map: map,
-        animation: google.maps.Animation.BOUNCE,
+        //animation: google.maps.Animation.BOUNCE,
         position: results[0].geometry.location,
         title: farm.name,
         icon: operation_icon
