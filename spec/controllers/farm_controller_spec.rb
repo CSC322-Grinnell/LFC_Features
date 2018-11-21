@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "home page", :type => :request do
+RSpec.describe "farm page", :type => :request do
   it "should create a new farm" do
     get "/farms"
     farm1 = Farm.new

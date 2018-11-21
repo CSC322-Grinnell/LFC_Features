@@ -18,6 +18,6 @@ RSpec.describe Farm, type: :model do
     it "should set the default role" do
         farm = Farm.new
         farm.set_default_role
-        expect(farm.role).to eq("farm")
+        expect(farm.role).to eq("farm") #given string representation
     end
 end
