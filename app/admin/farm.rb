@@ -41,7 +41,7 @@ ActiveAdmin.register Farm do
   form do |f|
     f.inputs "Farm Details" do
       f.input :name
-      f.input :contact_name
+      f.input :contact_name #Not sure if we ever do anything with this
       f.input :year
       f.input :address
       f.input :phone
