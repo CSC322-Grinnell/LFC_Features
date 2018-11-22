@@ -7,7 +7,17 @@
   <%= f.label :name %><br>
   <%= f.text_field :name %>
   </p>
-
+  
+  <p>
+  <%= f.label :email %><br>
+  <%= f.text_field :email %>
+  </p>
+  
+  <p>
+  <%= f.label :password %><br>
+  <%= f.text_field :password %>
+  </p>
+  
   <p>
   <%= f.label :address %><br>
   <%= f.text_area :address %>
@@ -38,14 +48,16 @@
   <%= f.text_field :twitter %>
   </p>
 
+ 
   <p>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
+    <%= f.label :growing_methods%><br>
+    <% #Attempting to make checkboxes out of the growing methods %>
+    <% GrowingMethod.all.each do |op| f.check_box op end %>
+    
+
   </p>
-  <p>
-  <%= f.label :password %><br>
-  <%= f.text_field :password %>
-  </p>
+
+  
   <p>
   <%= f.submit "Submit" %>
   </p>
