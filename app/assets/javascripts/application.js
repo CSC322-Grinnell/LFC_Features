@@ -80,7 +80,7 @@ var recipes = {};
         if (search_by != "Address" && text.length == 0) {
             handleIndexCall2(farms_operations);
         }
-        
+
         // Search by Address
         if (search_by == "Address") {
             // Set up map positions
@@ -131,11 +131,11 @@ var recipes = {};
 
                             if (farms_operations.length > farms.length) {
                                 for (var i = 0; i < farms_operations.length; i++) {
-                                    for (farm of farms) { 
+                                    for (farm of farms) {
                                         if (farm.id == farms_operations[i].id) {
                                             results.push(farms_operations[i]);
                                         }
-                                    }   
+                                    }
                                 }
                             } else {
                                 for (var i = 0; i < farms.length; i++) {
@@ -147,7 +147,7 @@ var recipes = {};
                                 }
                             }
                             handleIndexCall3(results);
-                            
+
                         }
                     } else {
                         alert("Your search query returned no results . . . ")
@@ -159,7 +159,7 @@ var recipes = {};
                 }
             });
 
-        } 
+        }
     }
 }
 
@@ -210,7 +210,7 @@ function addMarker(farm, results) {
     if (farm.operations.length == 0) {
         var marker = new google.maps.Marker({
             map: map,
-            animation: google.maps.Animation.BOUNCE,
+            //animation: google.maps.Animation.BOUNCE,
             position: results[0].geometry.location,
             title: farm.name,
         });
@@ -225,7 +225,7 @@ function addMarker(farm, results) {
                 primary_operation = operation.food;
             }
         }
-        if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" || 
+        if (primary_operation == "cow" || primary_operation == "pork" || primary_operation == "chicken" ||
             primary_operation == "turkey" || primary_operation == "lamb" || primary_operation == "duck" ||
             primary_operation == "beef") {
             operation_icon = '/assets/64cow.png';
@@ -335,15 +335,15 @@ function handleIndexCall(result) {
             );
         // on click to show modal
         //var isignore = false;
-        
+
         $('#' + id).on('click', function() {
-            
+
             var new_id = this.getAttribute('id');
 
             // alter html in modal
             setAndShowFarmModal(farms[new_id]);
         });
-        
+
         $('.card-link').on('click', function(e) {
             e.stopPropagation();
         });
@@ -547,7 +547,7 @@ function setAndShowFarmModal(farm) {
         '<h3>Basic Information:' + '</h3>' +
         '<h4>Growing Method: ' + getGrowingMethod(farm) + '</h4>' +
         '<h4>Operation: ' + getOperation(farm) + '</h4>' +
-        '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>' + 
+        '<h4>Selling Method: ' + getSellingMethod(farm) + '</h4>' +
         '<h4>Primary Operation: ' + primary_operation + '</h4>'
         );
 
@@ -698,7 +698,7 @@ function handleIndexCall2(result) {
          // on click to show modal
 
         $('#' + id).on('click', function() {
-            
+
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
@@ -706,7 +706,7 @@ function handleIndexCall2(result) {
             e.stopPropagation();
 
         });
-        
+
 
 
          // add marker at proper placec
@@ -740,17 +740,17 @@ function handleIndexCall2(result) {
             );
         //     // on click to show modal
 
-        
+
         $('#' + id).on('click', function() {
-            
+
             var new_id = this.getAttribute('id');
             setAndShowFarmModal(farms[new_id]);
         });
-        
+
         $('.card-link').on('click', function(e) {
             e.stopPropagation();
         });
-        
+
 
 
         //     // add marker at proper placec

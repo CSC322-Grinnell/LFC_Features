@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-
-  get 'ui/home'
+  
+  get 'ui/view2'
+  get '/map', to: 'ui#map'
 
   Rails.application.routes.draw do
-  root 'ui#home'
+  root 'ui#view2'
   end
+# to here
 
   devise_for :farms, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
     scope '/v1' do
       scope '/farms' do
         post '/' => 'farms#farm_json'
-        
+
       end
     end
   end
