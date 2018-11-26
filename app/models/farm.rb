@@ -19,7 +19,7 @@ class Farm < ActiveRecord::Base
   end
 
   def admin?
-    self.role == "admin"
+    self.role.to_sym == :admin #Converted self.role to symbol since it's stored in self as a string
   end
 
 end

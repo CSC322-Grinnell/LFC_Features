@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   root :to => redirect('/admin')
 
-  get 'farms/review'
+  get 'farms/review' #This seems to be a globally acessible page.
   get 'farms/submission'
   get 'farms/approved'
 
