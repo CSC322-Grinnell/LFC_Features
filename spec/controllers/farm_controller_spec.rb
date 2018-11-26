@@ -50,16 +50,7 @@ RSpec.feature "Farm Signup", :type => :feature do
    scenario "User tries to create a farm without a valid email" do
     fill_in "Email", :with => "123example.com" #an invalid email
     fill_in "Password", :with => "1234567890"
-    
-=begin 
-  This test is failing because the Farm.create! method
-  requires market, growing_method, selling_methods, and 
-  operations to be a part of the farm as well. These will
-  either need to be in the form or fixed in the
-  farms_controller.rb
-  
-=end    
-   expect {click_button "Submit"}.to raise_error
+    expect {click_button "Submit"}.to raise_error
     
 
     #Figure out what we want to have it do when this scenario arises
