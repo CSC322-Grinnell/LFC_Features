@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-
+  
   get 'ui/view2'
+  get '/map', to: 'ui#map'
 
   Rails.application.routes.draw do
   root 'ui#view2'
   end
+# to here
 
   devise_for :farms, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
 
   root :to => redirect('/admin')
 
-  get 'farms/review' #This seems to be a globally acessible page.
+  get 'farms/review'
   get 'farms/submission'
   get 'farms/approved'
 
