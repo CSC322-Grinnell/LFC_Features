@@ -16,7 +16,8 @@ end
 
 RSpec.feature "Farm Signup", :type => :feature do
   #Testing the form found in /views/farms/index.html.erb
-  scenario "User creates a new farm properly" do
+  
+  before (:each) do
     visit "/farms"
 
     fill_in "Name", :with => "Test Farm"
@@ -26,6 +27,10 @@ RSpec.feature "Farm Signup", :type => :feature do
     fill_in "Facebook", :with => "testFarm"
     fill_in "Instagram", :with => "testFarm"
     fill_in "Twitter", :with => "@testFarm"
+  end
+  
+  scenario "User creates a new farm properly" do
+    
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
     
@@ -43,16 +48,7 @@ RSpec.feature "Farm Signup", :type => :feature do
   end
   
    scenario "User tries to create a farm without a valid email" do
-    visit "/farms" 
-
-    fill_in "Name", :with => "Test Farm"
-    fill_in "Address", :with => "1115 8th Ave Grinnell, IA 50112"
-    fill_in "Url", :with => "example.com"
-    fill_in "Phone", :with => "123-456-7890"
-    fill_in "Facebook", :with => "testFarm"
-    fill_in "Instagram", :with => "testFarm"
-    fill_in "Twitter", :with => "@testFarm"
-    fill_in "Email", :with => "123example.com"
+    fill_in "Email", :with => "123example.com" #an invalid email
     fill_in "Password", :with => "1234567890"
     
 =begin 
@@ -65,6 +61,15 @@ RSpec.feature "Farm Signup", :type => :feature do
 =end    
     click_button "Submit"
 
+    #Figure out what we want to have it do when this scenario arises
+  end
+  
+  scenario "User tries to create a farm with an invalid password" do
+    fill_in "Email", :with => "testfarm@example.com"
+    fill_in "Password", :with => "123"
+    
+    click_button "Submit"
+    
     #Figure out what we want to have it do when this scenario arises
   end
 end

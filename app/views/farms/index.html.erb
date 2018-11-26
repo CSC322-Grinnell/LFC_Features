@@ -1,7 +1,7 @@
 
-<h>
+<h1>
   Farm Information
-</h>
+</h1>
 <%= form_for :farm do |f| %>
   <p>
   <%= f.label :name %><br>
@@ -48,11 +48,13 @@
   <%= f.text_field :twitter %>
   </p>
 
- 
+ <h2>
+   Farm Details
+ </h2>
   <p>
     <%= f.label :growing_methods%><br>
     <% #Attempting to make checkboxes out of the growing methods %>
-    <% GrowingMethod.all.each do |op| f.check_box op end %>
+    <% GrowingMethod.all.each do |g| f.check_box :g end %>
     
 
   </p>
@@ -64,3 +66,4 @@
   <% end %>
 
 <%= link_to 'Approved Farms', farms_approved_path %>
+
