@@ -59,7 +59,8 @@ RSpec.feature "Farm Signup", :type => :feature do
   farms_controller.rb
   
 =end    
-    click_button "Submit"
+   expect {click_button "Submit"}.to raise_error
+    
 
     #Figure out what we want to have it do when this scenario arises
   end
@@ -68,7 +69,7 @@ RSpec.feature "Farm Signup", :type => :feature do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "123"
     
-    click_button "Submit"
+    expect {click_button "Submit"}.to raise_error
     
     #Figure out what we want to have it do when this scenario arises
   end
