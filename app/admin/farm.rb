@@ -1,6 +1,7 @@
 ActiveAdmin.register Farm do
   controller do
-    before_filter :authorize_index, only: :index
+   # before_filter :authorize_index, only: :index #Deprecated in Rails 5.1
+   before_action :authorize_index, only: :index #
     def authorize_index
       # FarmPolicy::Scope.new(current_farm, Farm).resolve
       Farm
@@ -40,7 +41,7 @@ ActiveAdmin.register Farm do
   form do |f|
     f.inputs "Farm Details" do
       f.input :name
-      f.input :contact_name
+      f.input :contact_name #Not sure if we ever do anything with this
       f.input :year
       f.input :address
       f.input :phone
