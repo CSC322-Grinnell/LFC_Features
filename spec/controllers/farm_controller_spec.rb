@@ -1,19 +1,5 @@
 require 'rails_helper'
 
-=begin
-RSpec.describe "farm page", :type => :feature do
-  it "should create a new farm" do
-    get "/farms"
-    farm1 = Farm.new
-    
-    post "/farms", farm: farm1, name: "Test2", address: "123 St",url: "example.com", phone: 3140614241, facebook: "facebook.com/test2", twitter: "twitter/farm2"
-    
-    expect(Farm.count).to eq(1)
-  end
-end
-
-=end
-
 RSpec.feature "Farm Signup", :type => :feature do
   #Testing the form found in /views/farms/index.html.erb
   
@@ -64,4 +50,8 @@ RSpec.feature "Farm Signup", :type => :feature do
     
     #Figure out what we want to have it do when this scenario arises
   end
+end
+
+RSpec.feature "Edit Farm", :type => :feature do
+
 end
