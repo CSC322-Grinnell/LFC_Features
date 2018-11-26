@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  
-  get 'ui/view2'
+
+  root 'ui#view2'
   get '/map', to: 'ui#map'
 
-  Rails.application.routes.draw do
-  root 'ui#view2'
-  end
 # to here
 
   devise_for :farms, ActiveAdmin::Devise.config
