@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#view2'
-  get '/map', to: 'static_pages#map'
+  root 'ui#view2'
+  get '/map', to: 'ui#map'
 
 # to here
 
