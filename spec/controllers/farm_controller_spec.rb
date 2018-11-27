@@ -93,7 +93,7 @@ RSpec.feature "Farm edit page can be reached", :type => :feature do
     @id = f.id
   end
   scenario "A farm's edit page exists when a farm is created" do
-    visit "/farms/edit/#{@id}"
+    visit "/farms/#{@id}/edit"
   end
   
   scenario "An unlogged in user clicks on the edit link" do
