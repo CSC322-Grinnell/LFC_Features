@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.feature "Farm signup exits", :type => :feature do
   scenario "User goes directly to signup page" do
-    visit "/farms"
-   # expect(page).to be '/farms'
+    visit '/signup'
+   # expect(page).to be '/farms/new'
   end
   scenario "User clicks the signup link from home page" do
     visit "/"
     click_link "Sign Up" 
-    response.should redirect_to '/farms'
+    response.should redirect_to '/farms/new'
   end
 
 end
@@ -19,7 +19,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
   #Testing the form found in /views/farms/index.html.erb
   
   before (:each) do
-    visit "/farms"
+    visit "/farms/new"
 
     fill_in "Name", :with => "Test Farm"
     fill_in "Address", :with => "1115 8th Ave Grinnell, IA 50112"
@@ -45,7 +45,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
 =end    
     click_button "Submit"
 
-    response.should redirect_to '/submission'
+    response.should redirect_to '/submission' #Not yet working on the farms/new
   end
   
    scenario "User tries to create a farm with an invalid email" do
