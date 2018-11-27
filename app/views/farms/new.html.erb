@@ -51,19 +51,64 @@
  <h2>
    Farm Details
  </h2>
+ <p>
+      <%= f.label :markets%><br>
+        <%= f.collection_check_boxes :market, Market.all, :id,
+            :location, checked: Market.all do |b| %>
+         
+            <%= b.check_box %>
+            <%= b.label %>
+            <br>
+        
+        <% end %>
+  
+    </p>
   <p>
     <%= f.label :growing_methods%><br>
-    <% #Attempting to make checkboxes out of the growing methods %>
-    <% GrowingMethod.all.each do |g| f.check_box :g end %>
-    
+      <%= f.collection_check_boxes :growing_method, GrowingMethod.all, :id,
+          :grow_method, checked: GrowingMethod.all do |b| %>
+       
+          <%= b.check_box %>
+          <%= b.label %>
+          <br>
+      
+      <% end %>
 
   </p>
-
+  
+    
+    <p>
+      <%= f.label :sell_methods%><br>
+        <%= f.collection_check_boxes :selling_methods, SellingMethod.all, :id,
+            :sell_method, checked: SellingMethod.all do |b| %>
+         
+            <%= b.check_box %>
+            <%= b.label %>
+            <br>
+        
+        <% end %>
+  
+    </p>
+    <p>
+      <%= f.label :operations%><br>
+        <%= f.collection_check_boxes :operations, Operation.all, :id,
+            :food, checked: Operation.all do |b| %>
+         
+            <%= b.check_box %>
+            <%= b.label %>
+            <br>
+        
+        <% end %>
+  
+    </p>
+    
+    
+    
+    
   
   <p>
   <%= f.submit "Submit" %>
   </p>
   <% end %>
 
-<%= link_to 'Approved Farms', farms_approved_path %>
 
