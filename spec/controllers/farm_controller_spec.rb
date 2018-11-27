@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Farm signup exits", :type => :feature do
+RSpec.feature "Farm signup exsists when", :type => :feature do
   scenario "User goes directly to signup page" do
     visit '/signup'
    # expect(page).to be '/farms/new'
