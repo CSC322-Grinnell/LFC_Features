@@ -30,7 +30,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     fill_in "Twitter", :with => "@testFarm"
   end
   
-  scenario "User creates a new farm properly" do
+  scenario " with valid input" do
     
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
@@ -48,7 +48,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     response.should redirect_to '/submission' #Not yet working on the farms/new
   end
   
-   scenario "User tries to create a farm with an invalid email" do
+   scenario "with an invalid email" do
     fill_in "Email", :with => "123example.com" #an invalid email
     fill_in "Password", :with => "1234567890"
     expect {click_button "Submit"}.to raise_error
@@ -57,7 +57,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     #Figure out what we want to have it do when this scenario arises
   end
   
-  scenario "User tries to create a farm with an invalid password" do
+  scenario "with an invalid password" do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "123"
     
@@ -82,7 +82,7 @@ RSpec.feature "Farm edit page can be reached", :type => :feature do
                   email: "test2@example.com",
                   contact_name: "Barb",
                   year: 2018,
-                  statement: "She's your rich old granny",
+                  statement: "I like farming",
                   other_media: nil,
                   link_to_cert: nil,
                   growth_promoter: false,
@@ -92,7 +92,7 @@ RSpec.feature "Farm edit page can be reached", :type => :feature do
   
     @id = f.id
   end
-  scenario "A farm's edit page exists when a farm is created" do
+  scenario "when a farm is created" do
     visit "/farms/#{@id}/edit"
   end
   
@@ -131,7 +131,7 @@ RSpec.feature "A valid user attempts to edit their farm", :type => :feature do
                   email: "test2@example.com",
                   contact_name: "Barb",
                   year: 2018,
-                  statement: "She's your rich old granny",
+                  statement: "I like farming",
                   other_media: nil,
                   link_to_cert: nil,
                   growth_promoter: false,
