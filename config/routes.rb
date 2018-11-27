@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'farms/approved'
   get '/signup', to: 'farms#new'
   
+  post '/farms/new', to: 'farms#create'
   post 'approve/(:item_id)', to: 'farms#approve', as: :approve
   post 'reject/(:item_id)', to: "farms#reject", as: :reject
 
