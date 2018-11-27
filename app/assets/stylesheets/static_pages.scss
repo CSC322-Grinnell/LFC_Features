@@ -161,42 +161,6 @@ nav {
     }
 }
 
-.search-row {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.search-container {
-    display: flex;
-    justify-content: center;
-}
-
-.search-field {
-    padding: 8px 15px;
-    background: rgba(50, 50, 50, 0.2);
-    border: 0px solid #dbdbdb;
-    width: 70%;
-    max-width: 600px;
-    font-size: 13px;
-}
-
-
-.search-button {
-    position: relative;
-    padding: 6px 15px;
-    left: -8px;
-    border: 2px solid #207cca;
-    background-color: #207cca;
-    color: #fafafa;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.search-button:hover {
-    background-color: #fafafa;
-    color: #207cca;
-}
-
 footer {
     display: grid;
     grid-template-columns: 1fr;
