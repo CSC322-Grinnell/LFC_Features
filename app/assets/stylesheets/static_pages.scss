@@ -15,8 +15,6 @@ body {
     grid-template-columns: 1fr;
 }
 
-/* navigation styles start here */
-
 header {
     background: white;
     text-align: center;
@@ -52,10 +50,6 @@ header {
     left: -9999px !important;
 }
 
-.nav-toggle:focus~.nav-toggle-label {
-    //outline: 3px solid rgba(black, .75);
-}
-
 .nav-toggle-label {
     position: absolute;
     top: 0;
@@ -67,6 +61,8 @@ header {
     cursor: pointer;
 }
 
+
+/* Create hamburger menu */
 .nav-toggle-label span,
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
@@ -91,6 +87,7 @@ header {
 .nav-toggle-label span::after {
     top: 7px;
 }
+/* end of hamburger menu */
 
 nav {
     position: absolute;
@@ -143,8 +140,11 @@ nav {
     transition: opacity 250ms ease-in-out 250ms;
 }
 
+/* HERO IMAGE */
+
 .hero {
     align-items: center;
+    background-color: black;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/hero.jpg");
     height: 50vh;
     display: flex;
@@ -161,42 +161,7 @@ nav {
     }
 }
 
-.search-row {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.search-container {
-    display: flex;
-    justify-content: center;
-}
-
-.search-field {
-    padding: 8px 15px;
-    background: rgba(50, 50, 50, 0.2);
-    border: 0px solid #dbdbdb;
-    width: 70%;
-    max-width: 600px;
-    font-size: 13px;
-}
-
-
-.search-button {
-    position: relative;
-    padding: 6px 15px;
-    left: -8px;
-    border: 2px solid #207cca;
-    background-color: #207cca;
-    color: #fafafa;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.search-button:hover {
-    background-color: #fafafa;
-    color: #207cca;
-}
-
+/* FOOTER */
 footer {
     display: grid;
     grid-template-columns: 1fr;
@@ -248,6 +213,8 @@ footer {
         margin-left: 14px;
     }
 }
+
+/* SCREENS WIDER THAN 800PX */
 
 @media screen and (min-width: 800px) {
     .nav-toggle-label {
