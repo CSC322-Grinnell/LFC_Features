@@ -15,8 +15,6 @@ body {
     grid-template-columns: 1fr;
 }
 
-/* navigation styles start here */
-
 header {
     background: white;
     text-align: center;
@@ -52,10 +50,6 @@ header {
     left: -9999px !important;
 }
 
-.nav-toggle:focus~.nav-toggle-label {
-    //outline: 3px solid rgba(black, .75);
-}
-
 .nav-toggle-label {
     position: absolute;
     top: 0;
@@ -67,6 +61,8 @@ header {
     cursor: pointer;
 }
 
+
+/* Create hamburger menu */
 .nav-toggle-label span,
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
@@ -91,6 +87,7 @@ header {
 .nav-toggle-label span::after {
     top: 7px;
 }
+/* end of hamburger menu */
 
 nav {
     position: absolute;
@@ -143,6 +140,8 @@ nav {
     transition: opacity 250ms ease-in-out 250ms;
 }
 
+/* HERO IMAGE */
+
 .hero {
     align-items: center;
     background-color: black;
@@ -162,6 +161,7 @@ nav {
     }
 }
 
+/* FOOTER */
 footer {
     display: grid;
     grid-template-columns: 1fr;
@@ -213,6 +213,8 @@ footer {
         margin-left: 14px;
     }
 }
+
+/* SCREENS WIDER THAN 800PX */
 
 @media screen and (min-width: 800px) {
     .nav-toggle-label {
