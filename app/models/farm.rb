@@ -15,7 +15,7 @@ class Farm < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-      self.role ||= :farm
+    self.role ||= :farm
   end
 
   def admin?
