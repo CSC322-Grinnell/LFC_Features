@@ -53,6 +53,7 @@ function callIndexApi() {
         async: false,
         success: function(result) {
             if (result != null || result.length > 0) {
+                console.log(result)
                 handleIndexCall(result);
             } else {
                 alert("Your search query returned no results . . . ")
