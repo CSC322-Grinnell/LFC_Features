@@ -184,7 +184,7 @@ footer {
         display: inline-block;
     }
     a {
-        color: #495057;
+        color: white;
 
         &:hover {
             color: $green;
@@ -192,6 +192,9 @@ footer {
     }
   .fa-2x {
       font-size: 1rem;
+  }
+  .social-icon-text {
+    color: black;
   }
 }
 
