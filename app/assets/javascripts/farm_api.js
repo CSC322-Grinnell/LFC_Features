@@ -25,7 +25,7 @@ function handleIndexCall(result) {
             var new_id = this.getAttribute('id');
 
             // alter html in modal
-            setAndShowFarmModal(farms[new_id]);
+            //setAndShowFarmModal(farms[new_id]);
         });
 
         $('.card-link').on('click', function(e) {
@@ -33,7 +33,7 @@ function handleIndexCall(result) {
         });
 
         // add marker at proper placec
-        geocodeAddressAndAddMarker(result[i]);
+        //geocodeAddressAndAddMarker(result[i]);
     }
 }
 

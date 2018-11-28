@@ -15,7 +15,7 @@ function handlesearch(result, text) {
 
 
     }
-    //handleIndexCall(farms);
+    handleIndexCall(farms);
     return farms;
 
 

@@ -103,7 +103,7 @@ function initMap() {
 
     // init map
     map = new google.maps.Map(document.getElementById('farmmap'), {
-        zoom: 13.7,
+        zoom: 12,
         center: grinnell
     });
 

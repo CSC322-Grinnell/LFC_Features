@@ -30,12 +30,10 @@ $(window).on('load',function() {
 function init() {
 
     // set up farm search
-    $('.search-button').on('click', function()  {
-        //DeleteMarkers();
-        var farms = [];
-        var text = $('.search-field').$(this).val();
+    $('#search-button-home').on('click', function()  {
+         var farms = [];
+        var text = $('#search-text-home').val();
         var call_url = "/farms/farm_json";
-        console.log("test")
         $.ajax({
             type: "GET",
             url: call_url,
@@ -47,9 +45,8 @@ function init() {
             crossDomain: true,
             async: false,
             success: function(result) {
-                console.log(result)
                 if (result != null || result.length > 0) {
-                    console.log(handlesearch(result, text));
+                    handlesearch(result, text);
                 } else {
                     alert("Your search query returned no results . . . ")
                 }
@@ -60,6 +57,7 @@ function init() {
             }
         });
     })
+    callIndexApi()
 }
 
 

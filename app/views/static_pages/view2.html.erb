@@ -2,15 +2,20 @@
 <% provide(:hero, "Search Local Farms") %>
 <div class="search-row">
   <form class="search-bar">
-    <input type="text" placeholder="Search local farms..." class="search-field">
-    <button type="button" class="search-button"><i class="fa fa-search"></i></button>
+    <input type="text" id = "search-text-home" placeholder="Search local farms..." class="search-field">
+    <button type="button"  id = "search-button-home" class="search-button"><i class="fa fa-search"></i></button>
   </form>
 </div>
 <div class="card-grid">
 
 </div>
 
-
+                <div class="col-md-4">
+                    <ul id="farmList" class="list-group">
+                    </ul>
+                </div>
+                
+                
      <div class="col-sm-12 search-container"  name="search", style="color:black;">
             <h1 id = "farms_link">Search Local Farms</h1>
             <!-- search bar -->
