@@ -2,7 +2,26 @@ require 'rails_helper'
 
 RSpec.describe Farm, type: :model do
     before :each do
-        @testFarm = Farm.create!(name: "Test", address: "123 St", password: "123456", phone: 123456, facebook: "facebook.com/test", twitter: "twitter/test", created_at: "2018-011-18 20:45:00", updated_at: nil, approved: false, original_id: 1, email: "test@example.com", contact_name: "Barb", year: 2018, statement: "She is your rich old granny", other_media: nil, link_to_cert: nil, growth_promoter: false, antibiotic: false, fav_activity: "", primary_operation_id: 1)
+        @testFarm = Farm.create!(name: "Test",
+                                address: "123 St",
+                                password: "123456",
+                                phone: 123456,
+                                facebook: "facebook.com/test",
+                                twitter: "twitter/test",
+                                created_at: "2018-011-18 20:45:00",
+                                updated_at: nil, 
+                                approved: false,
+                                original_id: 1,
+                                email: "test@example.com", 
+                                contact_name: "Barb",
+                                year: 2018, 
+                                statement: "I'm a test farm",
+                                other_media: nil,
+                                link_to_cert: nil, 
+                                growth_promoter: false, 
+                                antibiotic: false, 
+                                fav_activity: "", 
+                                primary_operation_id: 1)
     end
     
     describe "#new" do
