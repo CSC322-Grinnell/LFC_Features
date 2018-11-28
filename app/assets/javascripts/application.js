@@ -46,6 +46,7 @@ function init() {
             async: false,
             success: function(result) {
                 if (result != null || result.length > 0) {
+
                     handlesearch(result, text);
                 } else {
                     alert("Your search query returned no results . . . ")
