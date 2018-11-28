@@ -5,7 +5,7 @@
 // Active Admin source.
 
 // For example, to change the sidebar width:
-// $sidebar-width: 242px;
+$sidebar-width: 242px;
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
@@ -14,4 +14,4 @@
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 
-//   .status_tag { background: #6090DB; }
+  .status_tag { background: #6090DB; }
