@@ -6,56 +6,7 @@
     <button type="button"  id = "search-button-home" class="search-button"><i class="fa fa-search"></i></button>
   </form>
 </div>
-<div class="card-grid">
-
+<div id="card-grid" class="card-grid">
+  <ul id="farmList" class="list-group">
+  </ul>
 </div>
-
-                <div class="col-md-4">
-                    <ul id="farmList" class="list-group">
-                    </ul>
-                </div>
-                
-                
-     <div class="col-sm-12 search-container"  name="search", style="color:black;">
-            <h1 id = "farms_link">Search Local Farms</h1>
-            <!-- search bar -->
-            <div class="input-group search">
-                <!-- categories -->
-                <div class="input-group-btn">
-                    <button id="category_button" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories
-                    <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Address</a></li>
-                        <li><a href="#">Farm's Name</a></li>
-                    </ul>
-                </div>
-                <!-- text area -->
-                <input id="search_farm_text" type="text" class="form-control" placeholder="Search for...">
-                <!-- search button -->
-                <span class="input-group-btn">
-                    <button id="search_farm" class="btn btn-default" type="button">Search</button>
-                </span>
-            </div>
-            <div class="col-md-14 checkbox" id="checkboxes"" align="left", >
-                <label class="checkbox-inline col-md-1"><input type="checkbox" id="checkboxList" value="vegetables" name="checkboxList"> Vegetable <img style="max-height:20px; max-width:20px; overflow: hidden", src="/assets/24broccoli.png"/> </label>
-                <label class="checkbox-inline col-md-1"><input type="checkbox" id="checkboxList" value="fruit"  name="checkboxList"> Fruits <img style="max-height:20px; max-width:20px; overflow: hidden" , src="/assets/24apple.png"/> </label>
-                <label class="checkbox-inline col-md-1"><input type="checkbox" value="meat" id="checkboxList" name="checkboxList"> Meat <img style="max-height:20px; max-width:20px; overflow: hidden"; src="/assets/64cow.png"/> </label>
-                 <label class="checkbox-inline col-md-1.5"><input type="checkbox" value="egg" id="checkboxList"  name="checkboxList"> Eggs <img style="max-height:20px; max-width:20px; overflow: hidden"; src="/assets/egg.png"/> </label>
-                <label class="checkbox-inline col-md-1.5"><input type="checkbox" value="agritourism" id="checkboxList" name="checkboxList"> Agritourism <img style="max-height:20px; max-width:20px; overflow: hidden"; src="/assets/agricultural.png"/> </label>
-                <label class="checkbox-inline col-md-1"><input type="checkbox" value="dairy" id="checkboxList" name="checkboxList"> Dairy <img style="max-height:20px; max-width:20px; overflow: hidden" , src="/assets/24dairy.png"/></label>
-                <label class="checkbox-inline col-md-1"><input type="checkbox" value="foodnetwork" id="checkboxList"     name="checkboxList"> Food Pantry </label>
-            </div>
-            <!-- search farm container -->
-            <div class="content-container">
-                <!-- map -->
-                <div class="col-md-8">
-                    <div id="map"></div>
-                </div>
-                <!-- list of farms -->
-                <div class="col-md-4">
-                    <ul id="farmList" class="list-group">
-                    </ul>
-                </div>
-            </div>
-        </div>
