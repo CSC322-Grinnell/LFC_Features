@@ -1,5 +1,56 @@
+@import 'variables';
+
 .card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+
+  text-align: center;
+
+  div:nth-child(odd) {
+      background-color: $ash-grey;
+  }
+
+  div:nth-child(even) {
+    background-color: $spanish-grey;
+  }
 
   .card {
+    font-family: $font-stack;
+    padding: 4px 0;
+
+    .card-name {
+      font-size: 1.2em;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-size: 1em;
+      line-height: 1.5em;
+      padding: 0;
+      margin: 0;
+
+    }
+
+    .card-address {
+
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: $green;
+      }
+    }
+
+    .card-phone {
+
+    }
+
+    .card-website {
+
+    }
   }
 }
