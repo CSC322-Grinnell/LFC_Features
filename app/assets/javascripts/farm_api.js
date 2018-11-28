@@ -1,5 +1,5 @@
 function handleIndexCall(result) {
-    document.getElementById("farmList").innerHTML = "";
+    document.getElementById("card-grid").innerHTML = "";
     // set to new map
     farms = {};
     for (var i = 0; i < result.length; i++) {
@@ -7,15 +7,15 @@ function handleIndexCall(result) {
         var id = "farm_" + result[i].id;
 
         // add to map
-        farms[id] = result[i];
+        //farms[id] = result[i];
         // append card
-        $('#farmList').append('<li id="' + id + '" class="list-group-item justify-content-between"> ' +
+        $('#card-grid').append('<div class="card">' +
             '<h4 class="card-title">' + result[i].name + '</h4>' +
             '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
             '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
             '<a href=http://'+ result[i].url + ' class="card-link">' + result[i].url + '</a> | ' +
             '<a href=tel:'+ result[i].phone + ' class="card-link">' + result[i].phone + '</a>' +
-            '</li>'
+            '</div>'
         );
         // on click to show modal
         //var isignore = false;
@@ -38,7 +38,7 @@ function handleIndexCall(result) {
 }
 
 function callIndexApi() {
-    document.getElementById("farmList").innerHTML = "";
+    document.getElementById("card-grid").innerHTML = "";
 
     var call_url = "/farms/farm_json";
     $.ajax({
