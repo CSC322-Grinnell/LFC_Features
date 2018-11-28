@@ -15,46 +15,27 @@ var edemam_app_key = "77bd12dd099e7f2c02338006ef659724";
 var lfc_key = "YAS0sY2rbi";
 
 
-// $(document).ready(function() {
-//     $(".dropdown-menu li a").click(function() {
-//         $("#category_button").text($(this).text());
-//     });
-// });
 
 
 /********
  * INIT *
  ********/
-// $(window).on('load',function() {
-//     init();
-// });
+$(window).on('load',function() {
+    init();
+});
 
 /**
  Set up on_click for search farm and search recipe
  **/
 function init() {
 
-
-    // set up recipe search
-    // document.getElementById("search_recipes").onclick = function() {
-    //     // Get checked values for dietary choises
-    //     var checkedDietaryOptionsList = [];
-    //     $('input[name=recipeCheckboxList]:checked').each(function() {
-    //         checkedDietaryOptionsList.push($(this).val());
-    //     });
-    //     var text = $('#recipe_search_text').val();
-    //     text = text.split(' ').join('%20')
-    //     if (text != "") {
-    //         callFood2Fork(text, checkedDietaryOptionsList);
-    //     }
-    // };
-
     // set up farm search
-    document.getElementById("search_farm").onclick = function() {
-        DeleteMarkers();
+    $('.search-button').on('click', function()  {
+        //DeleteMarkers();
         var farms = [];
-        var text = $('#search_farm_text').val();
+        var text = $('.search-field').$(this).val();
         var call_url = "/farms/farm_json";
+        console.log("test")
         $.ajax({
             type: "GET",
             url: call_url,
@@ -66,8 +47,9 @@ function init() {
             crossDomain: true,
             async: false,
             success: function(result) {
+                console.log(result)
                 if (result != null || result.length > 0) {
-                    handlesearch(result, text);
+                    console.log(handlesearch(result, text));
                 } else {
                     alert("Your search query returned no results . . . ")
                 }
@@ -77,8 +59,9 @@ function init() {
                 console.log("Error: " + errorThrown);
             }
         });
-    }
+    })
 }
+
 
 /*************
  *  INIT MAP *

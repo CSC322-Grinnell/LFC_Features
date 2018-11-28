@@ -23,7 +23,6 @@ function addMarker(farm, results) {
     if (farm.operations.length == 0) {
         var marker = new google.maps.Marker({
             map: map,
-            animation: google.maps.Animation.BOUNCE,
             position: results[0].geometry.location,
             title: farm.name,
         });
@@ -56,7 +55,6 @@ function addMarker(farm, results) {
 
         var marker = new google.maps.Marker({
             map: map,
-            animation: google.maps.Animation.BOUNCE,
             position: results[0].geometry.location,
             title: farm.name,
             icon: operation_icon
@@ -93,3 +91,47 @@ function DeleteMarkers() {
     }
     markers = [];
 };
+/*************
+ *  INIT MAP *
+ * ***********/
+function initMap() {
+    // set location set to grinnell as center of map
+    var grinnell = {
+        lat: 41.7434,
+        lng: -92.7232
+    };
+
+    // init map
+    map = new google.maps.Map(document.getElementById('farmmap'), {
+        zoom: 13.7,
+        center: grinnell
+    });
+
+    // init geocoder
+    geocoder = new google.maps.Geocoder();
+    
+    var call_url = "/farms/farm_json";
+    $.ajax({
+        type: "GET",
+        url: call_url,
+        headers: {
+            'X-Auth-Token': lfc_key
+        },
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        async: false,
+        success: function(result) {
+            if (result != null || result.length > 0) {
+                showMarkers(result);
+            } else {
+                alert("errors")
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("Status: " + textStatus);
+            console.log("Error: " + errorThrown);
+        }
+    });
+
+}

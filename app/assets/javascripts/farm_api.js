@@ -65,3 +65,9 @@ function callIndexApi() {
     });
 
 }
+function showMarkers(result){
+    for (var i = 0; i < result.length; i++) {
+        // add marker at proper placec
+        geocodeAddressAndAddMarker(result[i]);
+    }
+}
