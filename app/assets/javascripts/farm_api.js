@@ -10,12 +10,12 @@ function handleIndexCall(result) {
         //farms[id] = result[i];
         // append card
         $('#card-grid').append('<div class="card">' +
-            '<h4 class="card-title">' + result[i].name + '</h4>' +
-            '<h6 class="card-subtitle mb-2 text-muted">' + result[i].address + '</h6>' +
-            '<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
-            '<a href=http://'+ result[i].url + ' class="card-link">' + result[i].url + '</a> | ' +
-            '<a href=tel:'+ result[i].phone + ' class="card-link">' + result[i].phone + '</a>' +
-            '</div>'
+            '<h3 class="card-name">' + result[i].name + '</h3><p>' +
+            '<span class="card-address">' + result[i].address + '</br>' +
+            //'<p class="card-text">CSA, Wholesale, and Farmers Market</p>' +
+            '<a href=tel:'+ result[i].phone + ' class="card-phone">' + result[i].phone + '</a> | ' +
+            '<a href=http://'+ result[i].url + ' class="card-website">' + result[i].url + '</a> ' +
+            '</p></div>'
         );
         // on click to show modal
         //var isignore = false;
