@@ -46,6 +46,7 @@ rake db:seed:seed_farm
 rake db:seed:seed_growing_method
 rake db:seed:seed_selling_method
 rake db:seed:seed_operation
+rake db:seed:seed_market
 ```
 
 After successfully seeding the database, you can start the app and get to the main page. 

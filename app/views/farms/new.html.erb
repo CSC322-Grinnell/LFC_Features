@@ -1,57 +1,57 @@
 
 <h1>
-  Farm Information
+  Farm Signup Form
 </h1>
 <%= form_for :farm do |f| %>
-  <p>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
-  </p>
+    <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+    </p>
+    
+    <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+    </p>
+    
+    <p>
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+    </p>
+    
+    <p>
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+    </p>
   
-  <p>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
-  </p>
+    <p>
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+    </p>
   
-  <p>
-  <%= f.label :password %><br>
-  <%= f.text_field :password %>
-  </p>
+    <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+    </p>
   
-  <p>
-  <%= f.label :address %><br>
-  <%= f.text_area :address %>
-  </p>
+    <p>
+    <%= f.label :facebook %><br>
+    <%= f.text_field :facebook %>
+    </p>
+  
+    <p>
+    <%= f.label :instagram %><br>
+    <%= f.text_field :instagram %>
+    </p>
+  
+    <p>
+    <%= f.label :twitter %><br>
+    <%= f.text_field :twitter %>
+    </p>
 
-  <p>
-  <%= f.label :url %><br>
-  <%= f.text_field :url %>
-  </p>
-
-  <p>
-  <%= f.label :phone %><br>
-  <%= f.text_field :phone %>
-  </p>
-
-  <p>
-  <%= f.label :facebook %><br>
-  <%= f.text_field :facebook %>
-  </p>
-
-  <p>
-  <%= f.label :instagram %><br>
-  <%= f.text_field :instagram %>
-  </p>
-
-  <p>
-  <%= f.label :twitter %><br>
-  <%= f.text_field :twitter %>
-  </p>
-
- <h2>
-   Farm Details
- </h2>
- <p>
+   <h2>
+     Farm Details
+   </h2>
+   <p>
       <%= f.label :markets%><br>
         <%= f.collection_check_boxes :market, Market.all, :id,
             :location, checked: Market.all do |b| %>
@@ -62,7 +62,7 @@
         
         <% end %>
   
-    </p>
+  </p>
   <p>
     <%= f.label :growing_methods%><br>
       <%= f.collection_check_boxes :growing_method, GrowingMethod.all, :id,
@@ -77,35 +77,31 @@
   </p>
   
     
-    <p>
-      <%= f.label :sell_methods%><br>
-        <%= f.collection_check_boxes :selling_methods, SellingMethod.all, :id,
-            :sell_method, checked: SellingMethod.all do |b| %>
+  <p>
+    <%= f.label :sell_methods%><br>
+      <%= f.collection_check_boxes :selling_methods, SellingMethod.all, :id,
+          :sell_method, checked: SellingMethod.all do |b| %>
          
-            <%= b.check_box %>
-            <%= b.label %>
-            <br>
+          <%= b.check_box %>
+          <%= b.label %>            
+          <br>
         
-        <% end %>
+      <% end %>
   
-    </p>
-    <p>
-      <%= f.label :operations%><br>
-        <%= f.collection_check_boxes :operations, Operation.all, :id,
-            :food, checked: Operation.all do |b| %>
+  </p>
+  <p>
+    <%= f.label :operations%><br>
+      <%= f.collection_check_boxes :operations, Operation.all, :id,
+          :food, checked: Operation.all do |b| %>
          
-            <%= b.check_box %>
-            <%= b.label %>
-            <br>
+          <%= b.check_box %>
+          <%= b.label %>
+          <br>
         
-        <% end %>
+      <% end %>
   
-    </p>
+  </p>
     
-    
-    
-    
-  
   <p>
   <%= f.submit "Submit" %>
   </p>
