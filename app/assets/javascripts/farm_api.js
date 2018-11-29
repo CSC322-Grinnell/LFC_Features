@@ -1,7 +1,8 @@
 function handleIndexCall(result) {
+  /*global $*/
+
   // clear contents of card-grid before displaying results of search
   document.getElementById("card-grid").innerHTML = "";
-  /*global $*/
 
   for (var i = 0; i < result.length; i++) {
 
@@ -40,7 +41,7 @@ function handleIndexCall(result) {
       if (farm_phone.length > 0) {
         var card_phone = document.createElement("a");
         card_phone.append(farm_phone);
-        $(card_phone).attr("href", 'tel:'+farm_phone); // add and format phone link to element
+        $(card_phone).attr("href", 'tel:'+farm_phone); // add and format phone link
         card_info.append(card_phone);
       }
 
@@ -56,7 +57,7 @@ function handleIndexCall(result) {
       farm_card.append(card_info);
     }
 
-    // add the farm_card to the grid
+    // add the farm_card to the card-grid
     $('#card-grid').append(farm_card);
   }
 }
