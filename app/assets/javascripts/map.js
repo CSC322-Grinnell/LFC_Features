@@ -1,7 +1,11 @@
 /****************************************
  * GEOCODING AND ADDING MARKERS FUNCTIONS
  * **************************************/
-
+/**
+ positioning farm and add markers
+ @param 
+ farm: a json object of farm
+ **/
 function geocodeAddressAndAddMarker(farm) {
     var address = farm.address;
     geocoder.geocode({
@@ -17,8 +21,13 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 var markers = []
-
-function addMarker(farm, results) {
+/**
+ add markers to the map
+ @param 
+ farm: a json object of farm
+ results: the return value of geocode function
+ **/
+ function addMarker(farm, results) {
   var marker = new google.maps.Marker({
     map: map,
     position: results[0].geometry.location,
@@ -37,6 +46,17 @@ function addMarker(farm, results) {
       infowindow.open(map, marker);
   });
   markers.push(marker);
+}
+/**
+ show markers on the map
+ @param 
+ results: an array of farm jsons
+ **/
+function showMarkers(result){
+    for (var i = 0; i < result.length; i++) {
+        // add marker at proper place
+        geocodeAddressAndAddMarker(result[i]);
+    }
 }
 
 
@@ -69,29 +89,10 @@ function initMap() {
 
     // init geocoder
     geocoder = new google.maps.Geocoder();
-
+    
+    
+    //make a ajax call to show all the markers
     var call_url = "/farms/farm_json";
-    $.ajax({
-        type: "GET",
-        url: call_url,
-        headers: {
-            'X-Auth-Token': lfc_key
-        },
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        async: false,
-        success: function(result) {
-            if (result != null || result.length > 0) {
-                showMarkers(result);
-            } else {
-                alert("errors")
-            }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown);
-        }
-    });
+    callIndexApi(call_url, showMarkers)
 
 }
