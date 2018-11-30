@@ -2,109 +2,47 @@
 <h1>
   Farm Signup Form
 </h1>
-<%= form_for :farm do |f| %>
-    <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-    </p>
-    
-    <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-    </p>
-    
-    <p>
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-    </p>
-    
-    <p>
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-    </p>
-  
-    <p>
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-    </p>
-  
-    <p>
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-    </p>
-  
-    <p>
-    <%= f.label :facebook %><br>
-    <%= f.text_field :facebook %>
-    </p>
-  
-    <p>
-    <%= f.label :instagram %><br>
-    <%= f.text_field :instagram %>
-    </p>
-  
-    <p>
-    <%= f.label :twitter %><br>
-    <%= f.text_field :twitter %>
-    </p>
-
-   <h2>
-     Farm Details
-   </h2>
-   <p>
-      <%= f.label :markets%><br>
-        <%= f.collection_check_boxes :market, Market.all, :id,
-            :location, checked: Market.all do |b| %>
-         
-            <%= b.check_box %>
-            <%= b.label %>
-            <br>
-        
-        <% end %>
-  
-  </p>
-  <p>
-    <%= f.label :growing_methods%><br>
-      <%= f.collection_check_boxes :growing_method, GrowingMethod.all, :id,
-          :grow_method, checked: GrowingMethod.all do |b| %>
-       
-          <%= b.check_box %>
-          <%= b.label %>
-          <br>
-      
-      <% end %>
-
-  </p>
-  
-    
-  <p>
-    <%= f.label :sell_methods%><br>
-      <%= f.collection_check_boxes :selling_methods, SellingMethod.all, :id,
-          :sell_method, checked: SellingMethod.all do |b| %>
-         
-          <%= b.check_box %>
-          <%= b.label %>            
-          <br>
-        
-      <% end %>
-  
-  </p>
-  <p>
-    <%= f.label :operations%><br>
-      <%= f.collection_check_boxes :operations, Operation.all, :id,
-          :food, checked: Operation.all do |b| %>
-         
-          <%= b.check_box %>
-          <%= b.label %>
-          <br>
-        
-      <% end %>
-  
-  </p>
-    
-  <p>
-  <%= f.submit "Submit" %>
-  </p>
-  <% end %>
+ <%= form do |f| %>
+    <%= f.inputs "Farm Details" do %>
+      <%= f.input :name %>
+      <%= f.input :contact_name #Not sure if we ever do anything with this%>
+      <%= f.input :year%>
+      <%= f.input :address%>
+      <%= f.input :phone%>
+      <%= f.input :email%>
+      <%= f.input :url%>
+      <%= f.input :statement%>
 
 
+      <%= f.input :facebook%>
+      <%= f.input :instagram%>
+      <%= f.input :twitter%>
+      <%= f.input :other_media%>
+
+
+      <%= f.input :operations, as: :check_boxes, collection: Operation.all%>
+      <%= f.input :primary_operation, as: :select, collection: Operation.all%>
+      <%= f.input :growing_methods, as: :check_boxes, collection: GrowingMethod.all%>
+      <%= f.input :link_to_cert%>
+      <%= f.input :selling_methods, as: :check_boxes, collection: SellingMethod.all%>
+      <%= f.input :markets, as: :check_boxes, collection: Market.all%>
+
+      <%= f.input :growth_promoter, as: :boolean, checked_value: true, unchecked_value: false%>
+      <%= f.input :antibiotic, as: :boolean, checked_value: true, unchecked_value: false%>
+
+      <%= f.input :fav_activity%>
+      <%= f.input :why_farm%>
+
+
+      #unless current_farm.admin?
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      #end
+
+      <%= if current_farm.admin?%>
+        <%= f.input :approved%>
+      <%= end%>
+  
+      <%= end %>
+    <%= f.actions %>
+  <%= end %>
