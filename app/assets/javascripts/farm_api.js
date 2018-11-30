@@ -34,24 +34,27 @@ function handleIndexCall(result) {
 
       // if the farm has an address, add it to card_info
       if (farm_address.length > 0) {
-        card_info.append(farm_address);
+        card_info.append(farm_address + ' | ');
       }
 
       // if the farm has a phone, add it to card_info
       if (farm_phone.length > 0) {
         var card_phone = document.createElement("a");
-        card_phone.append(farm_phone);
-        $(card_phone).attr("href", 'tel:'+farm_phone); // add and format phone link
+        card_phone.append(farm_phone + ' | ');
+        $(card_phone).attr("href", 'tel:' + farm_phone); // add and format phone link
         card_info.append(card_phone);
       }
 
       // if the farm has a url, add it to card_info
       if (farm_url.length > 0) {
         var card_url = document.createElement("a");
-        card_url.append(farm_url);
-        $(card_url).attr("href", farm_url);
+        card_url.append(farm_url + ' | ');
+        $(card_url).attr("href", 'http://' + farm_url);
         card_info.append(card_url);
       }
+      
+      // add preceding divider to card_info
+      card_info.prepend(' | ');
 
       // add card_info to the farm_card
       farm_card.append(card_info);
