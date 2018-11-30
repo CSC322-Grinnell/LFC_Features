@@ -16,10 +16,10 @@ end
 
 
 RSpec.feature "Farmer tries to sign up", :type => :feature do
-  #Testing the form found in /views/farms/index.html.erb
-  
+  #Testing the form found in /views/farms/new.html.erb
+
   before (:each) do
-    visit "/farms/new"
+    visit '/farms/new'
 
     fill_in "Name", :with => "Test Farm"
     fill_in "Address", :with => "1115 8th Ave Grinnell, IA 50112"
@@ -35,7 +35,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
     
-    check('farm_operations_2')
+   find('[for=farm_operations_2]').click
     #check :id =>'farm_operations_1'
     
     click_button "Submit"
