@@ -4,15 +4,6 @@
   <form class="search-bar">
     <input type="text" id = "search-text-home" placeholder="Search local farms..." class="search-field">
     <button type="button"  id = "search-button-home" class="search-button"><i class="fa fa-search"></i></button>
-    <script>
-      var input = document.getElementById("search-text-home");
-      input.addEventListener("keypress", function(event) {
-      if (event.keyCode == 13) {
-        event.preventDefault();
-        document.getElementById("search-button-home").click();
-        }
-      }, false);
-</script>
   </form>
 </div>
 <div id="card-grid" class="card-grid">

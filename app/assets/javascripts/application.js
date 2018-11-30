@@ -23,6 +23,14 @@ $(window).on('load',function() {
  Set up on_click for search farm
  **/
 function init() {
+    
+    var input = document.getElementById("search-text-home");
+      input.addEventListener("keypress", function(event) {
+      if (event.keyCode == 13) {
+        event.preventDefault();
+        document.getElementById("search-button-home").click();
+        }
+      }, false);
 
     // set up farm search
     $('#search-button-home').on('click', function()  {
