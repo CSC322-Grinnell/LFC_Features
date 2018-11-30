@@ -7,8 +7,8 @@ RSpec.feature "Farm signup exsists when", :type => :feature do
   end
   scenario "User clicks the signup link from home page" do
     visit "/"
-    click_link "Sign Up" 
-    response.should redirect_to '/farms/new'
+    click_link "Signup"
+    expect(page.current_path).to eq(new_farm_path)
   end
 
 end
@@ -35,8 +35,9 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
     
-    check :id =>'farm_market_1'
-
+    check('farm_operations_2')
+    #check :id =>'farm_operations_1'
+    
     click_button "Submit"
 
     expect(Farms.count).to eq(1)
