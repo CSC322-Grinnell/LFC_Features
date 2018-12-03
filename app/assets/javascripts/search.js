@@ -6,9 +6,8 @@ function isEmpty(str) {
 
 // return true if a string is not empty and contains more than whitespace
 function containsChars(str) {
-  if (!isEmpty(str)) {
-    return true;
-  }
+  return !isEmpty(str);
+}
 
 /**
  Handle the search for farms
