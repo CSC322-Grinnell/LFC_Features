@@ -13,6 +13,7 @@ body {
 .grid {
     display: grid;
     grid-template-columns: 1fr;
+    min-height: 100%;
 }
 
 header {
@@ -21,6 +22,7 @@ header {
     position: fixed;
     z-index: 999;
     width: 100%;
+    height: 80px;
 }
 
 .logo {
@@ -219,7 +221,7 @@ footer {
 
 /* SCREENS WIDER THAN 800PX */
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $largest-screen-size) {
     .nav-toggle-label {
         display: none;
     }

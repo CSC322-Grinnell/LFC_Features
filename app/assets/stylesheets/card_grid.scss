@@ -8,11 +8,11 @@
   text-align: center;
 
   div:nth-child(odd) {
-      background-color: $ash-grey;
+      background-color: #E4E1E1
   }
 
   div:nth-child(even) {
-    background-color: $spanish-grey;
+    background-color: #BAC7B1
   }
 
   .card {
@@ -30,7 +30,6 @@
       line-height: 1.5em;
       padding: 0;
       margin: 0;
-
     }
 
     .card-address {
@@ -39,18 +38,36 @@
 
     a {
       text-decoration: none;
-      color: black;
+      /*color: black;
       &:hover {
         color: $green;
-      }
-    }
-
-    .card-phone {
-
-    }
-
-    .card-website {
-
+      } */
     }
   }
+}
+
+@media screen and (min-width: 800px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .card-grid-wrapper {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .card-grid-wrapper {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+  }
+
 }
