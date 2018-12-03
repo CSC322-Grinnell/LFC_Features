@@ -1,3 +1,5 @@
+//Used for modal, disgarded right now, may be used later
+
 /********************
  *  MODAL FUNCTIONS *
  * ******************/
