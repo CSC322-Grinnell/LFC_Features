@@ -32,6 +32,7 @@ function handlesearch(result, text) {
  result: result or filtered result of ajax call, supposed to be a json array
  **/
 function Visualize_Farm(result) {
+  console.log(result)
   /*global $*/
   // clear contents of card-grid before displaying results of search
   document.getElementById("card-grid").innerHTML = "";
