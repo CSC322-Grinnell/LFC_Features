@@ -1,14 +1,34 @@
+// check if a string is empty, null or undefined
+function isEmpty(str) {
+  return (!str || 0 === str.length);
+}
+ // check if a string is blank
+function isBlank(str) {
+    return (/^\s*$/.test(str));
+}
+ // return true if a string is not empty and contains more than whitespace
+function containsChars(str) {
+  if (!isEmpty(str)) {
+    return true;
+  }
+  else if (!isBlank(str)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 
 /**
  Handle the search for farms
  @params 
- result: result of ajax call, supposed to be a json array
+ farms: result of ajax call, supposed to be a json array
  text: the search text
  **/
 function handlesearch(result, text) {
     var farms = [];
     if(text==null){
-        Visualize_Farm(result);
+        Visualize_Farm(farms);
         return;
     }
     for (var i = 0; i < result.length; i++) {
@@ -16,7 +36,7 @@ function handlesearch(result, text) {
         var farm_string = JSON.stringify(result[i]);
         // add to map
         if ((farm_string.toLowerCase()).includes(text.toLowerCase())) {
-            farms.push(result[i]);
+            farms.push(farms[i]);
         }
 
 
@@ -30,23 +50,23 @@ function handlesearch(result, text) {
 /**
  visualize the farms cards in the front page
  @params 
- result: result or filtered result of ajax call, supposed to be a json array
+ farms: result or filtered result of ajax call, supposed to be a json array
  **/
-function Visualize_Farm(result) {
-  console.log(result)
+function Visualize_Farm(farms) {
+  console.log(farms)
   /*global $*/
   // clear contents of card-grid before displaying results of search
   document.getElementById("card-grid").innerHTML = "";
 
-  for (var i = 0; i < result.length; i++) {
+  for (var i = 0; i < farms.length; i++) {
 
-    var cur_farm = result[i];
+    var cur_farm = farms[i];
     var id = "farm_" + cur_farm.id; // create id
 
     var farm_name = cur_farm.name;
     var farm_address = cur_farm.address;
     var farm_phone = cur_farm.phone;
-    var farm_url = cur_farm.url;
+    var farm_url =  cur_farm.url;
 
     // create the farm card for the current farm
     var farm_card = document.createElement("div");
@@ -83,7 +103,7 @@ function Visualize_Farm(result) {
       if (farm_url.length > 0) {
         var card_url = document.createElement("a");
         card_url.append(" "+farm_url);
-        $(card_url).attr("href", farm_url);
+        $(card_url).attr("href", "http://"+farm_url);
         card_info.append(card_url);
       }
 
