@@ -1,7 +1,30 @@
+// check if a string is empty, null or undefined
+function isEmpty(str) {
+  return (!str || 0 === str.length);
+}
+
+// check if a string is blank
+function isBlank(str) {
+    return (/^\s*$/.test(str));
+}
+
+// return true if a string is not empty and contains more than whitespace
+function containsChars(str) {
+  if (!isEmpty(str)) {
+    return true;
+  }
+  else if (!isBlank(str)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 
 /**
  Handle the search for farms
- @params 
+ @params
  result: result of ajax call, supposed to be a json array
  text: the search text
  **/
@@ -29,7 +52,7 @@ function handlesearch(result, text) {
 
 /**
  visualize the farms cards in the front page
- @params 
+ @params
  result: result or filtered result of ajax call, supposed to be a json array
  **/
 function Visualize_Farm(result) {
@@ -53,7 +76,7 @@ function Visualize_Farm(result) {
     $(farm_card).addClass("card");
 
     // if the farm has a name, add it to the card
-    if (farm_name.length > 0) {
+    if (containsChars(farm_name)) {
       var card_name = document.createElement("h3");
       $(card_name).addClass("card-name");
       card_name.append(farm_name);
@@ -61,34 +84,54 @@ function Visualize_Farm(result) {
     }
 
     // if the farm has an address phone or url...
-    if (farm_address.length > 0 || farm_phone.length > 0 || farm_url.length > 0 ) {
-      // create a p element: card_info
-      var card_info = document.createElement("p");
-      $(card_info).addClass("card-info");
+    if (containsChars(farm_address) || containsChars(farm_phone) || containsChars(farm_url) ) {
 
-      // if the farm has an address, add it to card_info
-      if (farm_address.length > 0) {
-        card_info.append(farm_address);
+      // if the farm has an address, add it to the card
+      if (containsChars(farm_address)) {
+        var card_address = document.createElement("p");
+        card_address.append(farm_address);
+        farm_card.append(card_address);
       }
 
-      // if the farm has a phone, add it to card_info
-      if (farm_phone.length > 0) {
-        var card_phone = document.createElement("a");
-        card_phone.append(" "+ farm_phone);
-        $(card_phone).attr("href", 'tel:'+farm_phone); // add and format phone link
-        card_info.append(card_phone);
+      // if the farm has a phone and a url, add them to the card with a pipe between them
+      if (containsChars(farm_phone) && containsChars(farm_url)) {
+        var card_contact_info = document.createElement("p");
+        var card_phone_link = document.createElement("a");
+        var card_url_link = document.createElement("a");
+
+        card_phone_link.append(farm_phone);
+        $(card_phone_link).attr("href", 'tel:'+farm_phone); // add and format phone link
+
+        card_url_link.append(farm_url);
+        $(card_url_link).attr("href", 'http://'+farm_url); // add and format website link
+
+        card_contact_info.append(card_phone_link);
+        card_contact_info.append(" | "); // spacer between phone and url
+        card_contact_info.append(card_url_link);
+        farm_card.append(card_contact_info);
       }
 
-      // if the farm has a url, add it to card_info
-      if (farm_url.length > 0) {
-        var card_url = document.createElement("a");
-        card_url.append(" "+farm_url);
-        $(card_url).attr("href", farm_url);
-        card_info.append(card_url);
+      else if (containsChars(farm_phone)) {
+        var card_phone = document.createElement("p");
+        var card_phone_link = document.createElement("a");
+
+        card_phone_link.append(farm_phone);
+        $(card_phone_link).attr("href", farm_phone); // add and format phone link
+
+        card_phone.append(card_phone_link);
+        farm_card.append(card_phone);
       }
 
-      // add card_info to the farm_card
-      farm_card.append(card_info);
+      else if (containsChars(farm_url)) {
+        var card_url = document.createElement("p");
+        var card_url_link = document.createElement("a");
+
+        card_url_link.append(farm_url);
+        $(card_url_link).attr("href", 'http://'+farm_url); // add and format website link
+
+        card_url.append(card_url_link);
+        farm_card.append(card_url);
+      }
     }
 
     // add the farm_card to the card-grid
