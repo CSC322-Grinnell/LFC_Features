@@ -1,26 +1,14 @@
-// check if a string is empty, null or undefined
+// return true if a string is empty or only contains whitespace
 function isEmpty(str) {
-  return (!str || 0 === str.length);
+  return (str.length === 0 || !str.trim());
 }
 
-// check if a string is blank
-function isBlank(str) {
-    return (/^\s*$/.test(str));
-}
 
 // return true if a string is not empty and contains more than whitespace
 function containsChars(str) {
   if (!isEmpty(str)) {
     return true;
   }
-  else if (!isBlank(str)) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
 
 /**
  Handle the search for farms
