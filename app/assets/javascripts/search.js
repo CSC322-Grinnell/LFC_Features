@@ -90,6 +90,11 @@ function Visualize_Farm(result) {
     // create the farm card for the current farm
     var farm_card = document.createElement("div");
     $(farm_card).addClass("card");
+    //var card_link = document.createElement("a");
+    //$(farm_card).attr("href", BASE_URL+'map'); // add and format website link
+    $(farm_card).attr('id', id);
+    
+
 
     // if the farm has a name, add it to the card
     if (containsChars(farm_name)) {
@@ -152,5 +157,10 @@ function Visualize_Farm(result) {
 
     // add the farm_card to the card-grid
     $('#card-grid').append(farm_card);
+    
+    $('#' + id).on('click', function() {
+      window.location.href = BASE_URL+'farmer'
+    });
+        
   }
 }

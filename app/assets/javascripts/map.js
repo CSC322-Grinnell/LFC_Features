@@ -15,6 +15,7 @@ function geocodeAddressAndAddMarker(farm) {
         if (status === 'OK') {
             addMarker(farm, results);
         } else {
+            console.log('break');
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
