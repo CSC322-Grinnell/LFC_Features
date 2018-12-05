@@ -7,7 +7,7 @@ RSpec.feature "Farm signup exsists when", :type => :feature do
   end
   scenario "User clicks the signup link from home page" do
     visit "/"
-    click_link "Signup"
+    click_link "Sign up"
     expect(page.current_path).to eq(new_farm_path)
   end
 
