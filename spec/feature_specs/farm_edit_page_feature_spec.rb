@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.feature "Farm edit page can be reached", :type => :feature do
   before (:each) do
     f = Farm.create!(name: "Test2", 
