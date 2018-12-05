@@ -9,6 +9,35 @@ function containsChars(str) {
   return !isEmpty(str);
 }
 
+
+/**
+ Set up on_click for search farm
+ **/
+function set_up_search() {
+    
+    var input = document.getElementById("search-text-home");
+    if(input != null){
+      input.addEventListener("keypress", function(event) {
+      if (event.keyCode == 13) {
+        event.preventDefault();
+        document.getElementById("search-button-home").click();
+        }
+      }, false);
+    }
+
+    // set up farm search
+    $('#search-button-home').on('click', function()  {
+        var farms = [];
+        var text = $('#search-text-home').val();
+        var call_url = "/farms/farm_json";
+        //Make an ajax call to retrieve information about farms
+         callIndexApi(call_url, handlesearch, text)
+    })
+}
+
+
+
+
 /**
  Handle the search for farms
  @params

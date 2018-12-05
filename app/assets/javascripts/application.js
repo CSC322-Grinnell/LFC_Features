@@ -15,39 +15,17 @@ var lfc_key = "YAS0sY2rbi";
 /********
  * INIT *
  ********/
-$(window).on('load',function() {
-    init();
+ $(window).on('load',function() {
+     if(window.location.pathname == '/') {
+        set_up_search();
+        initialize_farms();
+    }
 });
-
-/**
- Set up on_click for search farm
- **/
-function init() {
-    
-    var input = document.getElementById("search-text-home");
-      input.addEventListener("keypress", function(event) {
-      if (event.keyCode == 13) {
-        event.preventDefault();
-        document.getElementById("search-button-home").click();
-        }
-      }, false);
-
-    // set up farm search
-    $('#search-button-home').on('click', function()  {
-        var farms = [];
-        var text = $('#search-text-home').val();
-        var call_url = "/farms/farm_json";
-        //Make an ajax call to retrieve information about farms
-         callIndexApi(call_url, handlesearch, text)
-    })
-    initialize_farms()
-}
 
 /**
  Set up farm cards
  **/
 function initialize_farms() {
-
     var call_url = "/farms/farm_json";
     callIndexApi(call_url, Visualize_Farm)
 }

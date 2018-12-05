@@ -45,7 +45,7 @@ farm_list = [
     "www.middlewayfarm.com", "641-821-0753",  \
     "middlewayfarmer@gmail.com", "mypassword", "mypassword", true],
 ["Olson Garden Market", "5809 Hwy. T38N, Grinnell, IA 50112", \
-    " ", "641-990-6605",  \
+    "", "641-990-6605",  \
     "kerriolson56@gmail.com", "ogpassword", "ogpassword", true],
 ["Uncle Bill’s Farm", "244 400th Ave Grinnell, IA 50112", \
     "www.unclebillsfarm.com", "641-236-7043",  \
