@@ -1,21 +1,23 @@
 require 'rails_helper'
 
 RSpec.feature "the footer appears as expected", :type => :feature do
+    before (:each) do
+        visit root_path
+    end
     scenario "the email appears" do
-    #assert that "INFO@LOCALFOODSCONNECTION.COM" is on page
+    expect(page).to have_content("info@localfoodsconnection.com")
     end
     scenario "the phone number appears" do
-    #assert that (641) 990-0018 is on page
+    expect(page).to have_content("(641) 990-0018")
     end
     scenario "the link to the instagram appears" do
-    #assert that a link to https://www.instagram.com/localfoodsconnection/
-    #is present
+    expect(page).to have_selector(:css, 'a[href="https://www.instagram.com/localfoodsconnection/"]')
     end
     scenario "the link to the email appears" do
-    # assert that a link mailto:info@localfoodsconnection.com appears
+    expect(page).to have_selector(:css, 'a[href="mailto:info@localfoodsconnection.com"]')
     end
     scenario "the link to the facebook appears" do
-    # assert that https://www.facebook.com/LocalFoodsConnection/ is present
+    expect(page).to have_selector(:css, 'a[href="https://www.facebook.com/LocalFoodsConnection/"]')
     end
     
     
