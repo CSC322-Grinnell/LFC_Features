@@ -3,7 +3,8 @@
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 10px;
+  grid-row-gap: 15px;
+  padding-bottom: 20px;
 
   text-align: center;
 
@@ -19,6 +20,12 @@
     font-family: $font-stack;
     padding: 4px 0;
 
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
     .card-name {
       font-size: 1.2em;
       margin: 0;
@@ -32,16 +39,12 @@
       margin: 0;
     }
 
-    .card-address {
-
-    }
-
     a {
       text-decoration: none;
-      /*color: black;
+      color: black;
       &:hover {
-        color: $green;
-      } */
+        text-decoration: underline;
+      }
     }
   }
 }
