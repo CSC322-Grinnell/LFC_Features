@@ -1,0 +1,9 @@
+@import 'variables';
+
+.signup-form {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  font-family: $font-stack;
+}
+
+
