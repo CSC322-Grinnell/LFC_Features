@@ -7,4 +7,7 @@ class StaticPagesController < ApplicationController
   
   def recipes
   end
+  
+  def farmer
+  end
 end
