@@ -1,3 +1,5 @@
+@import 'variables';
+
 .search-row {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -10,8 +12,9 @@
 
 .search-field {
     padding: 8px 15px;
-    background: rgba(50, 50, 50, 0.2);
-    border: 0px solid #dbdbdb;
+    background: $search-bar-background-color;
+    border: 0px solid $search-bar-border-color;
+    color: $search-bar-text-color;
     width: 70%;
     max-width: 600px;
     font-size: 13px;
@@ -21,14 +24,14 @@
     position: relative;
     padding: 6px 15px;
     left: -8px;
-    border: 2px solid #207cca;
-    background-color: #207cca;
-    color: #fafafa;
+    border: 2px solid $search-button-background-color;
+    background-color: $search-button-background-color;
+    color: $search-button-text-color;
     cursor: pointer;
     font-size: 13px;
 }
 
 .search-button:hover {
-    background-color: #fafafa;
-    color: #207cca;
+    background-color: $search-button-text-color; // colors of button are switched on hover
+    color: $search-button-background-color;
 }

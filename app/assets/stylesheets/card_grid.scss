@@ -9,11 +9,21 @@
   text-align: center;
 
   div:nth-child(odd) {
-      background-color: #E4E1E1
+    background-color: $odd-card-background-color;
+    color: $odd-card-text-color;
+
+    a {
+      color: $odd-card-text-link-color;
+    }
   }
 
   div:nth-child(even) {
-    background-color: #BAC7B1
+    background-color: $even-card-background-color;
+    color: $even-card-text-color;
+
+    a {
+      color: $even-card-text-link-color;
+    }
   }
 
   .card {
@@ -30,6 +40,7 @@
       font-size: 1.2em;
       margin: 0;
       padding: 0;
+      color: inherit;
     }
 
     p {
@@ -37,11 +48,11 @@
       line-height: 1.5em;
       padding: 0;
       margin: 0;
+      color: inherit;
     }
 
     a {
       text-decoration: none;
-      color: black;
       &:hover {
         text-decoration: underline;
       }

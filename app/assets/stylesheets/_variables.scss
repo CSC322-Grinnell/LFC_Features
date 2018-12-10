@@ -1,8 +1,25 @@
-$green: #698B69;
-$spanish-grey: #a49694;
-$eggshell: #ede7d9;
-$ash-grey: #b1c1c0;
+/* GLOBALS */
+
 $font-stack: Helvetica, Arial, sans-serif;
 
-$largest-screen-size: 800px;
+$green: #698B69;
+$light-grey: rgb(51, 51, 51);
+$dark-grey: rgb(31, 31, 31);
 
+/* CARDS */
+$odd-card-background-color: #E4E1E1;
+$even-card-background-color: #BAC7B1;
+
+$even-card-text-color: black;
+$even-card-text-link-color: black;
+
+$odd-card-text-color: black;
+$odd-card-text-link-color: black;
+
+/* SEARCH */
+$search-bar-background-color: rgba(50, 50, 50, 0.2);
+$search-bar-border-color: #dbdbdb;
+$search-bar-text-color: black;
+
+$search-button-background-color: #207cca;
+$search-button-text-color: #fafafa;
