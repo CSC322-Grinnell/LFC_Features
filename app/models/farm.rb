@@ -1,5 +1,4 @@
 class Farm < ActiveRecord::Base
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -21,5 +20,4 @@ class Farm < ActiveRecord::Base
   def admin?
     self.role.to_sym == :admin #Converted self.role to symbol since it's stored in self as a string
   end
-
 end

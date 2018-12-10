@@ -31,16 +31,62 @@ RSpec.describe Farm, type: :model do
   end
   
   describe "operations" do
-    it "should hold on to operations when I save them" do
-      @testFarm.operations << Operation.new(food: "test")
+    before :each do
+      @testFarm.operations << Operation.new(food: "test", id: 1)
       @testFarm.reload
+    end
+    
+    it "should hold on to operations when I save them" do
       expect(@testFarm.operations.count).to eql 1
     end
     
     it "should save the right operation" do
-      @testFarm.operations << Operation.new(food: "test", id: 1)
-      @testFarm.reload
       expect(@testFarm.operations.find(1).food).to eql "test"
+    end
+  end
+  
+  describe "growing methods" do
+    before :each do
+      @testFarm.growing_methods << GrowingMethod.new(grow_method: "Test", id: 1)
+      @testFarm.reload
+    end
+    
+    it "should hold on to growing methods when I save them" do
+      expect(@testFarm.growing_methods.count).to eql 1
+    end
+    
+    it "should save the right growing method" do
+      expect(@testFarm.growing_methods.find(1).grow_method).to eql "Test"
+    end
+  end
+  
+  describe "selling methods" do
+    before :each do
+      @testFarm.selling_methods << SellingMethod.new(sell_method: "Test", id: 1)
+      @testFarm.reload
+    end
+    
+    it "should hold on to selling methods when I save them" do
+      expect(@testFarm.selling_methods.count).to eql 1
+    end
+    
+    it "should save the right selling method" do
+      expect(@testFarm.selling_methods.find(1).sell_method).to eql "Test"
+    end
+  end
+  
+  describe "markets" do
+    before :each do
+      @testFarm.markets << Market.new(location: "Test", id: 1)
+      @testFarm.reload
+    end
+    
+    it "should hold on to markets when I save them" do
+      expect(@testFarm.markets.count).to eql 1
+    end
+    
+    it "should save the right market" do
+      expect(@testFarm.markets.find(1).location).to eql "Test"
     end
   end
 end
