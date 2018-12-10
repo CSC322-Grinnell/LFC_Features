@@ -194,24 +194,24 @@ footer {
         display: inline-block;
     }
     a {
-        color: white;
+        color: $social-icons-color;
 
         &:hover {
-            color: $green;
+            color: $social-icons-hover-color;
         }
     }
   .fa-2x {
       font-size: 1rem;
   }
   .social-icon-text {
-    color: black;
+    color: $social-icons-text-color;
   }
 }
 
 .site-info {
     padding: 10px 0;
     background-color: $dark-grey;
-    color: rgba(255, 255, 255, 0.8);
+    color: $site-info-text-color;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

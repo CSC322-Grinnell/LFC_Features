@@ -3,23 +3,31 @@
 $font-stack: Helvetica, Arial, sans-serif;
 
 $green: #698B69;
-$light-grey: rgb(51, 51, 51);
-$dark-grey: rgb(31, 31, 31);
+$light-grey: #333333;
+$dark-grey: #1f1f1f;
 
 /* CARDS */
-$odd-card-background-color: #E4E1E1;
-$even-card-background-color: #BAC7B1;
-
-$even-card-text-color: black;
-$even-card-text-link-color: black;
+$odd-card-background-color: #e2e2e2;
+$even-card-background-color: #b7b7b7;
 
 $odd-card-text-color: black;
-$odd-card-text-link-color: black;
+$odd-card-text-link-color: $odd-card-text-color;
+
+
+$even-card-text-color: black;
+$even-card-text-link-color: $even-card-text-color;
 
 /* SEARCH */
-$search-bar-background-color: rgba(50, 50, 50, 0.2);
+$search-bar-background-color: #e2e2e2;
 $search-bar-border-color: #dbdbdb;
 $search-bar-text-color: black;
 
-$search-button-background-color: #207cca;
+$search-button-background-color: $green;
 $search-button-text-color: #fafafa;
+
+/* FOOTER */
+$social-icons-text-color: $light-grey;
+$social-icons-color: rgba(255, 255, 255, 1);
+$social-icons-hover-color: rgba(255, 255, 255, 0.6);
+
+$site-info-text-color: rgba(255, 255, 255, 0.8);
