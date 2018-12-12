@@ -7,7 +7,8 @@ class FarmsController < ApplicationController
 
 
 #This is not what the show supposed to look like, but we rely on it for store the farm json
-#It need to be changed to a totally different format
+#It need to be changed to a totally different format in the future
+
   def show
     # @farm = Farm.find(parmas[:id])
     # authorize @farm
@@ -24,6 +25,7 @@ class FarmsController < ApplicationController
     end
   end
 
+#This is also not what a index page should look like
   def index
     #@farm = Farm.all
     # authorize @farm
