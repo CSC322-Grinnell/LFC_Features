@@ -1,10 +1,12 @@
 @import 'variables';
 
+// Spaces above and below search row
 .search-row {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+// Centered search bar
 .search-bar {
     display: flex;
     justify-content: center;
@@ -14,6 +16,7 @@
     }
 }
 
+// Search text field will fill 70% of screen width and has maxiumum width of 600px
 .search-field {
     padding: 8px 15px;
     background: $search-bar-background-color;
@@ -25,7 +28,7 @@
 }
 
 .search-button {
-    position: relative;
+    position: relative; // Search button sits immediately next to search text field
     padding: 6px 15px;
     left: -8px;
     border: 2px solid $search-button-background-color;
