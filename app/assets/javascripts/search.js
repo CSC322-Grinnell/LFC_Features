@@ -86,6 +86,7 @@ function Visualize_Farm(result) {
     var farm_address = cur_farm.address;
     var farm_phone = cur_farm.phone;
     var farm_url = cur_farm.url;
+    let farm_id = cur_farm.id;
 
     // create the farm card for the current farm
     var farm_card = document.createElement("div");
@@ -159,7 +160,7 @@ function Visualize_Farm(result) {
     $('#card-grid').append(farm_card);
     
     $('#' + id).on('click', function() {
-      window.location.href = BASE_URL+'farmer'
+      window.location.href = BASE_URL+'farms/'+farm_id
     });
         
   }
