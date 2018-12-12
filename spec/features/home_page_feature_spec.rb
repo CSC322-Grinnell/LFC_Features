@@ -5,23 +5,23 @@ RSpec.feature "the home page appears as expected", :type => :feature do
         visit root_path
     end
     scenario "The header appears" do
-    expect(page).to have_css('header')
+        expect(page).to have_css('header')
     end
     scenario "the search bar appears" do
-    expect(page).to have_css('div.search-bar') 
+        expect(page).to have_css('div.search-bar') 
     #Posssibly not the best way to test that the search bar exists
     end
     scenario "the card-grid appears" do
-    expect(page).to have_css ('div.card-grid')
+        expect(page).to have_css ('div.card-grid')
     end
     scenario "the hero appears"do
-    expect(page).to have_css('div.hero')
+        expect(page).to have_css('div.hero')
     end
     scenario "the text on the hero is correct" do
-    expect(page).to have_content("Search Local Farms")
+        expect(page).to have_content("Search Local Farms")
     end
     scenario "the footer appears" do
-    expect(page).to have_css('footer')
+        expect(page).to have_css('footer')
     end
 end
 
@@ -32,12 +32,17 @@ RSpec.feature "the home page responds as expected", :type => :feature do
     end
     
     scenario "the search bar filters the cards" do
-    #fill in some stuff
-    #assert that it's what we want
+        #fill in some stuff
+        fill_in "search-text-home" , :with => "CSA"
+        #assert that it's what we want
+        within(:css, 'div.card-grid') do 
+            expect(page).to have_css('div#farm_6')
+            #expect(page).to have_content('Compass Plant CSA')
+        end
     end
     scenario "clicking on a card links to the farmer's page" do
-    #click on a card
-    #assert that it redirects to the proper path
+        #click on a card
+        #assert that it redirects to the proper path
     end
     
 end
