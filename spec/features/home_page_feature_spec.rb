@@ -5,25 +5,23 @@ RSpec.feature "the home page appears as expected", :type => :feature do
         visit root_path
     end
     scenario "The header appears" do
-    #Assert that the header is present
+    expect(page).to have_css('header')
     end
     scenario "the search bar appears" do
-    #assert that the search bar is present...
-    expect(page).to have_content('Search local farms...')
+    expect(page).to have_css('div.search-bar') 
+    #Posssibly not the best way to test that the search bar exists
     end
-    scenario "the cards appear" do
-    # At least one card appears...
-    expect(page).to have_content ('Middle Way Farm')
+    scenario "the card-grid appears" do
+    expect(page).to have_css ('div.card-grid')
     end
-    scenario "the hero image appears"do
-    expect(page).to have_css("img[src*='hero.jpg']")
+    scenario "the hero appears"do
+    expect(page).to have_css('div.hero')
     end
     scenario "the text on the hero is correct" do
-    #assert that it says "Search Local Farms"
     expect(page).to have_content("Search Local Farms")
     end
     scenario "the footer appears" do
-    #assert that the footer is present
+    expect(page).to have_css('footer')
     end
 end
 
