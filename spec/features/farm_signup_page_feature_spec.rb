@@ -44,7 +44,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     #response.should redirect_to '/submission' #Not yet working on the farms/new
   end
   
-   scenario "with an invalid email" do
+  scenario "with an invalid email" do
     fill_in "Email", :with => "123example.com" #an invalid email
     fill_in "Password", :with => "1234567890"
     expect {click_button "Submit"}.to raise_error

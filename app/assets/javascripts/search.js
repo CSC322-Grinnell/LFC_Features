@@ -51,9 +51,9 @@ function handlesearch(result, text) {
         return;
     }
     for (var i = 0; i < result.length; i++) {
-        // create id
+        // Convert the json into a string
         var farm_string = JSON.stringify(result[i]);
-        // add to map
+        // search whether the string include the text
         if ((farm_string.toLowerCase()).includes(text.toLowerCase())) {
             farms.push(result[i]);
         }
@@ -72,6 +72,7 @@ function handlesearch(result, text) {
  result: result or filtered result of ajax call, supposed to be a json array
  **/
 function Visualize_Farm(result) {
+  //For debugging
   console.log(result)
   /*global $*/
   // clear contents of card-grid before displaying results of search
@@ -86,6 +87,7 @@ function Visualize_Farm(result) {
     var farm_address = cur_farm.address;
     var farm_phone = cur_farm.phone;
     var farm_url = cur_farm.url;
+    let farm_id = cur_farm.id;
 
     // create the farm card for the current farm
     var farm_card = document.createElement("div");
@@ -158,8 +160,9 @@ function Visualize_Farm(result) {
     // add the farm_card to the card-grid
     $('#card-grid').append(farm_card);
     
+    //Add the link to each farmers own page
     $('#' + id).on('click', function() {
-      window.location.href = BASE_URL+'farmer'
+      window.location.href = BASE_URL+'farms/'+farm_id
     });
         
   }
