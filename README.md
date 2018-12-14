@@ -64,7 +64,7 @@ Password: password
 ```
 After successfully signing in to the admin page you can navigate to look and edit the farms currently in the database. You can add Operations, Selling Methods, Primary Operation and Growing Methods for each farm and the map on the main page will update accordingly.
 
-To Sign In as a registered farm, you can find the credentials of the registered farms in the /db/seed/seed_farm.
+To Sign In as a registered farm, you can would use "password" for passwords
 
 
 ### Current state, future tasks, and tips
