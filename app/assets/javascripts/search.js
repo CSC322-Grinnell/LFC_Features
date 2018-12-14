@@ -139,7 +139,7 @@ function Visualize_Farm(result) {
         var card_phone_link = document.createElement("a");
 
         card_phone_link.append(farm_phone);
-        $(card_phone_link).attr("href", farm_phone); // add and format phone link
+        $(card_phone_link).attr("href", 'tel:'+farm_phone); // add and format phone link
 
         card_phone.append(card_phone_link);
         farm_card.append(card_phone);
