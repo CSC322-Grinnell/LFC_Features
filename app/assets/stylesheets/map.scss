@@ -1,5 +1,6 @@
+// Map has minimum height of 500px and will otherwise be 80% of the viewport height; spans width of screen always
 .farm-map {
   width: 100%;
   min-height: 500px;
-  height: 100%;
+  height: 80vh;
 }

@@ -16,6 +16,7 @@ body {
     height: 100%;
 }
 
+// screen reader only content is hidden
 .sr-only {
   display: none;
 }
@@ -42,7 +43,7 @@ header {
     height: 80px;
 
     img {
-        max-height: 80%;
+        max-height: 80%; // logo fills 80% height of header total height and is vertically centered
         position: absolute;
         top: 0;
         bottom: 0;
@@ -51,10 +52,6 @@ header {
         width: auto;
         height: auto;
         margin: auto;
-    }
-
-    h1 {
-        display: none;
     }
 }
 

@@ -14,7 +14,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 
 - [Joshua Cussen](https://github.com/nomadicTree)
 - [Siyu Zhang](https://github.com/zhangsiyu1103)
-- [Nolan Schoenle]()
+- [Nolan Schoenle](https://github.com/NSchoenle)
 - [Hoang Cao]()
 - [Ryan Rosol]()
 
