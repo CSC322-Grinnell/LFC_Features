@@ -11,16 +11,20 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 ## Authors and Contributors
 
 ### Current Builds
+- [Yuya Kawakami] (https://github.com/yuya737)
+- [Hongyuan Zhang] ()
+- [Martin Chamberlin] ()
+- [Albert Ford] ()
+- [Priyanka Dangol] ()
+
+
+### Previous Builds
 
 - [Joshua Cussen](https://github.com/nomadicTree)
 - [Siyu Zhang](https://github.com/zhangsiyu1103)
 - [Nolan Schoenle](https://github.com/NSchoenle)
 - [Hoang Cao]()
 - [Ryan Rosol]()
-
-
-### Previous Builds
-
 - [Linh Pham](https://github.com/linhpha)
 - [Pratik Karki](https://github.com/karkipra)
 - [Elise Brod](https://github.com/brodelis)
