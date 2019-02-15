@@ -61,7 +61,7 @@ rake db:seed:seed_market
 ```
 
 After successfully seeding the database, you can start the app and get to the main page.
-Note: In order to check if the the seeding of farms was successful in the Rails console type: Farm.count and the result should yield 7. The information for all farms will be in the admin page. You can go to this page by clicking the Sign In link of the main website and the credentials of the admin are:
+Note: In order to check if the the seeding of farms was successful in the Rails console (open by calling `rails console` on your terminal) type: Farm.count and the result should yield 7. The information for all farms will be in the admin page. You can go to this page by clicking the Sign In link of the main website and the credentials of the admin are:
 ```
 Email: admin@example.com
 Password: password
