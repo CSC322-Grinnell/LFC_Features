@@ -4,10 +4,4 @@ class StaticPagesController < ApplicationController
 
   def map
   end
-  
-  def recipes
-  end
-  
-  def farmer
-  end
 end
