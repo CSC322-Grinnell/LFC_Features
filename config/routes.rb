@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#view2'
   get '/map', to: 'static_pages#map'
-  get '/recipes', to: 'static_pages#recipes'
+  get '/recipes', to: 'static_pages#recipes' # maybe remove - this is brokem
   get '/farmer', to: 'static_pages#farmer'
 # to here
 

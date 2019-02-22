@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-   gem 'sqlite3'
+   gem 'sqlite3', '~> 1.3.13'
 end
 group :production do
    gem 'pg', '~> 0.18'
