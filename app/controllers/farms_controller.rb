@@ -1,6 +1,6 @@
 class FarmsController < ApplicationController
 
-  before_filter :skip_authorization
+  before_action :skip_authorization
   before_action :authenticate
   skip_before_action :verify_authenticity_token #disable security check?
   # before_action :authenticate_farm!
