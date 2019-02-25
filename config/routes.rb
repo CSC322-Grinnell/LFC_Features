@@ -25,9 +25,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-  root :to => redirect('/admin')
-
   get 'farms/review'
   get 'farms/approved'
   get '/signup', to: 'farms#new'
