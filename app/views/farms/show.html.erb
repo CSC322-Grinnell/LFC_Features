@@ -4,19 +4,28 @@
 <% provide(:hero, @farm.name) %>
 <main>
 
-    <div class="card-grid-wrapper">
-    <div class="card-grid-padding"></div>
-    <div id="card-grid" class="card-grid">
-        <p> <%= @farm.address %> </p>
-        <p> <%= @farm.phone %> </p>
+ <div class="card-grid-individual-wrapper">
+    <div class="card-grid-padding"> </div>
+        <div class = "card-grid-individual">
+            <!-- creating separate ids for each of the three columns -->
+            <div id="card-photo">
+                <p> 
+                The photo of the farm goes here.
+                </p>
+             </div>
+            <div id= "card-about-us">
+                <h2> Who We Are </h2>
+                <p> The about us section of the
+                farm goes here </p>
+            </div>
+            <div id= "card-basic-information">
+                <p> <b> Address: </b> <%= @farm.address %> </p>
+                <p> <b> Phone: </b> <%= @farm.phone %> </p>
+                <p> <b> Email: </b> <%= @farm.email %>   </p>
+                <p> <b> Url: </b> <%= @farm.url %> </p>
+                <p> <b> Growing Methods:</b> <%= @farm.growing_method_ids %> </p>
+            </div>
     </div>
     <div class="card-grid-padding"></div>
   </div>
 </main>
-
- 
-
-
-
-
-
