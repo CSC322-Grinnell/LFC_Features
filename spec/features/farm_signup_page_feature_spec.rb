@@ -19,7 +19,7 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
   #Testing the form found in /views/farms/new.html.erb
 
   before (:each) do
-    visit '/farms/new'
+    visit "/farms/new"
 
     fill_in "Name", :with => "Test Farm"
     fill_in "Address", :with => "1115 8th Ave Grinnell, IA 50112"
@@ -31,16 +31,21 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
   end
   
   scenario " with valid input" do
+    farm_count_initial = Farm.count
     
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
     
-   find('[for=farm_operations_2]').click
-    #check :id =>'farm_operations_1'
+    byebug
+    
+    page.check("farm_operations_19")
+    #find(:css, "#farm_operations_19[value='19']").set(true)
     
     click_button "Submit"
+    
+    farm_count_final = Farm.count
 
-    expect(Farms.count).to eq(1)
+    expect(farm_count_final - farm_count_initial).to eq(1)
     #response.should redirect_to '/submission' #Not yet working on the farms/new
   end
   

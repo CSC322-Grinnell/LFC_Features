@@ -44,29 +44,42 @@ class FarmsController < ApplicationController
   def create
     @farm = Farm.create!(farm_params)
     if @farm.save
-      redirect_to @farm
+      redirect_to @farm, notice: "Test Notice Text"
     else
       render :new
     end
-
-    params[:market].each do |m|
-      @market = Market.find_by location: m
-      @farm.market << @market
+   
+    
+    params[:farm][:market].each do |m|
+      if (m=="")
+        next
+      end
+      @market = Market.find(m)
+      @farm.markets << @market
     end
 
-    params[:growing_methods].each do |g|
-      @gmethod = GrowingMethod.find_by grow_method: g
-      @farm.grow_method << @gmethod
+    params[:farm][:growing_methods].each do |g|
+      if (g=="")
+        next
+      end
+      @gmethod = GrowingMethod.find(g)
+      @farm.growing_methods << @gmethod
     end
 
-    params[:selling_methods].each do |s|
-      @smethod = SellingMethod.find_by sell_method: s
-      @farm.sell_method << @smethod
+    params[:farm][:selling_methods].each do |s|
+      if (s=="")
+        next
+      end
+      @smethod = SellingMethod.find(s)
+      @farm.selling_methods << @smethod
     end
 
-    params[:operations].each do |o|
-      @operation = Operation.find_by food: o
-      @farm.operation << @operation
+    params[:farm][:operations].each do |o|
+      if (o=="")
+        next
+      end
+      @operation = Operation.find(o)
+      @farm.operations << @operation
     end
   end
 
@@ -143,7 +156,8 @@ class FarmsController < ApplicationController
     params.require(:farm).permit(:name, :address, :url, :phone, :facebook, 
       :instagram, :twitter, :email, :contact_name, :year, :statement, 
       :other_media, :link_to_cert, :growth_promoter, :antibiotic, 
-      :fav_activity, :why_farm, :operations, :primary_operation_id, :password)
+      :fav_activity, :why_farm, :primary_operation_id, :password, :market,
+      :grow_method, :sell_method, :operation)
   end
 
   private
