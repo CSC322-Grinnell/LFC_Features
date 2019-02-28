@@ -16,7 +16,7 @@
 
         <p>
         <%= f.label :password %><br>
-        <%= f.text_field :password %>
+        <%= f.password_field :password %>
         </p>
 
         <p>
@@ -66,7 +66,7 @@
       </p>
       <p>
         <%= f.label :growing_methods%><br>
-          <%= f.collection_check_boxes :growing_method, GrowingMethod.all, :id,
+          <%= f.collection_check_boxes :growing_methods, GrowingMethod.all, :id,
               :grow_method, checked: GrowingMethod.all do |b| %>
 
               <%= b.check_box %>

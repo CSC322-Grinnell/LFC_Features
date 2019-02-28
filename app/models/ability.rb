@@ -1,3 +1,6 @@
+# This file is used by CanCan to determine which users are authorized to access
+# which resources. CanCan is an authorization library for rails.
+
 class Ability
   include CanCan::Ability
 
