@@ -57,7 +57,7 @@
             <%= f.collection_check_boxes :market, Market.all, :id,
                 :location, checked: Market.all do |b| %>
 
-                <%= b.check_box , :include_hidden => false %>
+                <%= b.check_box %>
                 <%= b.label %>
                 <br>
 
