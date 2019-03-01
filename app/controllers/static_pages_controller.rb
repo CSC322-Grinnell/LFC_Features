@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
   
   def farmer
   end
+  
+  def calendar
+  end
 end

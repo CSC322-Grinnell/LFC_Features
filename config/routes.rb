@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/map', to: 'static_pages#map'
   get '/recipes', to: 'static_pages#recipes'
   get '/farmer', to: 'static_pages#farmer'
+  get '/calendar', to: 'static_pages#calendar'
 # to here
 
   devise_for :farms, ActiveAdmin::Devise.config
