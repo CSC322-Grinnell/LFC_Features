@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
   root 'static_pages#view2'
   get '/map', to: 'static_pages#map'
+<<<<<<< HEAD
   get '/recipes', to: 'static_pages#recipes'
   get '/farmer', to: 'static_pages#farmer'
   get '/calendar', to: 'static_pages#calendar'
 # to here
+=======
+>>>>>>> a0374e1555f52c018911e8656af5ff5454775ba2
 
   devise_for :farms, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -22,18 +25,14 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
-  scope '/v1' do
+    scope '/v1' do
       scope '/farms' do
         post '/farm_by_operation' => 'farms#farm_by_operation'
       end
     end
   end
 
-
-  root :to => redirect('/admin')
-
   get 'farms/review'
-  get 'farms/submission'
   get 'farms/approved'
   get '/signup', to: 'farms#new'
   

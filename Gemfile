@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-   gem 'sqlite3'
+   gem 'sqlite3', '~> 1.3.13'
 end
 group :production do
    gem 'pg', '~> 0.18'
@@ -25,6 +25,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #Add gem for building form
 gem 'simple_form'
+
+# Gen to print tables
+gem 'table_print'
 
 
 # Add gem for cors

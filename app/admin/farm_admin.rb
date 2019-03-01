@@ -1,13 +1,13 @@
 ActiveAdmin.register Farm do
   controller do
-   # before_filter :authorize_index, only: :index #Deprecated in Rails 5.1
+   # before_action :authorize_index, only: :index #Deprecated in Rails 5.1
    before_action :authorize_index, only: :index #
     def authorize_index
       # FarmPolicy::Scope.new(current_farm, Farm).resolve
       Farm
     end
 
-    # before_filter :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
+    # before_action :authorize_show_edit_destroy, only: [:show, :edit, :destroy]
     # def authorize_show_edit_destroy
     #   authorize resource
     # end
