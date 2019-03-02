@@ -4,7 +4,6 @@ class StaticPagesController < ApplicationController
 
   def map
   end
-<<<<<<< HEAD
   
   def recipes
   end
@@ -14,6 +13,4 @@ class StaticPagesController < ApplicationController
   
   def calendar
   end
-=======
->>>>>>> a0374e1555f52c018911e8656af5ff5454775ba2
 end
