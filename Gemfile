@@ -11,7 +11,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
-gem "simple_calendar", "~> 2.0"
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -24,6 +25,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #Add gem for building form
 gem 'simple_form'
+
+# Gen to print tables
+gem 'table_print'
 
 
 # Add gem for cors

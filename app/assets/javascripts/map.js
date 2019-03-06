@@ -32,6 +32,8 @@ var markers = []
     map: map,
     position: results[0].geometry.location,
     title: farm.name,
+    // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
+    icon: "/assets/farm_icon.png" 
   });
 
   // data string for display tooltip
@@ -41,7 +43,7 @@ var markers = []
       '<h2 id="firstHeading" class="firstHeading">'+ farm.name+'</h2>'+
       '<div id="bodyContent">'+
       '<p>'+farm.address+'</p>'+'<p>'+farm.phone+'</p>'+
-      '<p><a href="'+farm.url+'">'+farm.url+
+      '<p><a href="http://'+farm.url+'" target="_blank">'+farm.url+
       '</a> '+'</p>'+
       '</div>'+
       '</div>';

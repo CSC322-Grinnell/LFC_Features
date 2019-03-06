@@ -2,4 +2,5 @@
 *= require_self
 *= require_tree
 *= stub "active_admin"
+*= require fullcalendar
 */
