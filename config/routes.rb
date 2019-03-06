@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root 'static_pages#view2'
   get '/map', to: 'static_pages#map'
+  get '/recipes', to: 'static_pages#recipes'
+  get '/farmer', to: 'static_pages#farmer'
+  get '/calendar', to: 'static_pages#calendar'
+# to here
 
   devise_for :farms, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
