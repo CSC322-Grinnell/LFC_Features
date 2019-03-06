@@ -156,7 +156,7 @@ class FarmsController < ApplicationController
     params.require(:farm).permit(:name, :address, :url, :phone, :facebook, 
       :instagram, :twitter, :email, :contact_name, :year, :statement, 
       :other_media, :link_to_cert, :growth_promoter, :antibiotic, 
-      :fav_activity, :why_farm, :primary_operation_id, :password, :market,
+      :fav_activity, :why_farm, :primary_operation_id, :password, :password_confirmation, :market,
       :grow_method, :sell_method, :operation)
   end
 

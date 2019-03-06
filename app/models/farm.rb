@@ -9,6 +9,7 @@ class Farm < ApplicationRecord
   has_and_belongs_to_many :selling_methods
   has_and_belongs_to_many :markets
   belongs_to :primary_operation, class_name: "Operation", foreign_key: "primary_operation_id"
+  validates_confirmation_of :password
 
   enum role: [:farm, :admin]
   after_initialize :set_default_role, :if => :new_record?
