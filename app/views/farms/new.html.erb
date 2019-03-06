@@ -18,7 +18,12 @@
         <%= f.label :password %><br>
         <%= f.password_field :password %>
         </p>
-
+        
+        <p>
+        <%= f.label :password_confirmation %><br>
+        <%= f.password_field :password_confirmation %>
+        </p>
+        
         <p>
         <%= f.label :address %><br>
         <%= f.text_area :address %>
@@ -48,10 +53,16 @@
         <%= f.label :twitter %><br>
         <%= f.text_field :twitter %>
         </p>
+        
+        <p>
+        <%= f.label :statement %><br>
+        <%= f.text_area :statement %>
+        </p>
 
        <h2>
          Farm Details
        </h2>
+        
        <p>
           <%= f.label :markets%><br>
             <%= f.collection_check_boxes :market, Market.all, :id,
