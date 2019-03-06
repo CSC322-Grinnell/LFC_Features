@@ -15,15 +15,23 @@
              </div>
             <div id= "card-about-us">
                 <h2> Who We Are </h2>
-                <p> The about us section of the
-                farm goes here </p>
+                <p> <%= @farm.statement %> </p>
             </div>
             <div id= "card-basic-information">
                 <p> <b> Address: </b> <%= @farm.address %> </p>
                 <p> <b> Phone: </b> <%= @farm.phone %> </p>
                 <p> <b> Email: </b> <%= @farm.email %>   </p>
-                <p> <b> Url: </b> <%= @farm.url %> </p>
-                <p> <b> Growing Methods:</b> <%= @farm.growing_method_ids %> </p>
+                <% unless @farm.url.blank? %>
+                <b> Url: </b> <%= @farm.url %> <br />
+                <% end %>
+                <p> <b> Growing Methods:</b> <% @farm.growing_methods.each do |method| %>
+                <span><%= method.grow_method %></span> <% end %> </p>
+                <p> <b> Market:</b> <% @farm.markets.each do |market| %>
+                <span><%= market.location %></span> <% end %> </p>
+                <p> <b> Operations:</b> <% @farm.operations.each do |op| %>
+                <span><%= op.food %></span> <% end %> </p>
+                <p> <b> Primary Operations:</b> <% @farm.primary_operations.each do |op| %>
+                <span><%= op.food %></span> <% end %> </p>
             </div>
     </div>
     <div class="card-grid-padding"></div>

@@ -131,5 +131,49 @@ function initMap() {
         marker.addListener('click', function() {
           infowindow.open(map, marker);
         });
+        
+        var community_meal = {lat: 41.737665, lng: -92.725401};
+
+        var content_cm = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2>Community Meal</h2>'+ '<p><b>Time:</b> Every Tuesday</p>'+
+            '<p><b>Where:</b> Davis Elementary School</p>'+
+            '</div>';
+
+        var infowindow_cm = new google.maps.InfoWindow({
+          content: content_cm
+        });
+
+        var marker_cm = new google.maps.Marker({
+          position: community_meal,
+          map: map,
+          title: 'Community Meal'
+        });
+        marker_cm.addListener('click', function() {
+          infowindow_cm.open(map, marker_cm);
+        });
+        
+        var farm_to_table = {lat: 41.745446, lng: -92.721348};
+
+        var content_ft = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h2>Grinnell Farm to Table</h2>'+ '<p><b>Time:</b> Every Thursday</p>'+
+            '<p><b>Where:</b> First Presbyterian Church</p>'+
+            '</div>';
+
+        var infowindow_ft = new google.maps.InfoWindow({
+          content: content_ft
+        });
+
+        var marker_ft = new google.maps.Marker({
+          position: farm_to_table,
+          map: map,
+          title: 'Grinnell Farm to Table'
+        });
+        marker_ft.addListener('click', function() {
+          infowindow_ft.open(map, marker_ft);
+        });
 
 }
