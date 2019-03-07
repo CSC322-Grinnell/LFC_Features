@@ -1,7 +1,11 @@
 ActiveAdmin.register Farm do
   controller do
-   # before_action :authorize_index, only: :index #Deprecated in Rails 5.1
-   before_action :authorize_index, only: :index #
+    # if params[:farm][:password].blank?
+    #   params[:farm].delete("password")
+    #   params[:farm].delete("password_confirmation")
+    # end
+    # before_action :authorize_index, only: :index #Deprecated in Rails 5.1
+    before_action :authorize_index, only: :index #
     def authorize_index
       # FarmPolicy::Scope.new(current_farm, Farm).resolve
       Farm
@@ -83,4 +87,5 @@ ActiveAdmin.register Farm do
     end
     f.actions
   end
+
 end
