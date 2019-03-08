@@ -52,6 +52,7 @@ header {
         width: auto;
         height: auto;
         margin: auto;
+        margin-left: 20px;
     }
 }
 
@@ -241,16 +242,18 @@ footer {
     }
 
     .logo {
-        grid-column: 2 / 3;
+        grid-column: 1 / 2;
+        
     }
 
     nav {
         all: unset;
-        grid-column: 3 / 4;
+        grid-column: 3 / 5;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         text-align: left;
+        padding-right: 20px;
     }
 
     nav ul {
