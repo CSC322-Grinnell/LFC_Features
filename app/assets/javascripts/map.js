@@ -32,7 +32,7 @@ var markers = []
     map: map,
     position: results[0].geometry.location,
     title: farm.name,
-    // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
+   
     icon: "/assets/farm_icon.png" 
   });
 
