@@ -34,7 +34,7 @@ ActiveAdmin.register Farm do
   ## Add strong parameters for admin to be able to edit these fields
   permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, 
   :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm, 
-  :fav_activity, :twitter, :approved, operation_ids: [], selling_method_ids: [], 
+  :fav_activity, :twitter, :approved, :image_url, operation_ids: [], selling_method_ids: [], 
   growing_method_ids: [], market_ids: []
 
   # Specifies how the farms should be presented to the admin on the page /admin/farms
@@ -72,7 +72,7 @@ ActiveAdmin.register Farm do
       f.input :url
       f.input :statement
 
-
+      f.input :image_url
       f.input :facebook
       f.input :instagram
       f.input :twitter
