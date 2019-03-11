@@ -1,6 +1,16 @@
 /* GLOBALS */
 
-$font-stack: Helvetica, Arial, sans-serif;
+
+@font-face {
+font-family: 'JosefinSans';
+
+src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
+}
+
+
+$font-stack: Garamond, Georgia, serif;
+$title-font-stack: 'JosefinSans', Helvetica, Arial, sans-serif;
 
 $green: rgba(105, 139, 105, 1);
 $light-grey: #333333;
