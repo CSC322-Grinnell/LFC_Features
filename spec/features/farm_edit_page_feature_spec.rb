@@ -26,7 +26,14 @@ RSpec.feature "Farm edit page can be reached", :type => :feature do
     @id = f.id
   end
   scenario "when a farm is created" do
-    visit "/farms/#{@id}/edit"
+    visit 
+    fill_in 'Name', with: "Test Name"
+    fill_in 'Email', with: "Test@a.com"
+    fill_in 'Password', with: "TestNamde"
+    fill_in 'U', with: "Test Name"
+    fill_in 'Name', with: "Test Name"
+    fill_in 'Name', with: "Test Name"
+    fill_in 'Name', with: "Test Name"
   end
   
   scenario "An unlogged in user clicks on the edit link" do
@@ -154,4 +161,6 @@ RSpec.feature "A valid user attempts to edit their farm by", :type => :feature d
     #Click submit
     #Expect that the farm's field is now updated
   end
+  
+  after(:all)
 end
