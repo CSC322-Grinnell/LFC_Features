@@ -10,7 +10,11 @@
             <!-- creating separate ids for each of the three columns -->
             <div id="card-photo">
                 <p> 
-                <img src="/assets/bandb.jpg" alt="bandb">
+                <% if @farm.image_url.blank? %>
+                    <img id="farm-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Topi_%28Damaliscus_lunatus_jimela%29_female.jpg/1920px-Topi_%28Damaliscus_lunatus_jimela%29_female.jpg" alt="Placeholder image">
+                <% else %>
+                    <%= image_tag(@farm.image_url, :id => "farm-image", :alt => @farm.name) %>
+                <% end %>
                 </p>
              </div>
             <div id= "card-about-us">
