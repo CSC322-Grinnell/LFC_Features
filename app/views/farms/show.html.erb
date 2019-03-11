@@ -11,9 +11,9 @@
             <div id="card-photo">
                 <p> 
                 <% if @farm.image_url.blank? %>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Topi_%28Damaliscus_lunatus_jimela%29_female.jpg/1920px-Topi_%28Damaliscus_lunatus_jimela%29_female.jpg" alt="Placeholder image">
+                    <img id="farm-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Topi_%28Damaliscus_lunatus_jimela%29_female.jpg/1920px-Topi_%28Damaliscus_lunatus_jimela%29_female.jpg" alt="Placeholder image">
                 <% else %>
-                    <%= image_tag(@farm.image_url, :alt => @farm.name) %>
+                    <%= image_tag(@farm.image_url, :id => "farm-image", :alt => @farm.name) %>
                 <% end %>
                 </p>
              </div>
