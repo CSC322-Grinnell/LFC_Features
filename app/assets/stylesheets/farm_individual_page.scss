@@ -2,6 +2,10 @@
 
 @import 'variables';
 
+#farm-image {
+  width: 100%;
+}
+
 .card-grid-individual {
   display: grid;
   grid-template-columns: 1fr;
