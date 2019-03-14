@@ -26,7 +26,7 @@
 
   text-align: center;
 
-  div:nth-child(odd) {
+  div:nth-child(even) {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
 
@@ -35,7 +35,7 @@
     }
   }
 
-  div:nth-child(even) {
+  div:nth-child(odd) {
     background-color: $even-card-background-color;
     color: $even-card-text-color;
 
