@@ -28,7 +28,6 @@ var markers = []
  farm: a json object of farm
  results: the return value of geocode function
  **/
-
 function addMarker(farm, results) {
     var infoDict = {}
     infoDict["address"] = farm.address;
@@ -95,7 +94,6 @@ function addMarker(farm, results) {
         // open info window
 
         //infowindow.open(map, marker);
-         console.log(growing_methods);
         openSidebar();
         addFarminfotoSidebar(infoDict);
     });
