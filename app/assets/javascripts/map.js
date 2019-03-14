@@ -37,7 +37,7 @@ function addMarker(farm, results) {
     infoDict["instagram"] = farm.instagram;
     infoDict["twitter"] = farm.twitter;
 
-    var growing_methods = "";
+    /*var growing_methods = "";
     for (var index = 0; index < farm.growing_methods.length; ++index) {
         console.log("test".concat(farm.growing_methods[index].grow_method));
         growing_methods = growing_methods.concat(", ", farm.growing_methods[index].grow_method);
@@ -62,7 +62,7 @@ function addMarker(farm, results) {
     infoDict["growing_methods"] = growing_methods;
     infoDict["markets"] = markets;
     infoDict["operations"] = operations;
-    infoDict["selling_methods"] = selling_methods;
+    infoDict["selling_methods"] = selling_methods;*/
     
 
     var farmAddress = farm.address
@@ -103,7 +103,7 @@ function addMarker(farm, results) {
 
 function openSidebar() {
     document.getElementById("mapContainer").classList.remove("col-md-12");
-    document.getElementById("mapContainer").classList.add("col-md-8");
+    document.getElementById("mapContainer").classList.add("col-md-9");
     document.getElementById("sidebar").classList.remove("invisible");
    
     //var node = document.createElement("P");
@@ -122,7 +122,7 @@ function addFarminfotoSidebar(infoDict) {
 }
 
 function closeSidebar() {
-    document.getElementById("mapContainer").classList.remove("col-md-8");
+    document.getElementById("mapContainer").classList.remove("col-md-3");
     document.getElementById("mapContainer").classList.add("col-md-12");
     document.getElementById("sidebar").classList.add("invisible");
 }
