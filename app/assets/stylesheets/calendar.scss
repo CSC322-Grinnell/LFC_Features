@@ -1,35 +1,32 @@
-/* This is the CSS for the individual pages of farms*/ 
-
 @import 'variables';
 
-#farm-image {
-  width: 100%;
+.responsive-iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+ 
+.responsive-iframe-container iframe,   
+.vresponsive-iframe-container object,  
+.vresponsive-iframe-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-
-
-.card-grid-individual {
+.calendar-grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 15px;
   padding-bottom: 200px;
-  font-weight: 200;
+
   text-align: center;
-  
-  #card-basic-information{
-    padding: 20px;
-  }
-  
-  h2 {
-      font-weight: 200;
-    }
-    
-    b {
-      font-weight: 400;
-    }
-    
-  
-  div:nth-child(odd) {
+
+  div:nth-child(even) {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
 
@@ -38,7 +35,7 @@
     }
   }
 
-  div:nth-child(even) {
+  div:nth-child(odd) {
     background-color: $even-card-background-color;
     color: $even-card-text-color;
 
@@ -60,17 +57,12 @@
     }
 
     p {
-      font-weight: 200;
       font-size: 1em;
       line-height: 1.5em;
       padding: 0;
       margin: 0;
       color: inherit;
     }
-    
-    
-    
-    
   }
 }
 
@@ -78,30 +70,14 @@
 
 /* 2 columns for medium screens */
 @media screen and (min-width: 800px) {
-  .card-grid-individual {
+  .calendar-grid {
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
   }
 
-  .card-grid-individual-wrapper {
+  .calendar-grid-wrapper {
     display: grid;
     grid-template-columns: 80px 1fr 80px;
   }
 
 }
-
-/* 3 columns for large screens */
-@media screen and (min-width: 1200px) {
-  .card-grid-individual {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-  }
-
-  .card-grid-individual-wrapper {
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    margin: 20px;
-  }
-}
-
-

@@ -28,7 +28,10 @@
 
   .card {
     font-family: $font-stack;
-    padding: 4px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #555555;
+    
 
 
     &:hover {
@@ -37,7 +40,8 @@
     }
 
     .card-name {
-      font-size: 1.2em;
+      font-size: 1.5em;
+      font-weight: 300;
       margin: 0;
       padding: 0;
       color: inherit;
@@ -46,6 +50,7 @@
     p {
       font-size: 1em;
       line-height: 1.5em;
+      font-weight: 200;
       padding: 0;
       margin: 0;
       color: inherit;
@@ -70,6 +75,7 @@
   }
 
   .card-grid-wrapper {
+    margin: 30px;
     display: grid;
     grid-template-columns: 80px 1fr 80px;
   }

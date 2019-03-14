@@ -28,6 +28,7 @@ var markers = []
  farm: a json object of farm
  results: the return value of geocode function
  **/
+
 function addMarker(farm, results) {
     var infoDict = {}
     infoDict["address"] = farm.address;
