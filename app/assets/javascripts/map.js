@@ -32,7 +32,7 @@ var markers = []
     map: map,
     position: results[0].geometry.location,
     title: farm.name,
-    // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
+   
     icon: "/assets/farm_icon.png" 
   });
 
@@ -54,10 +54,25 @@ var markers = []
   // add listener to map for marker to display info window
   google.maps.event.addListener(marker, 'click', function() {
       // open info window
-      infowindow.open(map, marker);
+      
+      //infowindow.open(map, marker);
+      openSidebar();
   });
   markers.push(marker);
 }
+
+function openSidebar(){
+    document.getElementById("mapContainer").classList.remove("col-md-12");
+    document.getElementById("mapContainer").classList.add("col-md-8");
+    document.getElementById("sidebar").classList.remove("invisible");
+}
+
+function closeSidebar(){
+    document.getElementById("mapContainer").classList.remove("col-md-8");
+    document.getElementById("mapContainer").classList.add("col-md-12");
+    document.getElementById("sidebar").classList.add("invisible");
+}
+
 /**
  show markers on the map
  @param 

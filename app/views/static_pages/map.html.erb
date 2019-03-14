@@ -1,7 +1,20 @@
 <% provide(:title, "Map") %>
 <main>
-  <div id="farmmap" class="farm-map">
-      <p>You need to enable JavaScript on this page for the map to work.</p>
-  </div>
+  
+    <div class="content-container">
+                <!-- map -->
+                <div class="col-md-12" id="mapContainer">
+                    <div id="farmmap" class="farm-map"></div>
+                </div>
+                <!-- list of farms -->
+                <div class="col-md-4 invisible" id="sidebar">
+                
+            </div>
+                </div>
+    </div>
+            
+  <!--<div id="farmmap" class="farm-map">-->
+  <!--    <p>You need to enable JavaScript on this page for the map to work.</p>-->
+  <!--</div>-->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQYIkOGccg155GIESrxDpYvL1GgnK1qwQ&callback=initMap"></script>
 </main>

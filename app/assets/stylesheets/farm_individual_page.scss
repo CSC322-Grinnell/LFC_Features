@@ -2,14 +2,33 @@
 
 @import 'variables';
 
+#farm-image {
+  width: 100%;
+}
+
+
+
 .card-grid-individual {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 15px;
   padding-bottom: 200px;
-
+  font-weight: 200;
   text-align: center;
-
+  
+  #card-basic-information{
+    padding: 20px;
+  }
+  
+  h2 {
+      font-weight: 200;
+    }
+    
+    b {
+      font-weight: 400;
+    }
+    
+  
   div:nth-child(odd) {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
@@ -41,12 +60,17 @@
     }
 
     p {
+      font-weight: 200;
       font-size: 1em;
       line-height: 1.5em;
       padding: 0;
       margin: 0;
       color: inherit;
     }
+    
+    
+    
+    
   }
 }
 
@@ -76,6 +100,7 @@
   .card-grid-individual-wrapper {
     display: grid;
     grid-template-columns: 80px 1fr 80px;
+    margin: 20px;
   }
 }
 
