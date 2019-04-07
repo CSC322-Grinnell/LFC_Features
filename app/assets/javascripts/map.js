@@ -75,7 +75,7 @@ function addMarker(farm, results) {
     });
 
     // data string for display tooltip
-    /*var data = '<div id="content">' +
+    var data = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
         '<h2 id="firstHeading" class="firstHeading">' + farm.name + '</h2>' +
@@ -88,14 +88,14 @@ function addMarker(farm, results) {
     // info window for tooltip, contains data
     var infowindow = new google.maps.InfoWindow({
         content: data
-    });*/
+    });
     // add listener to map for marker to display info window
     google.maps.event.addListener(marker, 'click', function() {
         // open info window
 
-        //infowindow.open(map, marker);
-        openSidebar();
-        addFarminfotoSidebar(infoDict);
+        infowindow.open(map, marker);
+        //openSidebar();
+        //addFarminfotoSidebar(infoDict);
     });
     markers.push(marker);
 }
