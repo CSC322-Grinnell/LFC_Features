@@ -2,13 +2,10 @@
 <main>
   
     <div class="content-container">
-                <!-- map -->
-                <div class="col-md-12" id="mapContainer">
-                    <div id="farmmap" class="farm-map"></div>
-                </div>
+                
                 <!-- list of farms -->
-
-                <div class="col-md-3 invisible" id="sidebar">
+                <div class="col-md-3" id="sidebar" >
+                <h id="name"> <span id=name-info> </span> </h>
                 <p id="address"> <b> Address: </b> <span id=address-info> </span></p>
                 <p id="phone"> <b> Phone: </b> <span id=phone-info> </span> </p>
                 <p id="email"> <b> Email: </b>  <span id=email-info> </span> </p>
@@ -20,7 +17,11 @@
                 <p id="operations"> <b> Operations: </b>  <span id=operations-info> </span> </p>
                 <p id="selling_methods"> <b> Selling Methods: </b>  <span id=selling_methods-info> </span> </p>
                 <button id="close_button" type="button" onclick="closeSidebar()">Close</button> 
-
+                </div>
+                
+                <!-- map -->
+                <div class="col-md-12" id="mapContainer">
+                    <div id="farmmap" class="farm-map"></div>
                 </div>
     </div>
             
