@@ -22,6 +22,8 @@ function geocodeAddressAndAddMarker(farm) {
 }
 
 var markers = []
+var markerLastClicked
+
 /**
  add markers to the map
  @param 
@@ -33,6 +35,7 @@ function addMarker(farm, results) {
     var infoDict = {}
     
     // keys for dictionary
+    infoDict["name"]=farm.name;
     infoDict["address"] = farm.address;
     infoDict["phone"] = farm.phone;
     infoDict["email"] = farm.email;
@@ -77,11 +80,20 @@ function addMarker(farm, results) {
         icon: "/assets/farm_icon.png"
     });
     
+   
+    
     // add listener to map for marker to display info window
     google.maps.event.addListener(marker, 'click', function() {
         // open info window
         openSidebar();
         addFarminfotoSidebar(infoDict);
+        // if there is a marker that's clicked previously set the icon back to farm_icon
+        if (markerLastClicked) {
+            markerLastClicked.setIcon("/assets/farm_icon.png");
+        }
+        // change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
+        marker.setIcon("/assets/highlighted_farm_icon.png");
+        markerLastClicked = marker;
     });
     markers.push(marker);
 }
@@ -93,7 +105,7 @@ function openSidebar() {
     // To open the sidebar resize the map, then make the sidebar visible
     document.getElementById("mapContainer").classList.remove("col-md-12");
     document.getElementById("mapContainer").classList.add("col-md-9");
-    document.getElementById("sidebar").classList.remove("invisible");
+    document.getElementById("sidebar").style.display = "block";
 }
 /**
  * add the farm information to the sidebar
@@ -124,7 +136,8 @@ function addFarminfotoSidebar(infoDict) {
 function closeSidebar() {
     document.getElementById("mapContainer").classList.remove("col-md-9");
     document.getElementById("mapContainer").classList.add("col-md-12");
-    document.getElementById("sidebar").classList.add("invisible");
+    document.getElementById("sidebar").style.display = "none";
+    markerLastClicked.setIcon("/assets/farm_icon.png");
 }
 
 /**

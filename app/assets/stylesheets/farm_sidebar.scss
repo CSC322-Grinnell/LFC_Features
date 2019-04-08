@@ -1,0 +1,16 @@
+@import 'variables';
+
+.col-md-3 {
+    display: none;
+    padding: 20px;
+    text-align: left;
+
+    b {
+        font-weight: bold;
+    }
+    h {
+        font-weight: bold;
+        font-size: 170%;
+    }
+
+}
