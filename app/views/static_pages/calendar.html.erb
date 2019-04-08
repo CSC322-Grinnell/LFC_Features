@@ -12,14 +12,18 @@
                 <p> <b> Tuesday: </b> Community Meal @ Davis Elementary School</p>
                 <p> <b> Thursday: </b> Grinnell Farm to Table @ First Presbyterian Church</p>
             </div>
-          <div class="responsive-iframe-container"> 
-              <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=9b4goqj9c9ujv4k4ijfdkeh3n0%40group.calendar.google.com&amp;color=%2342104A&amp;ctz=America%2FChicago"
-                    style="border-width:0" 
-                    width="800" 
-                    height="600" 
-                    frameborder="0" 
-                    scrolling="no"></iframe>
-         </div>
+          <div class="responsive-iframe-container events"> 
+              <script src="/assets/format-google-calendar.min.js"></script>
+              <ul id="events-upcoming">
+                </ul>
+                
+                <script>formatGoogleCalendar.init({
+                calendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bhb4fo8f3urm5j83m8tjn60klo@group.calendar.google.com/events?key=AIzaSyB3dKTdTXm8cHunIBQxmmI8iJFpBYMWe_0',
+                past: false,
+                recurringEvents: false,
+                upcomingTopN: 10,
+                format: ['<strong>', '*date*', '</strong>: <i>', '*summary*', '</i> &mdash; ', '*description*', ' at <i>', '*location*', '</i>',]
+                });</script>
     </div>
     <div class="card-grid-padding"></div>
   </div>

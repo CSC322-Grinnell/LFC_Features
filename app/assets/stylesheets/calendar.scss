@@ -1,5 +1,12 @@
 @import 'variables';
 
+#events-upcoming{
+  font-family: $font-stack;
+  font-weight: 200;
+  text-align: left;
+}
+
+
 .responsive-iframe-container {
     position: relative;
     padding-bottom: 56.25%;
