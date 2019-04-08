@@ -29,7 +29,10 @@ var markers = []
  results: the return value of geocode function
  **/
 function addMarker(farm, results) {
+    // making a dictionary to store the information about the farm to print on sidebar
     var infoDict = {}
+    
+    // keys for dictionary
     infoDict["address"] = farm.address;
     infoDict["phone"] = farm.phone;
     infoDict["email"] = farm.email;
@@ -37,11 +40,10 @@ function addMarker(farm, results) {
     infoDict["instagram"] = farm.instagram;
     infoDict["twitter"] = farm.twitter;
 
-    /*var growing_methods = "";
+    // for growing_methods, markets, operations, and selling methods iterate through the appropriate and collect relevant information
+    var growing_methods = "";
     for (var index = 0; index < farm.growing_methods.length; ++index) {
-        console.log("test".concat(farm.growing_methods[index].grow_method));
         growing_methods = growing_methods.concat(", ", farm.growing_methods[index].grow_method);
-        console.log("test again ".concat(growing_methods))
     }
 
     var markets = "";
@@ -59,10 +61,11 @@ function addMarker(farm, results) {
         selling_methods = selling_methods.concat(", ", farm.selling_methods[index].sell_method);
     }
     
-    infoDict["growing_methods"] = growing_methods;
-    infoDict["markets"] = markets;
-    infoDict["operations"] = operations;
-    infoDict["selling_methods"] = selling_methods;*/
+    // keys for dictionary. str.slice(2) removes the ", " at the beginning of the string
+    infoDict["growing_methods"] = growing_methods.slice(2);
+    infoDict["markets"] = markets.slice(2);
+    infoDict["operations"] = operations.slice(2);
+    infoDict["selling_methods"] = selling_methods.slice(2);
     
 
     var farmAddress = farm.address
@@ -73,55 +76,53 @@ function addMarker(farm, results) {
         // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
         icon: "/assets/farm_icon.png"
     });
-
-    // data string for display tooltip
-    /*var data = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h2 id="firstHeading" class="firstHeading">' + farm.name + '</h2>' +
-        '<div id="bodyContent">' +
-        '<p>' + farm.address + '</p>' + '<p>' + farm.phone + '</p>' +
-        '<p><a href="http://' + farm.url + '" target="_blank">' + farm.url +
-        '</a> ' + '</p>' +
-        '</div>' +
-        '</div>';
-    // info window for tooltip, contains data
-    var infowindow = new google.maps.InfoWindow({
-        content: data
-    });*/
+    
     // add listener to map for marker to display info window
     google.maps.event.addListener(marker, 'click', function() {
         // open info window
-
-        //infowindow.open(map, marker);
         openSidebar();
         addFarminfotoSidebar(infoDict);
     });
     markers.push(marker);
 }
-
+/**
+ * open sidebar to show farm information
+ **/
+ 
 function openSidebar() {
+    // To open the sidebar resize the map, then make the sidebar visible
     document.getElementById("mapContainer").classList.remove("col-md-12");
     document.getElementById("mapContainer").classList.add("col-md-9");
     document.getElementById("sidebar").classList.remove("invisible");
-   
-    //var node = document.createElement("P");
-    //node.appendChild(document.createTextNode("test"))
-
 }
-
+/**
+ * add the farm information to the sidebar
+ * @param
+ * infoDict: dictionary that holds the farm information
+ **/
+ 
 function addFarminfotoSidebar(infoDict) {
+    // iterate through the key-value pairs
     for (var key in infoDict) {
         var value = infoDict[key];
-        if (!value){
+        // if there is something stored in value (i.e. neither null nor empty) then make sure that the element will display and add information
+        if (value){
+            document.getElementById(key).style.display = '';
+            document.getElementById(key.concat("-info")).textContent = value;
+        } 
+        // if there's nothing to show make it invisible
+        else {
             document.getElementById(key).style.display = 'none';
         }
-        document.getElementById(key.concat("-info")).textContent = value;
     }
 }
 
+/**
+ * close the sidebar
+ **/
+ 
 function closeSidebar() {
-    document.getElementById("mapContainer").classList.remove("col-md-3");
+    document.getElementById("mapContainer").classList.remove("col-md-9");
     document.getElementById("mapContainer").classList.add("col-md-12");
     document.getElementById("sidebar").classList.add("invisible");
 }
