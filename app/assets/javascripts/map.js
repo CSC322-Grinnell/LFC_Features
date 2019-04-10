@@ -295,6 +295,7 @@ function initMap() {
 
     // var community_meal = { lat: 41.737665, lng: -92.725401 };
 
+
     // var content_cm = '<div id="content">' +
     //     '<div id="siteNotice">' +
     //     '</div>' +
@@ -314,6 +315,7 @@ function initMap() {
     // marker_cm.addListener('click', function() {
     //     infowindow_cm.open(map, marker_cm);
     // });
+
 
     // var farm_to_table = { lat: 41.745446, lng: -92.721348 };
 
@@ -336,5 +338,18 @@ function initMap() {
     // marker_ft.addListener('click', function() {
     //     infowindow_ft.open(map, marker_ft);
     // });
+    var legend = document.getElementById('legend');
+    var lengend_farm_string = "Farm";
+    var farm_icon = "/assets/small_farm_icon.png";
+    var farm_div = document.createElement('div');
+    farm_div.innerHTML = '<img src="' + farm_icon + '"> ' + lengend_farm_string;
+    var lengend_event_string = "Event";
+    var event_icon = "/assets/small_event_icon.png";
+    var event_div = document.createElement('div');
+    event_div.innerHTML = '<img src="' + event_icon + '"> ' + lengend_event_string;
+    legend.appendChild(farm_div);
+    legend.appendChild(event_div);
+
+    map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
 
 }
