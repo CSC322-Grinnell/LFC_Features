@@ -189,11 +189,13 @@ function closeSidebar(sidebarType) {
             sidebarArray[i].style.display = "none";
         }
     }
-    markerLastClicked.setIcon("/assets/farm_icon.png");
+    if (markerLastClickedwasFarm) {
+        markerLastClicked.setIcon("/assets/farm_icon.png");
+    }
+    else {
+        markerLastClicked.setIcon("/assets/event_icon.png");
+    }
 }
-
-
-
 /**
  * add the farm information to the sidebar
  * @param
