@@ -189,32 +189,6 @@ function initMap() {
     var call_url = "/farms/farm_json";
     callIndexApi(call_url, showMarkers)
 
-
-    var contentString = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h1 id="firstHeading" class="firstHeading">Grinnell, IA</h1>' +
-        '<div id="bodyContent">' +
-        '<p><b>Grinnell</b> is a city in Poweshiek County, Iowa, United States.' +
-        'The population was 9,218 at the 2010 census.</p>' +
-        '<p>Attribution: Grinnell, <a href="https://en.wikipedia.org/wiki/Grinnell,_Iowa">' +
-        'https://en.wikipedia.org/wiki/Grinnell,_Iowa</a> ' +
-        '(last visited Feb 25, 2019).</p>' +
-        '</div>' +
-        '</div>';
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    var marker = new google.maps.Marker({
-        position: grinnell,
-        map: map,
-        title: 'Grinnell (Jewel of the Prairie)'
-    });
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    });
-
     var community_meal = { lat: 41.737665, lng: -92.725401 };
 
     var content_cm = '<div id="content">' +
@@ -231,7 +205,8 @@ function initMap() {
     var marker_cm = new google.maps.Marker({
         position: community_meal,
         map: map,
-        title: 'Community Meal'
+        title: 'Community Meal',
+        icon: "/assets/event_icon.png"
     });
     marker_cm.addListener('click', function() {
         infowindow_cm.open(map, marker_cm);
@@ -253,10 +228,24 @@ function initMap() {
     var marker_ft = new google.maps.Marker({
         position: farm_to_table,
         map: map,
-        title: 'Grinnell Farm to Table'
+        title: 'Grinnell Farm to Table',
+        icon: "/assets/event_icon.png"
     });
     marker_ft.addListener('click', function() {
         infowindow_ft.open(map, marker_ft);
     });
+    
+    var legend = document.getElementById('legend');
+    var lengend_farm_string = "Farm";
+    var farm_icon = "/assets/small_farm_icon.png";
+    var farm_div = document.createElement('div');
+    farm_div.innerHTML = '<img src="' + farm_icon + '"> ' + lengend_farm_string;
+    var lengend_event_string = "Event";
+    var event_icon = "/assets/small_event_icon.png";
+    var event_div = document.createElement('div');
+    event_div.innerHTML = '<img src="' + event_icon + '"> ' + lengend_event_string;
+    legend.appendChild(farm_div);
+    legend.appendChild(event_div);
 
+    map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
 }
