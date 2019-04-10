@@ -21,7 +21,10 @@ function geocodeAddressAndAddMarker(farm) {
     });
 }
 
+
 var markers = []
+
+// markerLastClicked and markerLastClickedwasFarm help track the previous marker to change the icon 
 var markerLastClicked
 var markerLastClickedwasFarm
 
@@ -100,10 +103,18 @@ function addFarmMarker(farm, results) {
     markers.push(marker);
 }
 
+// Array for the recurring events 
 var eventArray = [
     {eventName: "Community Meal", position: { lat: 41.737665, lng: -92.725401 }, time: "Every Tuesday", location: "Davis Elementary School" },
     {eventName: "Grinnell Farm to Table", position: { lat: 41.745446, lng: -92.721348 }, time: "Every Thursday", location: "First Presbyterian Church" }
 ]
+
+/**
+ * add the events marker to the map
+ * @params
+ * event: event to be added
+ **/
+
 
 function addEventMarker(event) {
 
@@ -123,6 +134,7 @@ function addEventMarker(event) {
         addEventinfotoSidebar(event);
         // if there is a marker that's clicked previously set the icon back to farm_icon
         if (markerLastClicked) {
+            // if the marker clicked before was a farm then set the appropriate icon
             if (markerLastClickedwasFarm) {
                 markerLastClicked.setIcon("/assets/farm_icon.png");
             }
@@ -141,6 +153,8 @@ function addEventMarker(event) {
 
 /**
  * open sidebar to show farm information
+ * @params
+ * sidebarType: type of sidebar, either eventSidebar or farmSidebar
  **/
 
 function openSidebar(sidebarType) {
@@ -162,6 +176,8 @@ function openSidebar(sidebarType) {
 
 /**
  * close the sidebar
+ * @params
+ * sidebarType: type of sidebar, either eventSidebar or farmSidebar
  **/
 
 function closeSidebar(sidebarType) {
@@ -201,19 +217,19 @@ function addFarminfotoSidebar(farmInfoDict) {
 }
 
 /**
- * add the farm information to the sidebar
+ * add the event information to the sidebar
  * @param
- * farmInfoDict: dictionary that holds the farm information
+ * eventInfoDict: dictionary that holds the event information
  **/
 
 function addEventinfotoSidebar(eventInfoDict) {
     // iterate through the key-value pairs
     for (var key in eventInfoDict) {
+        // ignore the position key - this is not shown on the sidebar
         if (key == "position"){
             continue;
         }
         var value = eventInfoDict[key];
-        console.log(value);
         // if there is something stored in value (i.e. neither null nor empty) then make sure that the element will display and add information
         if (value) {
             document.getElementById(key).style.display = '';
