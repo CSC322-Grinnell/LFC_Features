@@ -23,6 +23,7 @@ function geocodeAddressAndAddMarker(farm) {
 
 var markers = []
 var markerLastClicked
+var markerLastClickedwasFarm
 
 /**
  add markers to the map
@@ -84,11 +85,17 @@ function addFarmMarker(farm, results) {
         addFarminfotoSidebar(farmInfoDict);
         // if there is a marker that's clicked previously set the icon back to farm_icon
         if (markerLastClicked) {
-            markerLastClicked.setIcon("/assets/farm_icon.png");
+            if (markerLastClickedwasFarm){
+                markerLastClicked.setIcon("/assets/farm_icon.png");
+            } else {
+                markerLastClicked.setIcon("/assets/event_icon.png");
+            }
+           
         }
         // change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
         marker.setIcon("/assets/highlighted_farm_icon.png");
         markerLastClicked = marker;
+        markerLastClickedwasFarm = true;
     });
     markers.push(marker);
 }
@@ -104,7 +111,7 @@ function addEventMarker(event) {
         map: map,
         position: event.position,
         // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
-        icon: "/assets/farm_icon.png"
+        icon: "/assets/event_icon.png"
     });
 
 
@@ -116,11 +123,17 @@ function addEventMarker(event) {
         addEventinfotoSidebar(event);
         // if there is a marker that's clicked previously set the icon back to farm_icon
         if (markerLastClicked) {
-            markerLastClicked.setIcon("/assets/farm_icon.png");
+            if (markerLastClickedwasFarm) {
+                markerLastClicked.setIcon("/assets/farm_icon.png");
+            }
+            else {
+                markerLastClicked.setIcon("/assets/event_icon.png");
+            }
         }
-        // change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
-        marker.setIcon("/assets/highlighted_farm_icon.png");
+        //change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
+        marker.setIcon("/assets/highlighted_event_icon.png");
         markerLastClicked = marker;
+        markerLastClickedwasFarm = false;
     });
     markers.push(marker);
 
