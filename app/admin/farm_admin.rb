@@ -105,5 +105,5 @@ ActiveAdmin.register Farm do
     end
     f.actions
   end
-
+  
 end

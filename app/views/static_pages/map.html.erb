@@ -2,14 +2,34 @@
 <main>
   
     <div class="content-container">
+                <div id="legend"><h5>Legend</h5></div>
+                <!-- list of farms -->
+                <div class="col-md-3" id="farmSidebar" >
+                <h id="name"> <span id=name-info> </span> </h>
+                <p id="address"> <b> Address: </b> <span id=address-info> </span></p>
+                <p id="phone"> <b> Phone: </b> <span id=phone-info> </span> </p>
+                <p id="email"> <b> Email: </b>  <span id=email-info> </span> </p>
+                <p id="facebook"> <b> Facebook: </b>  <span id=facebook-info> </span> </p>
+                <p id="instagram"> <b> Instagram: </b>  <span id=instagram-info> </span> </p>
+                <p id="twitter"> <b> Twitter: </b>  <span id=twitter-info> </span> </p>
+                <p id="growing_methods"> <b> Growing Methods: </b>  <span id=growing_methods-info> </span> </p>
+                <p id="markets"> <b> Markets: </b>  <span id=markets-info> </span> </p>
+                <p id="operations"> <b> Operations: </b>  <span id=operations-info> </span> </p>
+                <p id="selling_methods"> <b> Selling Methods: </b>  <span id=selling_methods-info> </span> </p>
+                <button id="close_button" type="button" onclick="closeSidebar('farmSidebar')">Close</button> 
+                </div>
+                
+                 <!-- list of events -->
+                <div class="col-md-3" id="eventSidebar" >
+                <h id="eventName"> <span id=eventName-info> </span> </h>
+                <p id="time"> <b> When: </b> <span id=time-info> </span></p>
+                <p id="location"> <b> Where: </b> <span id=location-info> </span></p>
+                <button id="close_button" type="button" onclick="closeSidebar('eventSidebar')">Close</button> 
+                </div>
+                
                 <!-- map -->
                 <div class="col-md-12" id="mapContainer">
                     <div id="farmmap" class="farm-map"></div>
-                </div>
-                <!-- list of farms -->
-                <div class="col-md-4 invisible" id="sidebar">
-                
-            </div>
                 </div>
     </div>
             

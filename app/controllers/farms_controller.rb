@@ -48,7 +48,6 @@ class FarmsController < ApplicationController
     else
       render :new
     end
-   
     
     params[:farm][:market].each do |m|
       if (m=="")
@@ -96,7 +95,7 @@ class FarmsController < ApplicationController
 
   def farm_json
     show_farms = Farm.where(approved: true).includes([:operations, :growing_methods, :selling_methods])
-    render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
+    render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods, :markets])
   end
 
   def farm_by_operation

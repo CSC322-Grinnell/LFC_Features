@@ -1,6 +1,21 @@
 // Map has minimum height of 500px and will otherwise be 80% of the viewport height; spans width of screen always
 .farm-map {
-  width: 80%;
+  width: 100%;
   min-height: 500px;
   height: 80vh;
+}
+
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#legend h3 {
+  margin-top: 0;
+}
+#legend img {
+  vertical-align: middle;
 }
