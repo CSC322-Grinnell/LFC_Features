@@ -10,17 +10,21 @@
             <div id= "card-about-us">
                 <h2> Recurring Events </h2>
                 <% for item in @recurring_events %>
-                  <p><%= item.summary %>
-                  <br>
-                  RecurringEventId: <%= item.recurring_event_id %>
-                  </p>
+                  <p>
+                    <b> <%= item.summary %> </b> :  <%= item.location %>
+                  </p> 
+                  <!-- <br>
+                  RecurringEventId: <%= item.recurring_event_id %> -->
+                  </p> 
                 <% end %>
             </div>
           <div class="responsive-iframe-container events"> 
               <% for item in @events %>
-                  <%= item.summary %>
+                  <p>
+                    <b> <%= item.summary %> </b> :  <%= item.location %>
+                  </p> 
                   <br>
-                  RecurringEventId: <%= item.recurring_event_id %>
+                  <!-- RecurringEventId: <%= item.recurring_event_id %> -->
                   <br>
               <% end %>
     </div>
