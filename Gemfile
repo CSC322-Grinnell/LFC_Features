@@ -53,6 +53,8 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 
+# google calendar api
+gem 'google-api-client'
 
 
 # Use ActiveModel has_secure_password
