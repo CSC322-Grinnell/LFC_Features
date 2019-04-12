@@ -9,21 +9,20 @@
             <!-- creating separate ids for each of the three columns -->
             <div id= "card-about-us">
                 <h2> Recurring Events </h2>
-                <p> <b> Tuesday: </b> Community Meal @ Davis Elementary School</p>
-                <p> <b> Thursday: </b> Grinnell Farm to Table @ First Presbyterian Church</p>
+                <% for item in @recurring_events %>
+                  <p><%= item.summary %>
+                  <br>
+                  RecurringEventId: <%= item.recurring_event_id %>
+                  </p>
+                <% end %>
             </div>
           <div class="responsive-iframe-container events"> 
-              <script src="/assets/format-google-calendar.min.js"></script>
-              <ul id="events-upcoming">
-                </ul>
-                
-                <script>formatGoogleCalendar.init({
-                calendarUrl: 'https://www.googleapis.com/calendar/v3/calendars/bhb4fo8f3urm5j83m8tjn60klo@group.calendar.google.com/events?key=AIzaSyB3dKTdTXm8cHunIBQxmmI8iJFpBYMWe_0',
-                past: false,
-                recurringEvents: false,
-                upcomingTopN: 10,
-                format: ['<strong>', '*date*', '</strong>: <i>', '*summary*', '</i> &mdash; ', '*description*', ' at <i>', '*location*', '</i>',]
-                });</script>
+              <% for item in @events %>
+                  <%= item.summary %>
+                  <br>
+                  RecurringEventId: <%= item.recurring_event_id %>
+                  <br>
+              <% end %>
     </div>
     <div class="card-grid-padding"></div>
   </div>
