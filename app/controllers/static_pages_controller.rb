@@ -16,8 +16,8 @@ class StaticPagesController < ApplicationController
   def calendar
     # use the gcal api to get a list of events
     service = Google::Apis::CalendarV3::CalendarService.new
-    service.key = 'AIzaSyB3dKTdTXm8cHunIBQxmmI8iJFpBYMWe_0'
-    calendar_id = 'bhb4fo8f3urm5j83m8tjn60klo@group.calendar.google.com'
+    service.key = 'AIzaSyDTwsxsAm29xldurqQz4dTWPxcpQUgVl5Y'
+    calendar_id = '9b4goqj9c9ujv4k4ijfdkeh3n0@group.calendar.google.com'
     response = service.list_events(
       calendar_id,
       max_results: 10,
