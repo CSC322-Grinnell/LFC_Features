@@ -11,18 +11,28 @@
                 <h2> Recurring Events </h2>
                 <% for item in @recurring_events %>
                   <p>
-                    <b> <%= item.summary %> </b> :  <%= item.location %>
+                    <b> <%= item.summary %> </b> 
+                    <p> <%= item.location %> </p>
+                    <p> <b> Date: </b> <%= item.start.date_time.strftime("%F") %> 
+                    <b> Time: </b><%= item.start.date_time.strftime("%I:%M%p") %> to 
+                        <%= item.end.date_time.strftime("%I:%M%p") %> </p> 
                   </p> 
                   <!-- <br>
                   RecurringEventId: <%= item.recurring_event_id %> -->
                   </p> 
                 <% end %>
             </div>
-          <div class="responsive-iframe-container events"> 
+            <div id= "non-recurring">
+          <!-- <div class="responsive-iframe-container events">  -->
+          <h2> Upcoming Events </h2>
               <% for item in @events %>
                   <p>
-                    <b> <%= item.summary %> </b> :  <%= item.location %>
-                  </p> 
+                    <b> <%= item.summary %> </b> 
+                    <p> <%= item.location %> </p>
+                    <p> <b> Date: </b> <%= item.start.date_time.strftime("%F") %> 
+                    <b> Time: </b><%= item.start.date_time.strftime("%I:%M%p") %> to 
+                        <%= item.end.date_time.strftime("%I:%M%p") %> </p> 
+                  </p>
                   <br>
                   <!-- RecurringEventId: <%= item.recurring_event_id %> -->
                   <br>
