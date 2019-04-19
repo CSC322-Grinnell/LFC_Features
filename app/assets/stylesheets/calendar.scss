@@ -1,5 +1,6 @@
 @import 'variables';
 
+
 #events-upcoming{
   font-family: $font-stack;
   font-weight: 200;
@@ -36,6 +37,12 @@
   div:nth-child(even) {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
+    font-family: 'JosefinSans';
+
+    src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+    src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
+    
+     font-size: 1.205em;
 
     a {
       color: $odd-card-text-link-color;
@@ -45,32 +52,19 @@
   div:nth-child(odd) {
     background-color: $even-card-background-color;
     color: $even-card-text-color;
+    
+    font-family: 'JosefinSans';
+
+    src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+    src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
 
     a {
       color: $even-card-text-link-color;
     }
+    
+    font-size: 1.205em;
   }
 
-  .card {
-    font-family: $font-stack;
-    padding: 4px 0;
-
-
-    .card-name {
-      font-size: 1.2em;
-      margin: 0;
-      padding: 0;
-      color: inherit;
-    }
-
-    p {
-      font-size: 1em;
-      line-height: 1.5em;
-      padding: 0;
-      margin: 0;
-      color: inherit;
-    }
-  }
 }
 
 // Number of grid columns increases by 1 as screen width increases by 400px
