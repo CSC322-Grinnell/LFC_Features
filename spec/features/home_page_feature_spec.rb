@@ -33,6 +33,7 @@ RSpec.feature "Home Page Features", :type => :feature do
   end
   
   context "the home page responds as expected" do
+    
     scenario "the search bar should filter the cards" do
       #Create a CSA Farm
       f = Farm.create!(name: "Compass Plant CSA", 
@@ -51,8 +52,17 @@ RSpec.feature "Home Page Features", :type => :feature do
     end
     
     scenario "clicking on a card should link to the farmer's page" do
+      #Create a CSA Farm
+      f = Farm.create!(name: "Compass Plant CSA", 
+                        address: "2039 N. Penrose Street. Grinnell, IA 50112",
+                        phone: '641-990-6832',
+                        email: 'ladunham@wildblue.net',
+                        password: 'password'
+      )
+       clink_link 'farm_2'
       #click on a card
       #assert that it redirects to the proper path
+      expect(page).to have_content('ladunham@wildblue.net')
     end
   end
 end

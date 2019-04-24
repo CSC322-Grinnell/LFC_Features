@@ -71,6 +71,8 @@ group :development, :test do
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
     gem 'capybara'
+    gem 'simplecov'
+    gem 'simplecov-console'
     
 end
 

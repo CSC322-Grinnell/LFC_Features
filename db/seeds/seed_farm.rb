@@ -35,6 +35,7 @@ Farm.create(email: 'admin@example.com', password: 'password',
 
 farm_list = [
 ["Compass Plant CSA", "2039 N. Penrose Street. Grinnell, IA 50112", "",  \
+<<<<<<< HEAD
   "641-990-6832",  "ladunham@wildblue.net", "cspassword", "cspassword", true, 
   "https://static1.squarespace.com/static/5964ed38414fb5997eb39f05/t/5a61f813f9619a8d2c044cf6/1516369944922/csa.jpg?format=500w"],
 ["Doty Angus Cattle Co", "304 Chapman Street, Malcom, IA", \
@@ -62,4 +63,29 @@ farm_list = [
 farm_list.each do |name, address, url, phone,  email,  password, password_confirmation, approved, image_url|
   Farm.create!( name: name, address: address, url: url, phone: phone,
                  email: email,  password: password, password_confirmation: password_confirmation, approved: approved, image_url: image_url)
+=======
+  "641-990-6832",  "ladunham@wildblue.net", "cspassword", "cspassword", "", true ],
+["Doty Angus Cattle Co1", "304 Chapman Street, Malcom, IA", \
+    "www.beefforyourfreezer.com", "641-528-4049",  "dotyangus@yahoo.com", "dapassword", "dapassword", "", true],
+["Grinnell Heritage Farm1, Inc.", "1933 Penrose St. Grinnell, IA 50112", \
+    "www.grinnellheritagefarm.com", "641-990-0018",  \
+    "grinnellheritagefarm@gmail.com", "ghpassword","ghpassword", 
+    "https://static1.squarespace.com/static/5964ed38414fb5997eb39f05/t/5a5cfed7ec212d764f175bc0/1516046666276/22405409_10159344143265177_674221442246360347_n.jpg?format=500w", 
+    true],
+["Middle Way Farm", "3633 Hwy. 146, Grinnell, IA 50112", \
+    "www.middlewayfarm.com", "641-821-0753",  \
+    "middlewayfarmer@gmail.com", "mypassword", "mypassword", "https://static1.squarespace.com/static/5964ed38414fb5997eb39f05/t/59a580a503596ef2c225d1ff/1504018601048/middle.jpg?format=500w", true],
+["Olson Garden Market", "5809 Hwy. T38N, Grinnell, IA 50112", \
+    "", "641-990-6605",  \
+    "kerriolson56@gmail.com", "ogpassword", "ogpassword", "https://static1.squarespace.com/static/5964ed38414fb5997eb39f05/t/59a5816237c5810f8dc3f5c2/1504018789539/olson.jpg?format=500w", true],
+["Uncle Bill’s Farm", "244 400th Ave Grinnell, IA 50112", \
+    "www.unclebillsfarm.com", "641-236-7043",  \
+    "unclebillsfarm@hotmail.com", "ubpassword", "ubpassword", "", true]]
+
+
+
+farm_list.each do |name, address, url, phone,  email,  password, password_confirmation, image_url, approved|
+  Farm.create!( name: name, address: address, url: url, phone: phone,
+                 email: email,  password: password, password_confirmation: password_confirmation, image_url: image_url, approved: approved, )
+>>>>>>> martin
 end
