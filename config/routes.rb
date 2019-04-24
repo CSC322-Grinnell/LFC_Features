@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/recipes', to: 'static_pages#recipes'
   get '/farmer', to: 'static_pages#farmer'
   get '/calendar', to: 'static_pages#calendar'
+  get '/try', to: 'static_pages#googlecalendar'
 # to here
 
   devise_for :farms, ActiveAdmin::Devise.config

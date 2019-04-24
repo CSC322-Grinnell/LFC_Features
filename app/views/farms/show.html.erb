@@ -22,9 +22,9 @@
                 <p> <%= @farm.statement %> </p>
             </div>
             <div id= "card-basic-information">
-                <p> <b> Address: </b> <%= @farm.address %> </p>
-                <p> <b> Phone: </b> <%= @farm.phone %> </p>
-                <p> <b> Email: </b> <%= @farm.email %>   </p>
+                <p>  Address <%= @farm.address %> </p>
+                <p>  Phone: <%= @farm.phone %> </p>
+                <p>  Email: <%= @farm.email %>   </p>
                 <% unless @farm.url.blank? %>
                 <p><b> Url: </b> <%= @farm.url %> <br />
                 <% end %></p>

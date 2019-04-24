@@ -11,6 +11,11 @@
   div:nth-child(odd) {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
+    
+    font-family: 'JosefinSans';
+
+    src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+    src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
 
     a {
       color: $odd-card-text-link-color;
@@ -20,6 +25,11 @@
   div:nth-child(even) {
     background-color: $even-card-background-color;
     color: $even-card-text-color;
+    
+    font-family: 'JosefinSans';
+
+    src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+    src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
 
     a {
       color: $even-card-text-link-color;

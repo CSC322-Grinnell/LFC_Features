@@ -1,6 +1,12 @@
 @import 'variables';
-
+   
 .col-md-3 {
+    
+    font-family: 'JosefinSans';
+
+    src: font-url('JosefinSans/JosefinSans-Bold.ttf') format('truetype');
+    src: font-url('JosefinSans/JosefinSans-Regular.ttf') format('truetype');
+    
     display: none;
     padding: 20px;
     text-align: left;
