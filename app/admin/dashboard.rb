@@ -1,3 +1,5 @@
+# This file specifies what shows up on ActiveAdmin's dashboard page
+
 ActiveAdmin.register_page "Dashboard" do
 
   def index

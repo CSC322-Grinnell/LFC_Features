@@ -2,9 +2,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require moment 
-//= require fullcalendar
-//= require fullcalendar/locale-all
+//= require moment
 
 var map;
 var geocoder;
