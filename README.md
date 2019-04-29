@@ -33,7 +33,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 
 ### Project Structure
 
-The view for the main page is in /app/views/ui/view2.html.erb.
+The view for the main page is in /app/views/static_pages/home.html.erb.
 The CSS and JavaScript files are in /app/assets/javascripts/ and /app/assets/stylesheets/ respectively.
 All images and icons are stored in /app/assets/images.
 The admin page is contained in /app/admin folder.

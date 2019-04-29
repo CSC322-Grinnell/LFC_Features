@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#view2'
+  root 'static_pages#home'
   get '/map', to: 'static_pages#map'
   get '/recipes', to: 'static_pages#recipes'
   get '/farmer', to: 'static_pages#farmer'
