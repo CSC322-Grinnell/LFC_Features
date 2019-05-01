@@ -100,6 +100,7 @@ GEM
       activemodel-serializers-xml (~> 1.0)
       activesupport (~> 5.0)
       request_store (~> 1.0)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.7.0)
     faraday (0.15.4)
@@ -331,6 +332,9 @@ DEPENDENCIES
   capybara
   devise
   draper
+  dynamic_form
+  fullcalendar-rails
+
   google-api-client
   haml
   jbuilder (~> 2.0)

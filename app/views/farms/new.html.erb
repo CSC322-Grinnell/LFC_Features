@@ -3,7 +3,18 @@
 <main>
   <div class="signup-form">
     <div class="signup-form-wrapper"></div>
-    <%= form_for :farm do |f| %>
+        <%= form_for @farm do |f| %>
+        <% if @farm.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this farm from being saved:</h2>
+ 
+              <ul>
+              <% @farm.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+             <% end %>
+            </ul>
+        </div>
+        <% end %>
         <p>
         <%= f.label :name %><br>
         <%= f.text_field :name %>
@@ -65,8 +76,8 @@
         
        <p>
           <%= f.label :markets%><br>
-            <%= f.collection_check_boxes :market, Market.all, :id,
-                :location, include_hidden:false, checked: Market.all do |b| %>
+            <%= f.collection_check_boxes :markets, Market.all, :id,
+                :location, checked: Market.all do |b| %>
 
                 <%= b.check_box %>
                 <%= b.label %>
@@ -113,7 +124,7 @@
           <% end %>
 
       </p>
-
+      <p> <b><i> Note: Your farm will not be added until the admin approves your farm</i></b></p>
       <p>
       <%= f.submit "Submit" %>
       </p>
