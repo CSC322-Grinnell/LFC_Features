@@ -22,4 +22,6 @@
 # Ignore byebug history
 .byebug_history
 
-coverage
+
+/coverage
+

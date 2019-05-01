@@ -42,14 +42,8 @@ class FarmsController < ApplicationController
   end
 
   def create
-    @farm = Farm.create!(farm_params)
-    if @farm.save
-      redirect_to @farm, notice: "Test Notice Text"
-    else
-      render :new
-    end
-    
-    params[:farm][:market].each do |m|
+    @farm = Farm.new(farm_params)
+    params[:farm][:markets].each do |m|
       if (m=="")
         next
       end
@@ -80,6 +74,13 @@ class FarmsController < ApplicationController
       @operation = Operation.find(o)
       @farm.operations << @operation
     end
+    
+    if @farm.save
+      redirect_to @farm, notice: "Test Notice Text"
+    else
+      render :new
+    end
+    
   end
 
   def review
@@ -155,7 +156,7 @@ class FarmsController < ApplicationController
     params.require(:farm).permit(:name, :address, :url, :phone, :facebook, 
       :instagram, :twitter, :email, :contact_name, :year, :statement, 
       :other_media, :link_to_cert, :growth_promoter, :antibiotic, 
-      :fav_activity, :why_farm, :primary_operation_id, :password, :password_confirmation, :market,
+      :fav_activity, :why_farm, :primary_operation_id, :password, :password_confirmation, :market, 
       :grow_method, :sell_method, :operation)
   end
 
