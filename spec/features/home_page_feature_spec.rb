@@ -59,7 +59,7 @@ RSpec.feature "Home Page Features", :type => :feature do
                         email: 'ladunham@wildblue.net',
                         password: 'password'
       )
-       clink_link 'farm_2'
+       click_link 'farm_2'
       #click on a card
       #assert that it redirects to the proper path
       expect(page).to have_content('ladunham@wildblue.net')
