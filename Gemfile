@@ -55,6 +55,7 @@ gem 'pundit'
 # google calendar api
 gem 'google-api-client'
 
+gem 'dynamic_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
