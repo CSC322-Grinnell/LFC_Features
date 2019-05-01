@@ -14,10 +14,10 @@ class Farm < ApplicationRecord
   validates :email, format: {with: Devise.email_regexp}
   validates :name, presence: true
  
-  validate :has_at_least_one_market
-  validate :has_at_least_one_growing_method
-  validate :has_at_least_one_selling_method
-  validate :has_at_least_one_operation
+  #validate :has_at_least_one_market
+  #validate :has_at_least_one_growing_method
+  #validate :has_at_least_one_selling_method
+  #validate :has_at_least_one_operation
   
   enum role: [:farm, :admin]
   after_initialize :set_default_role, :if => :new_record?
