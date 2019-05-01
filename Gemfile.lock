@@ -333,8 +333,6 @@ DEPENDENCIES
   devise
   draper
   dynamic_form
-  fullcalendar-rails
-
   google-api-client
   haml
   jbuilder (~> 2.0)
