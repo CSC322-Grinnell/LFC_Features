@@ -1,10 +1,8 @@
+# This file controls how ActiveAdmin deals with Farm objects.
+
 ActiveAdmin.register Farm do
   ## This stuff apparently has to do with pundit (commit 6c2e09934d237b7e678df8a75ac9bba8df205c3f)
   # controller do
-  #   # if params[:farm][:password].blank?
-  #   #   params[:farm].delete("password")
-  #   #   params[:farm].delete("password_confirmation")
-  #   # end
   #   # before_action :authorize_index, only: :index #Deprecated in Rails 5.1
   #   before_action :authorize_index, only: :index #
   #   def authorize_index
