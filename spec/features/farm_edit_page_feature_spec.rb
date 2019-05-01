@@ -58,7 +58,7 @@ end
 
 RSpec.feature "A valid user attempts to edit their farm by", :type => :feature do
   before (:each) do
-    f = Farm.create!(name: "Test2", 
+    @farm = Farm.create!(name: "Test2", 
                   address: "123 St",
                   password: "123456",
                   phone: 3140614241,
@@ -78,25 +78,40 @@ RSpec.feature "A valid user attempts to edit their farm by", :type => :feature d
                   antibiotic: false,
                   fav_activity: "",
                   primary_operation_id: 2)
-  
-    @id = f.id
+
     #Get the login page
     #Enter the login creds for Test2
     #Get the edit page for f.id
     
+  end
+  scenario "Updating the farm's email" do
+    
+    email = "johnsonbarb@grinnell.edu"
+    
+    visit '/farms#edit'
+    fill_in "Email", with: email
+    fill_in "Password", :with => "123456"
+    click_on "Submit"
+    
+    expect("Email").to eq("johnsonbarb@grinnell.edu")
     
   end
   scenario "Updating the farm's name" do
+    
+    name = "Test1"
+    
+    visit '/farms#edit'
+    fill_in "Name", with: name
+    fill_in "Password", :with => "123456"
+    click_on "Submit"
+    
+    expect("Name").to eq("Test1")
+    
     #Fill in field with new data
     #Click submit
     #Expect that the farm's field is now updated
   end
   scenario "Updating the farm's password" do
-    #Fill in field with new data
-    #Click submit
-    #Expect that the farm's field is now updated
-  end
-  scenario "Updating the farm's email" do
     #Fill in field with new data
     #Click submit
     #Expect that the farm's field is now updated
