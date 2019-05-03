@@ -29,8 +29,7 @@ RSpec.feature "Header Features", :type => :feature do
   
   context "header responds as expected" do
     scenario "clicking the LFC logo should redirect to the LFC website" do
-      #click on the logo
-      #assert that it redirects to the proper place
+      expect(page).to have_xpath("//a", href: "https://www.localfoodsconnection.com")
     end
     
     scenario "clicking the home tab should redirect to root_path" do

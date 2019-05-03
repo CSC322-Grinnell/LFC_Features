@@ -295,8 +295,7 @@ function initMap() {
 
 
     //make a ajax call to show all the markers
-    var call_url = "/farms/farm_json";
-    callIndexApi(call_url, showMarkers)
+    callIndexApi(FARMS_API_URL, showMarkers)
 
 
     // var contentString = '<div id="content">' +
