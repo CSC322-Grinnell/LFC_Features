@@ -7,6 +7,8 @@
 var map;
 var geocoder;
 
+var FARMS_API_URL = "/api/v2/farms"
+
 /***********
  * API_KEYS *
  ***********/
@@ -28,8 +30,7 @@ var lfc_key = "YAS0sY2rbi";
  Set up farm cards
  **/
 function initialize_farms() {
-    var call_url = "/farms/farm_json";
-    callIndexApi(call_url, Visualize_Farm)
+    callIndexApi(FARMS_API_URL, Visualize_Farm)
 }
 
 

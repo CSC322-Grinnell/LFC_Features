@@ -5,24 +5,10 @@ class FarmsController < ApplicationController
   skip_before_action :verify_authenticity_token #disable security check?
   # before_action :authenticate_farm!
 
-
-#This is not what the show supposed to look like, but we rely on it for store the farm json
-#It need to be changed to a totally different format in the future
-
   def show
-    # @farm = Farm.find(parmas[:id])
-    # authorize @farm
     @show_farms = Farm.where(approved: true)
     @invalid_farms = Farm.where(approved: false)
-    if params[:id] == "farm_json"
-      farm_json
-    elsif params[:id] == "review"
-      return review
-    elsif params[:id] == "approved"
-      return approved
-    else
-      @farm = Farm.find(params[:id])
-    end
+    @farm = Farm.find(params[:id])
   end
 
 #This is also not what a index page should look like
@@ -47,32 +33,32 @@ class FarmsController < ApplicationController
       if (m=="")
         next
       end
-      @market = Market.find(m)
-      @farm.markets << @market
+      market = Market.find(m)
+      @farm.markets << market
     end
 
     params[:farm][:growing_methods].each do |g|
       if (g=="")
         next
       end
-      @gmethod = GrowingMethod.find(g)
-      @farm.growing_methods << @gmethod
+      gmethod = GrowingMethod.find(g)
+      @farm.growing_methods << gmethod
     end
 
     params[:farm][:selling_methods].each do |s|
       if (s=="")
         next
       end
-      @smethod = SellingMethod.find(s)
-      @farm.selling_methods << @smethod
+      smethod = SellingMethod.find(s)
+      @farm.selling_methods << smethod
     end
 
     params[:farm][:operations].each do |o|
       if (o=="")
         next
       end
-      @operation = Operation.find(o)
-      @farm.operations << @operation
+      operation = Operation.find(o)
+      @farm.operations << operation
     end
     
     if @farm.save
@@ -91,6 +77,9 @@ class FarmsController < ApplicationController
   end
 
   def approved
+    # the approved page html currently doesn't exist. The approved page is from an
+    # earlier group, and it isn't clear what it should do or why it should exist
+    # outside of activeadmin
     render :approved
   end
 

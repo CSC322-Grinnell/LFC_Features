@@ -1,7 +1,7 @@
 require 'google/apis/calendar_v3'
 
 class StaticPagesController < ApplicationController
-  def view2
+  def home
   end
 
   def map
