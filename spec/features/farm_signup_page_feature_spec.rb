@@ -36,9 +36,9 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
 
-    
-    page.check("farm_operations_19")
-    #find(:css, "#farm_operations_19[value='19']").set(true)
+    save_and_open_page
+    #page.check("farm_operations_1")
+    find('farm_operations_1', :text => 'egg').click
     
     click_button "Submit"
     

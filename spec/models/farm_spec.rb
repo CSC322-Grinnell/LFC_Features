@@ -1,4 +1,4 @@
-require 'rails_helper'
+rsprequire 'rails_helper'
 
 RSpec.describe Farm, type: :model do
   before :each do
