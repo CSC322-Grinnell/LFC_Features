@@ -36,6 +36,7 @@ module Workspace
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     config.assets.initialize_on_precompile = false
+    #tried to add this line because heroku push wasnt working
   end
 
 end
