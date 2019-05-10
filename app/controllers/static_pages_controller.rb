@@ -16,8 +16,12 @@ class StaticPagesController < ApplicationController
   def calendar
     # use the gcal api to get a list of events
     service = Google::Apis::CalendarV3::CalendarService.new
-    service.key = 'AIzaSyDTwsxsAm29xldurqQz4dTWPxcpQUgVl5Y'
-    calendar_id = '9b4goqj9c9ujv4k4ijfdkeh3n0@group.calendar.google.com'
+    # In c9, environment variables can be set in ~/.bashrc (not the local .bashrc)
+    # You can open this file with a command-line text editor like vim
+    # at the bottom of the file, add
+    # CALENDAR_SERVICE_KEY='AIzaSyDTwsxsAm29xldurqQz4dTWPxcpQUgVl5Y'
+    service.key = 'AIzaSyDTwsxsAm29xldurqQz4dTWPxcpQUgVl5Y' # ENV["CALENDAR_SERVICE_KEY"]
+    calendar_id = '9b4goqj9c9ujv4k4ijfdkeh3n0@group.calendar.google.com' # ENV["CALENDAR_ID"]
     response = service.list_events(
       calendar_id,
       max_results: 10,
