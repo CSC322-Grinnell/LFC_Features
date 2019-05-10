@@ -41,28 +41,20 @@ gem 'haml'
 gem 'activeadmin'
 
 # Plus integrations with:
-gem 'devise'
-gem 'draper'
-gem 'pundit'
+gem 'devise' # passwords
+gem 'draper' # view decorators - not sure if used/needed
+gem 'pundit' # authorization
 
 # google calendar api
 gem 'google-api-client'
 
 gem 'dynamic_form'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
     gem 'capybara'
+    # test coverage
     gem 'simplecov'
     gem 'simplecov-console'
     
