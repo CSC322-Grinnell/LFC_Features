@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Farm signup exsists when", :type => :feature do
   scenario "User goes directly to signup page" do
     visit '/signup'
-   # expect(page).to be '/farms/new'
+    expect(page.current_path).to eq('/signup')
   end
   scenario "User clicks the signup link from home page" do
     visit "/"
