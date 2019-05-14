@@ -38,4 +38,12 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     click_button "Submit"
     expect(page).to have_content('Password can\'t be blank')
   end
+  
+    scenario "with an invalid email" do
+    fill_in "Name", :with => "Test Farm"
+    fill_in "Email", :with => "testfarm.com"
+    fill_in "Password", :with => "1234567890"
+    click_button "Submit"
+    expect(page).to have_content('Email is invalid')
+  end
 end
