@@ -10,51 +10,19 @@ RSpec.feature "Farm signup exsists when", :type => :feature do
     click_link "Sign up"
     expect(page.current_path).to eq(new_farm_path)
   end
-
 end
-
-
 
 RSpec.feature "Farmer tries to sign up", :type => :feature do
   #Testing the form found in /views/farms/new.html.erb
-
   before (:each) do
     visit "/farms/new"
-
-    fill_in "Name", :with => "Test Farm"
-    fill_in "Address", :with => "1115 8th Ave Grinnell, IA 50112"
-    fill_in "Url", :with => "example.com"
-    fill_in "Phone", :with => "123-456-7890"
-    fill_in "Facebook", :with => "testFarm"
-    fill_in "Instagram", :with => "testFarm"
-    fill_in "Twitter", :with => "@testFarm"
   end
   
-  scenario " with valid input" do
-    farm_count_initial = Farm.count
-    
+  scenario " with missing name" do
     fill_in "Email", :with => "testfarm@example.com"
     fill_in "Password", :with => "1234567890"
-
-    save_and_open_page
-    #page.check("farm_operations_1")
-    find('farm_operations_1', :text => 'egg').click
-    
     click_button "Submit"
-    
-    farm_count_final = Farm.count
-
-    expect(farm_count_final - farm_count_initial).to eq(1)
-    #response.should redirect_to '/submission' #Not yet working on the farms/new
-  end
-  
-  scenario "with an invalid email" do
-    fill_in "Email", :with => "123example.com" #an invalid email
-    fill_in "Password", :with => "1234567890"
-    expect {click_button "Submit"}.to raise_error
-    
-
-    #Figure out what we want to have it do when this scenario arises
+    expect(page).to have_content('Name can\'t be blank')
   end
   
   scenario "with an invalid password" do
