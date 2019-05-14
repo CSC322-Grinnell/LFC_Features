@@ -54,4 +54,13 @@ RSpec.feature "Farmer tries to sign up", :type => :feature do
     click_button "Submit"
     expect(page).to have_content('Password is too short (minimum is 6 characters)')
   end
+  
+  scenario "with password confirmation not matching password" do
+    fill_in "Name", :with => "Test Farm"
+    fill_in "Email", :with => "testfarm@example.com"
+    fill_in "Password", :with => "123456"
+    fill_in "Password confirmation", :with => "123455"
+    click_button "Submit"
+    expect(page).to have_content('Password confirmation doesn\'t match Password')
+  end
 end
