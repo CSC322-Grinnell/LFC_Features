@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Farm.create(name: 'admin', email: 'admin@example.com', password: 'password',
+Farm.create!(name: 'admin', email: 'admin@example.com', password: 'password',
              password_confirmation: 'password', role: 1) 
             # if Rails.env.development?
 
