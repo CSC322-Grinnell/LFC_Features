@@ -14,11 +14,12 @@ function containsChars(str) {
  Set up on_click for search farm
  **/
 function set_up_search() {
-    
+
     var input = document.getElementById("search-text-home");
     if(input != null){
+      /* Use the enter key to click the search button */
       input.addEventListener("keypress", function(event) {
-      if (event.keyCode == 13) {
+      if (event.keyCode == 13) { // 13 is the ascii key-code for 'enter'
         event.preventDefault();
         document.getElementById("search-button-home").click();
         }
@@ -89,13 +90,15 @@ function Visualize_Farm(result) {
     var farm_url = cur_farm.url;
     let farm_id = cur_farm.id;
 
+
+
     // create the farm card for the current farm
     var farm_card = document.createElement("div");
     $(farm_card).addClass("card");
     //var card_link = document.createElement("a");
     //$(farm_card).attr("href", BASE_URL+'map'); // add and format website link
     $(farm_card).attr('id', id);
-    
+
 
 
     // if the farm has a name, add it to the card
@@ -159,11 +162,11 @@ function Visualize_Farm(result) {
 
     // add the farm_card to the card-grid
     $('#card-grid').append(farm_card);
-    
+
     //Add the link to each farmers own page
     $('#' + id).on('click', function() {
       window.location.href = BASE_URL+'farms/'+farm_id
     });
-        
+
   }
 }
