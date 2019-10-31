@@ -1,17 +1,20 @@
 # This file specifies what shows up on ActiveAdmin's dashboard page
 
 ActiveAdmin.register_page "Dashboard" do
-
   def index
     authorize :dashboards, :index?
   end
-  menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
+  menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
+
+  content title: proc { I18n.t("active_admin.dashboard") } do
     div class: "blank_slate_container", id: "dashboard_default_message" do
       span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        # small I18n.t("active_admin.dashboard_welcome.call_to_action")
+        if current_farm.admin?
+          span I18n.t("active_admin.dashboard_welcome.welcome")
+        else
+          link_to "View/Edit Your Farm", "/admin/farms/" + current_farm.id.to_s
+        end
       end
     end
 
@@ -26,5 +29,4 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
   end # content
-
 end
