@@ -11,7 +11,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.2'
+gem 'rails', '~> 5.2.3'
 # Date and time library for javascript
 gem 'momentjs-rails'
 # Use SCSS for stylesheets
@@ -20,6 +20,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 #Add gem for building form
 gem 'simple_form'
+
+gem 'coffee-rails', '~> 5.0.0'
 
 # Gem to print tables
 gem 'table_print'
@@ -53,7 +55,7 @@ gem 'dynamic_form'
 group :development, :test do
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
-    gem 'capybara'
+    gem 'capybara', '>= 2.15'
     # test coverage
     gem 'simplecov'
     gem 'simplecov-console'
