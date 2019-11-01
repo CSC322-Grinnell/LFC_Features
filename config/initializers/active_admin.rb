@@ -4,6 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
+  config.comments = false
   config.site_title = "Local Foods Connection"
 
   # Set the link url for the title. For example, to take
@@ -32,7 +33,7 @@ ActiveAdmin.setup do |config|
   # To set no namespace by default, use:
   #   config.default_namespace = false
   #
-  # 
+  #
   #
   # You can customize the settings for each namespace by using
   # a namespace block. For example, to change the site title
