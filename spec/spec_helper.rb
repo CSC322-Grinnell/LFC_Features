@@ -94,3 +94,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+require 'capybara/rspec' 
+
+require 'simplecov'
+require 'simplecov-console'
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
