@@ -59,6 +59,10 @@ rake db:seed:seed_selling_method
 rake db:seed:seed_operation
 rake db:seed:seed_market
 ```
+Alternatively seed the database with one command:
+```
+rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market
+```
 
 After successfully seeding the database, you can start the app and get to the main page.
 Note: In order to check if the the seeding of farms was successful in the Rails console (open by calling `rails console` on your terminal) type: Farm.count and the result should yield 7. The information for all farms will be in the admin page. You can go to this page by clicking the Sign In link of the main website and the credentials of the admin are:
