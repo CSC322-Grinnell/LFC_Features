@@ -11,9 +11,13 @@ ActiveAdmin.register Operation do
     #   permitted << :other if params[:action] == 'create' && current_user.admin?
     #   permitted
     # end
+
+    # This diable the display for farmers' login
+    menu if:proc{current_farm.admin?}
+    
       ## Add strong parameters for admin to be able to edit these fields
       permit_params :food, :operation
-    
+
       # Specifies how the farms should be presented to the admin on the page /admin/farms
       # (this is the main table on the left)
       index do
@@ -22,11 +26,11 @@ ActiveAdmin.register Operation do
         column :food
         actions
       end
-    
+
       # Adds name and email options to the filter box at the right side of the page
       # The filter box is used to filter the table defined above in `index do ...`
       filter :food
-    
+
       # Specifies the format of the view/edit farm page
       # eg /admin/farms/7 or/admin/farms/7/edit
       form do |f|

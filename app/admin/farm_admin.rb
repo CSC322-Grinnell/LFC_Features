@@ -16,8 +16,9 @@ ActiveAdmin.register Farm do
   #   # end
   # end
 
+
   controller do
-    
+
     # Allow users to update farm information without updating their password
     def update
       if params[:farm][:password].blank?
@@ -30,9 +31,9 @@ ActiveAdmin.register Farm do
 
   # scope_to :current_farm, unless: proc{ :current_farm }
   ## Add strong parameters for admin to be able to edit these fields
-  permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password, 
-  :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm, 
-  :fav_activity, :twitter, :approved, :image_url, operation_ids: [], selling_method_ids: [], 
+  permit_params :name, :address, :phone, :email, :url, :facebook, :instagram, :password,
+  :password_confirmation, :primary_operation_id, :growth_promoter, :antibiotic, :why_farm,
+  :fav_activity, :twitter, :approved, :image_url, operation_ids: [], selling_method_ids: [],
   growing_method_ids: [], market_ids: []
 
   # Specifies how the farms should be presented to the admin on the page /admin/farms
@@ -103,5 +104,5 @@ ActiveAdmin.register Farm do
     end
     f.actions
   end
-  
+
 end
