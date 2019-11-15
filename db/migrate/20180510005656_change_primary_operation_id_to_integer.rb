@@ -4,7 +4,7 @@ class ChangePrimaryOperationIdToInteger < ActiveRecord::Migration[5.0]
   #   end
 
   def self.up
-    change_column :farms, :primary_operation_id, "integer USING CAST(change_column AS integer)"
+    change_column :farms, :primary_operation_id, "integer USING CAST(primary_operation_id AS integer)"
   end
 
   def self.down
