@@ -32,11 +32,19 @@ function set_up_search() {
         var text = $('#search-text-home').val();
         var call_url = "/farms/farm_json";
         //Make an ajax call to retrieve information about farms
-         callIndexApi(call_url, handlesearch, text)
+        callIndexApi(FARMS_API_URL, handlesearch, text);
     })
 }
 
 
+function textFoundInOperations(farm_id, text){
+  for(//GO through the farm operations database){
+    if(//operation contains farm_id && contains text){
+      return true;
+    }
+  }
+  return false;
+}
 
 
 /**
@@ -52,11 +60,16 @@ function handlesearch(result, text) {
         return;
     }
     for (var i = 0; i < result.length; i++) {
-        // Convert the json into a string
-        var farm_string = JSON.stringify(result[i]);
+      // Convert the json into a string
+      var farm_string = JSON.stringify(result[i]);
+        var farm_id = result[i]["id"];
         // search whether the string include the text
         if ((farm_string.toLowerCase()).includes(text.toLowerCase())) {
             farms.push(result[i]);
+        } else {
+          if (textFoundInOperations(farm_id, text)){
+            farms.push(result[i]);
+          }
         }
 
 
