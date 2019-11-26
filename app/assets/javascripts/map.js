@@ -108,6 +108,15 @@ var eventArray = [
     {eventName: "Community Meal", position: { lat: 41.737665, lng: -92.725401 }, time: "Every Tuesday", location: "Davis Elementary School" },
     {eventName: "Grinnell Farm to Table", position: { lat: 41.745446, lng: -92.721348 }, time: "Every Thursday", location: "First Presbyterian Church" }
 ]
+var rawEvents = []
+$.ajaxSetup({async: false});
+$.get("/eventJson", function(data) {rawEvents = data;});
+for (var i = 0; i < rawEvents.length; i++) {
+    eventArray.push({
+        eventName: rawEvents[i].summary, 
+        time: rawEvents[i].start.date_time, 
+        location: rawEvents[i].location})
+}
 
 /**
  * add the events marker to the map
