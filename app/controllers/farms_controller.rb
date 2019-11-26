@@ -60,13 +60,13 @@ class FarmsController < ApplicationController
       operation = Operation.find(o)
       @farm.operations << operation
     end
-    
+
     if @farm.save
       redirect_to @farm, notice: "Test Notice Text"
     else
       render :new
     end
-    
+
   end
 
   def review
@@ -91,8 +91,8 @@ class FarmsController < ApplicationController
   def farm_by_operation
     show_farms = []
     Operation.all.each do |o|
-      if params[:farms][:operations].include? o.food 
-        show_farm = o.farms 
+      if params[:farms][:operations].include? o.food
+        show_farm = o.farms
         show_farm.each do |farm|
           if (!show_farms.include? farm)
             show_farms.push(farm)
@@ -102,7 +102,7 @@ class FarmsController < ApplicationController
     end
     render json: show_farms.as_json(include: [:operations, :growing_methods, :selling_methods])
   end
-  
+
 
   def approve
     id = params[:item_id]
@@ -142,10 +142,10 @@ class FarmsController < ApplicationController
 
   #private
   def farm_params
-    params.require(:farm).permit(:name, :address, :url, :phone, :facebook, 
-      :instagram, :twitter, :email, :contact_name, :year, :statement, 
-      :other_media, :link_to_cert, :growth_promoter, :antibiotic, 
-      :fav_activity, :why_farm, :primary_operation_id, :password, :password_confirmation, :market, 
+    params.require(:farm).permit(:name, :address, :url, :phone, :facebook,
+      :instagram, :twitter, :email, :contact_name, :year, :statement,
+      :other_media, :link_to_cert, :growth_promoter, :antibiotic,
+      :fav_activity, :why_farm, :primary_operation_id, :password, :password_confirmation, :market,
       :grow_method, :sell_method, :operation)
   end
 
@@ -157,4 +157,11 @@ class FarmsController < ApplicationController
   def current_ability
     @current_ability ||= Ability.new(@farm)
   end
+
+  respond_to :js, :only => :getDB
+  def getDB
+    @operations = FarmsOperation.all
+    respond_with(@operations)
+  end
+
 end
