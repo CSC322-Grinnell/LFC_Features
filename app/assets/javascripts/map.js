@@ -21,6 +21,26 @@ function geocodeAddressAndAddMarker(farm) {
     });
 }
 
+/**
+positioning event and add markers
+@param 
+event: a json object of event
+**/
+function geocodeAddressAndAddEventMarker(event) {
+   var address = event.location;
+   geocoder.geocode({
+       'address': address
+   }, function(results, status) {
+       // if OK/200 status, add marker to map, else throw alert.
+       if (status === 'OK') {
+           addEventMarker(event, results);
+       }
+       else {
+           alert('Geocode was not successful for the following reason: ' + status);
+       }
+   });
+}
+
 
 var markers = []
 
@@ -104,17 +124,15 @@ function addFarmMarker(farm, results) {
 }
 
 // Array for the recurring events 
-var eventArray = [
-    {eventName: "Community Meal", position: { lat: 41.737665, lng: -92.725401 }, time: "Every Tuesday", location: "Davis Elementary School" },
-    {eventName: "Grinnell Farm to Table", position: { lat: 41.745446, lng: -92.721348 }, time: "Every Thursday", location: "First Presbyterian Church" }
-]
+var eventArray = []
 var rawEvents = []
 $.ajaxSetup({async: false});
 $.get("/eventJson", function(data) {rawEvents = data;});
 for (var i = 0; i < rawEvents.length; i++) {
+    eventDate = new Date(rawEvents[i].start.date_time);
     eventArray.push({
         eventName: rawEvents[i].summary, 
-        time: rawEvents[i].start.date_time, 
+        time: eventDate.toDateString() + " at " + eventDate.toLocaleTimeString([], {timeStyle: 'short'}),
         location: rawEvents[i].location})
 }
 
@@ -125,11 +143,11 @@ for (var i = 0; i < rawEvents.length; i++) {
  **/
 
 
-function addEventMarker(event) {
+function addEventMarker(event, results) {
 
     var marker = new google.maps.Marker({
         map: map,
-        position: event.position,
+        position: results[0].geometry.location,
         // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
         icon: "/assets/event_icon.png"
     });
@@ -267,7 +285,8 @@ function showMarkers(result) {
     }
     for (var i = 0; i < eventArray.length; i++) {
         // add marker at proper place
-        addEventMarker(eventArray[i]);
+        geocodeAddressAndAddEventMarker(eventArray[i]);
+        //addEventMarker(eventArray[i]);
     }
 }
 
