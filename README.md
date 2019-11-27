@@ -1,8 +1,6 @@
 # LFC_Features
 ### Local Food Connection Application
 
-Change 2
-
 LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.
 
 You can obtain the source with the following command:
@@ -60,6 +58,10 @@ rake db:seed:seed_growing_method
 rake db:seed:seed_selling_method
 rake db:seed:seed_operation
 rake db:seed:seed_market
+```
+Alternatively seed the database with one command:
+```
+rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market
 ```
 
 After successfully seeding the database, you can start the app and get to the main page.
