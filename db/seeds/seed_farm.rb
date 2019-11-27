@@ -65,6 +65,6 @@ farm_list.each do |name, address, url, phone,  email,  password, password_confir
                  password_confirmation: password_confirmation,
                  approved: approved, image_url: image_url,
                  statement: statement)
-Farm.create!( name: name, address: address, url: url, phone: phone,
-               email: email,  password: password, password_confirmation: password_confirmation, approved: approved, image_url: image_url)
+#Farm.create!( name: name, address: address, url: url, phone: phone,
+#              email: email,  password: password, password_confirmation: password_confirmation, approved: approved, image_url: image_url)
 end
