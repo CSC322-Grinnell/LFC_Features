@@ -96,7 +96,9 @@ RSpec.configure do |config|
 end
 require 'capybara/rspec' 
 
+
 require 'simplecov'
 require 'simplecov-console'
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
+

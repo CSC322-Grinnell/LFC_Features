@@ -24,6 +24,7 @@ gem 'simple_form'
 # Gem to print tables
 gem 'table_print'
 
+gem 'coffee-script'
 
 # Add gem for cors
 gem 'rack-cors', '~> 0.3.1'
