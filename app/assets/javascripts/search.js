@@ -58,8 +58,8 @@ function handlesearch(result, text) {
         }
     }
     Visualize_Farm(farms);
+    showFarmMarkers(farms);
     return farms;
-
 
 }
 

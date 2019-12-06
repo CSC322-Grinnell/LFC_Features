@@ -3,7 +3,7 @@
  * **************************************/
 /**
  positioning farm and add markers
- @param 
+ @param
  farm: a json object of farm
  **/
 function geocodeAddressAndAddMarker(farm) {
@@ -24,13 +24,13 @@ function geocodeAddressAndAddMarker(farm) {
 
 var markers = []
 
-// markerLastClicked and markerLastClickedwasFarm help track the previous marker to change the icon 
+// markerLastClicked and markerLastClickedwasFarm help track the previous marker to change the icon
 var markerLastClicked
 var markerLastClickedwasFarm
 
 /**
  add markers to the map
- @param 
+ @param
  farm: a json object of farm
  results: the return value of geocode function
  **/
@@ -73,7 +73,7 @@ function addFarmMarker(farm, results) {
     farmInfoDict["markets"] = markets.slice(2);
     farmInfoDict["operations"] = operations.slice(2);
     farmInfoDict["selling_methods"] = selling_methods.slice(2);
-    
+
     var marker = new google.maps.Marker({
         map: map,
         position: results[0].geometry.location,
@@ -93,7 +93,7 @@ function addFarmMarker(farm, results) {
             } else {
                 markerLastClicked.setIcon("/assets/event_icon.png");
             }
-           
+
         }
         // change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
         marker.setIcon("/assets/highlighted_farm_icon.png");
@@ -103,7 +103,7 @@ function addFarmMarker(farm, results) {
     markers.push(marker);
 }
 
-// Array for the recurring events 
+// Array for the recurring events
 var eventArray = [
     {eventName: "Community Meal", position: { lat: 41.737665, lng: -92.725401 }, time: "Every Tuesday", location: "Davis Elementary School" },
     {eventName: "Grinnell Farm to Table", position: { lat: 41.745446, lng: -92.721348 }, time: "Every Thursday", location: "First Presbyterian Church" }
@@ -248,20 +248,23 @@ function addEventinfotoSidebar(eventInfoDict) {
 
 /**
  show markers on the map
- @param 
+ @param
  results: an array of farm jsons
  **/
-function showMarkers(result) {
+function showFarmMarkers(result) {
+    DeleteMarkers();
     for (var i = 0; i < result.length; i++) {
         // add marker at proper place
         geocodeAddressAndAddMarker(result[i]);
     }
-    for (var i = 0; i < eventArray.length; i++) {
-        // add marker at proper place
-        addEventMarker(eventArray[i]);
-    }
 }
 
+function showEventMarkers(){
+  for (var i = 0; i < eventArray.length; i++) {
+      // add marker at proper place
+      addEventMarker(eventArray[i]);
+  }
+}
 
 /***********************
  *  DELETE MARKERS ON MAP *
@@ -274,6 +277,7 @@ function DeleteMarkers() {
     }
     markers = [];
 };
+
 /*************
  *  INIT MAP *
  * ***********/
@@ -295,7 +299,8 @@ function initMap() {
 
 
     //make a ajax call to show all the markers
-    callIndexApi(FARMS_API_URL, showMarkers)
+    callIndexApi(FARMS_API_URL, showFarmMarkers);
+    showEventMarkers();
 
     var legend = document.getElementById('legend');
     var lengend_farm_string = "Farm";
