@@ -37,17 +37,36 @@
   .event {
     box-shadow: 4px 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    border-radius: 20px; /* 5px rounded corners */
-    padding: .5%;
     margin: 1% 3% 2%;
-  }
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #555555;
 
-  /* On mouse-over, add a deeper shadow */
-  .event:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 
-  div:nth-child(even) {
+    .event-name {
+      font-size: 1.5em;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+      color: inherit;
+    }
+
+    p {
+      font-size: 1em;
+      line-height: 1.5em;
+      font-weight: 200;
+      padding: 0;
+      margin: 0;
+      color: inherit;
+    }
+  }
+  
+
+  #recurring {
     background-color:$odd-card-background-color ;
     color: $odd-card-text-color;
     font-family: 'JosefinSans';
@@ -62,7 +81,7 @@
     }
   }
 
-  div:nth-child(odd) {
+  #non-recurring {
     background-color: $even-card-background-color;
     color: $even-card-text-color;
     
