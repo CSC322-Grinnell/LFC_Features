@@ -58,10 +58,11 @@ rake db:seed:seed_growing_method
 rake db:seed:seed_selling_method
 rake db:seed:seed_operation
 rake db:seed:seed_market
+rake db:seed:seed_events
 ```
 Alternatively seed the database with one command:
 ```
-rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market
+rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market db:seed:seed_events
 ```
 
 After successfully seeding the database, you can start the app and get to the main page.

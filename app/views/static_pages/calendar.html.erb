@@ -10,28 +10,24 @@
             <div id= "card-about-us">
                 <h2> Recurring Events </h2>
                 <% for item in @recurring_events %>
-                  <p>
-                    <b> <%= item.eventName %>:  <%= item.summary %></b>
-                    <p> <%= item.location %> </p>
-                    <p> <b> Date/Time: </b> <%= item.time %> 
+                  <p class="event">
+                    <b> <%= item.eventName %></b><br>
+                    <b> Address: </b> <%= item.location %> <br>
+                    <b> Date/Time: </b> <%= item.time %> <br>
+                    <%= item.summary %> 
                   </p>
-                  <br>
-                  <br>
                 <% end %>
             </div>
             <div id= "non-recurring">
           <!-- <div class="responsive-iframe-container events">  -->
           <h2> Upcoming Events </h2>
               <% for item in @events %>
-                  <p>
-                    <b> <%= item.eventName %>:  <%= item.summary %></b>
-                    <b> <%= item.summary %> </b> 
-                    <p> <%= item.location %> </p>
-                    <p> <b> Date/Time: </b> <%= item.time %> 
+                  <p class="event">
+                    <b> <%= item.eventName %></b><br>
+                    <b> Address: </b> <%= item.location %> <br>
+                    <b> Date/Time: </b> <%= item.time %> <br>
+                    <%= item.summary %>
                   </p>
-                  <br>
-                  <!-- RecurringEventId: <%= item.recurring_event_id %> -->
-                  <br>
               <% end %>
     </div>
     <div class="card-grid-padding"></div>
