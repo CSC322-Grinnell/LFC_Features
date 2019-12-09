@@ -17,6 +17,10 @@ RSpec.feature "Header Features", :type => :feature do
     scenario "should contain the map tab" do
       expect(page).to have_content("Map")
     end
+
+    scenario "should contain the events tab" do
+      expect(page).to have_content("Events")
+    end
     
     scenario "should contain the signup tab" do
       expect(page).to have_content("Sign up")
@@ -29,7 +33,7 @@ RSpec.feature "Header Features", :type => :feature do
   
   context "header responds as expected" do
     scenario "clicking the LFC logo should redirect to the LFC website" do
-      expect(page).to have_xpath("//a", href: "https://www.localfoodsconnection.com")
+      expect(page).to have_link(nil, href: 'https://www.localfoodsconnection.com')
     end
     
     scenario "clicking the home tab should redirect to root_path" do
@@ -41,6 +45,11 @@ RSpec.feature "Header Features", :type => :feature do
       click_link("Map")
       expect(page.current_path).to eq(map_path)
     end
+
+    scenario "clicking the events tab should redirect to the events page" do
+      click_link("Events")
+      expect(page.current_path) == ('/calenders')
+    end
     
     scenario "clicking the signup tab should redirect to signup page" do
       click_link("Sign up")
@@ -49,7 +58,7 @@ RSpec.feature "Header Features", :type => :feature do
     
     scenario "clicking the the signin tab redirects to signin page" do
       click_link("Sign In")
-      expect(page.current_path).to eq('/signin')
+      expect(page.current_path) == ('/admin/login')
     end
   end
 end

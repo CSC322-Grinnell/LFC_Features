@@ -13,6 +13,7 @@ ActiveAdmin.register GrowingMethod do
   # end
   # This diable the display for farmers' login
   menu if:proc{current_farm.admin?}
+
   ## Add strong parameters for admin to be able to edit these fields
   permit_params :grow_method
 

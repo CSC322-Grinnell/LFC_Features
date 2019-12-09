@@ -24,6 +24,7 @@ gem 'simple_form'
 # Gem to print tables
 gem 'table_print'
 
+gem 'coffee-script'
 
 # Add gem for cors
 gem 'rack-cors', '~> 0.3.1'
@@ -50,6 +51,7 @@ gem 'google-api-client'
 
 gem 'dynamic_form'
 
+gem 'bundler', '1.17.3'
 group :development, :test do
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
@@ -57,7 +59,9 @@ group :development, :test do
     # test coverage
     gem 'simplecov'
     gem 'simplecov-console'
-    
+    gem 'shoulda-matchers'
+    gem 'fabrication'
+    gem 'rails-controller-testing'
 end
 
 group :development do
