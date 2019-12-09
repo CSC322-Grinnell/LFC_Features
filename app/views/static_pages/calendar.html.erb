@@ -7,33 +7,29 @@
     <div class="card-grid-padding"> </div>
         <div class = "calendar-grid">
             <!-- creating separate ids for each of the three columns -->
-            <div id= "card-about-us">
-                <h2> Recurring Events </h2>
-                <% for item in @recurring_events %>
-                  <p>
-                    <b> <%= item.summary %> </b> 
-                    <p> <%= item.location %> </p>
-                    <p> <b> Date: </b> <%= item.start.date_time.strftime("%F") %> 
-                    <b> Time: </b><%= item.start.date_time.strftime("%I:%M%p") %> to 
-                        <%= item.end.date_time.strftime("%I:%M%p") %> </p> 
-                <% end %>
-            </div>
             <div id= "non-recurring">
-          <!-- <div class="responsive-iframe-container events">  -->
-          <h2> Upcoming Events </h2>
-              <% for item in @events %>
-                  <p>
-                    <b> <%= item.summary %> </b> 
-                    <p> <%= item.location %> </p>
-                    <p> <b> Date: </b> <%= item.start.date_time.strftime("%F") %> 
-                    <b> Time: </b><%= item.start.date_time.strftime("%I:%M%p") %> to 
-                        <%= item.end.date_time.strftime("%I:%M%p") %> </p> 
-                  </p>
-                  <br>
-                  <!-- RecurringEventId: <%= item.recurring_event_id %> -->
-                  <br>
+              <h2> Recurring Events </h2>
+              <% for item in @recurring_events %>
+                <div class="event">
+                  <h3 class="event-name"><%= item.eventName %></h3>
+                  <p><b> Address: </b> <%= item.location %> </p>
+                  <p><b> Date/Time: </b> <%= item.time %> </p>
+                  <p><%= item.summary %> </p>
+                </div>
               <% end %>
-    </div>
+            </div>
+            <div id= "recurring">
+          <!-- <div class="responsive-iframe-container events">  -->
+              <h2> Upcoming Events </h2>
+              <% for item in @events %>
+                <div class="event">
+                  <h3 class="event-name"><%= item.eventName %></h3>
+                  <p><b> Address: </b> <%= item.location %> </p>
+                  <p><b> Date/Time: </b> <%= item.time %> </p>
+                  <p><%= item.summary %> </p>
+                </div>
+              <% end %>
+          </div>
     <div class="card-grid-padding"></div>
   </div>
 </main>
