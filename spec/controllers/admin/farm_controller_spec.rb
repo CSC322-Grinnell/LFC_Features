@@ -88,10 +88,11 @@ RSpec.describe Admin::FarmsController, type: :controller do
     # There are some problems with the testing about rendering the form elements
     # it seems that they cannot render properly but the edit pages of the
     # website do have the following fields
-    #it 'should render the form elements' do
-      #expect(page).to have_field('name', with: @test_Farm.name)
+    it 'should render the form elements' do
+      #expect(page).to have_content(@test_Farm.name)
+      expect(page).to have_field('name', :with => @test_Farm.name)
       #expect(page).to have_field('email', with: @test_Farm.email)
-    #end
+    end
   end
 
   describe "DELETE #destory" do
