@@ -1,6 +1,6 @@
 <% provide(:title, "Map") %>
 <main>
-  
+
     <div class="content-container">
                 <div id="legend"><h5>Legend</h5></div>
                 <!-- list of farms -->
@@ -16,23 +16,23 @@
                 <p id="markets"> <b> Markets: </b>  <span id=markets-info> </span> </p>
                 <p id="operations"> <b> Operations: </b>  <span id=operations-info> </span> </p>
                 <p id="selling_methods"> <b> Selling Methods: </b>  <span id=selling_methods-info> </span> </p>
-                <button id="close_button" type="button" onclick="closeSidebar('farmSidebar')">Close</button> 
+                <button id="close_button" type="button" onclick="closeSidebar('farmSidebar')">Close</button>
                 </div>
-                
+
                  <!-- list of events -->
                 <div class="col-md-3" id="eventSidebar" >
                 <h id="eventName"> <span id=eventName-info> </span> </h>
                 <p id="time"> <b> When: </b> <span id=time-info> </span></p>
                 <p id="location"> <b> Where: </b> <span id=location-info> </span></p>
-                <button id="close_button" type="button" onclick="closeSidebar('eventSidebar')">Close</button> 
+                <button id="close_button" type="button" onclick="closeSidebar('eventSidebar')">Close</button>
                 </div>
-                
+
                 <!-- map -->
                 <div class="col-md-12" id="mapContainer">
                     <div id="farmmap" class="farm-map"></div>
                 </div>
     </div>
-            
+
   <!--<div id="farmmap" class="farm-map">-->
   <!--    <p>You need to enable JavaScript on this page for the map to work.</p>-->
   <!--</div>-->

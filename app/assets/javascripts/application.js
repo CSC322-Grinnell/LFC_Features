@@ -32,6 +32,3 @@ var lfc_key = "YAS0sY2rbi";
 function initialize_farms() {
     callIndexApi(FARMS_API_URL, Visualize_Farm)
 }
-
-
-

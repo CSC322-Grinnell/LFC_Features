@@ -13,7 +13,11 @@ function geocodeAddressAndAddMarker(farm) {
     }, function(results, status) {
         // if OK/200 status, add marker to map, else throw alert.
         if (status === 'OK') {
+          results[0].geometry.location["lat"]();
             addFarmMarker(farm, results);
+        }
+        else if (status === 'ZERO_RESULTS'){
+            // Do nothing
         }
         else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -103,53 +107,6 @@ function addFarmMarker(farm, results) {
     markers.push(marker);
 }
 
-// Array for the recurring events
-var eventArray = [
-    {eventName: "Community Meal", position: { lat: 41.737665, lng: -92.725401 }, time: "Every Tuesday", location: "Davis Elementary School" },
-    {eventName: "Grinnell Farm to Table", position: { lat: 41.745446, lng: -92.721348 }, time: "Every Thursday", location: "First Presbyterian Church" }
-]
-
-/**
- * add the events marker to the map
- * @params
- * event: event to be added
- **/
-
-
-function addEventMarker(event) {
-
-    var marker = new google.maps.Marker({
-        map: map,
-        position: event.position,
-        // icon: "https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png"
-        icon: "/assets/event_icon.png"
-    });
-
-
-    // add listener to map for marker to display info window
-    google.maps.event.addListener(marker, 'click', function() {
-        // open info window
-        openSidebar("eventSidebar");
-        console.log(event);
-        addEventinfotoSidebar(event);
-        // if there is a marker that's clicked previously set the icon back to farm_icon
-        if (markerLastClicked) {
-            // if the marker clicked before was a farm then set the appropriate icon
-            if (markerLastClickedwasFarm) {
-                markerLastClicked.setIcon("/assets/farm_icon.png");
-            }
-            else {
-                markerLastClicked.setIcon("/assets/event_icon.png");
-            }
-        }
-        //change the marker icon to highlighted_farm_icon and store current marker to markerLastClicked
-        marker.setIcon("/assets/highlighted_event_icon.png");
-        markerLastClicked = marker;
-        markerLastClickedwasFarm = false;
-    });
-    markers.push(marker);
-
-}
 
 /**
  * open sidebar to show farm information
@@ -219,34 +176,6 @@ function addFarminfotoSidebar(farmInfoDict) {
 }
 
 /**
- * add the event information to the sidebar
- * @param
- * eventInfoDict: dictionary that holds the event information
- **/
-
-function addEventinfotoSidebar(eventInfoDict) {
-    // iterate through the key-value pairs
-    for (var key in eventInfoDict) {
-        // ignore the position key - this is not shown on the sidebar
-        if (key == "position"){
-            continue;
-        }
-        var value = eventInfoDict[key];
-        // if there is something stored in value (i.e. neither null nor empty) then make sure that the element will display and add information
-        if (value) {
-            document.getElementById(key).style.display = '';
-            document.getElementById(key.concat("-info")).textContent = value;
-        }
-        // if there's nothing to show make it invisible
-        else {
-            document.getElementById(key).style.display = 'none';
-        }
-    }
-}
-
-
-
-/**
  show markers on the map
  @param
  results: an array of farm jsons
@@ -257,13 +186,6 @@ function showFarmMarkers(result) {
         // add marker at proper place
         geocodeAddressAndAddMarker(result[i]);
     }
-}
-
-function showEventMarkers(){
-  for (var i = 0; i < eventArray.length; i++) {
-      // add marker at proper place
-      addEventMarker(eventArray[i]);
-  }
 }
 
 /***********************
@@ -298,22 +220,6 @@ function initMap() {
     geocoder = new google.maps.Geocoder();
 
 
-    //make a ajax call to show all the markers
+    //make a ajax call to show all of the markers
     callIndexApi(FARMS_API_URL, showFarmMarkers);
-    showEventMarkers();
-
-    var legend = document.getElementById('legend');
-    var lengend_farm_string = "Farm";
-    var farm_icon = "/assets/small_farm_icon.png";
-    var farm_div = document.createElement('div');
-    farm_div.innerHTML = '<img src="' + farm_icon + '"> ' + lengend_farm_string;
-    var lengend_event_string = "Event";
-    var event_icon = "/assets/small_event_icon.png";
-    var event_div = document.createElement('div');
-    event_div.innerHTML = '<img src="' + event_icon + '"> ' + lengend_event_string;
-    legend.appendChild(farm_div);
-    legend.appendChild(event_div);
-
-    map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
-
 }
