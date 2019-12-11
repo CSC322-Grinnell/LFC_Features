@@ -1,7 +1,7 @@
 # LFC_Features
 ### Local Food Connection Application
 
-LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.
+LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.  The temp staging app is at: https://lfc-testing.herokuapp.com/
 
 You can obtain the source with the following command:
 ```shell
