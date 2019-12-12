@@ -1,10 +1,34 @@
 require 'rails_helper'
 
-RSpec.feature "Home Page Features", :type => :feature do
+describe "Home Page Features", :type => :feature do
   before (:each) do
+    #create farm in the Farm dataabase
+    f1 = Farm.create!(name: "Test Farm CSA", 
+                        address: "2039 N. Penrose Street. Grinnell, IA 50112",
+                        phone: '641-990-6832',
+                        email: 'test1@example.com',
+                        password: 'password',
+                        approved: true
+    )
+    f2 = Farm.create!(name: "Test Farm IDE", 
+                        address: "1115 S. Main Street. Grinnell, IA 50112",
+                        phone: '641-888-7943',
+                        email: 'test2@example.com',
+                        password: 'password',
+                        url: "http://www.beefforyourfreezer.com",
+                        approved: true
+    )
+    #create produce in the Operation database
+    Operation.create!(food: "carrot")
+    Operation.create!(food: "hay")
+    
+    #associate farms with produces in the FarmsOperation database
+    FarmsOperation.create!(farm_id: 1, operation_id: 1)
+    FarmsOperation.create!(farm_id: 2, operation_id: 2)
+
     visit root_path
   end
-  
+
   context "home page elements are present" do
     scenario "should contain the header" do
       expect(page).to have_css('header')
@@ -30,61 +54,76 @@ RSpec.feature "Home Page Features", :type => :feature do
     scenario "should contain the footer" do
       expect(page).to have_css('footer')
     end
+
+    scenario "should contain the farm cards" do
+      #farm id starts from 1, 0 is reserved for admin
+      #page should contain two cards, corresponding to the two test farms
+      expect(page).to have_css('div#farm_1.card')
+      expect(page).to have_css('div#farm_2.card')
+    end
+  end
+
+  context "farm cards should have proper information" do
+    scenario "should contain farms' names" do
+      expect(page).to have_content('Test Farm CSA')
+      expect(page).to have_content('Test Farm IDE')
+    end
+
+    scenario "should contain farms' phone numbers" do
+      expect(page).to have_content('641-990-6832')
+      expect(page).to have_content('641-888-7943')
+    end
+
+    scenario "should contain farms' addresses" do
+      expect(page).to have_content('2039 N. Penrose Street. Grinnell, IA 50112')
+      expect(page).to have_content('1115 S. Main Street. Grinnell, IA 50112')
+    end
+
+    scenario "should contain link to farm if user provides it" do
+      expect(page).to have_link('http://www.beefforyourfreezer.com')
+    end
   end
   
   context "the home page responds as expected" do
-    before do
-      f1 = Farm.create!(name: "Test Farm CSA", 
-                        address: "2039 N. Penrose Street. Grinnell, IA 50112",
-                        phone: '641-990-6832',
-                        email: 'test1@example.com',
-                        password: 'password'
-      )
-
-      f2 = Farm.create!(name: "Test Farm IDE", 
-                        address: "1115 S. Penrose Street. Grinnell, IA 50112",
-                        phone: '641-990-6832',
-                        email: 'test2@example.com',
-                        password: 'password'
-      )
-
-      Operation.create!(food: "carrot")
-      Operation.create!(food: "hay")
-      
-      FarmsOperation.create!(farm_id: 0, operation_id: 3)
-      FarmsOperation.create!(farm_id: 1, operation_id: 11)
-    end
-    
-    scenario "the search bar should filter the cards based on farm name" do
+    scenario "the search bar should filter the cards based on farm name", js: true do
       #fill in some stuff
       fill_in "search-text-home" , :with => "CSA"
-      #assert that it's what we want
-      within(:css, 'div.card-grid') do 
-        expect(page).to have_content('Test Farm CSA')
-      end
+      click_button
+      #assert that it presents the farm with the searched name and eliminates the other farm
+      expect(page).to have_content('Test Farm CSA')
+      expect(page).to_not have_content('Test Farm IDE')
+
+      fill_in "search-text-home" , :with => "IDE"
+      click_button
+      expect(page).to have_content('Test Farm IDE')
+      expect(page).to_not have_content('Test Farm CSA')
     end
 
     scenario "the search bar should filter the cards based on produce" do
-      #fill in some stuff
-      fill_in "search-text-home" , :with => "carrots"
-      #assert that it's what we want
-      within(:css, 'div.card-grid') do 
-        expect(page).to have_content('Test Farm CSA')
-      end
+      #fill in produce name
+      fill_in "search-text-home" , :with => "carrot"
+      click_button
+      #assert that it presents the farm that grows the searched produce and eliminates the farm that doesn't
+      expect(page).to have_content('Test Farm CSA')
+      expect(page).to_not have_content('Test Farm IDE')
 
-      #fill in some stuff
       fill_in "search-text-home" , :with => "hay"
-      #assert that it's what we want
-      within(:css, 'div.card-grid') do 
-        expect(page).to have_content('Test Farm IDE')
-      end
+      click_button
+      expect(page).to have_content('Test Farm IDE')
+      expect(page).to_not have_content('Test Farm CSA')
     end
     
     scenario "clicking on a card should link to the farmer's page" do
-      click_link 'farm_0'
       #click on a card
-      #assert that it redirects to the proper path
-      expect(page).to have_content('test@example.com')
+      page.find('#farm_1').click
+      #assert that it redirects to the proper path and has information not displayed on the home page
+      expect(page).to have_content('test1@example.com')
+      expect(page).to have_content('carrot')
+
+      visit '/'
+      page.find('#farm_2').click
+      expect(page).to have_content('test2@example.com')
+      expect(page).to have_content('hay')
     end
   end
 end
