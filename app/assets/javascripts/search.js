@@ -14,7 +14,6 @@ function containsChars(str) {
  Set up on_click for search farm
  **/
 function set_up_search() {
-
     var input = document.getElementById("search-text-home");
     if(input != null){
       /* Use the enter key to click the search button */
@@ -58,7 +57,7 @@ function handlesearch(result, text) {
         }
     }
     Visualize_Farm(farms);
-    showFarmMarkers(farms);
+    geocodeRecenterAndAddMarker(farms);
     return farms;
 
 }
