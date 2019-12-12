@@ -11,23 +11,23 @@ RSpec.feature "Header Features", :type => :feature do
     end
     
     scenario "should contain the home tab" do
-      expect(page).to have_content("Home")
+      expect(page).to have_content("HOME")
     end
     
     scenario "should contain the map tab" do
-      expect(page).to have_content("Map")
+      expect(page).to have_content("MAP")
     end
 
     scenario "should contain the events tab" do
-      expect(page).to have_content("Events")
+      expect(page).to have_content("EVENTS")
     end
     
     scenario "should contain the signup tab" do
-      expect(page).to have_content("Sign up")
+      expect(page).to have_content("SIGN UP")
     end
     
     scenario "should contain the signin tab" do
-      expect(page).to have_content("Sign In")
+      expect(page).to have_content("SIGN IN")
     end
   end
   
