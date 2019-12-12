@@ -1,4 +1,4 @@
-class CreateGrowingMethods < ActiveRecord::Migration[5.1]
+class CreateGrowingMethods < ActiveRecord::Migration[5.0]
   def change
     create_table :growing_methods do |t|
 

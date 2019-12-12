@@ -1,4 +1,4 @@
-class AddValidField < ActiveRecord::Migration[5.1]
+class AddValidField < ActiveRecord::Migration[4.2]
   def change
     add_column :farms, :valid, :boolean, default: false  
     

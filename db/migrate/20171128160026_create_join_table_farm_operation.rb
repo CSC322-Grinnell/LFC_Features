@@ -1,4 +1,4 @@
-class CreateJoinTableFarmOperation < ActiveRecord::Migration[5.1]
+class CreateJoinTableFarmOperation < ActiveRecord::Migration[5.0]
   def change
     create_join_table :farms, :operations do |t|
        t.index [:farm_id, :operation_id]

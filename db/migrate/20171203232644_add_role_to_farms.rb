@@ -1,4 +1,4 @@
-class AddRoleToFarms < ActiveRecord::Migration[5.1]
+class AddRoleToFarms < ActiveRecord::Migration[5.0]
   def change
     add_column :farms, :role, :integer
   end
