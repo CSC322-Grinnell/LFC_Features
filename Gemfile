@@ -47,8 +47,6 @@ gem 'devise' # passwords
 gem 'draper' # view decorators - not sure if used/needed
 gem 'pundit' # authorization
 
-gem 'coffee-script'
-
 # google calendar api
 gem 'google-api-client'
 
