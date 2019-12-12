@@ -12,7 +12,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 
 ### Current Builds
 - [Nate Williams](https://github.com/NateWilliams2)
-- [Hongyuan Zhang]()
+- [Shuyi Qi](https://github.com/qishuyi)
 - [Martin Chamberlin]()
 - [Albert Ford]()
 - [Priyanka Dangol]()
