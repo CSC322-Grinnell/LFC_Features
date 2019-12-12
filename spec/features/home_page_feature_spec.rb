@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Home Page Features", :type => :feature do
+describe "Home Page Features", :type => :feature, js: true do
   before (:each) do
     #create farm in the Farm dataabase
     f1 = Farm.create!(name: "Test Farm CSA", 
@@ -26,7 +26,7 @@ describe "Home Page Features", :type => :feature do
     FarmsOperation.create!(farm_id: 1, operation_id: 1)
     FarmsOperation.create!(farm_id: 2, operation_id: 2)
 
-    visit root_path
+    visit '/'
   end
 
   context "home page elements are present" do
