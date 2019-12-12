@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20191206162457) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "eventName"
+    t.string   "event_name"
     t.string   "time"
     t.string   "location"
     t.integer  "recurring"
