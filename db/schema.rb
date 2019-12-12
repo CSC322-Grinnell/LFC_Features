@@ -13,125 +13,125 @@
 ActiveRecord::Schema.define(version: 20191206162457) do
 
   create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_type"
-    t.integer  "resource_id"
-    t.string   "author_type"
-    t.integer  "author_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "event_name"
-    t.string   "time"
-    t.string   "location"
-    t.integer  "recurring"
-    t.string   "summary"
+    t.string "event_name"
+    t.string "time"
+    t.string "location"
+    t.integer "recurring"
+    t.string "summary"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "farms", force: :cascade do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "url"
-    t.string   "phone"
-    t.string   "facebook"
-    t.string   "instagram"
-    t.string   "twitter"
-    t.string   "type_of_farm"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "approved",               default: false
-    t.boolean  "original_id"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
+    t.string "name"
+    t.string "address"
+    t.string "url"
+    t.string "phone"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "twitter"
+    t.string "type_of_farm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "approved", default: false
+    t.boolean "original_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "contact_name"
-    t.integer  "year"
-    t.text     "statement"
-    t.string   "other_media"
-    t.text     "link_to_cert"
-    t.boolean  "growth_promoter"
-    t.boolean  "antibiotic"
-    t.text     "fav_activity"
-    t.text     "why_farm"
-    t.integer  "role"
-    t.string   "farm_type"
-    t.integer  "primary_operation_id"
-    t.string   "image_url"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "contact_name"
+    t.integer "year"
+    t.text "statement"
+    t.string "other_media"
+    t.text "link_to_cert"
+    t.boolean "growth_promoter"
+    t.boolean "antibiotic"
+    t.text "fav_activity"
+    t.text "why_farm"
+    t.integer "role"
+    t.string "farm_type"
+    t.integer "primary_operation_id"
+    t.string "image_url"
     t.index ["email"], name: "index_farms_on_email", unique: true
     t.index ["reset_password_token"], name: "index_farms_on_reset_password_token", unique: true
   end
 
   create_table "farms_growing_methods", id: false, force: :cascade do |t|
-    t.integer "farm_id",           null: false
+    t.integer "farm_id", null: false
     t.integer "growing_method_id", null: false
     t.index ["farm_id", "growing_method_id"], name: "index_farms_growing_methods_on_farm_id_and_growing_method_id"
     t.index ["growing_method_id", "farm_id"], name: "index_farms_growing_methods_on_growing_method_id_and_farm_id"
   end
 
   create_table "farms_markets", id: false, force: :cascade do |t|
-    t.integer "farm_id",   null: false
+    t.integer "farm_id", null: false
     t.integer "market_id", null: false
     t.index ["farm_id", "market_id"], name: "index_farms_markets_on_farm_id_and_market_id"
     t.index ["market_id", "farm_id"], name: "index_farms_markets_on_market_id_and_farm_id"
   end
 
   create_table "farms_operations", id: false, force: :cascade do |t|
-    t.integer "farm_id",      null: false
+    t.integer "farm_id", null: false
     t.integer "operation_id", null: false
     t.index ["farm_id", "operation_id"], name: "index_farms_operations_on_farm_id_and_operation_id"
     t.index ["operation_id", "farm_id"], name: "index_farms_operations_on_operation_id_and_farm_id"
   end
 
   create_table "farms_selling_methods", id: false, force: :cascade do |t|
-    t.integer "farm_id",           null: false
+    t.integer "farm_id", null: false
     t.integer "selling_method_id", null: false
     t.index ["farm_id", "selling_method_id"], name: "index_farms_selling_methods_on_farm_id_and_selling_method_id"
     t.index ["selling_method_id", "farm_id"], name: "index_farms_selling_methods_on_selling_method_id_and_farm_id"
   end
 
   create_table "growing_methods", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "grow_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "grow_method"
   end
 
   create_table "markets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "location"
+    t.string "location"
   end
 
   create_table "operations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "food"
+    t.string "food"
   end
 
   create_table "primary_operations", force: :cascade do |t|
-    t.string   "food"
+    t.string "food"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "selling_methods", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "sell_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "sell_method"
   end
 
 end

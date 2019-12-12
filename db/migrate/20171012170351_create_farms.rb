@@ -1,4 +1,4 @@
-class CreateFarms < ActiveRecord::Migration
+class CreateFarms < ActiveRecord::Migration[5.1]
   def change
     create_table :farms do |t|
       t.string :name

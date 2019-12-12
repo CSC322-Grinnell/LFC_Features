@@ -1,4 +1,4 @@
-class AddDeviseToFarms < ActiveRecord::Migration[5.0]
+class AddDeviseToFarms < ActiveRecord::Migration[5.1]
   def self.up
     change_table :farms do |t|
       ## Database authenticatable
