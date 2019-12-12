@@ -4,15 +4,9 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def map
-  end
-  
-  def recipes
-  end
-  
   def farmer
   end
-  
+
   def calendar
     # use the gcal api to get a list of events
     service = Google::Apis::CalendarV3::CalendarService.new

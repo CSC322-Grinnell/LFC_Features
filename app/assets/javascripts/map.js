@@ -1,29 +1,3 @@
-/****************************************
- * GEOCODING AND ADDING MARKERS FUNCTIONS
- * **************************************/
-/**
- positioning farm and add markers
- @param
- farm: a json object of farm
- **/
-function geocodeAddressAndAddMarker(farm) {
-
-    var address = farm.address;
-    geocoder.geocode({
-        'address': address
-    }, function(results, status) {
-        // if OK/200 status, add marker to map, else throw alert.
-        if (status === 'OK') {
-          results[0].geometry.location["lat"]();
-            addFarmMarker(farm, results);
-        }
-        else {
-            alert('Geocode was not successful for the following reason: ' + status
-            + 'Make sure all addresses are valid.');
-        }
-    });
-}
-
 
 /**
  Converts degrees of Longitude or latitude to zoom level, a google api defined term
@@ -39,7 +13,6 @@ function degreesToZoom(degrees, latOrLng, lat){
   var metersPerDegreeLngAtEquator = 111000;
   // Factor in how meridians are different degrees apart
   var metersPerDegreeLng = Math.cos(lat) * metersPerDegreeLngAtEquator;
-  console.log(degrees);
 
   if(latOrLng){
     var meters = Math.abs(degrees * metersPerDegreeLat);
@@ -79,6 +52,15 @@ function degreesToZoom(degrees, latOrLng, lat){
   return zoomLevels[zoomLevels.length - 1];
 }
 
+/****************************************
+ * GEOCODING AND ADDING MARKERS FUNCTIONS
+ * **************************************/
+/**
+ positioning farm and add markers, and recentering and rezooming
+ the map
+ @param
+ farm: a json object of farm
+ **/
 
 function geocodeRecenterAndAddMarker(results) {
   DeleteMarkers();
@@ -88,10 +70,13 @@ function geocodeRecenterAndAddMarker(results) {
 
   // Go through the results of a farm search
   var farm;
+  var address;
+  var length = results.length; // Length is the number of farms to be displayed
+  var numberFoodProviders = length;
+
   for (var i = 0; i < results.length; i++) {
     farm = results[i];
-    var length = results.length; // Length is the number of farms to be displayed
-    var address = farm.address;
+    address = farm.address;
 
     // Used to store a running sum of latitudes and Longitudes to be averaged later
     var lat = 0;
@@ -129,9 +114,19 @@ function geocodeRecenterAndAddMarker(results) {
 
           addFarmMarker(farm, results);
         }
+        else if (status === 'ZERO_RESULTS' || status === 'INVALID_REQUEST'){
+          /*
+          Do nothing - This usually means that an address given to the geocoder
+          isn't found / doesn't exist as an address on google maps. We
+          (fall-2019 crew) decided that food providers shouldn't have to
+          have valid addresses or even addresses at all.
+          */
+          // We don't want to show this farm, so make sure we don't include
+          // it in the average
+          numberFoodProviders--;
+        }
         else {
-          alert('Geocode was not successful for the following reason: ' + status
-          + '. \nMake sure all addresses are valid.');
+          alert('Geocode was not successful for the following reason: ' + status);
         }
         // Update the counter to reflect that another marker has been geocoded
         counter += 1;
@@ -139,16 +134,16 @@ function geocodeRecenterAndAddMarker(results) {
         //If this instance of the this anonymous callback function is the last...
         if(counter == length){
           //Compute the average lat and lng of the markers being added
-          lat /= length;
-          lng /= length;
+          lat /= numberFoodProviders;
+          lng /= numberFoodProviders;
 
           var coords = new google.maps.LatLng(lat,lng);
+          console.log("Lat: ", lat, "Lng: ", lng);
           map.setCenter(coords);
 
           //Find the largest distance between points on the maps
           latDifference = outliers.largestLat - outliers.smallestLat;
           lngDifference = outliers.largestLng - outliers.smallestLng;
-          console.log("Lat", outliers.largestLat, "Lng", outliers.smallestLat);
 
           var zoomSize; // Tells us which zoom size we should zoom to
           if(latDifference > lngDifference){
@@ -156,7 +151,6 @@ function geocodeRecenterAndAddMarker(results) {
           } else {
             zoomSize = degreesToZoom(lngDifference, false, lat);
           }
-          console.log("Zoom: ", zoomSize);
           map.setZoom(zoomSize);
         }
     }); //Closes geocode API call

@@ -11,7 +11,8 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.2'
+#gem 'rails', '5.0.2'
+gem 'rails', '5.1.5'
 # Date and time library for javascript
 gem 'momentjs-rails'
 # Use SCSS for stylesheets
@@ -45,6 +46,8 @@ gem 'devise' # passwords
 gem 'draper' # view decorators - not sure if used/needed
 gem 'pundit' # authorization
 
+gem 'coffee-script'
+
 # google calendar api
 gem 'google-api-client'
 
@@ -57,7 +60,7 @@ group :development, :test do
     # test coverage
     gem 'simplecov'
     gem 'simplecov-console'
-    
+
 end
 
 group :development do
