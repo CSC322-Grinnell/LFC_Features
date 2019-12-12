@@ -1,7 +1,7 @@
-rsprequire 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe Farm, type: :model do
-  before :each do
+  before do
     farm_params = {name: "Test",
                     address: "123 St",
                     password: "123456",
@@ -31,7 +31,7 @@ RSpec.describe Farm, type: :model do
   end
   
   describe "operations" do
-    before :each do
+    before do
       @testFarm.operations << Operation.new(food: "test", id: 1)
       @testFarm.reload
     end

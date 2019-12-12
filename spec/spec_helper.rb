@@ -43,7 +43,7 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
+  
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -94,7 +94,26 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
-require 'capybara/rspec' 
+require 'capybara/rspec'
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: {
+      args: %w[headless enable-features=NetworkService,NetworkServiceInProcess]
+    }
+  )
+
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+end
+
+Capybara.default_driver = :headless_chrome
+Capybara.javascript_driver = :headless_chrome
 
 require 'simplecov'
 require 'simplecov-console'

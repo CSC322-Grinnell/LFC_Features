@@ -61,6 +61,7 @@ ActiveAdmin.register Farm do
   # Specifies the format of the view/edit farm page
   # eg /admin/farms/7 or/admin/farms/7/edit
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.inputs "Farm Details" do
       f.input :name
       f.input :contact_name #Not sure if we ever do anything with this

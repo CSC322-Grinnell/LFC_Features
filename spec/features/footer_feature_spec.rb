@@ -7,7 +7,7 @@ RSpec.feature "Footer Features", :type => :feature do
     
   context "footer elements are present" do
     scenario "should contain the site's email" do
-      expect(page).to have_content("info@localfoodsconnection.com")
+      expect(page).to have_content("INFO@LOCALFOODSCONNECTION.COM")
     end
     
     scenario "should contain the phone number" do

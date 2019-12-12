@@ -1,7 +1,7 @@
 # LFC_Features
 ### Local Food Connection Application
 
-LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.
+LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.  The temp staging app is at: https://localfoodssearch.herokuapp.com/
 
 You can obtain the source with the following command:
 ```shell
@@ -11,8 +11,8 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 ## Authors and Contributors
 
 ### Current Builds
-- [Yuya Kawakami](https://github.com/yuya737)
-- [Hongyuan Zhang]()
+- [Nate Williams](https://github.com/NateWilliams2)
+- [Shuyi Qi](https://github.com/qishuyi)
 - [Martin Chamberlin]()
 - [Albert Ford]()
 - [Priyanka Dangol]()
@@ -20,6 +20,11 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 
 ### Previous Builds
 
+- [Yuya Kawakami](https://github.com/yuya737)
+- [Hongyuan Zhang]()
+- [Martin Chamberlin]()
+- [Albert Ford]()
+- [Priyanka Dangol]()
 - [Joshua Cussen](https://github.com/nomadicTree)
 - [Siyu Zhang](https://github.com/zhangsiyu1103)
 - [Nolan Schoenle](https://github.com/NSchoenle)
@@ -41,10 +46,7 @@ The admin page is contained in /app/admin folder.
 
 ### How to build
 
-The project can be installed on Cloud 9.
-The Heroku website for the previous group's work on the project is http://localfoodsconnection.herokuapp.com
-We do not have access to this Heroku.
-You need to make a new Heroku to deploy the site.
+The project can be run locally on a server or pushed to a heroku application.
 
 Next, to set up the database, run the commands:
 
@@ -58,10 +60,11 @@ rake db:seed:seed_growing_method
 rake db:seed:seed_selling_method
 rake db:seed:seed_operation
 rake db:seed:seed_market
+rake db:seed:seed_events
 ```
 Alternatively seed the database with one command:
 ```
-rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market
+rake db:seed db:seed:seed_farm db:seed:seed_growing_method db:seed:seed_selling_method db:seed:seed_operation db:seed:seed_market db:seed:seed_events
 ```
 
 After successfully seeding the database, you can start the app and get to the main page.
@@ -70,7 +73,7 @@ Note: In order to check if the the seeding of farms was successful in the Rails 
 Email: admin@example.com
 Password: password
 ```
-After successfully signing in to the admin page you can navigate to look and edit the farms currently in the database. You can add Operations, Selling Methods, Primary Operation and Growing Methods for each farm and the map on the main page will update accordingly.
+After successfully signing in to the admin page you can navigate to look and edit the farms currently in the database. You can add Operations, Selling Methods, Primary Operations and Growing Methods for each farm and the map on the main page will update accordingly. You can also edit the set of valid Operations, Selling Methods, Primary Operations, and Growing Methods. You can also view and edit any Events displayed on the Calendar page. 
 
 To Sign In as a registered farm, you can would use "password" for passwords
 

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.13'
+  gem 'sqlite3', '~> 1.3.6'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
@@ -11,8 +11,8 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-#gem 'rails', '5.0.2'
 gem 'rails', '5.1.5'
+#gem 'rails', '5.0.2'
 # Date and time library for javascript
 gem 'momentjs-rails'
 # Use SCSS for stylesheets
@@ -25,6 +25,7 @@ gem 'simple_form'
 # Gem to print tables
 gem 'table_print'
 
+gem 'coffee-script'
 
 # Add gem for cors
 gem 'rack-cors', '~> 0.3.1'
@@ -53,14 +54,21 @@ gem 'google-api-client'
 
 gem 'dynamic_form'
 
+gem 'bundler', '1.17.3'
 group :development, :test do
   #Use RSpec-rails for testing
     gem 'rspec-rails', '~> 3.8'
     gem 'capybara'
+    gem 'webrick'
     # test coverage
     gem 'simplecov'
     gem 'simplecov-console'
-
+    gem 'shoulda-matchers'
+    gem 'fabrication'
+    gem 'rails-controller-testing'
+    gem 'selenium-webdriver'
+    gem 'chromedriver-helper'
+    gem 'database_cleaner'
 end
 
 group :development do

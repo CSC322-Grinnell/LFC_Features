@@ -1,6 +1,6 @@
 // return true if a string is empty or only contains whitespace
 function isEmpty(str) {
-  return (str.length === 0 || !str.trim());
+  return (!str || str.length === 0 || !str.trim());
 }
 
 
