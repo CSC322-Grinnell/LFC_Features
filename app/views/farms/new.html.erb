@@ -1,12 +1,12 @@
-<% provide(:title, "New Farm Sign Up") %>
-<% provide(:hero, "Register as a Local Farm") %>
+<% provide(:title, "New Food Provider Sign Up") %>
+<% provide(:hero, "Register as a Local Food Provider") %>
 <main>
   <div class="signup-form">
     <div class="signup-form-wrapper"></div>
         <%= form_for @farm do |f| %>
         <% if @farm.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this farm from being saved:</h2>
+              <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this provider from being saved:</h2>
  
               <ul>
               <% @farm.errors.full_messages.each do |msg| %>
@@ -71,7 +71,7 @@
         </p>
 
        <h2>
-         Farm Details
+         Food Provider Details
        </h2>
         
        <p>
@@ -124,7 +124,7 @@
           <% end %>
 
       </p>
-      <p> <b><i> Note: Your farm will not be added until the admin approves your farm</i></b></p>
+      <p> <b><i> Note: Your operation will not be added until the admin approves it</i></b></p>
       <p>
       <%= f.submit "Submit" %>
       </p>

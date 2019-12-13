@@ -67,7 +67,7 @@
   
 
   #recurring {
-    background-color:$odd-card-background-color ;
+    background-color: $even-card-background-color;
     color: $odd-card-text-color;
     font-family: 'JosefinSans';
 
@@ -82,7 +82,7 @@
   }
 
   #non-recurring {
-    background-color: $even-card-background-color;
+    background-color: $odd-card-background-color;
     color: $even-card-text-color;
     
     font-family: 'JosefinSans';
