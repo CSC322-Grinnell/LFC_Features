@@ -13,9 +13,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 ### Current Builds
 - [Nate Williams](https://github.com/NateWilliams2)
 - [Shuyi Qi](https://github.com/qishuyi)
-- [Martin Chamberlin]()
-- [Albert Ford]()
-- [Priyanka Dangol]()
+- [Carter Markegard](https://github.com/carterMarkegard)
 
 
 ### Previous Builds
@@ -73,7 +71,7 @@ Note: In order to check if the the seeding of farms was successful in the Rails 
 Email: admin@example.com
 Password: password
 ```
-After successfully signing in to the admin page you can navigate to look and edit the farms currently in the database. You can add Operations, Selling Methods, Primary Operations and Growing Methods for each farm and the map on the main page will update accordingly. You can also edit the set of valid Operations, Selling Methods, Primary Operations, and Growing Methods. You can also view and edit any Events displayed on the Calendar page. 
+After successfully signing in to the admin page you can navigate to look and edit the farms currently in the database. You can add Operations, Selling Methods, Primary Operations and Growing Methods for each farm and the map on the main page will update accordingly. You can also edit the set of valid Operations, Selling Methods, Primary Operations, and Growing Methods. You can also view and edit any Events displayed on the Calendar page.
 
 To Sign In as a registered farm, you can would use "password" for passwords
 
