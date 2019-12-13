@@ -1,22 +1,13 @@
 <% provide(:title, "New Food Provider Sign Up") %>
-<<<<<<< HEAD
-<% provide(:hero, "Register as a Food Provider") %>
-=======
 <% provide(:hero, "Register as a Local Food Provider") %>
->>>>>>> f69601a32e3258ceb254fb1a52c62fe5957141e8
+
 <main>
   <div class="signup-form">
     <div class="signup-form-wrapper"></div>
         <%= form_for @farm do |f| %>
         <% if @farm.errors.any? %>
             <div id="error_explanation">
-<<<<<<< HEAD
-              <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this farm from being saved:</h2>
-
-=======
               <h2><%= pluralize(@farm.errors.count, "error") %> prohibited this provider from being saved:</h2>
- 
->>>>>>> f69601a32e3258ceb254fb1a52c62fe5957141e8
               <ul>
               <% @farm.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
