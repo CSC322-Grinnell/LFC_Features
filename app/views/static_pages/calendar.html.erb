@@ -7,7 +7,7 @@
     <div class="card-grid-padding"> </div>
         <div class = "calendar-grid">
             <!-- creating separate ids for each of the three columns -->
-            <div id= "non-recurring">
+            <div id= "recurring">
               <h2> Recurring Events </h2>
               <% for item in @recurring_events %>
                 <div class="event">
@@ -18,7 +18,7 @@
                 </div>
               <% end %>
             </div>
-            <div id= "recurring">
+            <div id= "non-recurring">
           <!-- <div class="responsive-iframe-container events">  -->
               <h2> Upcoming Events </h2>
               <% for item in @events %>
