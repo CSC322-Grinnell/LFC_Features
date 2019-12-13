@@ -1,9 +1,21 @@
 .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
 }
 
 .content-container {
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+  .card-grid-wrapper {
+    grid-row: 2;
+  }
+
+  .main-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+  }
+
 }
