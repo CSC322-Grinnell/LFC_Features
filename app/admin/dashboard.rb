@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "blank_slate_container", id: "dashboard_default_message" do
       span class: "blank_slate" do
         if current_farm.admin?
-          span I18n.t("active_admin.dashboard_welcome.welcome")
+          link_to "Return To Main Site", "/"
         else
           link_to "View/Edit Your Farm", "/admin/farms/" + current_farm.id.to_s
         end
