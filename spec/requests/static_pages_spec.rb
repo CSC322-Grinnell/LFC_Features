@@ -12,13 +12,6 @@ RSpec.describe "StaticPages", type: :request do
     end
   end
 
-  describe "Map Page" do
-    it "should have title 'Map | Local Foods Connection'" do
-      visit '/map'
-      expect(page).to have_title("Map | #{@base_title}", exact:true)
-    end
-  end
-
   describe "Calendar Page" do
     it "should have title 'Events | Local Foods Connection'" do
       visit '/calendar'

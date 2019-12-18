@@ -48,7 +48,7 @@ describe "Home Page Features", :type => :feature, js: true do
     end
     
     scenario "should contain the correct hero text" do
-      expect(page).to have_content("Search Local Farms")
+      expect(page).to have_content("Search Local Food Providers")
     end
     
     scenario "should contain the footer" do
@@ -85,16 +85,20 @@ describe "Home Page Features", :type => :feature, js: true do
   end
   
   context "the home page responds as expected" do
+    before :each do
+      visit '/'
+    end
+
     scenario "the search bar should filter the cards based on farm name", js: true do
       #fill in some stuff
       fill_in "search-text-home" , :with => "CSA"
-      click_button
+      click_button('search-button-home')
       #assert that it presents the farm with the searched name and eliminates the other farm
       expect(page).to have_content('Test Farm CSA')
       expect(page).to_not have_content('Test Farm IDE')
 
       fill_in "search-text-home" , :with => "IDE"
-      click_button
+      click_button('search-button-home')
       expect(page).to have_content('Test Farm IDE')
       expect(page).to_not have_content('Test Farm CSA')
     end
@@ -102,13 +106,13 @@ describe "Home Page Features", :type => :feature, js: true do
     scenario "the search bar should filter the cards based on produce" do
       #fill in produce name
       fill_in "search-text-home" , :with => "carrot"
-      click_button
+      click_button('search-button-home')
       #assert that it presents the farm that grows the searched produce and eliminates the farm that doesn't
       expect(page).to have_content('Test Farm CSA')
       expect(page).to_not have_content('Test Farm IDE')
 
       fill_in "search-text-home" , :with => "hay"
-      click_button
+      click_button('search-button-home')
       expect(page).to have_content('Test Farm IDE')
       expect(page).to_not have_content('Test Farm CSA')
     end

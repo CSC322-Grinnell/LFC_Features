@@ -14,10 +14,6 @@ RSpec.feature "Header Features", :type => :feature do
       expect(page).to have_content("HOME")
     end
     
-    scenario "should contain the map tab" do
-      expect(page).to have_content("MAP")
-    end
-
     scenario "should contain the events tab" do
       expect(page).to have_content("EVENTS")
     end
@@ -39,11 +35,6 @@ RSpec.feature "Header Features", :type => :feature do
     scenario "clicking the home tab should redirect to root_path" do
       click_link("Home")
       expect(page.current_path).to eq(root_path)
-    end
-    
-    scenario "clicking the map tab should redirect to the map page" do
-      click_link("Map")
-      expect(page.current_path).to eq(map_path)
     end
 
     scenario "clicking the events tab should redirect to the events page" do
