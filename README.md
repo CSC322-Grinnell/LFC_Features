@@ -14,6 +14,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Nate Williams](https://github.com/NateWilliams2)
 - [Shuyi Qi](https://github.com/qishuyi)
 - [Carter Markegard](https://github.com/carterMarkegard)
+- [James Msekela](https://github.com/jamesalexmsekela)
 
 
 ### Previous Builds
@@ -31,7 +32,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Linh Pham](https://github.com/linhpha)
 - [Pratik Karki](https://github.com/karkipra)
 - [Elise Brod](https://github.com/brodelis)
-- [James Msekela]()
+- [James Msekela](https://github.com/jamesalexmsekela)
 - [Sara Marku](https://github.com/saramarku)
 
 ### Project Structure
