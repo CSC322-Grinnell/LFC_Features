@@ -1,5 +1,5 @@
 # LFC_Features
-### Local Food Connection Application
+### Local Foods Connection Application
 
 LFC is a Grinnell farm directory service. It contains basic information of farms that are connected to Local Food Connection Organization. The goal of the app is to allow user to easily search for Grinnell's sustainable food system.  The temp staging app is at: https://localfoodssearch.herokuapp.com/
 
@@ -14,6 +14,8 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Nate Williams](https://github.com/NateWilliams2)
 - [Shuyi Qi](https://github.com/qishuyi)
 - [Carter Markegard](https://github.com/carterMarkegard)
+- [James Msekela](https://github.com/jamesalexmsekela)
+- [Liam Li](https://github.com/liamlhy)
 
 
 ### Previous Builds
@@ -31,7 +33,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Linh Pham](https://github.com/linhpha)
 - [Pratik Karki](https://github.com/karkipra)
 - [Elise Brod](https://github.com/brodelis)
-- [James Msekela]()
+- [James Msekela](https://github.com/jamesalexmsekela)
 - [Sara Marku](https://github.com/saramarku)
 
 ### Project Structure
@@ -77,7 +79,7 @@ To Sign In as a registered farm, you can would use "password" for passwords
 
 
 ### Current state, future tasks, and tips
-Please see `Instructions and Resources for the Next Team.docx`, also located in the Microsoft Teams Team for this project.
+Please see `Final Team Report.txt`.
 
 
 ## License
