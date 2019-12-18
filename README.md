@@ -77,7 +77,7 @@ To Sign In as a registered farm, you can would use "password" for passwords
 
 
 ### Current state, future tasks, and tips
-Please see `Instructions and Resources for the Next Team.docx`, also located in the Microsoft Teams Team for this project.
+Please see `Final Team Report.txt`.
 
 
 ## License
