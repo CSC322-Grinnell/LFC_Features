@@ -16,7 +16,7 @@ git clone https://github.com/CSC322-Grinnell/LFC_Features.git
 - [Carter Markegard](https://github.com/carterMarkegard)
 - [James Msekela](https://github.com/jamesalexmsekela)
 - [Liam Li](https://github.com/liamlhy)
-
+- [Dingjie Xi](https://github.com/DJXi)
 
 ### Previous Builds
 
